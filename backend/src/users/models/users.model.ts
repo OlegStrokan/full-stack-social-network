@@ -1,5 +1,8 @@
 import { BelongsToMany, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
+import { BlockedUsersModel } from './blocked-users.model';
+import { FollowsModel } from './follows.model';
+import { FollowersModel } from './followers.model';
 
 interface UserCreationAttr {
   email: string;
@@ -55,17 +58,18 @@ export class UsersModel extends Model<UsersModel, UserCreationAttr> {
   @Column({ type: DataType.STRING, allowNull: true })
   about: string;
 
-  @HasMany(() => UsersModel)
+  @HasMany(() => BlockedUsersModel)
     // TODO - only id
-  followers: UsersModel[]
+  blocked_users: BlockedUsersModel[]
 
-  @HasMany(() => UsersModel)
+  @HasMany(() => FollowersModel)
     // TODO - only id
-  follows: UsersModel[]
+  followers: FollowersModel[]
 
-  @HasMany(() => UsersModel)
+  @HasMany(() => FollowsModel)
     // TODO - only id
-  blocked_users: UsersModel[]
+  follows: FollowsModel[]
+
 
   /*@HasMany(() => PostModel)
   posts: PostModel[]

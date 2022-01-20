@@ -2,14 +2,14 @@
 
 ## Features:
 
-1. Delete unnecessary files
-2. Preparation code structure for development
+1. Deleted unnecessary files
+2. Prepared code structure for development
 
 # v0.0.4 (18.01.2022)
 
 ## Features:
 
-1. Connect database
+1. Connected database
 2. New .evn for production and development
 3. Add all necessary libraries
 
@@ -22,4 +22,10 @@
 3. Validation for create/update user
 4. Swagger decorators for users
 
+# v0.1.1 (20.01.2022)
+
+## Features:
+
+1. Added new models for main user model 
+2. Added correctly primary and foreign keys
 
