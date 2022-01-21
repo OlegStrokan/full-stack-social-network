@@ -2,18 +2,18 @@ import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { UsersModel } from './models/users.model';
-import { BlockedUsersModel } from './models/blocked-users.model';
-import { FollowersModel } from './models/followers.model';
-import { FollowsModel } from './models/follows.model';
+import { FollowerModel } from './models/follower/follower.model';
+import { UserModel } from './models/user.model';
+import { BlockedUserModel } from './models/blocked-user.model';
+import { FollowModel } from './models/follow/follow.model';
 
 @Module({
   imports: [
     SequelizeModule.forFeature([
-      UsersModel,
-      BlockedUsersModel,
-      FollowersModel,
-      FollowsModel,
+      UserModel,
+      BlockedUserModel,
+      FollowerModel,
+      FollowModel,
     ]),
   ],
   controllers: [UsersController],

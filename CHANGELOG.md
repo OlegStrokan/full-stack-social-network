@@ -40,3 +40,12 @@ Backend:
 
 Backend:
 1. New follow/followers models and their relation
+
+# v0.2.1 (21.01.2022)
+
+## Features:
+
+Backend:
+1. Added auth module
+2. Functionality for registration
+3. Jwt-guard for non-authorized users
