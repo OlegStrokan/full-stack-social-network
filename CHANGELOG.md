@@ -49,3 +49,11 @@ Backend:
 1. Added auth module
 2. Functionality for registration
 3. Jwt-guard for non-authorized users
+
+# v0.2.2 (21.01.2022)
+
+## Features:
+
+Backend:
+1. Added mail module
+2. Added sendActivationLink for activate user's accout

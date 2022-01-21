@@ -6,6 +6,7 @@ import { FollowerModel } from './models/follower/follower.model';
 import { UserModel } from './models/user.model';
 import { BlockedUserModel } from './models/blocked-user.model';
 import { FollowModel } from './models/follow/follow.model';
+import { MailModule } from "../mail/mail.module";
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { FollowModel } from './models/follow/follow.model';
       FollowerModel,
       FollowModel,
     ]),
+    MailModule,
   ],
   controllers: [UsersController],
   providers: [UsersService],
