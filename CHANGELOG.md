@@ -56,4 +56,11 @@ Backend:
 
 Backend:
 1. Added mail module
-2. Added sendActivationLink for activate user's accout
+2. Added sendActivationLink for activate user's account
+
+# v0.2.3 (21.01.2022)
+
+## Fixes:
+
+Backend:
+1. Deleted img of the database schema
