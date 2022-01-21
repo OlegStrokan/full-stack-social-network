@@ -1,8 +1,13 @@
-import { BelongsToMany, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import {
+  Column,
+  DataType,
+  HasMany,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
-import { BlockedUsersModel } from './blocked-users.model';
-import { FollowsModel } from './follows.model';
-import { FollowersModel } from './followers.model';
+import { FollowModel } from './follow/follow.model';
+import { FollowerModel } from './follower/follower.model';
 
 interface UserCreationAttr {
   email: string;
@@ -12,10 +17,13 @@ interface UserCreationAttr {
 }
 
 @Table({ tableName: 'users' })
-export class UsersModel extends Model<UsersModel, UserCreationAttr> {
-
-
-  @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
+export class UserModel extends Model<UserModel, UserCreationAttr> {
+  @Column({
+    type: DataType.INTEGER,
+    unique: true,
+    autoIncrement: true,
+    primaryKey: true,
+  })
   id: number;
 
   @ApiProperty({ example: 'user@gmail.com', description: 'Email address' })
@@ -24,7 +32,7 @@ export class UsersModel extends Model<UsersModel, UserCreationAttr> {
 
   @ApiProperty({ example: '258120', description: 'Password' })
   @Column({ type: DataType.STRING, allowNull: false })
-  password: string
+  password: string;
 
   @ApiProperty({ example: 'stroka01', description: 'User name' })
   @Column({ type: DataType.STRING, allowNull: false })
@@ -34,7 +42,10 @@ export class UsersModel extends Model<UsersModel, UserCreationAttr> {
   @Column({ type: DataType.STRING, allowNull: false })
   fullname: string;
 
-  @ApiProperty({ example: 'http://localhost:5000/290jrf-8203d9i-23jd8923j', description: 'Ссылка активации' })
+  @ApiProperty({
+    example: 'http://localhost:5000/290jrf-8203d9i-23jd8923j',
+    description: 'Ссылка активации',
+  })
   @Column({ type: DataType.STRING, allowNull: true })
   activationLink: string;
 
@@ -46,7 +57,10 @@ export class UsersModel extends Model<UsersModel, UserCreationAttr> {
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   banned: boolean;
 
-  @ApiProperty({ example: 'Reason for blocking', description: 'Reason for blocking' })
+  @ApiProperty({
+    example: 'Reason for blocking',
+    description: 'Reason for blocking',
+  })
   @Column({ type: DataType.STRING, allowNull: true })
   banReason: string;
 
@@ -58,18 +72,17 @@ export class UsersModel extends Model<UsersModel, UserCreationAttr> {
   @Column({ type: DataType.STRING, allowNull: true })
   about: string;
 
-  @HasMany(() => BlockedUsersModel)
+  @HasMany(() => UserModel)
     // TODO - only id
-  blocked_users: BlockedUsersModel[]
+  blocked_users: UserModel[];
 
-  @HasMany(() => FollowersModel)
+  @HasMany(() => FollowerModel)
     // TODO - only id
-  followers: FollowersModel[]
+  followers: FollowerModel[];
 
-  @HasMany(() => FollowsModel)
+  @HasMany(() => FollowModel)
     // TODO - only id
-  follows: FollowsModel[]
-
+  follows: FollowModel[];
 
   /*@HasMany(() => PostModel)
   posts: PostModel[]
@@ -82,6 +95,4 @@ export class UsersModel extends Model<UsersModel, UserCreationAttr> {
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: PostModel[]*/
-
-
 }

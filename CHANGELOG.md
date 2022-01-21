@@ -2,6 +2,7 @@
 
 ## Features:
 
+Backend:
 1. Deleted unnecessary files
 2. Prepared code structure for development
 
@@ -9,6 +10,7 @@
 
 ## Features:
 
+Backend:
 1. Connected database
 2. New .evn for production and development
 3. Add all necessary libraries
@@ -17,6 +19,7 @@
 
 ## Features:
 
+Backend:
 1. Added basic crud structure for users
 2. Added complete model for user
 3. Validation for create/update user
@@ -26,6 +29,14 @@
 
 ## Features:
 
+Backend:
 1. Added new models for main user model 
 2. Added correctly primary and foreign keys
 
+
+# v0.2.0 (21.01.2022)
+
+## Features:
+
+Backend:
+1. New follow/followers models and their relation

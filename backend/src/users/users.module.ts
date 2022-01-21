@@ -9,10 +9,15 @@ import { FollowsModel } from './models/follows.model';
 
 @Module({
   imports: [
-    SequelizeModule.forFeature([UsersModel, BlockedUsersModel, FollowersModel, FollowsModel])
+    SequelizeModule.forFeature([
+      UsersModel,
+      BlockedUsersModel,
+      FollowersModel,
+      FollowsModel,
+    ]),
   ],
   controllers: [UsersController],
   providers: [UsersService],
-  exports: [UsersService]
+  exports: [UsersService],
 })
 export class UsersModule {}
