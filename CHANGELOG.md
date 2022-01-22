@@ -64,3 +64,17 @@ Backend:
 
 Backend:
 1. Deleted img of the database schema
+
+# v0.2.4 (22.01.2022)
+
+## Features:
+
+Backend:
+1. New role module
+2. Added role/role-module and their relation
+
+## Fixes:
+
+Backend:
+1. Change prettier settings
+ 

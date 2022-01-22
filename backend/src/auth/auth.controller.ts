@@ -4,16 +4,15 @@ import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
+    constructor(private authService: AuthService) {}
 
-  constructor(private authService: AuthService ) {}
+    @Post()
+    registration(@Body() userDto: CreateUserDto) {
+        return this.authService.registration(userDto);
+    }
 
-  @Post()
-  registration(@Body() userDto: CreateUserDto) {
-      return this.authService.registration(userDto)
-  }
-
-  @Post()
-  login(@Body() userDto: Omit<CreateUserDto, 'fullname' | 'username'>) {
-      return this.authService.login(userDto)
-  }
+    @Post()
+    login(@Body() userDto: Omit<CreateUserDto, 'fullname' | 'username'>) {
+        return this.authService.login(userDto);
+    }
 }
