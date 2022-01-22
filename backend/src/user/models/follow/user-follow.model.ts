@@ -1,17 +1,14 @@
 import {
-    BelongsToMany,
     Column,
     DataType,
     ForeignKey,
-    HasMany,
     Model,
     Table,
 } from 'sequelize-typescript';
-import { ApiProperty } from '@nestjs/swagger';
-import { FollowModel } from './follow.model';
 import { UserModel } from '../user.model';
+import { FollowModel } from './follow.model';
 
-@Table({ tableName: 'followers' })
+@Table({ tableName: 'users_follows' })
 export class UserFollowModel extends Model<UserFollowModel> {
     @Column({
         type: DataType.INTEGER,

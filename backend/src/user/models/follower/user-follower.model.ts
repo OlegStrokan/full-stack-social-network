@@ -5,10 +5,10 @@ import {
     Model,
     Table,
 } from 'sequelize-typescript';
-import { FollowerModel } from './follower.model';
 import { UserModel } from '../user.model';
+import { FollowerModel } from './follower.model';
 
-@Table({ tableName: 'followers' })
+@Table({ tableName: 'user_followers' })
 export class UserFollowerModel extends Model<UserFollowerModel> {
     @Column({
         type: DataType.INTEGER,

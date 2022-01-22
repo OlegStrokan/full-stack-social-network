@@ -7,7 +7,7 @@ import {
 } from 'sequelize-typescript';
 import { UserModel } from '../user.model';
 
-@Table({ tableName: 'follows' })
+@Table({ tableName: 'follow' })
 export class FollowModel extends Model<FollowModel> {
     @Column({
         type: DataType.INTEGER,
@@ -16,8 +16,4 @@ export class FollowModel extends Model<FollowModel> {
         primaryKey: true,
     })
     id: number;
-
-    @ForeignKey(() => UserModel)
-    @Column({ type: DataType.INTEGER })
-    user_id: number;
 }

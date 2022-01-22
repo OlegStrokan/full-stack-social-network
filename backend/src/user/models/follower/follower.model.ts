@@ -10,7 +10,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { UserModel } from '../user.model';
 
-@Table({ tableName: 'followers' })
+@Table({ tableName: 'follower' })
 export class FollowerModel extends Model<FollowerModel> {
     @Column({
         type: DataType.INTEGER,
@@ -19,4 +19,5 @@ export class FollowerModel extends Model<FollowerModel> {
         primaryKey: true,
     })
     id: number;
+
 }

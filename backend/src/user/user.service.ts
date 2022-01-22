@@ -12,7 +12,7 @@ import { AddRoleDto } from './dto/add-role.dto';
 @Injectable()
 export class UserService {
     constructor(
-        @InjectModel(UserModule) private userRepository: typeof UserModel,
+        @InjectModel(UserModel) private userRepository: typeof UserModel,
         private mailService: MailService, private roleService: RoleService,
     ) {
     }
@@ -29,7 +29,7 @@ export class UserService {
         return user;
     }
 
-    async addRole(dto: AddRoleDto, id: number) {
+    async addRole(id: number, dto: AddRoleDto) {
         const user = await this.userRepository.findByPk(id);
         const role = await this.roleService.getRoleByValue(dto.value);
         if (role && user) {

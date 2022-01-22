@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { AddRoleDto } from './dto/add-role.dto';
 
-@Controller('users')
+@Controller('user')
 export class UserController {
     constructor(private readonly usersService: UserService) {}
 
@@ -14,6 +14,6 @@ export class UserController {
 
     @Post('/role')
     addRole(@Param('id') id: number, @Body() dto: AddRoleDto) {
-        return this.usersService.addRole(dto ,id)
+        return this.usersService.addRole(id ,dto)
     }
 }
