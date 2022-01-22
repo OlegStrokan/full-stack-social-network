@@ -4,6 +4,9 @@ import { FollowModel } from './follow/follow.model';
 import { FollowerModel } from './follower/follower.model';
 import { UserRolesModel } from '../../role/models/user-roles.model';
 import { RoleModel } from '../../role/models/role.model';
+import { UserFollowerModel } from './follower/user-follower.model';
+import { UserFollowModel } from './follow/user-follow.model';
+import { BlockedUserModel } from './blocked-user.model';
 
 interface UserCreationAttr {
     email: string;
@@ -38,25 +41,19 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
     @Column({ type: DataType.STRING, allowNull: false })
     fullname: string;
 
-    @ApiProperty({
-        example: 'http://localhost:5000/290jrf-8203d9i-23jd8923j',
-        description: 'Ссылка активации',
-    })
+    @ApiProperty({ example: 'http://localhost:5000/290jrf-8203d9i-23jd8923j', description: 'Activation link', })
     @Column({ type: DataType.STRING, allowNull: true })
     activationLink: string;
 
     @ApiProperty({ example: 'true', description: 'Activated email or not' })
     @Column({ type: DataType.BOOLEAN, defaultValue: false })
-    isActivated: boolean;
+    activated: boolean;
 
     @ApiProperty({ example: 'true', description: 'Banned or not' })
     @Column({ type: DataType.BOOLEAN, defaultValue: false })
     banned: boolean;
 
-    @ApiProperty({
-        example: 'Reason for blocking',
-        description: 'Reason for blocking',
-    })
+    @ApiProperty({ example: 'Reason for blocking', description: 'Reason for blocking', })
     @Column({ type: DataType.STRING, allowNull: true })
     banReason: string;
 
@@ -64,22 +61,19 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
     @Column({ type: DataType.STRING, allowNull: true })
     status: string;
 
-    @ApiProperty({
-        example: 'Programmer',
-        description: 'Information about user',
-    })
+    @ApiProperty({ example: 'Programmer', description: 'Information about user', })
     @Column({ type: DataType.STRING, allowNull: true })
     about: string;
 
-    @HasMany(() => UserModel)
+    @HasMany(() => BlockedUserModel)
         // TODO - only id
-    blocked_users: UserModel[];
+    blockedUsers: BlockedUserModel[];
 
-    @HasMany(() => FollowerModel)
+    @BelongsToMany(() => FollowerModel, () => UserFollowerModel)
         // TODO - only id
     followers: FollowerModel[];
 
-    @HasMany(() => FollowModel)
+    @BelongsToMany(() => FollowModel, () => UserFollowModel)
         // TODO - only id
     follows: FollowModel[];
 

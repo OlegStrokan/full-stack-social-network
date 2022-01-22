@@ -84,7 +84,8 @@ Backend:
 
 Backend:
 1. Added add role functional
-2. Change user model
+2. Change UserModel
+
 # v0.3.2 (22.01.2022)
 
 ## Fixes:
@@ -92,3 +93,17 @@ Backend:
 Backend:
 1. Resolve issues with relations between users and roles
 2. Fixed models (table's tames)
+
+ 
+# v0.3.4 (22.01.2022)
+
+## Features:
+
+Backend:
+1. Added tests for users controller
+2. Added tests for users service (not complete)
+
+## Fixes:
+
+Backend:
+1. Fixed relation in UserModel
