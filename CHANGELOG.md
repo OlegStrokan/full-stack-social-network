@@ -65,7 +65,7 @@ Backend:
 Backend:
 1. Deleted img of the database schema
 
-# v0.2.4 (22.01.2022)
+# v0.3.0 (22.01.2022)
 
 ## Features:
 
@@ -77,4 +77,12 @@ Backend:
 
 Backend:
 1. Change prettier settings
+
+# v0.3.1 (22.01.2022)
+
+## Features:
+
+Backend:
+1. Added add role functional
+2. Change user model
  

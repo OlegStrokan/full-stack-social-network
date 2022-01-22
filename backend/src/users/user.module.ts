@@ -7,6 +7,8 @@ import { BlockedUserModel } from './models/blocked-user.model';
 import { FollowModel } from './models/follow/follow.model';
 import { MailModule } from '../mail/mail.module';
 import { UserController } from './user.controller';
+import { UserRolesModel } from '../role/models/user-roles.model';
+import { RoleModule } from '../role/role.module';
 
 @Module({
     imports: [
@@ -15,6 +17,8 @@ import { UserController } from './user.controller';
             BlockedUserModel,
             FollowerModel,
             FollowModel,
+            RoleModule,
+            UserRolesModel
         ]),
         MailModule,
     ],

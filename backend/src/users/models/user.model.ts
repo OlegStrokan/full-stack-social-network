@@ -1,7 +1,9 @@
-import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { BelongsToMany, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
 import { FollowModel } from './follow/follow.model';
 import { FollowerModel } from './follower/follower.model';
+import { UserRolesModel } from '../../role/models/user-roles.model';
+import { RoleModel } from '../../role/models/role.model';
 
 interface UserCreationAttr {
     email: string;
@@ -81,6 +83,9 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
         // TODO - only id
     follows: FollowModel[];
 
+    @BelongsToMany(() => RoleModel, () => UserRolesModel)
+    roles: RoleModel[]
+
     /*@HasMany(() => PostModel)
   posts: PostModel[]
 
@@ -88,8 +93,6 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
   media: Media[]
 
   @HasMany(() => CommentModel)
-  comments: CommentModel[]
+  comments: CommentModel[]*/
 
-  @BelongsToMany(() => Role, () => UserRoles)
-  roles: PostModel[]*/
 }
