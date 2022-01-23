@@ -4,15 +4,15 @@ import { UserService } from '../user.service';
 import { UserModel } from '../models/user.model';
 
 export const createRequest = {
-    email: 'oleh@test@mail.com',
-    fullname: 'Oleh Storkan',
+    email: 'oleg14ua71@gmail.com',
+    fullname: 'Oleh Strokan',
     username: 'stroka01',
     password: '88488848',
 };
 export const createResponse = {
     id: expect.any(Number),
-    email: 'oleh@test@mail.com',
-    fullname: 'Oleh Storkan',
+    email: 'oleg18ua71@gmail.com',
+    fullname: 'Oleh Strokan',
     username: 'stroka01',
     password: '88488848',
     activationLink: 'http://localhost:5000/290jrf-8203d9i-23jd8923j',

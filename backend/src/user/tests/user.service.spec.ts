@@ -13,7 +13,7 @@ describe('UserService', () => {
 
     const mockUserRepository = {
         create: jest.fn((dto) => dto),
-        save: jest.fn((user) => Promise.resolve(createResponse))
+        save: jest.fn(() => Promise.resolve(createResponse)),
     };
 
     const mockRoleRepository = {

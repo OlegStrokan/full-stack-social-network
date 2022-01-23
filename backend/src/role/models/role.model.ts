@@ -7,7 +7,7 @@ interface RoleCreationAttrs {
     description: string;
 }
 
-@Table({ tableName: 'roles' })
+@Table({ tableName: 'roles' , createdAt: false, updatedAt: false})
 export class RoleModel extends Model<RoleModel, RoleCreationAttrs> {
     @Column({
         type: DataType.INTEGER,
@@ -23,6 +23,4 @@ export class RoleModel extends Model<RoleModel, RoleCreationAttrs> {
     @Column({ type: DataType.STRING, allowNull: false })
     description: string;
 
-    @BelongsToMany(() => UserModel, () => UserRolesModel)
-    users: UserModel[];
 }

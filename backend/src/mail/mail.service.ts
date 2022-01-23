@@ -11,15 +11,15 @@ export class MailService {
             port: 587,
             secure: false,
             auth: {
-                user: process.env.EMAIL_ADDRESS,
-                pass: process.env.EMAIL_PASSWORD,
+                user: 'oleg18ua71@gmail.com',
+                pass: '258120Oleg',
             },
         });
     }
 
     async sendActivationMail(to: string, link: string) {
         await this.transporter.sendMail({
-            from: process.env.EMAIL_ADDRESS,
+            from: 'oleg14ua71@gmail.com',
             to: to,
             subject: 'Активация аккаунта на ' + 'http://localhost:5000',
             text: '',
