@@ -1,3 +1,18 @@
+# v0.7.1 (25.01.2022)
+
+## Features:
+
+Backend:
+1. New readMe
+
+# v0.7.0 (25.01.2022)
+
+## Features:
+
+Backend:
+1. Added Post module
+2. New post dto, and post
+
 
 # v0.6.0 (25.01.2022)
 
