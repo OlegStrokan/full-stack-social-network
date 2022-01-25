@@ -1,11 +1,15 @@
-import { BelongsToMany, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import {
+    BelongsToMany,
+    Column,
+    DataType,
+    HasMany,
+    Model,
+    Table,
+} from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
-import { FollowModel } from './follow/follow.model';
-import { FollowerModel } from './follower/follower.model';
 import { UserRolesModel } from '../../role/models/user-roles.model';
 import { RoleModel } from '../../role/models/role.model';
-import { UserFollowerModel } from './follower/user-follower.model';
-import { UserFollowModel } from './follow/user-follow.model';
+import { FollowModel } from './follow.model';
 import { BlockedUserModel } from './blocked-user.model';
 
 interface UserCreationAttr {
@@ -41,7 +45,10 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
     @Column({ type: DataType.STRING, allowNull: false })
     fullname: string;
 
-    @ApiProperty({ example: 'http://localhost:5000/290jrf-8203d9i-23jd8923j', description: 'Activation link', })
+    @ApiProperty({
+        example: 'http://localhost:5000/290jrf-8203d9i-23jd8923j',
+        description: 'Activation link',
+    })
     @Column({ type: DataType.STRING, allowNull: true })
     activationLink: string;
 
@@ -53,7 +60,10 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
     @Column({ type: DataType.BOOLEAN, defaultValue: false })
     banned: boolean;
 
-    @ApiProperty({ example: 'Reason for blocking', description: 'Reason for blocking', })
+    @ApiProperty({
+        example: 'Reason for blocking',
+        description: 'Reason for blocking',
+    })
     @Column({ type: DataType.STRING, allowNull: true })
     banReason: string;
 
@@ -61,24 +71,27 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
     @Column({ type: DataType.STRING, allowNull: true })
     status: string;
 
-    @ApiProperty({ example: 'Programmer', description: 'Information about user', })
+    @ApiProperty({ example: 'Programmer', description: 'Information about user' })
     @Column({ type: DataType.STRING, allowNull: true })
     about: string;
 
+    @ApiProperty({ example: 'w98432hrdw9epj328e21ed-0', description: 'User\'s avatar link' })
+    @Column({ type: DataType.STRING, allowNull: true })
+    avatar: string;
+
     @HasMany(() => BlockedUserModel)
-        // TODO - only id
     blockedUsers: BlockedUserModel[];
 
-    @BelongsToMany(() => FollowerModel, () => UserFollowerModel)
-        // TODO - only id
-    followers: FollowerModel[];
+    @BelongsToMany(() => UserModel, () => FollowModel)
+        // на кого подписан пользователь
+    following: FollowModel[];
 
-    @BelongsToMany(() => FollowModel, () => UserFollowModel)
-        // TODO - only id
-    follows: FollowModel[];
+    @BelongsToMany(() => UserModel, () => FollowModel)
+        // кто подписан на пользователя
+    followers: FollowModel[];
 
     @BelongsToMany(() => RoleModel, () => UserRolesModel)
-    roles: RoleModel[]
+    roles: RoleModel[];
 
     /*@HasMany(() => PostModel)
   posts: PostModel[]
@@ -88,5 +101,4 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
 
   @HasMany(() => CommentModel)
   comments: CommentModel[]*/
-
 }

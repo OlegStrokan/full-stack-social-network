@@ -7,7 +7,6 @@ import { RoleService } from '../../role/role.service';
 import { RoleModel } from '../../role/models/role.model';
 import { createRequest, createResponse } from './user.controller.spec';
 
-
 describe('UserService', () => {
     let service: UserService;
 
@@ -17,16 +16,16 @@ describe('UserService', () => {
     };
 
     const mockRoleRepository = {
-            findOne: jest.fn((id) => {
-                return {
-                    id,
-                    value: 'USER',
-                    description: 'User permission'
-                } as RoleModel
-            })
-    }
+        findOne: jest.fn((id) => {
+            return {
+                id,
+                value: 'USER',
+                description: 'User permission',
+            } as RoleModel;
+        }),
+    };
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 UserService,
@@ -40,7 +39,6 @@ describe('UserService', () => {
                     provide: getModelToken(RoleModel),
                     useValue: mockRoleRepository,
                 },
-
             ],
         }).compile();
 
@@ -51,8 +49,7 @@ describe('UserService', () => {
         expect(service).toBeDefined();
     });
 
-    it('should create a new user and return that', async() => {
+    it('should create a new user and return that', async () => {
         expect(await service.create(createRequest)).toEqual(createResponse);
     });
-
 });

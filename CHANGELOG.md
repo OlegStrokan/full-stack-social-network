@@ -1,6 +1,17 @@
 
+# v0.6.0 (25.01.2022)
 
-# v0.5.0 (24.01.2022)
+## Features:
+
+Backend:
+1. Added Profile module
+
+## Fixes:
+
+Backend:
+1. Updated follow/unfollow models
+
+# v0.5.0 (25.01.2022)
 
 ## Features:
 

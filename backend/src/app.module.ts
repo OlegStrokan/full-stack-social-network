@@ -7,14 +7,14 @@ import * as path from 'path';
 import { AuthModule } from './auth/auth.module';
 import { MailModule } from './mail/mail.module';
 import { UserModel } from './user/models/user.model';
-import { FollowModel } from './user/models/follow/follow.model';
-import { FollowerModel } from './user/models/follower/follower.model';
 import { BlockedUserModel } from './user/models/blocked-user.model';
-import { UserFollowerModel } from './user/models/follower/user-follower.model';
-import { UserFollowModel } from './user/models/follow/user-follow.model';
 import { RoleModule } from './role/role.module';
 import { RoleModel } from './role/models/role.model';
 import { UserRolesModel } from './role/models/user-roles.model';
+import { ProfileModule } from './profile/profile.module';
+import { FollowModel } from './user/models/follow.model';
+import { PostModule } from './post/post.module';
+import { FileModule } from './file/file.module';
 
 @Module({
     controllers: [],
@@ -35,20 +35,21 @@ import { UserRolesModel } from './role/models/user-roles.model';
             database: process.env.POSTGRES_DB,
             models: [
                 UserModel,
-                FollowModel,
-                FollowerModel,
                 BlockedUserModel,
-                UserFollowerModel,
-                UserFollowModel,
+                FollowModel,
                 RoleModel,
                 UserRolesModel,
             ],
             autoLoadModels: true,
+            synchronize: true,
         }),
         UserModule,
         AuthModule,
         MailModule,
         RoleModule,
+        ProfileModule,
+        PostModule,
+        FileModule,
     ],
 })
 export class AppModule {}

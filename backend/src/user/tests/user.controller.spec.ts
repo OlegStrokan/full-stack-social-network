@@ -30,11 +30,12 @@ describe('UserController', () => {
     let controller: UserController;
 
     const mockUsersService = {
-        create: jest.fn(dto => {
+        create: jest.fn((dto) => {
             return {
                 id: Date.now(),
                 ...dto,
-                activationLink: 'http://localhost:5000/290jrf-8203d9i-23jd8923j',
+                activationLink:
+                    'http://localhost:5000/290jrf-8203d9i-23jd8923j',
                 isActivated: false,
                 activated: false,
                 banReason: null,
@@ -50,10 +51,9 @@ describe('UserController', () => {
         }),
     };
 
+    const addRoleRequest = { id: Date.now(), dto: { value: 'USER' } };
 
-    const addRoleRequest = { id: Date.now(), dto: { value: 'USER'} }
-
-    beforeEach(async() => {
+    beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [UserController],
             providers: [UserService],
@@ -74,13 +74,18 @@ describe('UserController', () => {
     it('should be called with request data', () => {
         expect(mockUsersService.create).toHaveBeenCalledWith(createRequest);
     });
-    it('should add user\'s role', () => {
-        expect(controller.addRole(addRoleRequest.id, addRoleRequest.dto)).toEqual({
+    it("should add user's role", () => {
+        expect(
+            controller.addRole(addRoleRequest.id, addRoleRequest.dto),
+        ).toEqual({
             id: expect.any(Number),
-            dto: { value: 'USER'}
-        })
+            dto: { value: 'USER' },
+        });
     });
     it('should be called with request data', () => {
-        expect(mockUsersService.addRole).toHaveBeenCalledWith( addRoleRequest.id, addRoleRequest.dto );
+        expect(mockUsersService.addRole).toHaveBeenCalledWith(
+            addRoleRequest.id,
+            addRoleRequest.dto,
+        );
     });
 });

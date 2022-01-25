@@ -9,10 +9,7 @@ import { UserRolesModel } from '../role/models/user-roles.model';
 import { AuthModule } from '../auth/auth.module';
 import { RoleModel } from '../role/models/role.model';
 import { RoleModule } from '../role/role.module';
-import { FollowModel } from './models/follow/follow.model';
-import { FollowerModel } from './models/follower/follower.model';
-import { UserFollowModel } from './models/follow/user-follow.model';
-import { UserFollowerModel } from './models/follower/user-follower.model';
+import { FollowModel } from './models/follow.model';
 
 @Module({
     imports: [
@@ -22,13 +19,10 @@ import { UserFollowerModel } from './models/follower/user-follower.model';
             RoleModel,
             UserRolesModel,
             FollowModel,
-            FollowerModel,
-            UserFollowModel,
-            UserFollowerModel
         ]),
         MailModule,
         RoleModule,
-        forwardRef(() => AuthModule)
+        forwardRef(() => AuthModule),
     ],
     controllers: [UserController],
     providers: [UserService],
