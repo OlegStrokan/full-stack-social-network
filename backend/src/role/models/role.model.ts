@@ -1,13 +1,11 @@
-import { BelongsToMany, Column, DataType, Model, Table } from 'sequelize-typescript';
-import { UserModel } from '../../user/models/user.model';
-import { UserRolesModel } from './user-roles.model';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 interface RoleCreationAttrs {
     value: string;
     description: string;
 }
 
-@Table({ tableName: 'roles' , createdAt: false, updatedAt: false})
+@Table({ tableName: 'roles', createdAt: false, updatedAt: false })
 export class RoleModel extends Model<RoleModel, RoleCreationAttrs> {
     @Column({
         type: DataType.INTEGER,
@@ -22,5 +20,4 @@ export class RoleModel extends Model<RoleModel, RoleCreationAttrs> {
 
     @Column({ type: DataType.STRING, allowNull: false })
     description: string;
-
 }

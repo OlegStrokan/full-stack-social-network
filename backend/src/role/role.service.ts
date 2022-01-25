@@ -5,7 +5,9 @@ import { RoleModel } from './models/role.model';
 
 @Injectable()
 export class RoleService {
-    constructor(@InjectModel(RoleModel) private roleRepository: typeof RoleModel) {}
+    constructor(
+        @InjectModel(RoleModel) private roleRepository: typeof RoleModel,
+    ) {}
 
     async create(dto: CreateRoleDto) {
         return await this.roleRepository.create(dto);
@@ -15,10 +17,11 @@ export class RoleService {
         const role = await this.roleRepository.findOne({ where: { value } });
 
         if (!role) {
-            throw new HttpException('Invalid role value', HttpStatus.BAD_REQUEST);
+            throw new HttpException(
+                'Invalid role value',
+                HttpStatus.BAD_REQUEST,
+            );
         }
         return role;
     }
-
-
 }

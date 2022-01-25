@@ -1,5 +1,24 @@
 
 
+# v0.5.0 (24.01.2022)
+
+## Features:
+
+Backend:
+1. Added File module
+2. Added createFile function for get file name from file
+3. Added Global validation pipe
+
+## Fixed:
+
+1. Updated and translated some dtos
+
+# v0.4.1 (24.01.2022)
+
+## Fixed:
+
+1. Deleted .ida folder
+
 # v0.4.0 (23.01.2022)
 
 ## Features:
