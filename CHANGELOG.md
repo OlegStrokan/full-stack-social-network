@@ -1,3 +1,9 @@
+# v0.7.2 (25.01.2022)
+
+## Features:
+
+1. New main readMe
+
 # v0.7.1 (25.01.2022)
 
 ## Features:

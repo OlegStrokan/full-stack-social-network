@@ -31,7 +31,7 @@ Users functional:
 - POST */users/ban/:id - ban a user*
 - DELETE */users/:id - delete certain user*
 
-Roles roles functional:
+Roles functional:
 - POST */roles - create user's role*
 - GET */roles/:value - get user's role*
 
