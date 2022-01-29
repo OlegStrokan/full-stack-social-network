@@ -4,7 +4,18 @@
 
 1. Added avatar to user
 
+# v0.7.5 (29.01.2022)
 
+## Features:
+
+1. Added change status functional
+
+# v0.7.4 (29.01.2022)
+
+## Features:
+
+1. Added avatar to user
+2. 
 # v0.7.3 (29.01.2022)
 
 ## Fixes:

@@ -53,9 +53,22 @@ export class ProfileService {
 
     async changeAvatar(id: number, avatar: File) {
         const user = await this.getProfile(+id);
-         //   user.avatar = await this.fileService.createFile(avatar);
+        if (!user) {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+        }
+        user.avatar = await this.fileService.createFile(avatar);
         return {
             data: user, statusCode: HttpStatus.OK
         }
+    }
+    async changeStatus(id: number, status: string) {
+        const user = await this.getProfile(+id);
+        if (!user) {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+        }
+        user.status = status;
+        user.save();
+        return user;
+
     }
 }
