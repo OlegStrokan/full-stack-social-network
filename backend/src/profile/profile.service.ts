@@ -24,11 +24,19 @@ export class ProfileService {
         if (!followUser) {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         }
-/*
-        await user.$set('followers', follow_id);
-        await followUser.$set('following', user_id)
-        console.log('2')*/
 
+        await followUser.$add('following', user_id);
+        await user.$add('follower', follow_id);
+
+        console.log(user_id, follow_id)
+        const follow = await this.followRepository.create({
+            user_id: user_id,
+            follower_id: follow_id,
+        });
+        console.log(follow)
+
+        await follow.save()
+            console.log('hello')
         return 'success'
     }
 
@@ -45,7 +53,7 @@ export class ProfileService {
 
     async changeAvatar(id: number, avatar: File) {
         const user = await this.getProfile(+id);
-        user.avatar = await this.fileService.createFile(avatar);
+         //   user.avatar = await this.fileService.createFile(avatar);
         return {
             data: user, statusCode: HttpStatus.OK
         }

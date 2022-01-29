@@ -18,7 +18,7 @@ export class AuthService {
         private jwtService: JwtService,
     ) {}
 
-    async registration(userDto: CreateUserDto, avatar: File) {
+    async registration(userDto: CreateUserDto) {
         const candidate = await this.userService.getByEmail(userDto.email);
         if (candidate) {
             throw new HttpException(
@@ -27,11 +27,11 @@ export class AuthService {
             );
         }
         const hashPassword = await bcrypt.hash(userDto.password, 5);
-        await this.userService.create({
-            ...userDto,
-            password: hashPassword,
-            avatar,
-        });
+
+            await this.userService.create({
+                ...userDto,
+                password: hashPassword,
+            })
 
         return {
             message: 'Registration was successful',

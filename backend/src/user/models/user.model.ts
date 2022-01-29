@@ -21,12 +21,7 @@ interface UserCreationAttr {
 
 @Table({ tableName: 'users' })
 export class UserModel extends Model<UserModel, UserCreationAttr> {
-    @Column({
-        type: DataType.INTEGER,
-        unique: true,
-        autoIncrement: true,
-        primaryKey: true,
-    })
+    @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true, })
     id: number;
 
     @ApiProperty({ example: 'user@gmail.com', description: 'Email address' })
@@ -73,11 +68,11 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
 
     @ApiProperty({ example: 'Programmer', description: 'Information about user' })
     @Column({ type: DataType.STRING, allowNull: true })
-    about: string;
 
     @ApiProperty({ example: 'w98432hrdw9epj328e21ed-0', description: 'User\'s avatar link' })
     @Column({ type: DataType.STRING, allowNull: true })
     avatar: string;
+
 
     @HasMany(() => BlockedUserModel)
     blockedUsers: BlockedUserModel[];

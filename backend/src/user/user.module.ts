@@ -10,6 +10,7 @@ import { AuthModule } from '../auth/auth.module';
 import { RoleModel } from '../role/models/role.model';
 import { RoleModule } from '../role/role.module';
 import { FollowModel } from './models/follow.model';
+import { FileModule } from '../file/file.module';
 
 @Module({
     imports: [
@@ -22,6 +23,7 @@ import { FollowModel } from './models/follow.model';
         ]),
         MailModule,
         RoleModule,
+        FileModule,
         forwardRef(() => AuthModule),
     ],
     controllers: [UserController],

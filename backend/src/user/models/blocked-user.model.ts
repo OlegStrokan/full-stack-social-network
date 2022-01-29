@@ -19,8 +19,9 @@ export class BlockedUserModel extends Model<BlockedUserModel> {
 
     @ForeignKey(() => UserModel)
     @Column({ type: DataType.INTEGER })
-    user_id: number;
+    blocker_id: number;
 
+    @ForeignKey(() => UserModel)
     @Column({ type: DataType.INTEGER })
-    user_blocked_id: number;
+    blocked_id: number;
 }

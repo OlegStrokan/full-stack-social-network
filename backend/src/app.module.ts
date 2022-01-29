@@ -15,6 +15,7 @@ import { ProfileModule } from './profile/profile.module';
 import { FollowModel } from './user/models/follow.model';
 import { PostModule } from './post/post.module';
 import { FileModule } from './file/file.module';
+import { PostModel } from './post/post.model';
 
 @Module({
     controllers: [],
@@ -39,14 +40,16 @@ import { FileModule } from './file/file.module';
                 FollowModel,
                 RoleModel,
                 UserRolesModel,
+                PostModel,
             ],
             autoLoadModels: true,
-            synchronize: true,
+            synchronize: false,
         }),
         UserModule,
         AuthModule,
         MailModule,
         RoleModule,
+        PostModule,
         ProfileModule,
         PostModule,
         FileModule,

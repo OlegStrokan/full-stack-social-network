@@ -17,7 +17,7 @@ export class UserController {
         return this.usersService.create(createUserDto);
     }
 
-    @Post('/role:id')
+    @Post('/:id/role')
     addRole(@Param('id') id: number, @Body() dto: AddRoleDto) {
         return this.usersService.addRole(id, dto);
     }

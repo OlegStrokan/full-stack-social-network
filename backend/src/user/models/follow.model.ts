@@ -15,6 +15,8 @@ interface FollowAttrCreation {
 
 @Table({ tableName: 'followers' })
 export class FollowModel extends Model<FollowModel, FollowAttrCreation> {
+    @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true, })
+    id: number;
 
     @ForeignKey(() => UserModel)
     @Column({ type: DataType.INTEGER })
