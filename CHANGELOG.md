@@ -1,8 +1,16 @@
+# v0.7.4 (29.01.2022)
+
+## Features:
+
+1. Added avatar to user
+
+
 # v0.7.3 (29.01.2022)
 
 ## Fixes:
 
 1. Common fixed in models
+
 # v0.7.2 (26.01.2022)
 
 ## Features:

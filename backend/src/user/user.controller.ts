@@ -13,8 +13,8 @@ export class UserController {
     }
 
     @Post()
-    create( @UploadedFile()@Body() createUserDto: CreateUserDto) {
-        return this.usersService.create(createUserDto);
+    create( @UploadedFile() avatar: File, @Body() createUserDto: CreateUserDto) {
+        return this.usersService.create(createUserDto, avatar);
     }
 
     @Post('/:id/role')

@@ -35,12 +35,12 @@ export class CreateUserDto {
     })
     readonly password: string;
 
-   /* @ApiProperty({ example: 'Image', description: 'User\'s avatar' })
+    @ApiProperty({ example: 'Image', description: 'User\'s avatar' })
     @IsString({ message: 'Must be a string' })
     @Length(6, 20, {
         message:
             'Password must be longer then 6 symbols and smaller then 20 symbols',
     })
-    readonly avatar;*/
+    readonly avatar: string;
 
 }
