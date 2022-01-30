@@ -7,12 +7,17 @@ import { FileService } from '../file/file.service';
 
 @Injectable()
 export class PostService {
-
-    constructor(@InjectModel(PostModel) private postRepository: typeof PostModel, private fileService: FileService) {}
+    constructor(
+        @InjectModel(PostModel) private postRepository: typeof PostModel,
+        private fileService: FileService,
+    ) {}
 
     async create(createPostDto: CreatePostDto, image: File) {
-        const fileName = await this.fileService.createFile(image)
-        const post = await this.postRepository.create({ ...createPostDto, image: fileName})
+        const fileName = await this.fileService.createFile(image);
+        const post = await this.postRepository.create({
+            ...createPostDto,
+            image: fileName,
+        });
         return { data: post, statusCode: HttpStatus.OK };
     }
 
@@ -24,17 +29,23 @@ export class PostService {
     async findOne(id: number) {
         const post = await this.postRepository.findByPk(id);
 
-        if  (!post) {
-            throw new HttpException('Post with this id not found', HttpStatus.NOT_FOUND);
+        if (!post) {
+            throw new HttpException(
+                'Post with this id not found',
+                HttpStatus.NOT_FOUND,
+            );
         }
         return { data: post, statusCode: HttpStatus.OK };
     }
 
     async update(id: number, updatePostDto: UpdatePostDto, image: File) {
-        const fileName = await this.fileService.createFile(image)
+        const fileName = await this.fileService.createFile(image);
         const post = await this.postRepository.findByPk(id);
-        if  (!post) {
-            throw new HttpException('Post with this id not found', HttpStatus.NOT_FOUND);
+        if (!post) {
+            throw new HttpException(
+                'Post with this id not found',
+                HttpStatus.NOT_FOUND,
+            );
         }
         const updatedPost: Omit<UpdatePostDto, 'likesCount'> = {
             title: updatePostDto.title,
@@ -48,7 +59,7 @@ export class PostService {
     }
 
     async delete(id: number) {
-        await this.postRepository.destroy({ where: {id}})
+        await this.postRepository.destroy({ where: { id } });
         return { statusCode: HttpStatus.ACCEPTED };
     }
 

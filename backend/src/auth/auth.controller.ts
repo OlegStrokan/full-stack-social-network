@@ -8,7 +8,7 @@ export class AuthController {
     constructor(private authService: AuthService) {}
 
     @Post('/registration')
-    registration(@Body() userDto: CreateUserDto,) {
+    registration(@Body() userDto: CreateUserDto) {
         return this.authService.registration(userDto);
     }
 

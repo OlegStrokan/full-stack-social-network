@@ -9,11 +9,10 @@ export class ProfileService {
     constructor(
         @InjectModel(UserModel) private userRepository: typeof UserModel,
         @InjectModel(FollowModel) private followRepository: typeof FollowModel,
-        private fileService: FileService
+        private fileService: FileService,
     ) {}
 
     async follow(user_id: number, follow_id: number) {
-
         const user = await this.userRepository.findByPk(user_id);
 
         if (!user) {
@@ -28,27 +27,26 @@ export class ProfileService {
         await followUser.$add('following', user_id);
         await user.$add('follower', follow_id);
 
-        console.log(user_id, follow_id)
+        console.log(user_id, follow_id);
         const follow = await this.followRepository.create({
             user_id: user_id,
             follower_id: follow_id,
         });
-        console.log(follow)
+        console.log(follow);
 
-        await follow.save()
-            console.log('hello')
-        return 'success'
+        await follow.save();
+        console.log('hello');
+        return 'success';
     }
 
     unfollow(user_id: number, unfollow_id: number) {}
     async getProfile(id: number) {
+        const profile = await this.userRepository.findOne({ where: { id } });
 
-        const profile = await this.userRepository.findOne({ where: { id}})
-
-       if (!profile) {
-           throw new HttpException('User not found', HttpStatus.NOT_FOUND);
-       }
-       return profile;
+        if (!profile) {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+        }
+        return profile;
     }
 
     async changeAvatar(id: number, avatar: File) {
@@ -58,8 +56,9 @@ export class ProfileService {
         }
         user.avatar = await this.fileService.createFile(avatar);
         return {
-            data: user, statusCode: HttpStatus.OK
-        }
+            data: user,
+            statusCode: HttpStatus.OK,
+        };
     }
     async changeStatus(id: number, status: string) {
         const user = await this.getProfile(+id);
@@ -67,8 +66,7 @@ export class ProfileService {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         }
         user.status = status;
-        user.save();
+        await user.save();
         return user;
-
     }
 }

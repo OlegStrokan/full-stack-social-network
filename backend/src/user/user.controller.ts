@@ -1,4 +1,11 @@
-import { Controller, Post, Body, Param, Get, Delete, UploadedFile } from '@nestjs/common';
+import {
+    Controller,
+    Post,
+    Body,
+    Param,
+    Get,
+    UploadedFile,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { AddRoleDto } from './dto/add-role.dto';
@@ -13,7 +20,7 @@ export class UserController {
     }
 
     @Post()
-    create( @UploadedFile() avatar: File, @Body() createUserDto: CreateUserDto) {
+    create(@UploadedFile() avatar: File, @Body() createUserDto: CreateUserDto) {
         return this.usersService.create(createUserDto, avatar);
     }
 

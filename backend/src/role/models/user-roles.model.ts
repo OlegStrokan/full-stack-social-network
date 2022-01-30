@@ -10,7 +10,12 @@ import { RoleModel } from './role.model';
 
 @Table({ tableName: 'user_roles', createdAt: false, updatedAt: false })
 export class UserRolesModel extends Model<UserRolesModel> {
-    @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true, })
+    @Column({
+        type: DataType.INTEGER,
+        unique: true,
+        autoIncrement: true,
+        primaryKey: true,
+    })
     id: number;
 
     @ForeignKey(() => RoleModel)
