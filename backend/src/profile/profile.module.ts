@@ -9,9 +9,6 @@ import { FileModule } from '../file/file.module';
 @Module({
     controllers: [ProfileController],
     providers: [ProfileService],
-    imports: [
-        SequelizeModule.forFeature([UserModel, FollowModel],
-           ),
-        FileModule],
+    imports: [SequelizeModule.forFeature([UserModel, FollowModel]), FileModule],
 })
 export class ProfileModule {}

@@ -6,9 +6,8 @@ import { PostModel } from './post.model';
 import { FileModule } from '../file/file.module';
 
 @Module({
-  controllers: [PostController],
-  providers: [PostService],
-  imports: [SequelizeModule.forFeature([PostModel]),
-    FileModule]
+    controllers: [PostController],
+    providers: [PostService],
+    imports: [SequelizeModule.forFeature([PostModel]), FileModule],
 })
 export class PostModule {}

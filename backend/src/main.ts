@@ -10,6 +10,6 @@ async function bootstrap() {
         console.log(`Server started on port = ${PORT}`),
     );
 
-    app.useGlobalPipes(new ValidationPipe())
+    app.useGlobalPipes(new ValidationPipe());
 }
 bootstrap();

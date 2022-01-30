@@ -1,8 +1,9 @@
-# v0.7.4 (29.01.2022)
+# v0.7.6 (30.01.2022)
 
 ## Features:
 
-1. Added avatar to user
+1. Added api property to users 
+2. Added prettier
 
 # v0.7.5 (29.01.2022)
 
@@ -15,7 +16,7 @@
 ## Features:
 
 1. Added avatar to user
-2. 
+
 # v0.7.3 (29.01.2022)
 
 ## Fixes:

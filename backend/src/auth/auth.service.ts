@@ -28,10 +28,10 @@ export class AuthService {
         }
         const hashPassword = await bcrypt.hash(userDto.password, 5);
 
-            await this.userService.create({
-                ...userDto,
-                password: hashPassword,
-            })
+        await this.userService.create({
+            ...userDto,
+            password: hashPassword,
+        });
 
         return {
             message: 'Registration was successful',

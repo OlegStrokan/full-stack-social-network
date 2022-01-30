@@ -21,7 +21,13 @@ interface UserCreationAttr {
 
 @Table({ tableName: 'users' })
 export class UserModel extends Model<UserModel, UserCreationAttr> {
-    @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true, })
+    @ApiProperty({ example: '21', description: 'Unique identifier' })
+    @Column({
+        type: DataType.INTEGER,
+        unique: true,
+        autoIncrement: true,
+        primaryKey: true,
+    })
     id: number;
 
     @ApiProperty({ example: 'user@gmail.com', description: 'Email address' })
@@ -66,23 +72,27 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
     @Column({ type: DataType.STRING, allowNull: true })
     status: string;
 
-    @ApiProperty({ example: 'Programmer', description: 'Information about user' })
+    @ApiProperty({
+        example: 'Programmer',
+        description: 'Information about user',
+    })
     @Column({ type: DataType.STRING, allowNull: true })
-
-    @ApiProperty({ example: 'w98432hrdw9epj328e21ed-0', description: 'User\'s avatar link' })
+    @ApiProperty({
+        example: 'w98432hrdw9epj328e21ed-0',
+        description: "User's avatar link",
+    })
     @Column({ type: DataType.STRING, allowNull: true })
     avatar: string;
-
 
     @HasMany(() => BlockedUserModel)
     blockedUsers: BlockedUserModel[];
 
     @BelongsToMany(() => UserModel, () => FollowModel)
-        // на кого подписан пользователь
+    // на кого подписан пользователь
     following: FollowModel[];
 
     @BelongsToMany(() => UserModel, () => FollowModel)
-        // кто подписан на пользователя
+    // кто подписан на пользователя
     followers: FollowModel[];
 
     @BelongsToMany(() => RoleModel, () => UserRolesModel)
