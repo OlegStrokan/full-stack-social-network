@@ -77,6 +77,8 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
         description: 'Information about user',
     })
     @Column({ type: DataType.STRING, allowNull: true })
+    about: string;
+
     @ApiProperty({
         example: 'w98432hrdw9epj328e21ed-0',
         description: "User's avatar link",

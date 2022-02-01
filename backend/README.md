@@ -1,7 +1,4 @@
-### V_1.9.4
-
-# First backend app
-
+### V_0.7.9
 
 ## Backend stack:
 * ### Nest.js

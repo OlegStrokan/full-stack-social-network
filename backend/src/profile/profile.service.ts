@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { FollowModel } from 'src/user/models/follow.model';
 import { UserModel } from '../user/models/user.model';
 import { FileService } from '../file/file.service';
+import { UpdateStatusDto } from '../user/dto/update-status.dto';
 
 @Injectable()
 export class ProfileService {
@@ -60,12 +61,12 @@ export class ProfileService {
             statusCode: HttpStatus.OK,
         };
     }
-    async changeStatus(id: number, status: string) {
-        const user = await this.getProfile(+id);
+    async changeStatus(id: number, userDto: UpdateStatusDto) {
+        const user = await this.getProfile(id);
         if (!user) {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         }
-        user.status = status;
+        user.status = userDto.status;
         await user.save();
         return user;
     }

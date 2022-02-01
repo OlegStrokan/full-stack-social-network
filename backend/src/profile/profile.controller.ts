@@ -10,6 +10,7 @@ import {
     Body,
 } from '@nestjs/common';
 import { ProfileService } from './profile.service';
+import { UpdateStatusDto } from '../user/dto/update-status.dto';
 
 @Controller('profile')
 export class ProfileController {
@@ -20,9 +21,9 @@ export class ProfileController {
         return this.profileService.getProfile(+id);
     }
 
-    @Put('/:id/status')
-    async changeStatus(@Param('id') id: string, @Body() status: string) {
-        return this.profileService.changeStatus(+id, status);
+    @Patch('/:id/status')
+    async changeStatus(@Param('id') id: string, @Body() userDto: UpdateStatusDto) {
+        return this.profileService.changeStatus(+id, userDto);
     }
 
     @Post('/:user_id/follow/:follow_id')
@@ -42,11 +43,11 @@ export class ProfileController {
     }
 
     @Patch('/:id/avatar')
-    async changeAvatar(@Param('id') id: string, @UploadedFile() avatar: File) {
+    async changeAvatar(@Param('id') id: string, @UploadedFile() avatar) {
         return this.profileService.changeAvatar(+id, avatar);
     }
 
-    @Get('/:id/avatar')
+    @Get('/:id/activate')
     async activateProfile(@Param('id') id: string) {
         return this.profileService.activateProfile(+id);
     }

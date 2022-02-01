@@ -1,4 +1,22 @@
-# v0.7.7 (1.01.2022)
+# v0.7.9 (1.01.2022)
+
+## Features:
+
+Backend:
+1. Added update status functional
+
+## Fixes:
+
+1. Fixed user model (about field)
+
+# v0.7.8 (1.01.2022)
+
+## Features:
+
+Backend:
+1. Resolve issues with profile image
+
+2. # v0.7.7 (1.01.2022)
 
 ## Features:
 

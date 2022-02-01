@@ -18,8 +18,8 @@ export class UserService {
         private fileService: FileService,
     ) {}
 
-    async create(userDto: CreateUserDto, avatar: File) {
-        const fileName = await this.fileService.createFile(avatar);
+    async create(userDto: CreateUserDto) {
+        const fileName = '';
         const activationLink = uuid.v4();
         const user = await this.userRepository.create(userDto);
         const role = await this.roleService.getRoleByValue('USER');
