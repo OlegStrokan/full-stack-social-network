@@ -7,6 +7,7 @@ import { MailService } from '../mail/mail.service';
 import { RoleService } from '../role/role.service';
 import { AddRoleDto } from './dto/add-role.dto';
 import { FileService } from '../file/file.service';
+import { BanUserDto } from './dto/ban-user.dto';
 
 @Injectable()
 export class UserService {
@@ -53,5 +54,15 @@ export class UserService {
             where: { email },
             include: { all: true },
         });
+    }
+
+    async ban(id: number, dto: BanUserDto) {
+        const user = await this.userRepository.findByPk(id);
+        if (user) {
+            user.banned = true;
+            user.banReason = dto.banReason;
+            return user;
+        }
+        throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 }

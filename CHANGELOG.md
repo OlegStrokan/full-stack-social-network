@@ -1,3 +1,10 @@
+# v0.8.0 (1.01.2022)
+
+## Features:
+
+Backend:
+1. Added user's ban functional
+
 # v0.7.9 (1.01.2022)
 
 ## Features:
