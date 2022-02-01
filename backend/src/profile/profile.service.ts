@@ -69,4 +69,14 @@ export class ProfileService {
         await user.save();
         return user;
     }
+
+    async activateProfile(id: number) {
+        const user = await this.getProfile(id);
+        if (!user) {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+        }
+        user.activated = true;
+        await user.save();
+        return user;
+    }
 }

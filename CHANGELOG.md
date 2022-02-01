@@ -1,7 +1,15 @@
+# v0.7.7 (1.01.2022)
+
+## Features:
+
+Backend:
+1. Added activate profile functional
+
 # v0.7.6 (30.01.2022)
 
 ## Features:
 
+Backend:
 1. Added api property to users 
 2. Added prettier
 
@@ -9,18 +17,21 @@
 
 ## Features:
 
+Backend:
 1. Added change status functional
 
 # v0.7.4 (29.01.2022)
 
 ## Features:
 
+Backend:
 1. Added avatar to user
 
 # v0.7.3 (29.01.2022)
 
 ## Fixes:
 
+Backend:
 1. Common fixed in models
 
 # v0.7.2 (26.01.2022)

@@ -10,7 +10,6 @@ import {
     Body,
 } from '@nestjs/common';
 import { ProfileService } from './profile.service';
-import { FileService } from '../file/file.service';
 
 @Controller('profile')
 export class ProfileController {
@@ -42,8 +41,13 @@ export class ProfileController {
         return this.profileService.unfollow(+user_id, +unfollow_id);
     }
 
-    @Patch(':id/avatar')
+    @Patch('/:id/avatar')
     async changeAvatar(@Param('id') id: string, @UploadedFile() avatar: File) {
         return this.profileService.changeAvatar(+id, avatar);
+    }
+
+    @Get('/:id/avatar')
+    async activateProfile(@Param('id') id: string) {
+        return this.profileService.activateProfile(+id);
     }
 }
