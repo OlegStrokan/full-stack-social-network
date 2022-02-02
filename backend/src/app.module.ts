@@ -13,8 +13,8 @@ import { RoleModel } from './role/models/role.model';
 import { UserRolesModel } from './role/models/user-roles.model';
 import { ProfileModule } from './profile/profile.module';
 import { FollowModel } from './user/models/follow.model';
-import { PostModule } from './post/post.module';
 import { FileModule } from './file/file.module';
+import { PostModule } from './post/post.module';
 import { PostModel } from './post/post.model';
 
 @Module({
@@ -43,7 +43,6 @@ import { PostModel } from './post/post.model';
                 PostModel,
             ],
             autoLoadModels: true,
-            synchronize: false,
         }),
         UserModule,
         AuthModule,
@@ -51,7 +50,6 @@ import { PostModel } from './post/post.model';
         RoleModule,
         PostModule,
         ProfileModule,
-        PostModule,
         FileModule,
     ],
 })

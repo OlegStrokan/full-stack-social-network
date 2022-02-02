@@ -16,11 +16,9 @@ export class UserService {
         private userRepository: typeof UserModel,
         private mailService: MailService,
         private roleService: RoleService,
-        private fileService: FileService,
     ) {}
 
     async create(userDto: CreateUserDto) {
-        const fileName = '';
         const activationLink = uuid.v4();
         const user = await this.userRepository.create(userDto);
         const role = await this.roleService.getRoleByValue('USER');
@@ -29,8 +27,8 @@ export class UserService {
             `http://localhost:5000/auth/activate/${activationLink}`,
         );
         user.activationLink = activationLink;
-        user.avatar = fileName;
         await user.$set('roles', [role.id]);
+        user.roles = [role];
         await user.save();
         return user;
     }

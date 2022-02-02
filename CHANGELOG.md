@@ -1,3 +1,11 @@
+# v0.9.0 (2.01.2022)
+
+## Fixes:
+
+Backend:
+1. Resolved all issues with post model
+2. Fixed some issues
+
 # v0.8.0 (1.01.2022)
 
 ## Features:

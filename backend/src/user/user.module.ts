@@ -11,6 +11,7 @@ import { RoleModel } from '../role/models/role.model';
 import { RoleModule } from '../role/role.module';
 import { FollowModel } from './models/follow.model';
 import { FileModule } from '../file/file.module';
+import { PostModel } from '../post/post.model';
 
 @Module({
     imports: [
@@ -20,6 +21,7 @@ import { FileModule } from '../file/file.module';
             RoleModel,
             UserRolesModel,
             FollowModel,
+            PostModel,
         ]),
         MailModule,
         RoleModule,

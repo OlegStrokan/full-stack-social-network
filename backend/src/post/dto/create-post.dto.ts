@@ -3,5 +3,4 @@ export class CreatePostDto {
     readonly content: string;
     readonly userId: number;
     readonly image: string | string[];
-    readonly likesCount: number;
 }

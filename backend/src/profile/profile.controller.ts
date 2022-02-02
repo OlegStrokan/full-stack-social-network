@@ -7,10 +7,11 @@ import {
     Post,
     UploadedFile,
     Put,
-    Body,
+    Body, UseInterceptors,
 } from '@nestjs/common';
 import { ProfileService } from './profile.service';
 import { UpdateStatusDto } from '../user/dto/update-status.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('profile')
 export class ProfileController {
@@ -22,7 +23,10 @@ export class ProfileController {
     }
 
     @Patch('/:id/status')
-    async changeStatus(@Param('id') id: string, @Body() userDto: UpdateStatusDto) {
+    async changeStatus(
+        @Param('id') id: string,
+        @Body() userDto: UpdateStatusDto,
+    ) {
         return this.profileService.changeStatus(+id, userDto);
     }
 
@@ -43,6 +47,7 @@ export class ProfileController {
     }
 
     @Patch('/:id/avatar')
+    @UseInterceptors(FileInterceptor('avatar'))
     async changeAvatar(@Param('id') id: string, @UploadedFile() avatar) {
         return this.profileService.changeAvatar(+id, avatar);
     }

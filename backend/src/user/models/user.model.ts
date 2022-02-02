@@ -11,6 +11,7 @@ import { UserRolesModel } from '../../role/models/user-roles.model';
 import { RoleModel } from '../../role/models/role.model';
 import { FollowModel } from './follow.model';
 import { BlockedUserModel } from './blocked-user.model';
+import { PostModel } from '../../post/post.model';
 
 interface UserCreationAttr {
     email: string;
@@ -91,18 +92,19 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
 
     @BelongsToMany(() => UserModel, () => FollowModel)
     // на кого подписан пользователь
-    following: FollowModel[];
+    following: number[];
 
     @BelongsToMany(() => UserModel, () => FollowModel)
     // кто подписан на пользователя
-    followers: FollowModel[];
+    followers: number[];
 
     @BelongsToMany(() => RoleModel, () => UserRolesModel)
     roles: RoleModel[];
 
-    /*@HasMany(() => PostModel)
-  posts: PostModel[]
+    @HasMany(() => PostModel)
+    posts: PostModel[];
 
+    /*
   @HasMany(() => MediaModel)
   media: Media[]
 

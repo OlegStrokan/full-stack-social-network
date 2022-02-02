@@ -18,7 +18,7 @@ interface PostCreationAttrs {
 
 @Table({ tableName: 'posts' })
 export class PostModel extends Model<PostModel, PostCreationAttrs> {
-    // @ApiProperty({ example: '1', description: 'id' })
+    @ApiProperty({ example: '1', description: "Post's id" })
     @Column({
         type: DataType.INTEGER,
         unique: true,
@@ -27,25 +27,36 @@ export class PostModel extends Model<PostModel, PostCreationAttrs> {
     })
     id: number;
 
-    //  @ApiProperty({ example: 'This is title', description: 'Post\'s title' })
+    @ApiProperty({ example: 'This is title', description: "Post's title" })
     @Column({ type: DataType.STRING, unique: true, allowNull: false })
     title: string;
 
-    // @ApiProperty({ example: 'This is some content', description: 'Post\'s content' })
+    @ApiProperty({
+        example: 'This is some content',
+        description: "Post's content",
+    })
     @Column({ type: DataType.STRING, allowNull: false })
     content: string;
 
-    // @ApiProperty({ example: '89as-d2as-348s-238a-we9w', description: 'Name of post\'s image' })
+    @ApiProperty({
+        example: '89as-d2as-348s-238a-we9w',
+        description: "Name of post's image",
+    })
     @Column({ type: DataType.STRING })
     image: string | string[];
 
-    @Column({ type: DataType.NUMBER, defaultValue: 0 })
+    @ApiProperty({ example: '21', description: 'Likes count for current post' })
+    @Column({ type: DataType.INTEGER, defaultValue: 0 })
     likesCount: number;
 
+    @ApiProperty({
+        example: '2',
+        description: 'Author of current post',
+    })
     @ForeignKey(() => UserModel)
     @Column({ type: DataType.INTEGER })
     userId: number;
 
-    /*@BelongsTo(() => UserModel)
-    author: UserModel;*/
+    @BelongsTo(() => UserModel)
+    author: UserModel;
 }
