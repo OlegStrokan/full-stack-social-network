@@ -48,7 +48,37 @@ export class ProfileService {
         return { statusCode: HttpStatus.OK };
     }
 
-    unfollow(user_id: number, unfollow_id: number) {}
+    async unfollow(user_id: number, unfollow_id: number) {
+        if (user_id === unfollow_id) {
+            throw new HttpException(
+                "You can't unfollow yourself",
+                HttpStatus.BAD_REQUEST,
+            );
+        }
+
+        const user = await this.userRepository.findByPk(user_id);
+
+        if (!user) {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+        }
+        const followUser = await this.userRepository.findByPk(unfollow_id);
+
+        if (!followUser) {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+        }
+        const followModel = await this.followRepository.findOne({
+            where: { follower_id: unfollow_id },
+        });
+        if (!followModel) {
+            throw new HttpException(
+                'You are not follow this user',
+                HttpStatus.BAD_REQUEST,
+            );
+        }
+        await followModel.destroy();
+
+        return { statusCode: HttpStatus.OK };
+    }
     async getProfile(id: number) {
         const profile = await this.userRepository.findOne({ where: { id } });
 

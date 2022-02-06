@@ -6,8 +6,8 @@ import {
     Patch,
     Post,
     UploadedFile,
-    Put,
-    Body, UseInterceptors,
+    Body,
+    UseInterceptors,
 } from '@nestjs/common';
 import { ProfileService } from './profile.service';
 import { UpdateStatusDto } from '../user/dto/update-status.dto';
