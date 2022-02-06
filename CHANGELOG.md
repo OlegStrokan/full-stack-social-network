@@ -1,3 +1,11 @@
+# v0.9.1 (6.01.2022)
+
+## Fixes:
+
+Backend:
+1. Deleted followers from user model
+2. Fixed follow functional
+
 # v0.9.0 (2.01.2022)
 
 ## Fixes:

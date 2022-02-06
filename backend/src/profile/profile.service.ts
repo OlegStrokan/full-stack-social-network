@@ -14,29 +14,27 @@ export class ProfileService {
     ) {}
 
     async follow(user_id: number, follow_id: number) {
-        const user = await this.userRepository.findByPk(user_id);
+        const user = await this.userRepository.findByPk(user_id, {
+            include: { all: true },
+        });
 
         if (!user) {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         }
 
-        const followUser = await this.userRepository.findByPk(follow_id);
+        const followUser = await this.userRepository.findByPk(follow_id, {
+            include: { all: true },
+        });
         if (!followUser) {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         }
 
-        await followUser.$add('following', user_id);
-        await user.$add('follower', follow_id);
-
-        console.log(user_id, follow_id);
         const follow = await this.followRepository.create({
             user_id: user_id,
             follower_id: follow_id,
         });
-        console.log(follow);
 
         await follow.save();
-        console.log('hello');
         return 'success';
     }
 

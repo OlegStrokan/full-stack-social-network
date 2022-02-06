@@ -90,14 +90,6 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
     @HasMany(() => BlockedUserModel)
     blockedUsers: BlockedUserModel[];
 
-    @BelongsToMany(() => UserModel, () => FollowModel)
-    // на кого подписан пользователь
-    following: number[];
-
-    @BelongsToMany(() => UserModel, () => FollowModel)
-    // кто подписан на пользователя
-    followers: number[];
-
     @BelongsToMany(() => RoleModel, () => UserRolesModel)
     roles: RoleModel[];
 
