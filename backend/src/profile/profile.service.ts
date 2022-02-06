@@ -14,28 +14,38 @@ export class ProfileService {
     ) {}
 
     async follow(user_id: number, follow_id: number) {
-        const user = await this.userRepository.findByPk(user_id, {
-            include: { all: true },
-        });
+        if (user_id === follow_id) {
+            throw new HttpException(
+                "You can't follow yourself",
+                HttpStatus.BAD_REQUEST,
+            );
+        }
+
+        const user = await this.userRepository.findByPk(user_id);
 
         if (!user) {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         }
+        const followUser = await this.userRepository.findByPk(follow_id);
 
-        const followUser = await this.userRepository.findByPk(follow_id, {
-            include: { all: true },
-        });
         if (!followUser) {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         }
-
+        const followModel = await this.followRepository.findOne({
+            where: { follower_id: follow_id },
+        });
+        if (followModel) {
+            throw new HttpException(
+                "You can't follow user two times",
+                HttpStatus.BAD_REQUEST,
+            );
+        }
         const follow = await this.followRepository.create({
             user_id: user_id,
             follower_id: follow_id,
         });
-
         await follow.save();
-        return 'success';
+        return { statusCode: HttpStatus.OK };
     }
 
     unfollow(user_id: number, unfollow_id: number) {}

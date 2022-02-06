@@ -10,6 +10,6 @@
 
 ## Frontend stack:
 * ### React
-* ### Redux
+* ### Redux-toolkit
 * ### Material UI
 * ### RxJs

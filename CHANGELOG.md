@@ -1,3 +1,10 @@
+# v0.9.2 (6.01.2022)
+
+## Features:
+
+Backend:
+1. Added exceptions for follow functional
+
 # v0.9.1 (6.01.2022)
 
 ## Fixes:
