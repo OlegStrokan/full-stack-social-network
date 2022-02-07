@@ -1,3 +1,10 @@
+# v0.9.3 (7.01.2022)
+
+## Features:
+
+Frontend:
+1. Added router for frontend
+
 # v0.9.3 (6.01.2022)
 
 ## Features:

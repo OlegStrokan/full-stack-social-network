@@ -32,6 +32,14 @@ Roles functional:
 - POST */roles - create user's role*
 - GET */roles/:value - get user's role*
 
+Profile functional:
+
+- GET */profile/:id - get user's profile*
+- PATCH */profile/:id/status - change user's status*
+- POST */profile/:user_id/follow/:follow_id - follow user*
+- DELETE */profile/:user_id/unfollow/:follow_id - unfollow user*
+- PATCH */profile/:id/avatar - change user's avatar*
+- GET */profile/:id/activate - activate user's profile*
 
 Posts functional
 - GET */posts - get all posts*
