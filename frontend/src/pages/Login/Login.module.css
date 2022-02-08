@@ -1,0 +1,36 @@
+.root {
+    margin: 10px;
+    padding: 20px;
+}
+.link {
+    cursor: pointer;
+    color: #4869e8;
+    text-decoration: underline;
+}
+.inputs {
+    max-width: 400px;
+}
+
+.changePassword {
+    color: #4869e8;
+    text-decoration: underline;
+    padding: 10px 0 0 15px;
+}
+.acceptTerms {
+    display: flex;
+    align-items: flex-start;
+}
+
+.checkboxTerms {
+    transform: scale(1.2);
+}
+
+.countrySelect {
+    display: flex;
+    justify-content: center;
+    min-width: 385px;
+}
+
+.countrySelect > * {
+    min-width: 75px;
+}
