@@ -3,6 +3,14 @@
 ## Features:
 
 Frontend:
+1. Added registration/login api.
+2. Added api instance
+
+# v0.10.0 (8.01.2022)
+
+## Features:
+
+Frontend:
 1. Added profile and post page.
 2. Added all dependencies
 
