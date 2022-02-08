@@ -1,10 +1,4 @@
-import {
-    CanActivate,
-    ExecutionContext,
-    HttpStatus,
-    Injectable,
-    UnauthorizedException,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { JwtService } from '@nestjs/jwt';
 
@@ -13,9 +7,7 @@ export class JwtAuthGuard implements CanActivate {
     constructor(private jwtService: JwtService) {}
 
     // Если функция canActivate возвращает true, значит доступ к эндпоинту разрешен
-    canActivate(
-        context: ExecutionContext,
-    ): boolean | Promise<boolean> | Observable<boolean> {
+    canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
         const req = context.switchToHttp().getRequest();
         try {
             const authHeader = req.headers.authorization;

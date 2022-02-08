@@ -1,9 +1,4 @@
-import {
-    HttpException,
-    HttpStatus,
-    Injectable,
-    UnauthorizedException,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import * as bcrypt from 'bcryptjs';
@@ -13,18 +8,12 @@ import { UserModel } from '../user/models/user.model';
 
 @Injectable()
 export class AuthService {
-    constructor(
-        private userService: UserService,
-        private jwtService: JwtService,
-    ) {}
+    constructor(private userService: UserService, private jwtService: JwtService) {}
 
     async registration(userDto: CreateUserDto) {
         const candidate = await this.userService.getByEmail(userDto.email);
         if (candidate) {
-            throw new HttpException(
-                'User with this email already exist',
-                HttpStatus.BAD_REQUEST,
-            );
+            throw new HttpException('User with this email already exist', HttpStatus.BAD_REQUEST);
         }
         const hashPassword = await bcrypt.hash(userDto.password, 5);
 
@@ -54,10 +43,7 @@ export class AuthService {
             });
         }
 
-        const passwordEquals = await bcrypt.compare(
-            userDto.password,
-            user.password,
-        );
+        const passwordEquals = await bcrypt.compare(userDto.password, user.password);
 
         if (user && passwordEquals) {
             return user;
@@ -70,7 +56,11 @@ export class AuthService {
     }
 
     private async generateToken(user: UserModel) {
-        const payload = { email: user.email, id: user.id, roles: user.roles };
+        const payload = {
+            email: user.email,
+            id: user.id,
+            roles: user.roles,
+        };
         return {
             token: this.jwtService.sign(payload),
         };

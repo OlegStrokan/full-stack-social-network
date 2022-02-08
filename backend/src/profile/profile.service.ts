@@ -8,8 +8,10 @@ import { UpdateStatusDto } from '../user/dto/update-status.dto';
 @Injectable()
 export class ProfileService {
     constructor(
-        @InjectModel(UserModel) private userRepository: typeof UserModel,
-        @InjectModel(FollowModel) private followRepository: typeof FollowModel,
+        @InjectModel(UserModel)
+        private userRepository: typeof UserModel,
+        @InjectModel(FollowModel)
+        private followRepository: typeof FollowModel,
         private fileService: FileService,
     ) {}
 
@@ -32,7 +34,9 @@ export class ProfileService {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         }
         const followModel = await this.followRepository.findOne({
-            where: { follower_id: follow_id },
+            where: {
+                follower_id: follow_id,
+            },
         });
         if (followModel) {
             throw new HttpException(
@@ -45,7 +49,9 @@ export class ProfileService {
             follower_id: follow_id,
         });
         await follow.save();
-        return { statusCode: HttpStatus.OK };
+        return {
+            statusCode: HttpStatus.OK,
+        };
     }
 
     async unfollow(user_id: number, unfollow_id: number) {
@@ -67,7 +73,9 @@ export class ProfileService {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         }
         const followModel = await this.followRepository.findOne({
-            where: { follower_id: unfollow_id },
+            where: {
+                follower_id: unfollow_id,
+            },
         });
         if (!followModel) {
             throw new HttpException(
@@ -77,9 +85,12 @@ export class ProfileService {
         }
         await followModel.destroy();
 
-        return { statusCode: HttpStatus.OK };
+        return {
+            statusCode: HttpStatus.OK,
+        };
     }
-    async getProfile(id: number) {
+
+    async getProfile(id: number): Promise<UserModel> {
         const profile = await this.userRepository.findOne({ where: { id } });
 
         if (!profile) {
@@ -99,7 +110,8 @@ export class ProfileService {
             statusCode: HttpStatus.OK,
         };
     }
-    async changeStatus(id: number, userDto: UpdateStatusDto) {
+
+    async changeStatus(id: number, userDto: UpdateStatusDto): Promise<UserModel> {
         const user = await this.getProfile(id);
         if (!user) {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
@@ -109,7 +121,7 @@ export class ProfileService {
         return user;
     }
 
-    async activateProfile(id: number) {
+    async activateProfile(id: number): Promise<UserModel> {
         const user = await this.getProfile(id);
         if (!user) {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);

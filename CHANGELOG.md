@@ -1,3 +1,12 @@
+
+# v0.11.0 (8.01.2022)
+
+## Features:
+
+Backend:
+1. Added swagger decorator for all endpoints
+2. Added swagger configuration
+
 # v0.10.1 (8.01.2022)
 
 ## Features:

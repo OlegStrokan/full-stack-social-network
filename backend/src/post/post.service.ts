@@ -8,7 +8,8 @@ import { FileService } from '../file/file.service';
 @Injectable()
 export class PostService {
     constructor(
-        @InjectModel(PostModel) private postRepository: typeof PostModel,
+        @InjectModel(PostModel)
+        private postRepository: typeof PostModel,
         private fileService: FileService,
     ) {}
 
@@ -18,34 +19,37 @@ export class PostService {
             ...createPostDto,
             image: fileName,
         });
-        return { data: post, statusCode: HttpStatus.OK };
+        return {
+            data: post,
+            statusCode: HttpStatus.OK,
+        };
     }
 
     async findAll() {
         const posts = await this.postRepository.findAll();
-        return { data: posts, statusCode: HttpStatus.OK };
+        return {
+            data: posts,
+            statusCode: HttpStatus.OK,
+        };
     }
 
     async findOne(id: number) {
         const post = await this.postRepository.findByPk(id);
 
         if (!post) {
-            throw new HttpException(
-                'Post with this id not found',
-                HttpStatus.NOT_FOUND,
-            );
+            throw new HttpException('Post with this id not found', HttpStatus.NOT_FOUND);
         }
-        return { data: post, statusCode: HttpStatus.OK };
+        return {
+            data: post,
+            statusCode: HttpStatus.OK,
+        };
     }
 
     async update(id: number, updatePostDto: UpdatePostDto, image: File) {
         const fileName = await this.fileService.createFile(image);
         const post = await this.postRepository.findByPk(id);
         if (!post) {
-            throw new HttpException(
-                'Post with this id not found',
-                HttpStatus.NOT_FOUND,
-            );
+            throw new HttpException('Post with this id not found', HttpStatus.NOT_FOUND);
         }
         const updatedPost: Omit<UpdatePostDto, 'likesCount'> = {
             title: updatePostDto.title,
@@ -55,12 +59,21 @@ export class PostService {
 
         await post.save();
 
-        return { data: updatedPost, statusCode: HttpStatus.OK };
+        return {
+            data: updatedPost,
+            statusCode: HttpStatus.OK,
+        };
     }
 
     async delete(id: number) {
-        await this.postRepository.destroy({ where: { id } });
-        return { statusCode: HttpStatus.ACCEPTED };
+        await this.postRepository.destroy({
+            where: {
+                id,
+            },
+        });
+        return {
+            statusCode: HttpStatus.ACCEPTED,
+        };
     }
 
     async like(id: number) {
@@ -68,7 +81,10 @@ export class PostService {
         post.likesCount++;
 
         await post.save();
-        return { data: post, statusCode: HttpStatus.OK };
+        return {
+            data: post,
+            statusCode: HttpStatus.OK,
+        };
     }
 
     async unlike(id: number) {
@@ -76,6 +92,9 @@ export class PostService {
         post.likesCount--;
 
         await post.save();
-        return { data: post, statusCode: HttpStatus.OK };
+        return {
+            data: post,
+            statusCode: HttpStatus.OK,
+        };
     }
 }

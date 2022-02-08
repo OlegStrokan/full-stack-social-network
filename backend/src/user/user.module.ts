@@ -15,14 +15,7 @@ import { PostModel } from '../post/post.model';
 
 @Module({
     imports: [
-        SequelizeModule.forFeature([
-            UserModel,
-            BlockedUserModel,
-            RoleModel,
-            UserRolesModel,
-            FollowModel,
-            PostModel,
-        ]),
+        SequelizeModule.forFeature([UserModel, BlockedUserModel, RoleModel, UserRolesModel, FollowModel, PostModel]),
         MailModule,
         RoleModule,
         FileModule,
