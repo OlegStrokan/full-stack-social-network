@@ -1,4 +1,12 @@
-# v0.9.3 (8.01.2022)
+# v0.10.1 (8.01.2022)
+
+## Features:
+
+Frontend:
+1. Added profile and post page.
+2. Added all dependencies
+
+# v0.9.5 (8.01.2022)
 
 ## Features:
 
@@ -6,7 +14,7 @@ Frontend:
 1. Added signIn/signUp forms
 2. Added validators
 
-# v0.9.3 (7.01.2022)
+# v0.9.4 (7.01.2022)
 
 ## Features:
 

@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import { Login } from './pages/Login/Login';
+import { Profile } from './pages/Profile/Profile';
+import { Posts } from './pages/Posts/Posts';
 
 export const App = () => {
   return (
@@ -14,10 +17,10 @@ export const App = () => {
       </ul>
 
       <Routes>
-        <Route path="/login" element={<div/>} />
+        <Route path="/login" element={<Login/>} />
         <Route path='/' element={<Navigate to={'/profile'}/>} />
-        <Route path="/profile/:id" element={<div/>} />
-        <Route path="/posts" element={<div/>} />
+        <Route path="/profile/:id" element={<Profile/>} />
+        <Route path="/posts" element={<Posts/>} />
       </Routes>
     </div>
   );
