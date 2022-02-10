@@ -1,4 +1,12 @@
 
+# v1.0.1 (10.01.2022)
+
+## Features:
+
+Frontend:
+1. Added role's api
+2. Added interfaces for role
+
 # v1.0.0 (10.01.2022)
 
 ## Features:
@@ -6,7 +14,6 @@
 Frontend:
 1. Added profile's api
 2. Added interfaces for profile
-
 
 # v0.11.1 (10.01.2022)
 
