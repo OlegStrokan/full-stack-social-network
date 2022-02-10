@@ -1,4 +1,14 @@
 
+# v0.11.1 (10.01.2022)
+
+## Features:
+
+Frontend:
+1. Added post's api.
+
+Backend:
+1. Minor fix in posts and profile controllers
+
 # v0.11.0 (8.01.2022)
 
 ## Features:

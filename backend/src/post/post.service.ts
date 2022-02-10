@@ -72,6 +72,7 @@ export class PostService {
             },
         });
         return {
+            message: 'success',
             statusCode: HttpStatus.ACCEPTED,
         };
     }

@@ -1,6 +1,6 @@
 import { instance } from './instance.api';
 
-interface IRegistrationResponse {
+export interface ISuccessResponse {
     message: string;
     statusCode: number
 }
@@ -10,8 +10,8 @@ interface ILoginResponse {
 }
 
 export const authAPI = {
-    registration(email: string, username: string, fullname: string, password: string, avatar: string): Promise<IRegistrationResponse> {
-        return instance.post<IRegistrationResponse>('/auth/registration', {email, username, fullname, password, avatar})
+    registration(email: string, username: string, fullname: string, password: string, avatar: string): Promise<ISuccessResponse> {
+        return instance.post<ISuccessResponse>('/auth/registration', {email, username, fullname, password, avatar})
             .then((response) => response.data)
     },
     login(email: string, password: string): Promise<ILoginResponse> {

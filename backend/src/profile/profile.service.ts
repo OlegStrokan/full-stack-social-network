@@ -50,6 +50,7 @@ export class ProfileService {
         });
         await follow.save();
         return {
+            message: 'success',
             statusCode: HttpStatus.OK,
         };
     }
@@ -86,6 +87,7 @@ export class ProfileService {
         await followModel.destroy();
 
         return {
+            message: 'success',
             statusCode: HttpStatus.OK,
         };
     }
