@@ -12,7 +12,7 @@ export class UserController {
     constructor(private readonly usersService: UserService) {}
 
     @ApiOperation({
-        summary: 'Create new role',
+        summary: 'Get users',
     })
     @ApiOkResponse({
         status: 200,
@@ -24,7 +24,7 @@ export class UserController {
     }
 
     @ApiOperation({
-        summary: 'Create new role',
+        summary: 'Create new user',
     })
     @ApiOkResponse({
         status: 200,
@@ -72,6 +72,13 @@ export class UserController {
         return this.usersService.ban(+id, dto);
     }
 
+    @ApiOperation({
+        summary: 'Unban a user',
+    })
+    @ApiOkResponse({
+        status: 200,
+        type: UserModel,
+    })
     @Delete('/:id/ban')
     unban(
         @Param('id')

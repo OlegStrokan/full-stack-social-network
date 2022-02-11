@@ -1,5 +1,16 @@
+# v1.1.0 (11.01.2022)
 
-# v1.0.2 (10.01.2022)
+## Features:
+
+Frontend:
+
+1. Add redux store, root saga.
+2. Added redux logic for auth
+
+Backend: 
+1. Minor fix in user controller
+
+# v1.0.2 (11.01.2022)
 
 ## Features:
 
@@ -8,6 +19,7 @@ Frontend:
 
 Backend:
 1. Added unban functional for users
+
 # v1.0.1 (10.01.2022)
 
 ## Features:
