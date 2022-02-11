@@ -5,6 +5,7 @@ import { Profile } from './pages/Profile/Profile';
 import { Posts } from './pages/Posts/Posts';
 
 export const App = () => {
+
   return (
     <div>
       <ul>

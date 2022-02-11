@@ -1,18 +1,20 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { authAPI } from "../../../api/auth.api";
+import { authAPI, ILoginResponse } from "../../../api/auth.api";
 import { IFetchedAuth } from "./action.types";
-import { authSlice } from "./auth.slice";
+import { authFailed, authSuccess } from "./auth.slice";
 
-export function* login({ authData }: IFetchedAuth) {
+export function* login({ payload}: IFetchedAuth) {
     try {
-        const { data } = yield call(authAPI.login, authData);
-        yield put(authSlice.actions.authSuccess(data));
+        // @ts-ignore
+        const { token }: ILoginResponse = yield call(authAPI.login, payload);
+        yield put(authSuccess(token));
     } catch (error: any) {
-        yield put(authSlice.actions.authFailed(error))
+        yield put(authFailed(error))
     }
 
 }
 
 export function* loginWatcher () {
+    // @ts-ignore
     yield takeEvery('auth/fetchedAuth', login)
 }

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IAuthSuccess, IAuthFailed } from "./action.types";
+import { IAuthSuccess, IAuthFailed, IFetchedAuth } from "./action.types";
 
 
 interface AuthState {
@@ -22,12 +22,12 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        fetchedAuth(state) {
+        fetchedAuth(state, action: PayloadAction<IFetchedAuth>) {
             state.loading = true
         },
-        authSuccess(state, action: PayloadAction<IAuthSuccess>) {
+        authSuccess(state, action: PayloadAction<string>) {
             state.loading = false
-            state.token = action.payload.token
+            state.token = action.payload
         },
         authFailed(state, action: PayloadAction<IAuthFailed>) {
             state.loading = false

@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
 
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
-const middleware = [...getDefaultMiddleware({ thunk: false}), ...middlewares]
+const middleware = [...getDefaultMiddleware({ thunk: false, serializableCheck: false }), ...middlewares]
 
  export const store = configureStore({
         devTools: true,

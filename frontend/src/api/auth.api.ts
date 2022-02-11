@@ -7,7 +7,7 @@ export interface ISuccessResponse {
     statusCode: number
 }
 
-interface ILoginResponse {
+export interface ILoginResponse {
     token: string;
 }
 

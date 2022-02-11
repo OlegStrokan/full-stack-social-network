@@ -1,3 +1,12 @@
+# v1.2.1 (11.01.2022)
+
+## Features:
+
+Frontend:
+
+1. Changed action types.
+2. Working login functional (frontend)
+
 # v1.2.0 (11.01.2022)
 
 ## Features:
@@ -7,7 +16,6 @@ Frontend:
 1. Added saga for auth (login)
 2. Added auth interfaces.
 3. Changed action types
-
 
 # v1.1.0 (11.01.2022)
 
