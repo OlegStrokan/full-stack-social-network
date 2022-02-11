@@ -1,8 +1,8 @@
 import { all } from "redux-saga/effects";
-import { loginWatcher } from "./ducks/auth/sagas";
+import { authWatcher } from "./ducks/auth/saga";
 
 export function* rootSaga() {
     yield  all([
-        loginWatcher()
+        authWatcher()
     ])
 }

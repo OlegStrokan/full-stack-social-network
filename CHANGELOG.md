@@ -4,6 +4,14 @@
 
 Frontend:
 
+1. Added registration functional
+
+# v1.2.1 (11.01.2022)
+
+## Features:
+
+Frontend:
+
 1. Changed action types.
 2. Working login functional (frontend)
 

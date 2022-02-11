@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IAuthSuccess, IAuthFailed, IFetchedAuth } from "./action.types";
-
+import { IFetchedLogin, IFetchedRegistration, ILoginFailed } from "./action.types";
+import { ILoginResponse, ISuccessResponse } from "../../../api/auth.api";
 
 interface AuthState {
     userId: number | null;
@@ -22,19 +22,29 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        fetchedAuth(state, action: PayloadAction<IFetchedAuth>) {
+        fetchedLogin(state, action: PayloadAction<IFetchedLogin>) {
             state.loading = true
         },
-        authSuccess(state, action: PayloadAction<string>) {
+        loginSuccess(state, action: PayloadAction<ILoginResponse>) {
             state.loading = false
-            state.token = action.payload
+            state.token = action.payload.token
         },
-        authFailed(state, action: PayloadAction<IAuthFailed>) {
+        loginFailed(state, action: PayloadAction<ILoginFailed>) {
+            state.loading = false
+            state.error = action.payload.error
+        },
+        fetchedRegistration(state, action: PayloadAction<IFetchedRegistration>) {
+            state.loading = true
+        },
+        registrationSuccess(state, action: PayloadAction<void>) {
+            state.loading = false
+        },
+        registrationFailed(state, action: PayloadAction<ILoginFailed>) {
             state.loading = false
             state.error = action.payload.error
         }
     }
 })
 
-export const { fetchedAuth, authSuccess, authFailed } = authSlice.actions
+export const { fetchedLogin, loginSuccess, loginFailed, fetchedRegistration, registrationSuccess, registrationFailed } = authSlice.actions
 export const authReducer = authSlice.reducer

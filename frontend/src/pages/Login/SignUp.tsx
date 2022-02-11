@@ -19,6 +19,8 @@ import { useForm, Controller } from 'react-hook-form';
 import styles from './Login.module.css'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from '../../utils/validators/signUp';
+import { useDispatch } from "react-redux";
+import { fetchedRegistration } from "../../redux/ducks/auth/auth.slice";
 
 
 interface SignUpInterface {
@@ -26,8 +28,11 @@ interface SignUpInterface {
 }
 
 export const SignUp:React.FC<SignUpInterface> = ({ onModelChange }) => {
+
+  const dispatch = useDispatch();
+
   const onSubmit = (event: any) => {
-   return null
+   dispatch(fetchedRegistration(event))
   };
 
   const {

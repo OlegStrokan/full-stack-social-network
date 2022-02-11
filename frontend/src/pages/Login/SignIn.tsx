@@ -12,7 +12,7 @@ import styles from './Login.module.css';
 import { validationSchema } from '../../utils/validators/signIn';
 import { Button } from '@mui/material';
 import { useDispatch } from "react-redux";
-import { fetchedAuth } from "../../redux/ducks/auth/auth.slice";
+import { fetchedLogin } from "../../redux/ducks/auth/auth.slice";
 
 interface SignInInterface {
   onModelChange: () => void;
@@ -22,8 +22,7 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
 
   const dispatch = useDispatch();
   const onSubmit = (event: any) => {
-    debugger;
-    dispatch(fetchedAuth(event))
+    dispatch(fetchedLogin(event))
   };
   const {
     register, control, handleSubmit, formState: { errors },

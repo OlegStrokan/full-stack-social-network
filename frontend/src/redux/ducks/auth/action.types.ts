@@ -1,25 +1,40 @@
 import { Action } from "@reduxjs/toolkit";
 import { LoginDto } from "../../../types/auth/login.dto";
+import { RegistrationDto } from "../../../types/auth/registration.dto";
 
 
 export enum AuthActionTypes {
-    AUTH_SUCCESS = 'AUTH_SUCCESS',
-    AUTH_FAILED = 'AUTH_FAILED',
-    FETCHED_AUTH = 'FETCHED_AUTH',
+    LOGIN_SUCCESS = 'LOGIN_SUCCESS',
+    LOGIN_FAILED = 'LOGIN_FAILED',
+    FETCHED_LOGIN = 'FETCHED_LOGIN',
+    REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS',
+    REGISTRATION_FAILED = 'REGISTRATION_FAILED',
+    FETCHED_REGISTRATION = 'FETCHED_REGISTRATION',
 }
 
 
-export interface IAuthSuccess extends Action<AuthActionTypes>{
-    type: AuthActionTypes.AUTH_SUCCESS,
+export interface ILoginSuccess extends Action<AuthActionTypes>{
+    type: AuthActionTypes.LOGIN_SUCCESS,
     token: string
 }
-export interface IAuthFailed extends Action<AuthActionTypes>{
-    type: AuthActionTypes.AUTH_FAILED,
+export interface ILoginFailed extends Action<AuthActionTypes>{
+    type: AuthActionTypes.LOGIN_FAILED,
     error: any
 }
-export interface IFetchedAuth extends Action<AuthActionTypes>{
-    type: AuthActionTypes.FETCHED_AUTH,
+export interface IFetchedLogin extends Action<AuthActionTypes>{
+    type: AuthActionTypes.FETCHED_LOGIN,
     payload: LoginDto
 }
-
+export interface IRegistrationSuccess extends Action<AuthActionTypes>{
+    type: AuthActionTypes.REGISTRATION_SUCCESS,
+    token: string
+}
+export interface IRegistrationFailed extends Action<AuthActionTypes>{
+    type: AuthActionTypes.REGISTRATION_FAILED,
+    error: any
+}
+export interface IFetchedRegistration extends Action<AuthActionTypes>{
+    type: AuthActionTypes.FETCHED_REGISTRATION,
+    payload: RegistrationDto
+}
 
