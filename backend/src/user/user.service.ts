@@ -71,4 +71,14 @@ export class UserService {
         }
         throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
+
+    async unban(id: number) {
+        const user = await this.userRepository.findByPk(id);
+        if (user) {
+            user.banned = false;
+            user.banReason = null;
+            return user;
+        }
+        throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
 }

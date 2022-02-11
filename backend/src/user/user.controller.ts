@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Param, Get, Patch } from '@nestjs/common';
+import { Controller, Post, Body, Param, Get, Patch, Delete } from "@nestjs/common";
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { AddRoleDto } from './dto/add-role.dto';
@@ -70,5 +70,12 @@ export class UserController {
         dto: BanUserDto,
     ) {
         return this.usersService.ban(+id, dto);
+    }
+
+    @Delete('/:id/ban')
+    unban(
+        @Param('id')
+            id: string) {
+        return this.usersService.unban(+id);
     }
 }

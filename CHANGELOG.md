@@ -1,4 +1,13 @@
 
+# v1.0.2 (10.01.2022)
+
+## Features:
+
+Frontend:
+1. Added user's api
+
+Backend:
+1. Added unban functional for users
 # v1.0.1 (10.01.2022)
 
 ## Features:
