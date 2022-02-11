@@ -1,4 +1,6 @@
 import { instance } from './instance.api';
+import { RegistrationDto } from "../types/auth/registration.dto";
+import { LoginDto } from "../types/auth/login.dto";
 
 export interface ISuccessResponse {
     message: string;
@@ -10,12 +12,12 @@ interface ILoginResponse {
 }
 
 export const authAPI = {
-    registration(email: string, username: string, fullname: string, password: string, avatar: string): Promise<ISuccessResponse> {
-        return instance.post<ISuccessResponse>('/auth/registration', {email, username, fullname, password, avatar})
+    registration(dto: RegistrationDto): Promise<ISuccessResponse> {
+        return instance.post<ISuccessResponse>('/auth/registration', dto)
             .then((response) => response.data)
     },
-    login(email: string, password: string): Promise<ILoginResponse> {
-        return instance.post<ILoginResponse>('/auth/login', {email, password})
+    login(dto: LoginDto): Promise<ILoginResponse> {
+        return instance.post<ILoginResponse>('/auth/login', dto)
         .then((response) => response.data)
     }
 }
