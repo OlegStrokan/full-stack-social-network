@@ -1,4 +1,13 @@
-# v1.2.1 (11.01.2022)
+# v1.3.0 (12.01.2022)
+
+## Features:
+
+Frontend:
+
+1. Added redux for profile
+2. Changed payload types for profile api
+
+# v1.2.2 (11.01.2022)
 
 ## Features:
 
