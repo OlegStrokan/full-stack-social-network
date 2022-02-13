@@ -5,13 +5,12 @@ import {
     IAvatarSuccess,
     IFetchedActivate,
     IFetchedAvatar, IFetchedFollow,
-    IFetchedProfile,
     IFetchedStatus, IFetchedUnfollow, IFollowSuccess,
     IProfileFailed,
     IProfileSuccess,
     IStatusSuccess, IUnfollowSuccess
 } from "./action.types";
-import { authReducer, authSlice } from "../auth/auth.slice";
+import { authSlice } from "../auth/auth.slice";
 
 interface ProfileState {
     profile: ProfileDto | null;
@@ -29,7 +28,7 @@ export const profileSlice = createSlice({
     name: "profile",
     initialState,
     reducers: {
-        fetchedProfile(state, action: PayloadAction<IFetchedProfile>) {
+        fetchedProfile(state, action: PayloadAction<number>) {
             state.loading = true;
         },
         profileSuccess(state, action: PayloadAction<IProfileSuccess>) {
@@ -91,7 +90,7 @@ export const {
     profileSuccess
 } = profileSlice.actions
 
-export const profileReducer = authSlice.reducer
+export const profileReducer = profileSlice.reducer
 
 
 

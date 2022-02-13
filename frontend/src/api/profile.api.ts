@@ -1,6 +1,5 @@
 import { ProfileDto } from "../types/profile/profile.dto";
 import { instance } from "./instance.api";
-import { ISuccessResponse } from "./auth.api";
 import { FollowDto } from "../types/profile/follow.dto";
 import { UnfollowDto } from "../types/profile/unfollow.dto";
 import { UpdateStatusDto } from "../types/profile/updateStatus.dto";
@@ -8,6 +7,7 @@ import { UpdateAvatarDto } from "../types/profile/updateAvatar.dto";
 
 export const profileAPI = {
     getProfile(id: number): Promise<ProfileDto> {
+        debugger;
         return instance.get<ProfileDto>(`/profile/${id}`).then((response) => response.data)
     },
     updateStatus(dto: UpdateStatusDto): Promise<ProfileDto> {

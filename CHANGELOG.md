@@ -1,3 +1,15 @@
+# v1.3.3 (13.01.2022)
+
+## Features:
+
+Frontend:
+1. Added sagas watchers 
+2. Change action types
+3. Tested getProfile functional
+
+Backend:
+1. Changed return value in profile service
+
 # v1.3.2 (13.01.2022)
 
 ## Features:

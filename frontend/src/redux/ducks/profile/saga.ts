@@ -1,10 +1,9 @@
 import { profileAPI } from "../../../api/profile.api";
-import { call, put } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import {
     IActivateSuccess,
     IAvatarSuccess, IFetchedActivate,
-    IFetchedAvatar, IFetchedFollow,
-    IFetchedProfile,
+    IFetchedAvatar, IFetchedFollow, IFetchedProfile,
     IFetchedStatus, IFetchedUnfollow, IFollowSuccess,
     IProfileSuccess,
     IStatusSuccess,
@@ -21,8 +20,9 @@ import {
 } from "./profile.slice";
 
 
-export function* getProfile({ payload }: IFetchedProfile) {
+export function* getProfile({ payload } : IFetchedProfile) {
     try {
+        debugger;
         const data: IProfileSuccess = yield call(profileAPI.getProfile, payload);
         yield put(profileSuccess(data));
     } catch (error: any) {
@@ -76,4 +76,11 @@ export function* activate({ payload }: IFetchedActivate) {
 }
 
 
-
+export function* profileWatcher () {
+    yield takeEvery('profile/fetchedProfile', getProfile)
+    yield takeEvery('profile/fetchedStatus', updateStatus)
+    yield takeEvery('profile/fetchedAvatar', updateAvatar)
+    yield takeEvery('profile/fetchedFollow', follow)
+    yield takeEvery('profile/fetchedUnfollow', unfollow)
+    yield takeEvery('profile/fetchedActivate', activate)
+}

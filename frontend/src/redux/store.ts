@@ -2,10 +2,12 @@ import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/
 import createSagaMiddleware from "redux-saga";
 import { authReducer } from "./ducks/auth/auth.slice";
 import { rootSaga } from "./rootSaga";
+import { profileReducer } from "./ducks/profile/profile.slice";
 
 
 const rootReducer = combineReducers({
-    authReducer
+    authReducer,
+    profileReducer
 })
 
 const sagaMiddleware = createSagaMiddleware();
