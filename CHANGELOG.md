@@ -1,3 +1,14 @@
+# v1.3.2 (13.01.2022)
+
+## Features:
+
+Frontend:
+1. Added profile's sagas
+2. Fixed return value in action interfaces
+
+Backend:
+1. Changed return value in profile service
+
 # v1.3.1 (13.01.2022)
 
 ## Features:

@@ -49,10 +49,7 @@ export class ProfileService {
             follower_id: follow_id,
         });
         await follow.save();
-        return {
-            message: 'success',
-            statusCode: HttpStatus.OK,
-        };
+        return user;
     }
 
     async unfollow(user_id: number, unfollow_id: number) {
@@ -86,10 +83,7 @@ export class ProfileService {
         }
         await followModel.destroy();
 
-        return {
-            message: 'success',
-            statusCode: HttpStatus.OK,
-        };
+        return user;
     }
 
     async getProfile(id: number): Promise<UserModel> {
@@ -107,10 +101,7 @@ export class ProfileService {
             throw new HttpException('User not found', HttpStatus.NOT_FOUND);
         }
         user.avatar = await this.fileService.createFile(avatar);
-        return {
-            data: user,
-            statusCode: HttpStatus.OK,
-        };
+        return user;
     }
 
     async changeStatus(id: number, userDto: UpdateStatusDto): Promise<UserModel> {

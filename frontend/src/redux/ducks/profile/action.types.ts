@@ -1,6 +1,9 @@
 import { Action } from "@reduxjs/toolkit";
 import { ProfileDto } from "../../../types/profile/profile.dto";
 import { UpdateStatusDto } from "../../../types/profile/updateStatus.dto";
+import { UpdateAvatarDto } from "../../../types/profile/updateAvatar.dto";
+import { FollowDto } from "../../../types/profile/follow.dto";
+import { UnfollowDto } from "../../../types/profile/unfollow.dto";
 
 export enum ProfileActionTypes {
     PROFILE_SUCCESS = 'PROFILE_SUCCESS',
@@ -50,7 +53,7 @@ export interface IAvatarSuccess extends Action<ProfileActionTypes>{
 
 export interface IFetchedAvatar extends Action<ProfileActionTypes>{
     type: ProfileActionTypes.FETCHED_AVATAR,
-    payload: ProfileDto
+    payload: UpdateAvatarDto
 }
 
 export interface IFollowSuccess extends Action<ProfileActionTypes>{
@@ -60,18 +63,17 @@ export interface IFollowSuccess extends Action<ProfileActionTypes>{
 
 export interface IFetchedFollow extends Action<ProfileActionTypes>{
     type: ProfileActionTypes.FETCHED_FOLLOW,
-    payload: ProfileDto
+    payload: FollowDto
 }
 
 export interface IUnfollowSuccess extends Action<ProfileActionTypes>{
     type: ProfileActionTypes.UNFOLLOW_SUCCESS,
-
     payload: ProfileDto
 }
 
 export interface IFetchedUnfollow extends Action<ProfileActionTypes>{
     type: ProfileActionTypes.FETCHED_UNFOLLOW,
-    payload: ProfileDto
+    payload: UnfollowDto
 }
 
 export interface IActivateSuccess extends Action<ProfileActionTypes>{
@@ -81,6 +83,6 @@ export interface IActivateSuccess extends Action<ProfileActionTypes>{
 
 export interface IFetchedActivate extends Action<ProfileActionTypes>{
     type: ProfileActionTypes.FETCHED_ACTIVATE,
-    payload: ProfileDto
+    payload: number
 }
 

@@ -18,11 +18,11 @@ export const profileAPI = {
         data.append('avatar', dto.avatar);
         return instance.patch<ProfileDto>(`/profile/${dto.id}/avatar`, data ).then((response) => response.data)
     },
-    follow(dto: FollowDto): Promise<ISuccessResponse> {
-        return instance.patch<ISuccessResponse>(`/profile/${dto.user_id}/follow/${dto.follow_id}`).then((response) => response.data)
+    follow(dto: FollowDto): Promise<ProfileDto> {
+        return instance.patch<ProfileDto>(`/profile/${dto.user_id}/follow/${dto.follow_id}`).then((response) => response.data)
     },
-    unfollow(dto: UnfollowDto): Promise<ISuccessResponse> {
-        return instance.delete<ISuccessResponse>(`/profile/${dto.user_id}/unfollow/${dto.unfollow_id}`).then((response) => response.data)
+    unfollow(dto: UnfollowDto): Promise<ProfileDto> {
+        return instance.delete<ProfileDto>(`/profile/${dto.user_id}/unfollow/${dto.unfollow_id}`).then((response) => response.data)
     },
     activate(id: number): Promise<ProfileDto> {
         return instance.get<ProfileDto>(`/profile/${id}/activate`).then((response) => response.data)
