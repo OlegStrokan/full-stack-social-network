@@ -16,7 +16,6 @@ export enum ProfileActionTypes {
     FETCHED_UNFOLLOW = 'FETCHED_UNFOLLOW',
     ACTIVATE_SUCCESS = 'ACTIVATE_SUCCESS',
     FETCHED_ACTIVATE = 'FETCHED_ACTIVATE',
-
 }
 
 export interface IProfileSuccess extends Action<ProfileActionTypes>{
@@ -26,7 +25,7 @@ export interface IProfileSuccess extends Action<ProfileActionTypes>{
 
 export interface IProfileFailed extends Action<ProfileActionTypes>{
     type: ProfileActionTypes.PROFILE_FAILED,
-    payload: any
+    error: any
 }
 
 export interface IFetchedProfile extends Action<ProfileActionTypes>{
@@ -51,6 +50,37 @@ export interface IAvatarSuccess extends Action<ProfileActionTypes>{
 
 export interface IFetchedAvatar extends Action<ProfileActionTypes>{
     type: ProfileActionTypes.FETCHED_AVATAR,
+    payload: ProfileDto
+}
+
+export interface IFollowSuccess extends Action<ProfileActionTypes>{
+    type: ProfileActionTypes.FOLLOW_SUCCESS,
+    payload: ProfileDto
+}
+
+export interface IFetchedFollow extends Action<ProfileActionTypes>{
+    type: ProfileActionTypes.FETCHED_FOLLOW,
+    payload: ProfileDto
+}
+
+export interface IUnfollowSuccess extends Action<ProfileActionTypes>{
+    type: ProfileActionTypes.UNFOLLOW_SUCCESS,
+
+    payload: ProfileDto
+}
+
+export interface IFetchedUnfollow extends Action<ProfileActionTypes>{
+    type: ProfileActionTypes.FETCHED_UNFOLLOW,
+    payload: ProfileDto
+}
+
+export interface IActivateSuccess extends Action<ProfileActionTypes>{
+    type: ProfileActionTypes.ACTIVATE_SUCCESS,
+    payload: ProfileDto
+}
+
+export interface IFetchedActivate extends Action<ProfileActionTypes>{
+    type: ProfileActionTypes.FETCHED_ACTIVATE,
     payload: ProfileDto
 }
 

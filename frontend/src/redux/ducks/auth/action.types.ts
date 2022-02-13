@@ -15,7 +15,7 @@ export enum AuthActionTypes {
 
 export interface ILoginSuccess extends Action<AuthActionTypes>{
     type: AuthActionTypes.LOGIN_SUCCESS,
-    token: string
+    payload: string
 }
 export interface ILoginFailed extends Action<AuthActionTypes>{
     type: AuthActionTypes.LOGIN_FAILED,
@@ -27,7 +27,7 @@ export interface IFetchedLogin extends Action<AuthActionTypes>{
 }
 export interface IRegistrationSuccess extends Action<AuthActionTypes>{
     type: AuthActionTypes.REGISTRATION_SUCCESS,
-    token: string
+    payload: string
 }
 export interface IRegistrationFailed extends Action<AuthActionTypes>{
     type: AuthActionTypes.REGISTRATION_FAILED,

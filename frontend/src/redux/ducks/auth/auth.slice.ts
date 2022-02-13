@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IFetchedLogin, IFetchedRegistration, ILoginFailed, IRegistrationFailed } from "./action.types";
-import { ILoginResponse, ISuccessResponse } from "../../../api/auth.api";
+import { IFetchedLogin, IFetchedRegistration, ILoginFailed, ILoginSuccess, IRegistrationFailed } from "./action.types";
+import { ILoginResponse } from "../../../api/auth.api";
 
 interface AuthState {
     userId: number | null;
@@ -19,7 +19,7 @@ const initialState: AuthState = {
 };
 
 export const authSlice = createSlice({
-    name: "auth",
+    name: 'auth',
     initialState,
     reducers: {
         fetchedRegistration(state, action: PayloadAction<IFetchedRegistration>) {
@@ -54,4 +54,24 @@ export const {
     registrationSuccess,
     registrationFailed
 } = authSlice.actions;
+
 export const authReducer = authSlice.reducer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

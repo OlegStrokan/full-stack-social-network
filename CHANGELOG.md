@@ -1,3 +1,10 @@
+# v1.3.1 (13.01.2022)
+
+## Features:
+
+Frontend:
+1. Added all reducers and reducers types for profile
+
 # v1.3.0 (12.01.2022)
 
 ## Features:

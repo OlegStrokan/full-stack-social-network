@@ -4,7 +4,7 @@ import { PostDto } from "../types/post/post.dto";
 import { ISuccessResponse } from "./auth.api";
 
 
-export const postApi = {
+export const postAPI = {
     getPosts(): Promise<PostDto[]> {
         return instance.get<PostDto[]>('/posts').then((response) => response.data)
     },

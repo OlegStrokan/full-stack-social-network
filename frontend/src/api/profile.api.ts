@@ -6,7 +6,7 @@ import { UnfollowDto } from "../types/profile/unfollow.dto";
 import { UpdateStatusDto } from "../types/profile/updateStatus.dto";
 import { UpdateAvatarDto } from "../types/profile/updateAvatar.dto";
 
-export const profileApi = {
+export const profileAPI = {
     getProfile(id: number): Promise<ProfileDto> {
         return instance.get<ProfileDto>(`/profile/${id}`).then((response) => response.data)
     },

@@ -2,7 +2,7 @@ import { instance } from "./instance.api";
 import { ProfileDto } from "../types/profile/profile.dto";
 
 
-export const userApi = {
+export const userAPI = {
     getUsers(): Promise<ProfileDto[]> {
         return instance.get<ProfileDto[]>('/users').then((response) => response.data)
     },
