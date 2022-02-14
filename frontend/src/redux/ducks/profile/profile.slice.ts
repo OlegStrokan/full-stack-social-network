@@ -90,7 +90,7 @@ export const {
     profileSuccess
 } = profileSlice.actions
 
-export const profileReducer = profileSlice.reducer
+export const profileReducer = authSlice.reducer
 
 
 

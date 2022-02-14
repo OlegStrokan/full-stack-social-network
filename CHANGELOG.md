@@ -1,3 +1,11 @@
+# v1.3.4 (14.01.2022)
+
+## Features:
+
+Frontend:
+1. Added post's action types
+2. Changed payload for profile api
+
 # v1.3.3 (13.01.2022)
 
 ## Features:
