@@ -1,3 +1,11 @@
+# v1.3.5 (14.01.2022)
+
+## Features:
+
+Frontend:
+1. Added post's slice
+2. Changed return value in post api
+
 # v1.3.4 (14.01.2022)
 
 ## Features:

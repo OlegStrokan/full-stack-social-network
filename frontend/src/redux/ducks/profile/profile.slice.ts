@@ -10,7 +10,6 @@ import {
     IProfileSuccess,
     IStatusSuccess, IUnfollowSuccess
 } from "./action.types";
-import { authSlice } from "../auth/auth.slice";
 
 interface ProfileState {
     profile: ProfileDto | null;
@@ -90,7 +89,7 @@ export const {
     profileSuccess
 } = profileSlice.actions
 
-export const profileReducer = authSlice.reducer
+export const profileReducer = profileSlice.reducer
 
 
 

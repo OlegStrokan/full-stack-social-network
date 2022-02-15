@@ -6,9 +6,9 @@ import { UpdatePostDto } from "../../../types/post/updatePost.dto";
 
 export enum PostActionTypes {
     POSTS_SUCCESS = 'POSTS_SUCCESS',
+    POSTS_FAILED = 'POSTS_FAILED',
     FETCHED_POSTS = 'FETCHED_POSTS',
     POST_SUCCESS = 'POST_SUCCESS',
-    POST_FAILED = 'POST_FAILED',
     FETCHED_POST = 'FETCHED_POST',
     CREATE_SUCCESS = 'CREATE_SUCCESS',
     FETCHED_CREATE = 'FETCHED_CREATE',
@@ -28,6 +28,11 @@ export interface IPostsSuccess extends Action<PostActionTypes> {
     payload: PostDto[]
 }
 
+export interface IPostsFailed extends Action<PostActionTypes> {
+    type: PostActionTypes.POSTS_FAILED,
+    error: any
+}
+
 export interface IFetchedPosts extends Action<PostActionTypes> {
     type: PostActionTypes.FETCHED_POSTS,
 }
@@ -44,7 +49,7 @@ export interface IFetchedPost extends Action<PostActionTypes> {
 
 export interface ICreateSuccess extends Action<PostActionTypes> {
     type: PostActionTypes.CREATE_SUCCESS,
-    payload: PostDto
+    payload: PostDto[]
 }
 
 export interface IFetchedCreate extends Action<PostActionTypes> {
@@ -54,7 +59,7 @@ export interface IFetchedCreate extends Action<PostActionTypes> {
 
 export interface IUpdateSuccess extends Action<PostActionTypes> {
     type: PostActionTypes.UPDATE_SUCCESS,
-    payload: PostDto
+    payload: PostDto[]
 }
 
 export interface IFetchedUpdate extends Action<PostActionTypes> {
@@ -64,17 +69,17 @@ export interface IFetchedUpdate extends Action<PostActionTypes> {
 
 export interface IDeleteSuccess extends Action<PostActionTypes> {
     type: PostActionTypes.DELETE_SUCCESS,
-    payload: PostDto
+    payload: PostDto[]
 }
 
 export interface IFetchedUDelete extends Action<PostActionTypes> {
     type: PostActionTypes.FETCHED_DELETE,
-    payload: UpdatePostDto
+    payload: number
 }
 
 export interface ILikeSuccess extends Action<PostActionTypes> {
     type: PostActionTypes.LIKE_SUCCESS,
-    payload: PostDto
+    payload: PostDto[]
 }
 
 export interface IFetchedULike extends Action<PostActionTypes> {
@@ -83,7 +88,7 @@ export interface IFetchedULike extends Action<PostActionTypes> {
 }
 export interface IUnlikeSuccess extends Action<PostActionTypes> {
     type: PostActionTypes.UNLIKE_SUCCESS,
-    payload: PostDto
+    payload: PostDto[]
 }
 
 export interface IFetchedUnlike extends Action<PostActionTypes> {
