@@ -1,3 +1,10 @@
+# v1.3.9 (15.01.2022)
+
+## Features:
+
+Frontend:
+1. Added user's slice
+
 # v1.3.8 (15.01.2022)
 
 ## Features:

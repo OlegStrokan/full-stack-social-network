@@ -47,7 +47,7 @@ export interface IAddRoleSuccess extends Action<UserActionTypes> {
 	payload: ProfileDto[]
 }
 
-export interface IFetchedAddRole extends Action<UserActionTypes> {
+export interface IFetchedAddRole extends Action<UserActionTypes>{
 	type: UserActionTypes.FETCHED_ADD_ROLE,
 	payload: AddRoleDto
 }
