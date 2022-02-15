@@ -1,7 +1,6 @@
 import { instance } from "./instance.api";
 import { CreatePostDto } from "../types/post/createPost.dto";
 import { PostDto } from "../types/post/post.dto";
-import { ISuccessResponse } from "./auth.api";
 import { UpdatePostDto } from "../types/post/updatePost.dto";
 
 
@@ -21,10 +20,10 @@ export const postAPI = {
     deletePost(id: number): Promise<PostDto[]> {
         return instance.delete<PostDto[]>(`posts/${id}`).then((response) => response.data)
     },
-    like(id: number): Promise<PostDto[]> {
+    likePost(id: number): Promise<PostDto[]> {
         return instance.patch<PostDto[]>(`posts/like/${id}`).then((response) => response.data)
     },
-    unlike(id: number): Promise<PostDto[]> {
+    unlikePost(id: number): Promise<PostDto[]> {
         return instance.patch<PostDto[]>(`posts/like/${id}`).then((response) => response.data)
     },
 

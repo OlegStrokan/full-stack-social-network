@@ -20,9 +20,8 @@ import {
 } from "./profile.slice";
 
 
-export function* getProfile({ payload } : IFetchedProfile) {
+function* getProfile({ payload } : IFetchedProfile) {
     try {
-        debugger;
         const data: IProfileSuccess = yield call(profileAPI.getProfile, payload);
         yield put(profileSuccess(data));
     } catch (error: any) {
@@ -30,7 +29,7 @@ export function* getProfile({ payload } : IFetchedProfile) {
     }
 }
 
-export function* updateStatus({ payload }: IFetchedStatus) {
+function* updateStatus({ payload }: IFetchedStatus) {
     try {
         const data: IStatusSuccess = yield call(profileAPI.updateStatus, payload);
         yield put(statusSuccess(data));
@@ -39,7 +38,7 @@ export function* updateStatus({ payload }: IFetchedStatus) {
     }
 }
 
-export function* updateAvatar({ payload }: IFetchedAvatar) {
+function* updateAvatar({ payload }: IFetchedAvatar) {
     try {
         const data: IAvatarSuccess = yield call(profileAPI.updateAvatar, payload);
         yield put(avatarSuccess(data))
@@ -48,7 +47,7 @@ export function* updateAvatar({ payload }: IFetchedAvatar) {
     }
 }
 
-export function* follow({ payload }: IFetchedFollow) {
+function* follow({ payload }: IFetchedFollow) {
     try {
         const data: IFollowSuccess = yield call(profileAPI.follow, payload);
         yield put(followSuccess(data))
@@ -57,7 +56,7 @@ export function* follow({ payload }: IFetchedFollow) {
     }
 }
 
-export function* unfollow({ payload }: IFetchedUnfollow) {
+function* unfollow({ payload }: IFetchedUnfollow) {
     try {
         const data: IUnfollowSuccess = yield call(profileAPI.unfollow, payload);
         yield put(unfollowSuccess(data))
@@ -66,7 +65,7 @@ export function* unfollow({ payload }: IFetchedUnfollow) {
     }
 }
 
-export function* activate({ payload }: IFetchedActivate) {
+function* activate({ payload }: IFetchedActivate) {
     try {
         const data: IActivateSuccess = yield call(profileAPI.activate, payload);
         yield put(activateSuccess(data))

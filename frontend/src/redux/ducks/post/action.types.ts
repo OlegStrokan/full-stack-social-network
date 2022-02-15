@@ -82,7 +82,7 @@ export interface ILikeSuccess extends Action<PostActionTypes> {
     payload: PostDto[]
 }
 
-export interface IFetchedULike extends Action<PostActionTypes> {
+export interface IFetchedLike extends Action<PostActionTypes> {
     type: PostActionTypes.FETCHED_LIKE,
     payload: number
 }
