@@ -30,7 +30,7 @@ export class UserService {
         await user.$set('roles', [role.id]);
         user.roles = [role];
         await user.save();
-        return user;
+         return await this.userRepository.findAll();
     }
 
     async getUsers() {
@@ -41,12 +41,12 @@ export class UserService {
         });
     }
 
-    async addRole(id: number, dto: AddRoleDto): Promise<AddRoleDto> {
+    async addRole(id: number, dto: AddRoleDto): Promise<UserModel[]> {
         const user = await this.userRepository.findByPk(id);
         const role = await this.roleService.getRoleByValue(dto.value);
         if (role && user) {
             await user.$add('role', role.id);
-            return dto;
+            return await this.userRepository.findAll();
         }
         throw new HttpException('User or role not found', HttpStatus.NOT_FOUND);
     }
@@ -67,7 +67,7 @@ export class UserService {
         if (user) {
             user.banned = true;
             user.banReason = dto.banReason;
-            return user;
+            return await this.userRepository.findAll();
         }
         throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
@@ -77,7 +77,7 @@ export class UserService {
         if (user) {
             user.banned = false;
             user.banReason = null;
-            return user;
+            return await this.userRepository.findAll();
         }
         throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }

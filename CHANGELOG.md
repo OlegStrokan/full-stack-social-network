@@ -1,9 +1,18 @@
+# v1.3.8 (15.01.2022)
+
+## Features:
+
+Frontend:
+1. Added user's action types
+2. Added new interfaces for users
+3. Changed return value in user service
+
 # v1.3.7 (15.01.2022)
 
 ## Features:
 
 Frontend:
-1. Added post's sagas.
+1. Added post's sagas
 2. Changed post's action types
 
 # v1.3.6 (15.01.2022)
