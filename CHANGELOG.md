@@ -1,4 +1,11 @@
-# v1.3.5 (14.01.2022)
+# v1.3.6 (15.01.2022)
+
+## Features:
+
+Backend:
+1. Changed return value in post services.
+
+# v1.3.5 (15.01.2022)
 
 ## Features:
 
