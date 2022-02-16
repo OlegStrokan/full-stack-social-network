@@ -1,3 +1,12 @@
+# v1.5.0 (16.01.2022)
+
+## Features:
+
+Frontend:
+1. Added redux for role (slice, actions, sagas)
+2. Added roles page
+3. Added getRoles api method
+
 # v1.4.1 (16.01.2022)
 
 ## Features:

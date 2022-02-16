@@ -4,6 +4,7 @@ import { Login } from "./pages/Login/Login";
 import { Profile } from "./pages/Profile/Profile";
 import { Posts } from "./pages/Posts/Posts";
 import { Users } from "./pages/Users/Users";
+import { Roles } from "./pages/Roles/Roles";
 
 export const App = () => {
 
@@ -22,6 +23,9 @@ export const App = () => {
                 <li>
                     <Link to="/users">users</Link>
                 </li>
+                <li>
+                    <Link to="/roles">roles</Link>
+                </li>
             </ul>
 
             <Routes>
@@ -30,6 +34,7 @@ export const App = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/posts" element={<Posts />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/roles" element={<Roles />} />
             </Routes>
         </div>
     );

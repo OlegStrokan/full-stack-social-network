@@ -3,10 +3,13 @@ import { CreateRoleDto } from "../types/role/createRole.dto";
 import { RoleDto } from "../types/role/role.dto";
 
 export const roleAPI = {
+    getRoles(): Promise<RoleDto[]> {
+        return instance.get<RoleDto[]>(`/roles`).then((response) => response.data)
+    },
     getRole(value: string): Promise<RoleDto> {
         return instance.get<RoleDto>(`/roles${value}`).then((response) => response.data)
     },
-    createRole(role: CreateRoleDto): Promise<RoleDto> {
-        return instance.post<RoleDto>('/roles', role).then((response) => response.data)
+    createRole(role: CreateRoleDto): Promise<RoleDto[]> {
+        return instance.post<RoleDto[]>('/roles', role).then((response) => response.data)
     }
 }
