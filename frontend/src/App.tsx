@@ -3,6 +3,7 @@ import { Link, Navigate, Route, Routes } from "react-router-dom";
 import { Login } from "./pages/Login/Login";
 import { Profile } from "./pages/Profile/Profile";
 import { Posts } from "./pages/Posts/Posts";
+import { Users } from "./pages/Users/Users";
 
 export const App = () => {
 
@@ -18,6 +19,9 @@ export const App = () => {
                 <li>
                     <Link to="/profile">profile</Link>
                 </li>
+                <li>
+                    <Link to="/users">users</Link>
+                </li>
             </ul>
 
             <Routes>
@@ -25,6 +29,7 @@ export const App = () => {
                 <Route path="/" element={<Navigate to={"/profile"} />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/posts" element={<Posts />} />
+                <Route path="/users" element={<Users />} />
             </Routes>
         </div>
     );

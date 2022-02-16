@@ -7,7 +7,6 @@ import { UpdateAvatarDto } from "../types/profile/updateAvatar.dto";
 
 export const profileAPI = {
     getProfile(id: number): Promise<ProfileDto> {
-        debugger;
         return instance.get<ProfileDto>(`/profile/${id}`).then((response) => response.data)
     },
     updateStatus(dto: UpdateStatusDto): Promise<ProfileDto> {

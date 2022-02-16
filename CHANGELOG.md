@@ -1,3 +1,13 @@
+# v1.4.1 (16.01.2022)
+
+## Features:
+
+Frontend:
+1. Added users component
+
+## Fixed:
+1. Fixed errors with user's redux
+
 # v1.4.0 (16.01.2022)
 
 ## Features:
