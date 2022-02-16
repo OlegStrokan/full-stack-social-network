@@ -1,3 +1,10 @@
+# v1.4.0 (16.01.2022)
+
+## Features:
+
+Frontend:
+1. Added user's saga. Changed payload in user's slice
+
 # v1.3.9 (15.01.2022)
 
 ## Features:

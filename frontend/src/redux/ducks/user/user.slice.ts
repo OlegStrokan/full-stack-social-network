@@ -1,10 +1,8 @@
 import { ProfileDto } from "../../../types/profile/profile.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
-	IAddRoleSuccess, IBanSuccess,
-	ICreateSuccess,
 	IFetchedAddRole, IFetchedBan,
-	IFetchedCreate, IFetchedUnban, IUnbanSuccess,
+	IFetchedCreate, IFetchedUnban,
 	IUsersFailed,
 	IUsersSuccess
 } from "./action.types";
@@ -39,28 +37,28 @@ export const userSlice = createSlice({
 		fetchedCreate(state, action: PayloadAction<IFetchedCreate>) {
 			state.loading = true;
 		},
-		createSuccess(state, action: PayloadAction<ICreateSuccess>) {
+		createSuccess(state, action: PayloadAction<IUsersSuccess>) {
 			state.loading = false;
 			state.users = action.payload.payload;
 		},
 		fetchedAddRole(state, action: PayloadAction<IFetchedAddRole>) {
 			state.loading = false;
 		},
-		addRoleUsers(state, action: PayloadAction<IAddRoleSuccess>) {
+		addRoleUsers(state, action: PayloadAction<IUsersSuccess>) {
 			state.loading = true;
 			state.users = action.payload.payload;
 		},
 		fetchedBanUser(state, action: PayloadAction<IFetchedBan>) {
 			state.loading = true;
 		},
-		banUserSuccess(state, action: PayloadAction<IBanSuccess>) {
+		banUserSuccess(state, action: PayloadAction<IUsersSuccess>) {
 			state.loading = false;
 			state.users = action.payload.payload;
 		},
 		fetchedUnbanUser(state, action: PayloadAction<IFetchedUnban>) {
 			state.loading = true;
 		},
-		unbanUserSuccess(state, action: PayloadAction<IUnbanSuccess>) {
+		unbanUserSuccess(state, action: PayloadAction<IUsersSuccess>) {
 			state.loading = false;
 			state.users = action.payload.payload;
 		}
