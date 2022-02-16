@@ -38,4 +38,15 @@ export class RoleController {
     ) {
         return this.roleService.getRoleByValue(value);
     }
+    @ApiOperation({
+        summary: 'Get roles',
+    })
+    @ApiOkResponse({
+        status: 200,
+        type: [RoleModel],
+    })
+    @Get('')
+    getRoles() {
+        return this.roleService.getRoles()
+    }
 }

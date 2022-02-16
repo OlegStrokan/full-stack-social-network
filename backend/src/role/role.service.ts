@@ -11,7 +11,8 @@ export class RoleService {
     ) {}
 
     async create(dto: CreateRoleDto) {
-        return await this.roleRepository.create(dto);
+         await this.roleRepository.create(dto);
+         return await this.roleRepository.findAll();
     }
 
     async getRoleByValue(value: string) {
@@ -25,5 +26,9 @@ export class RoleService {
             throw new HttpException('Invalid role value', HttpStatus.BAD_REQUEST);
         }
         return role;
+    }
+
+    async getRoles() {
+        return await this.roleRepository.findAll()
     }
 }

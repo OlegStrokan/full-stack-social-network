@@ -1,3 +1,16 @@
+# v1.5.1 (16.01.2022)
+
+## Features:
+
+Backend: 
+
+1. Added getRoles method
+
+## Fixes:
+
+Backend:
+1. Changed return value in role service
+
 # v1.5.0 (16.01.2022)
 
 ## Features:
