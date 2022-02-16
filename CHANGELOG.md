@@ -1,3 +1,19 @@
+# v1.6.0 (16.01.2022)
+
+## Features:
+
+Backend:
+1. Added auth/me method
+
+Backend:
+1. Added auth/me api method
+2. Added some logic to profile page
+
+## Fixes:
+
+Backend:
+1. Reformat code with new prettier
+
 # v1.5.1 (16.01.2022)
 
 ## Features:

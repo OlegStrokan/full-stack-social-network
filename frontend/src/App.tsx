@@ -18,7 +18,7 @@ export const App = () => {
                     <Link to="/posts">posts</Link>
                 </li>
                 <li>
-                    <Link to="/profile">profile</Link>
+                    <Link to="/profile/:id">profile</Link>
                 </li>
                 <li>
                     <Link to="/users">users</Link>
@@ -31,7 +31,7 @@ export const App = () => {
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/" element={<Navigate to={"/profile"} />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/:id" element={<Profile />} />
                 <Route path="/posts" element={<Posts />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/roles" element={<Roles />} />

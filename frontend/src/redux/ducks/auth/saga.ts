@@ -15,6 +15,7 @@ export function* registration({ payload }: IFetchedRegistration) {
 export function* login({ payload }: IFetchedLogin) {
     try {
         const data: ILoginResponse = yield call(authAPI.login, payload);
+        localStorage.saveItem('token', data.token)
         yield put(loginSuccess(data));
     } catch (error: any) {
         yield put(loginFailed(error))
