@@ -5,8 +5,17 @@ import { Profile } from "./pages/Profile/Profile";
 import { Posts } from "./pages/Posts/Posts";
 import { Users } from "./pages/Users/Users";
 import { Roles } from "./pages/Roles/Roles";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./redux/store";
+import { fetchedMe } from "./redux/ducks/auth/auth.slice";
 
 export const App = () => {
+    const dispatch = useDispatch();
+    const { isAuth } = useSelector((state: RootState) => state.authReducer)
+
+    React.useEffect(() => {
+        dispatch(fetchedMe())
+    },[isAuth])
 
     return (
         <div>
@@ -29,10 +38,10 @@ export const App = () => {
             </ul>
 
             <Routes>
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={<Login isAuth={isAuth} />} />
                 <Route path="/" element={<Navigate to={"/profile"} />} />
-                <Route path="/profile/:id" element={<Profile />} />
-                <Route path="/posts" element={<Posts />} />
+                <Route path="/profile/:id" element={<Profile isAuth={isAuth} />} />
+                <Route path="/posts" element={<Posts isAuth={isAuth}/>} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/roles" element={<Roles />} />
             </Routes>

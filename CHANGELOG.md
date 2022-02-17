@@ -1,3 +1,11 @@
+# v1.6.1 (16.01.2022)
+
+## Fixes:
+
+Backend:
+1. Fixed auth functional
+2. Deleted unnecessary action types
+
 # v1.6.0 (16.01.2022)
 
 ## Features:

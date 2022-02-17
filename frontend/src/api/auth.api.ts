@@ -27,6 +27,8 @@ export interface ILoginResponse {
 	token: string;
 }
 
+export type IMeResponse = Omit<ILoginResponse, 'token'>
+
 export const authAPI = {
 	registration(dto: RegistrationDto): Promise<ISuccessResponse> {
 		return instance.post<ISuccessResponse>("/auth/registration", dto)
@@ -36,8 +38,8 @@ export const authAPI = {
 		return instance.post<ILoginResponse>("/auth/login", dto)
 			.then((response) => response.data);
 	},
-	me(): Promise<Omit<ILoginResponse, 'token'>> {
-		return instance.get<Omit<ILoginResponse, 'token'>>("/auth/me")
+	me(): Promise<IMeResponse> {
+		return instance.get<IMeResponse>("/auth/me")
 			.then((response) => response.data);
 	}
 };

@@ -13,6 +13,7 @@ import { validationSchema } from '../../utils/validators/signIn';
 import { Button } from '@mui/material';
 import { useDispatch } from "react-redux";
 import { fetchedLogin } from "../../redux/ducks/auth/auth.slice";
+import { LoginDto } from "../../types/auth/login.dto";
 
 interface SignInInterface {
   onModelChange: () => void;
