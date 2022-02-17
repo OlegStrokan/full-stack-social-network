@@ -4,18 +4,24 @@ import { Card } from '@mui/material';
 import styles from './Login.module.css'
 import { SignIn } from './SignIn';
 import { SignUp } from './SignUp';
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface LoginInterface {
-  isAuth: boolean
+  isAuth: boolean,
+  userId: number | null;
 }
 
-export const Login:React.FC<LoginInterface> = ({ isAuth }) => {
+export const Login:React.FC<LoginInterface> = ({ isAuth, userId }) => {
   const [register, setRegister] = React.useState<boolean>(true);
 
-  if (isAuth) {
-    return <Navigate to="/profile" />;
-  }
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (!isAuth) {
+      return navigate(`/profile/${userId}`);
+    }
+  },[])
+
   const onModelChange = () => {
     setRegister(!register);
   };

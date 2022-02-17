@@ -7,9 +7,10 @@ import { useNavigate, useParams } from "react-router-dom";
 
 interface ProfileInterface {
 	isAuth: boolean;
+	userId: number | null
 }
 
-export const Profile: React.FC<ProfileInterface> = ({ isAuth }) => {
+export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 
 
 	let navigate = useNavigate();
@@ -18,11 +19,12 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth }) => {
 	const dispatch = useDispatch();
 
 	React.useEffect(() => {
+		debugger
 		if (!isAuth) {
 			return navigate("/login");
 		}
-		dispatch(fetchedProfile(+id));
-	}, []);
+		dispatch(fetchedProfile(userId!));
+	}, [id]);
 
 
 	return (

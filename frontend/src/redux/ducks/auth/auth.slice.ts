@@ -43,6 +43,7 @@ export const authSlice = createSlice({
         meSuccess(state, action: PayloadAction<IMeResponse>) {
             state.loading = false;
             state.isAuth = true
+            debugger
             state.userId = action.payload.id;
         },
         authFailed(state, action: PayloadAction<any>) {

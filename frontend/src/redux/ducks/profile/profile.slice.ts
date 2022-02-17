@@ -2,8 +2,6 @@ import { ProfileDto } from "../../../types/profile/profile.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
     IFetchedActivate,
-    IFetchedAvatar, IFetchedFollow,
-    IFetchedStatus, IFetchedUnfollow
 } from "./action.types";
 import { UpdateStatusDto } from "../../../types/profile/updateStatus.dto";
 

@@ -11,7 +11,7 @@ import { fetchedMe } from "./redux/ducks/auth/auth.slice";
 
 export const App = () => {
     const dispatch = useDispatch();
-    const { isAuth } = useSelector((state: RootState) => state.authReducer)
+    const { isAuth, userId } = useSelector((state: RootState) => state.authReducer)
 
     React.useEffect(() => {
         dispatch(fetchedMe())
@@ -27,7 +27,7 @@ export const App = () => {
                     <Link to="/posts">posts</Link>
                 </li>
                 <li>
-                    <Link to="/profile/:id">profile</Link>
+                    <Link to={`profile/${userId}`}>profile</Link>
                 </li>
                 <li>
                     <Link to="/users">users</Link>
@@ -38,9 +38,9 @@ export const App = () => {
             </ul>
 
             <Routes>
-                <Route path="/login" element={<Login isAuth={isAuth} />} />
-                <Route path="/" element={<Navigate to={"/profile"} />} />
-                <Route path="/profile/:id" element={<Profile isAuth={isAuth} />} />
+                <Route path="/login" element={<Login userId={userId} isAuth={isAuth} />} />
+                <Route path="/" element={<Navigate to={`/profile/${userId}`} />} />
+                <Route path="/profile/:id" element={<Profile userId={userId} isAuth={isAuth} />} />
                 <Route path="/posts" element={<Posts isAuth={isAuth}/>} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/roles" element={<Roles />} />

@@ -1,8 +1,16 @@
+
+# v1.6.4 (17.01.2022)
+
+## Fixes:
+
+Frontend:
+1. Updated route and redirect functional
+
 # v1.6.3 (17.01.2022)
 
 ## Fixes:
 
-Backend:
+Frontend:
 1. Fixed profile's, role's, user's functional
 2. Deleted unnecessary action types
 
@@ -10,7 +18,7 @@ Backend:
 
 ## Fixes:
 
-Backend:
+Frontend:
 1. Fixed post's functional
 2. Deleted unnecessary action types
 
@@ -18,7 +26,7 @@ Backend:
 
 ## Fixes:
 
-Backend:
+Frontend:
 1. Fixed auth functional
 2. Deleted unnecessary action types
 
