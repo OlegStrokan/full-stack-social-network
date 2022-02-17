@@ -1,4 +1,12 @@
-# v1.6.1 (16.01.2022)
+# v1.6.2 (17.01.2022)
+
+## Fixes:
+
+Backend:
+1. Fixed post's functional
+2. Deleted unnecessary action types
+
+# v1.6.1 (17.01.2022)
 
 ## Fixes:
 

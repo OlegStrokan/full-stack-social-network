@@ -1,14 +1,8 @@
 import { PostDto } from "../../../types/post/post.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-	ICreateSuccess, IDeleteSuccess,
-	IFetchedCreate, IFetchedUDelete, IFetchedUpdate, ILikeSuccess,
-	IPostsFailed,
-	IPostsSuccess,
-	IPostSuccess,
-	IUnlikeSuccess,
-	IUpdateSuccess
-} from "./action.types";
+
+import { CreatePostDto } from "../../../types/post/createPost.dto";
+import { UpdatePostDto } from "../../../types/post/updatePost.dto";
 
 
 interface PostState {
@@ -32,54 +26,54 @@ export const postSlice = createSlice({
 		fetchedPosts(state) {
 			state.loading = true;
 		},
-		postsSuccess(state, action: PayloadAction<IPostsSuccess>) {
+		postsSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			state.posts = action.payload.payload;
+			state.posts = action.payload;
 		},
-		postsFailed(state, action: PayloadAction<IPostsFailed>) {
+		postsFailed(state, action: PayloadAction<any>) {
 			state.loading = false;
-			state.currentPost = action.payload.error;
+			state.currentPost = action.payload;
 		},
 		fetchedPost(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
-		postSuccess(state, action: PayloadAction<IPostSuccess>) {
-			state.currentPost = action.payload.payload;
+		postSuccess(state, action: PayloadAction<PostDto>) {
+			state.currentPost = action.payload;
 		},
-		fetchedCreate(state, action: PayloadAction<IFetchedCreate>) {
+		fetchedCreate(state, action: PayloadAction<CreatePostDto>) {
 			state.loading = true;
 		},
-		createSuccess(state, action: PayloadAction<ICreateSuccess>) {
+		createSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			state.posts = action.payload.payload;
+			state.posts = action.payload;
 		},
-		fetchedUpdate(state, action: PayloadAction<IFetchedUpdate>) {
+		fetchedUpdate(state, action: PayloadAction<UpdatePostDto>) {
 			state.loading = true;
 		},
-		updateSuccess(state, action: PayloadAction<IUpdateSuccess>) {
+		updateSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			state.posts = action.payload.payload;
+			state.posts = action.payload;
 		},
-		fetchedDelete(state, action: PayloadAction<IFetchedUDelete>) {
+		fetchedDelete(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
-		deleteSuccess(state, action: PayloadAction<IDeleteSuccess>) {
+		deleteSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			state.posts = action.payload.payload;
+			state.posts = action.payload;
 		},
 		fetchedLike(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
-		likeSuccess(state, action: PayloadAction<ILikeSuccess>) {
+		likeSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			state.posts = action.payload.payload;
+			state.posts = action.payload;
 		},
 		fetchedUnlike(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
-		unlikeSuccess(state, action: PayloadAction<IUnlikeSuccess>) {
+		unlikeSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			state.posts = action.payload.payload;
+			state.posts = action.payload;
 		}
 	}
 });
