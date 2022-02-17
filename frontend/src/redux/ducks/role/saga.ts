@@ -1,11 +1,12 @@
-import { ICreateSuccess, IFetchedCreate, IFetchedRole, IRolesSuccess, IRoleSuccess } from "./action.types";
+import { IFetchedCreate, IFetchedRole } from "./action.types";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { roleAPI } from "../../../api/role.api";
 import { createSuccess, rolesFailed, rolesSuccess, roleSuccess } from "./role.slice";
+import { RoleDto } from "../../../types/role/role.dto";
 
 function* getRoles() {
 	try {
-		const data: IRolesSuccess = yield call(roleAPI.getRoles)
+		const data: RoleDto[] = yield call(roleAPI.getRoles)
 		put(rolesSuccess(data))
 	}
 	catch (error: any) {
@@ -15,7 +16,7 @@ function* getRoles() {
 
 function* getRole({ payload }: IFetchedRole) {
 	try {
-		const data: IRoleSuccess = yield call(roleAPI.getRole, payload)
+		const data: RoleDto = yield call(roleAPI.getRole, payload)
 		put(roleSuccess(data))
 	}
 	catch (error: any) {
@@ -25,7 +26,7 @@ function* getRole({ payload }: IFetchedRole) {
 
 function* createRole({ payload }: IFetchedCreate) {
 	try {
-		const data: ICreateSuccess = yield call(roleAPI.createRole, payload)
+		const data: RoleDto[] = yield call(roleAPI.createRole, payload)
 		put(createSuccess(data))
 	}
 	catch (error: any) {

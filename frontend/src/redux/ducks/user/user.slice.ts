@@ -1,11 +1,8 @@
 import { ProfileDto } from "../../../types/profile/profile.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-	IFetchedAddRole, IFetchedBan,
-	IFetchedCreate, IFetchedUnban,
-	IUsersFailed,
-	IUsersSuccess
-} from "./action.types";
+import { BanUserDto } from "../../../types/user/banUser.dto";
+import { AddRoleDto } from "../../../types/user/addRole.dto";
+import { CreateUserDto } from "../../../types/user/createUser.dto";
 
 interface UserState {
 	users: ProfileDto[] | null;
@@ -26,41 +23,41 @@ export const userSlice = createSlice({
 		fetchedUsers(state) {
 			state.loading = true;
 		},
-		usersSuccess(state, action: PayloadAction<IUsersSuccess>) {
+		usersSuccess(state, action: PayloadAction<ProfileDto[]>) {
 			state.loading = false;
-			state.users = action.payload.payload;
+			state.users = action.payload;
 		},
-		usersFailed(state, action: PayloadAction<IUsersFailed>) {
+		usersFailed(state, action: PayloadAction<any>) {
 			state.loading = false;
-			state.error = action.payload.error;
+			state.error = action.payload;
 		},
-		fetchedCreate(state, action: PayloadAction<IFetchedCreate>) {
+		fetchedCreate(state, action: PayloadAction<CreateUserDto>) {
 			state.loading = true;
 		},
-		createSuccess(state, action: PayloadAction<IUsersSuccess>) {
+		createSuccess(state, action: PayloadAction<ProfileDto[]>) {
 			state.loading = false;
-			state.users = action.payload.payload;
+			state.users = action.payload;
 		},
-		fetchedAddRole(state, action: PayloadAction<IFetchedAddRole>) {
+		fetchedAddRole(state, action: PayloadAction<AddRoleDto>) {
 			state.loading = false;
 		},
-		addRoleUsers(state, action: PayloadAction<IUsersSuccess>) {
+		addRoleUsers(state, action: PayloadAction<ProfileDto[]>) {
 			state.loading = true;
-			state.users = action.payload.payload;
+			state.users = action.payload;
 		},
-		fetchedBanUser(state, action: PayloadAction<IFetchedBan>) {
-			state.loading = true;
-		},
-		banUserSuccess(state, action: PayloadAction<IUsersSuccess>) {
-			state.loading = false;
-			state.users = action.payload.payload;
-		},
-		fetchedUnbanUser(state, action: PayloadAction<IFetchedUnban>) {
+		fetchedBanUser(state, action: PayloadAction<BanUserDto>) {
 			state.loading = true;
 		},
-		unbanUserSuccess(state, action: PayloadAction<IUsersSuccess>) {
+		banUserSuccess(state, action: PayloadAction<ProfileDto[]>) {
 			state.loading = false;
-			state.users = action.payload.payload;
+			state.users = action.payload;
+		},
+		fetchedUnbanUser(state, action: PayloadAction<number>) {
+			state.loading = true;
+		},
+		unbanUserSuccess(state, action: PayloadAction<ProfileDto[]>) {
+			state.loading = false;
+			state.users = action.payload;
 		}
 	}
 });

@@ -1,6 +1,6 @@
 import { RoleDto } from "../../../types/role/role.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICreateSuccess, IFetchedCreate, IFetchedRole, IFetchedRoles, IRoleFailed, IRolesSuccess, IRoleSuccess } from "./action.types";
+import { CreateRoleDto } from "../../../types/role/createRole.dto";
 
 interface RoleState {
 	roles: RoleDto[] | null,
@@ -23,27 +23,27 @@ const roleSlice = createSlice({
 		fetchedRoles(state) {
 			state.loading = true;
 		},
-		rolesSuccess(state, action: PayloadAction<IRolesSuccess>) {
+		rolesSuccess(state, action: PayloadAction<RoleDto[]>) {
 			state.loading = false;
-			state.roles = action.payload.payload;
+			state.roles = action.payload;
 		},
-		rolesFailed(state, action: PayloadAction<IRoleFailed>) {
+		rolesFailed(state, action: PayloadAction<any>) {
 			state.loading = false;
-			state.error = action.payload.error;
+			state.error = action.payload;
 		},
-		fetchedRole(state, action: PayloadAction<IFetchedRole>) {
+		fetchedRole(state, action: PayloadAction<string>) {
 			state.loading = true;
 		},
-		roleSuccess(state, action: PayloadAction<IRoleSuccess>) {
+		roleSuccess(state, action: PayloadAction<RoleDto>) {
 			state.loading = false;
-			state.currentRole = action.payload.payload;
+			state.currentRole = action.payload;
 		},
-		fetchedCreate(state, action: PayloadAction<IFetchedCreate>) {
+		fetchedCreate(state, action: PayloadAction<CreateRoleDto>) {
 			state.loading = true;
 		},
-		createSuccess(state, action: PayloadAction<ICreateSuccess>) {
+		createSuccess(state, action: PayloadAction<RoleDto[]>) {
 			state.loading = false;
-			state.roles = action.payload.payload;
+			state.roles = action.payload;
 		}
 	}
 });

@@ -3,15 +3,15 @@ import {
 	IFetchedBan,
 	IFetchedCreate,
 	IFetchedUnban,
-	IUsersSuccess
 } from "./action.types";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { userAPI } from "../../../api/user.api";
 import { usersFailed, usersSuccess } from "./user.slice";
+import { ProfileDto } from "../../../types/profile/profile.dto";
 
 function* getUsers() {
 	try {
-		const data: IUsersSuccess = yield call(userAPI.getUsers);
+		const data: ProfileDto[] = yield call(userAPI.getUsers);
 		yield put(usersSuccess(data));
 	} catch (error: any) {
 		yield put(usersFailed(error));
@@ -20,7 +20,7 @@ function* getUsers() {
 
 function* createUser({ payload }: IFetchedCreate) {
 	try {
-		const data: IUsersSuccess = yield call(userAPI.createUser, payload);
+		const data: ProfileDto[] = yield call(userAPI.createUser, payload);
 		yield put(usersSuccess(data));
 	} catch (error: any) {
 		yield put(usersFailed(error));
@@ -29,7 +29,7 @@ function* createUser({ payload }: IFetchedCreate) {
 
 function* addRole({ payload }: IFetchedAddRole) {
 	try {
-		const data: IUsersSuccess = yield call(userAPI.addRole, payload);
+		const data: ProfileDto[] = yield call(userAPI.addRole, payload);
 		yield put(usersSuccess(data));
 	} catch (error: any) {
 		yield put(usersFailed(error));
@@ -38,7 +38,7 @@ function* addRole({ payload }: IFetchedAddRole) {
 
 function* banUser({ payload }: IFetchedBan) {
 	try {
-		const data: IUsersSuccess = yield call(userAPI.banUser, payload);
+		const data: ProfileDto[] = yield call(userAPI.banUser, payload);
 		yield put(usersSuccess(data));
 	} catch (error: any) {
 		yield put(usersFailed(error));
@@ -47,7 +47,7 @@ function* banUser({ payload }: IFetchedBan) {
 
 function* unbanUser({ payload }: IFetchedUnban) {
 	try {
-		const data: IUsersSuccess = yield call(userAPI.unbanUser, payload);
+		const data: ProfileDto[] = yield call(userAPI.unbanUser, payload);
 		yield put(usersSuccess(data));
 	} catch (error: any) {
 		yield put(usersFailed(error));

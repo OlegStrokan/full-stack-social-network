@@ -1,15 +1,11 @@
 import { ProfileDto } from "../../../types/profile/profile.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
-    IActivateSuccess,
-    IAvatarSuccess,
     IFetchedActivate,
     IFetchedAvatar, IFetchedFollow,
-    IFetchedStatus, IFetchedUnfollow, IFollowSuccess,
-    IProfileFailed,
-    IProfileSuccess,
-    IStatusSuccess, IUnfollowSuccess
+    IFetchedStatus, IFetchedUnfollow
 } from "./action.types";
+import { UpdateStatusDto } from "../../../types/profile/updateStatus.dto";
 
 interface ProfileState {
     profile: ProfileDto | null;
@@ -30,44 +26,44 @@ export const profileSlice = createSlice({
         fetchedProfile(state, action: PayloadAction<number>) {
             state.loading = true;
         },
-        profileSuccess(state, action: PayloadAction<IProfileSuccess>) {
+        profileSuccess(state, action: PayloadAction<ProfileDto>) {
             state.loading = false;
-            state.profile = action.payload.payload;
+            state.profile = action.payload;
         },
-        profileFailed(state, action: PayloadAction<IProfileFailed>) {
+        profileFailed(state, action: PayloadAction<any>) {
             state.loading = false;
-            state.error = action.payload.error
+            state.error = action.payload
         },
-        fetchedStatus(state, action: PayloadAction<IFetchedStatus>) {
+        fetchedStatus(state, action: PayloadAction<UpdateStatusDto>) {
             state.loading = true;
         },
-        statusSuccess(state, action: PayloadAction<IStatusSuccess>) {
+        statusSuccess(state, action: PayloadAction<ProfileDto>) {
             state.loading = false;
-            state.profile = action.payload.payload
+            state.profile = action.payload
         },
-        fetchedAvatar(state, action: PayloadAction<IFetchedAvatar>) {
+        fetchedAvatar(state, action: PayloadAction<number>) {
             state.loading = true;
         },
-        avatarSuccess(state, action: PayloadAction<IAvatarSuccess>) {
-            state.profile = action.payload.payload
+        avatarSuccess(state, action: PayloadAction<ProfileDto>) {
+            state.profile = action.payload
         },
-        fetchedFollow(state, action: PayloadAction<IFetchedFollow>) {
+        fetchedFollow(state, action: PayloadAction<number>) {
             state.loading = true;
         },
-        followSuccess(state, action: PayloadAction<IFollowSuccess>) {
-            state.profile = action.payload.payload
+        followSuccess(state, action: PayloadAction<ProfileDto>) {
+            state.profile = action.payload
         },
-        fetchedUnfollow(state, action: PayloadAction<IFetchedUnfollow>) {
+        fetchedUnfollow(state, action: PayloadAction<number>) {
             state.loading = true;
         },
-        unfollowSuccess(state, action: PayloadAction<IUnfollowSuccess>) {
-            state.profile = action.payload.payload
+        unfollowSuccess(state, action: PayloadAction<ProfileDto>) {
+            state.profile = action.payload
         },
         fetchedActivate(state, action: PayloadAction<IFetchedActivate>) {
             state.loading = true;
         },
-        activateSuccess(state, action: PayloadAction<IActivateSuccess>) {
-            state.profile = action.payload.payload
+        activateSuccess(state, action: PayloadAction<ProfileDto>) {
+            state.profile = action.payload
         },
 
     }

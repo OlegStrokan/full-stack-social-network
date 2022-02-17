@@ -1,3 +1,11 @@
+# v1.6.3 (17.01.2022)
+
+## Fixes:
+
+Backend:
+1. Fixed profile's, role's, user's functional
+2. Deleted unnecessary action types
+
 # v1.6.2 (17.01.2022)
 
 ## Fixes:
