@@ -17,7 +17,7 @@ export const Login:React.FC<LoginInterface> = ({ isAuth, userId }) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (!isAuth) {
+    if (isAuth) {
       return navigate(`/profile/${userId}`);
     }
   },[])

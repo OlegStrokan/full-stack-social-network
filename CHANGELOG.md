@@ -1,4 +1,11 @@
 
+# v1.6.5 (17.01.2022)
+
+## Fixes:
+
+Frontend:
+1. Updated route and redirect functional
+
 # v1.6.4 (17.01.2022)
 
 ## Fixes:

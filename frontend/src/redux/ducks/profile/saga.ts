@@ -20,7 +20,6 @@ import { ProfileDto } from "../../../types/profile/profile.dto";
 
 function* getProfile({ payload }: IFetchedProfile) {
 	try {
-		debugger
 		const data: ProfileDto = yield call(profileAPI.getProfile, payload);
 		yield put(profileSuccess(data));
 	} catch (error: any) {

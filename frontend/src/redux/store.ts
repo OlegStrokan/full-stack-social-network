@@ -6,6 +6,7 @@ import { profileReducer } from "./ducks/profile/profile.slice";
 import { postReducer } from "./ducks/post/post.slice";
 import { userReducer } from "./ducks/user/user.slice";
 import { roleReducer } from "./ducks/role/role.slice";
+import { initializeReducer } from "./ducks/initialize/initialize.slice";
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
 	profileReducer,
 	postReducer,
 	userReducer,
-	roleReducer
+	roleReducer,
+	initializeReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
