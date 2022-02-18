@@ -2,12 +2,23 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchedUsers } from "../../redux/ducks/user/user.slice";
 import { RootState } from "../../redux/store";
+import { Card } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-export const Users = () => {
 
+interface UsersInterface {
+	isAuth: boolean;
+}
+
+
+export const Users: React.FC<UsersInterface> = ({ isAuth}) => {
+	let navigate = useNavigate();
 	const { users, loading } = useSelector((state: RootState) => state.userReducer)
 	const dispatch = useDispatch();
 	React.useEffect(() => {
+		if (!isAuth) {
+			return navigate("/login");
+		}
 		dispatch(fetchedUsers())
 	},[]);
 
@@ -15,9 +26,9 @@ export const Users = () => {
 		return <div>...loading</div>
 	}
 	return (
-		<div>
+		<Card>
 			{users?.map((user) => <div>{user.fullname}</div>)}
 			Users page
-		</div>
+		</Card>
 	);
 };

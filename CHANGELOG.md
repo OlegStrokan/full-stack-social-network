@@ -1,3 +1,13 @@
+# v1.6.7 (18.01.2022)
+
+## Features:
+
+Frontend:
+1. Changed main layout
+
+Backend:
+1. Added default avatar in create user function
+
 # v1.6.6 (18.01.2022)
 
 ## Features:

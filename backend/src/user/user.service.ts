@@ -21,12 +21,14 @@ export class UserService {
   async create(userDto: CreateUserDto) {
     const activationLink = uuid.v4();
     const user = await this.userRepository.create(userDto);
-    const role = await this.roleService.getRoleByValue("USER");
+    const role = await this.roleService.getRoleByValue("ADMIN");
     await this.mailService.sendActivationMail(
       userDto.email,
       `http://localhost:5000/auth/activate/${activationLink}`
     );
     user.activationLink = activationLink;
+    user.avatar =
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png";
     await user.$set("roles", [role.id]);
     user.roles = [role];
     await user.save();

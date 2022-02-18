@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { fetchedProfile } from "../../redux/ducks/profile/profile.slice";
 import { useNavigate, useParams } from "react-router-dom";
+import { Card, Grid } from "@mui/material";
+// @ts-ignore
+import style from './Profile.module.css';
 
 interface ProfileInterface {
 	isAuth: boolean;
@@ -27,11 +30,13 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 
 
 	return (
-		<div>
-			{profile?.email}
+		<Card>
+			<Grid justifyContent="center">
+			<img src={profile?.avatar} className={style.profileAvatar}/>
+			</Grid>
 			{isOwner && <div>updateProfile</div>}
 			Profile page
 			<ProfilePosts />
-		</div>
+		</Card>
 	);
 };

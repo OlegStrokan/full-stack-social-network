@@ -20,7 +20,7 @@ export const Login:React.FC<LoginInterface> = ({ isAuth, userId }) => {
     if (isAuth) {
       return navigate(`/profile/${userId}`);
     }
-  },[])
+  },[isAuth])
 
   const onModelChange = () => {
     setRegister(!register);

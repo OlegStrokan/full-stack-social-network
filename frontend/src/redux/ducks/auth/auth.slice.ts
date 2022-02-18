@@ -36,6 +36,7 @@ export const authSlice = createSlice({
             state.loading = false;
             state.isAuth = true;
             state.token = action.payload.token;
+            state.userId = action.payload.id;
         },
         fetchedMe(state) {
             state.loading = true;
