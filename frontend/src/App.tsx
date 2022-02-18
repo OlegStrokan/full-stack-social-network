@@ -8,7 +8,8 @@ import { Roles } from "./pages/Roles/Roles";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import { fetchedInitialize } from "./redux/ducks/initialize/initialize.slice";
-import { Typography } from "@mui/material";
+import { Card, Typography } from "@mui/material";
+import { Header } from "./components/Header/Header";
 
 export const App = () => {
     const dispatch = useDispatch();
@@ -24,7 +25,8 @@ export const App = () => {
     }
 
     return (
-        <div>
+        <Card sx={{ m: 0, p: 0}}>
+            <Header isAuth={isAuth} userId={userId}/>
             <ul>
                 <li>
                     <Link to="/login"><Typography variant="h5">login</Typography></Link>
@@ -46,12 +48,12 @@ export const App = () => {
             <Routes>
                 <Route path="/login" element={<Login userId={userId} isAuth={isAuth} />} />
                 <Route path="/" element={<Navigate to={`/profile/${userId}`} />} />
-                <Route path="/profile/:id" element={<Profile isAuth={isAuth} />} />
+                <Route path="/profile/:id" element={<Profile userId={userId} isAuth={isAuth} />} />
                 <Route path="/posts" element={<Posts isAuth={isAuth}/>} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/roles" element={<Roles />} />
             </Routes>
-        </div>
+        </Card>
     );
 };
 

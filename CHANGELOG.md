@@ -1,14 +1,20 @@
+# v1.6.6 (18.01.2022)
+
+## Features:
+
+Frontend:
+1. Added header component, location to header
 
 # v1.6.5 (17.01.2022)
 
-## Fixes:
+## Features:
 
 Frontend:
-1. Updated route and redirect functional
+1. Added initialize slice and saga for correctly initial render
 
 # v1.6.4 (17.01.2022)
 
-## Fixes:
+## Features:
 
 Frontend:
 1. Updated route and redirect functional

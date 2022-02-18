@@ -7,15 +7,16 @@ import { useNavigate, useParams } from "react-router-dom";
 
 interface ProfileInterface {
 	isAuth: boolean;
+	userId: number | null;
 }
 
-export const Profile: React.FC<ProfileInterface> = ({ isAuth }) => {
-
+export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 
 	let navigate = useNavigate();
 	const { profile } = useSelector((state: RootState) => state.profileReducer);
 	let url = useParams<string>();
 	const dispatch = useDispatch();
+	const isOwner = +url.id! === userId;
 
 	React.useEffect(() => {
 		if (!isAuth) {
@@ -28,6 +29,7 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth }) => {
 	return (
 		<div>
 			{profile?.email}
+			{isOwner && <div>updateProfile</div>}
 			Profile page
 			<ProfilePosts />
 		</div>
