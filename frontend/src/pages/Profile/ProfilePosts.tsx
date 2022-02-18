@@ -1,9 +1,14 @@
 import React from 'react';
+import { Grid } from "@mui/material";
+// @ts-ignore
+import styles from "./Profile.module.css";
 
 export const ProfilePosts = () => {
     return (
-        <div>
+        <Grid>
             Profile posts page
-        </div>
+            Profile posts page
+            Profile posts page
+        </Grid>
     );
 };

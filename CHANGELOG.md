@@ -1,3 +1,11 @@
+# v1.6.9 (18.01.2022)
+
+## Features:
+
+Frontend:
+1. Update user's profile
+1. Added new profile's components
+
 # v1.6.8 (18.01.2022)
 
 ## Features:
