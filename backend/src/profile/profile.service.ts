@@ -4,6 +4,7 @@ import { FollowModel } from "src/user/models/follow.model";
 import { UserModel } from "../user/models/user.model";
 import { FileService } from "../file/file.service";
 import { UpdateStatusDto } from "../user/dto/update-status.dto";
+import { UpdateUserDto } from "../user/dto/update-user.dto";
 
 @Injectable()
 export class ProfileService {
@@ -85,18 +86,12 @@ export class ProfileService {
 
   async changeAvatar(id: number, avatar: File) {
     const user = await this.getProfile(+id);
-    if (!user) {
-      throw new HttpException("User not found", HttpStatus.NOT_FOUND);
-    }
     user.avatar = await this.fileService.createFile(avatar);
     return user;
   }
 
   async changeStatus(id: number, userDto: UpdateStatusDto): Promise<UserModel> {
     const user = await this.getProfile(id);
-    if (!user) {
-      throw new HttpException("User not found", HttpStatus.NOT_FOUND);
-    }
     user.status = userDto.status;
     await user.save();
     return user;
@@ -104,11 +99,23 @@ export class ProfileService {
 
   async activateProfile(id: number): Promise<UserModel> {
     const user = await this.getProfile(id);
-    if (!user) {
-      throw new HttpException("User not found", HttpStatus.NOT_FOUND);
-    }
     user.activated = true;
     await user.save();
     return user;
+  }
+
+  async updateProfile(id: number, dto: UpdateUserDto) {
+    const user = await this.userRepository.update(
+      {
+        fullname: dto.fullname,
+        email: dto.email,
+      },
+      { where: { id } }
+    );
+
+    return {
+      data: user,
+      statusCode: HttpStatus.OK,
+    };
   }
 }

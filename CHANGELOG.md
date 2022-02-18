@@ -1,3 +1,10 @@
+# v1.7.0 (18.01.2022)
+
+## Features:
+
+Backend:
+1. Added update profile function
+
 # v1.6.9 (18.01.2022)
 
 ## Features:
@@ -75,7 +82,7 @@ Frontend:
 Backend:
 1. Added auth/me method
 
-Backend:
+Frontend:
 1. Added auth/me api method
 2. Added some logic to profile page
 

@@ -14,6 +14,7 @@ import { UpdateStatusDto } from "../user/dto/update-status.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { UserModel } from "../user/models/user.model";
+import { UpdateUserDto } from "../user/dto/update-user.dto";
 
 @ApiTags("Profile functional")
 @Controller("profile")
@@ -64,5 +65,12 @@ export class ProfileController {
   @Get("/:id/activate")
   async activateProfile(@Param("id") id: string) {
     return this.profileService.activateProfile(+id);
+  }
+
+  @ApiOperation({ summary: "Update user's profile" })
+  @ApiOkResponse({ status: 200, type: UserModel })
+  @Get("/:id/activate")
+  async updateProfile(@Param("id") id: string, dto: UpdateUserDto) {
+    return this.profileService.updateProfile(+id, dto);
   }
 }
