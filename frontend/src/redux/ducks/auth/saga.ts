@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { authAPI, ILoginResponse, IMeResponse } from "../../../api/auth.api";
 import { IFetchedLogin, IFetchedRegistration} from "./action.types";
-import { authFailed, loginSuccess, meSuccess, registrationSuccess } from "./auth.slice";
+import { authFailed, loginSuccess, logoutSuccess, meSuccess, registrationSuccess } from "./auth.slice";
 
 export function* registration({ payload }: IFetchedRegistration) {
 	try {
@@ -22,6 +22,15 @@ export function* login({ payload }: IFetchedLogin) {
 	}
 }
 
+export function* logout() {
+	try {
+		localStorage.removeItem('token');
+		yield put(logoutSuccess());
+	} catch (error: any) {
+		yield put(authFailed(error));
+	}
+}
+
 export function* me() {
 	try {
 		const data: IMeResponse = yield call(authAPI.me);
@@ -34,5 +43,6 @@ export function* me() {
 export function* authWatcher() {
 	yield takeEvery("auth/fetchedRegistration", registration);
 	yield takeEvery("auth/fetchedLogin", login);
+	yield takeEvery("auth/fetchedLogout", logout);
 	yield takeEvery("auth/fetchedMe", me);
 }

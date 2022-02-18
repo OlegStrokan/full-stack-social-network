@@ -17,6 +17,7 @@ export interface IFetchedLogin extends Action<AuthActionTypes>{
     type: AuthActionTypes.FETCHED_LOGIN,
     payload: LoginDto
 }
+
 export interface IFetchedRegistration extends Action<AuthActionTypes>{
     type: AuthActionTypes.FETCHED_REGISTRATION,
     payload: RegistrationDto

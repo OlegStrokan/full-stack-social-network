@@ -19,7 +19,7 @@ export const Posts: React.FC<PostInterface> = ({ isAuth }) => {
         }
 
         dispatch(fetchedPosts())
-    },[])
+    },[isAuth])
 
     return (
         <Card>

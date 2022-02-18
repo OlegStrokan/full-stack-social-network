@@ -26,7 +26,7 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 			return navigate("/login");
 		}
 		dispatch(fetchedProfile(+url.id!));
-	}, [url.id]);
+	}, [url.id, isAuth]);
 
 
 	return (

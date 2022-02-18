@@ -2,6 +2,8 @@ import React from "react";
 import { AppBar, Box, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import { Menu } from "@mui/icons-material";
 import { Navigate, useLocation } from "react-router-dom";
+import { fetchedLogout } from "../../redux/ducks/auth/auth.slice";
+import { useDispatch } from "react-redux";
 
 interface IHeader {
 	isAuth: boolean;
@@ -13,6 +15,8 @@ interface IHeader {
 export const Header: React.FC<IHeader> = ({ isAuth, userId, navbar, setNavbar }) => {
 
 	const { pathname } = useLocation();
+
+	const dispatch = useDispatch();
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>
@@ -31,10 +35,12 @@ export const Header: React.FC<IHeader> = ({ isAuth, userId, navbar, setNavbar })
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						{pathname.slice(1)}
 					</Typography>
-					<Button color="inherit">Logout</Button>
-					{isAuth
-						? <Typography>{userId}</Typography>
-						: <Button color="inherit" onClick={() => <Navigate to="/login" />}>Login</Button>
+					{!isAuth
+						? <Button color="inherit" onClick={() => <Navigate to="/login" />}>Login</Button>
+						: <>
+							<Typography sx={{ mr: 2 }}>id: {userId}</Typography>
+							<Button color="inherit" variant="outlined" onClick={() => dispatch(fetchedLogout())}>Logout</Button>
+						</>
 					}
 				</Toolbar>
 			</AppBar>

@@ -1,3 +1,10 @@
+# v1.6.8 (18.01.2022)
+
+## Features:
+
+Frontend:
+1. Added logout functional
+
 # v1.6.7 (18.01.2022)
 
 ## Features:
