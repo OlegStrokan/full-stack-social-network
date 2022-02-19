@@ -105,14 +105,26 @@ export class ProfileService {
   }
 
   async updateProfile(id: number, dto: UpdateUserDto) {
-    const user = await this.userRepository.update(
+    const email = await this.userRepository.findOne({ where: { email: dto.email } });
+
+    if (email) {
+      throw new HttpException("This email already existed", HttpStatus.BAD_REQUEST);
+    }
+
+    await this.userRepository.update(
       {
-        fullname: dto.fullname,
         email: dto.email,
+        fullname: dto.fullname,
+        location: dto.location,
+        birth: dto.birth,
+        job: dto.job,
+        info: dto.info,
+        interests: dto.interests,
       },
       { where: { id } }
     );
 
+    const user = await this.userRepository.findByPk(id);
     return {
       data: user,
       statusCode: HttpStatus.OK,

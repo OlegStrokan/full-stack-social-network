@@ -69,8 +69,8 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Update user's profile" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Get("/:id/activate")
-  async updateProfile(@Param("id") id: string, dto: UpdateUserDto) {
+  @Post("/:id/update")
+  async updateProfile(@Param("id") id: string, @Body() dto: UpdateUserDto) {
     return this.profileService.updateProfile(+id, dto);
   }
 }

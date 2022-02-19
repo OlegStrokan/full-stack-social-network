@@ -1,3 +1,10 @@
+# v1.7.2 (19.01.2022)
+
+## Features:
+
+Backend:
+1. Updated update profile method
+
 # v1.7.1 (19.01.2022)
 
 ## Features:
