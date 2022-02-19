@@ -1,3 +1,10 @@
+# v1.7.1 (19.01.2022)
+
+## Features:
+
+Backend:
+1. Updated user model
+
 # v1.7.0 (18.01.2022)
 
 ## Features:

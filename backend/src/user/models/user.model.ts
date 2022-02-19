@@ -66,11 +66,39 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
   status: string;
 
   @ApiProperty({
-    example: "Programmer",
-    description: "Information about user",
+    example: "Madison Square 5",
+    description: "Location",
   })
   @Column({ type: DataType.STRING, allowNull: true })
-  about: string;
+  location: string;
+
+  @ApiProperty({
+    example: "Programmer",
+    description: "Current job",
+  })
+  @Column({ type: DataType.STRING, allowNull: true })
+  job: string;
+
+  @ApiProperty({
+    example: "02.11.2001",
+    description: "Date of birth",
+  })
+  @Column({ type: DataType.STRING, allowNull: true })
+  birth: string;
+
+  @ApiProperty({
+    example: "I am Oleh Strokan...",
+    description: "Description about yourself",
+  })
+  @Column({ type: DataType.STRING, allowNull: true })
+  info: string;
+
+  @ApiProperty({
+    example: "Contribution to open source",
+    description: "Interests",
+  })
+  @Column({ type: DataType.STRING, allowNull: true })
+  interests: string;
 
   @ApiProperty({
     example: "w98432hrdw9epj328e21ed-0",

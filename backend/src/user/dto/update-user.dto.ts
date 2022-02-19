@@ -16,4 +16,37 @@ export class UpdateUserDto {
     message: "Full name must be longer then 5 symbols and smaller then 20 symbols",
   })
   readonly fullname: string;
+
+  @ApiProperty({ example: "Madison Square 5", description: "Location" })
+  @IsString({ message: "Must be a string" })
+  @Length(5, 50, { message: "Location then 5 symbols and smaller then 50 symbols" })
+  readonly location: string;
+
+  @ApiProperty({ example: "Programmer", description: "Current job" })
+  @IsString({ message: "Must be a string" })
+  @Length(2, 20, {
+    message: "Jo must be longer then 2 symbols and smaller then 20 symbols",
+  })
+  readonly job: string;
+
+  @ApiProperty({ example: "02.11.2001", description: "Date of birth" })
+  @IsString({ message: "Must be a string" })
+  @Length(2, 20, {
+    message: "Full name must be longer then 2 symbols and smaller then 20 symbols",
+  })
+  readonly birth: string;
+
+  @ApiProperty({ example: "I am Oleh Strokan...", description: "Description about yourself" })
+  @IsString({ message: "Must be a string" })
+  @Length(5, 20, {
+    message: "Full name must be longer then 5 symbols and smaller then 20 symbols",
+  })
+  readonly info: string;
+
+  @ApiProperty({ example: "Contribution to open source", description: "Interests" })
+  @IsString({ message: "Must be a string" })
+  @Length(5, 50, {
+    message: "Full name must be longer then 5 symbols and smaller then 50 symbols",
+  })
+  readonly interests: string;
 }
