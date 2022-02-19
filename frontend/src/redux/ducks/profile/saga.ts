@@ -3,7 +3,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import {
 	IFetchedActivate,
 	IFetchedAvatar, IFetchedFollow, IFetchedProfile,
-	IFetchedStatus, IFetchedUnfollow
+	IFetchedStatus, IFetchedUnfollow, IFetchedUpdate
 
 } from "./action.types";
 import {
@@ -22,6 +22,15 @@ function* getProfile({ payload }: IFetchedProfile) {
 	try {
 		const data: ProfileDto = yield call(profileAPI.getProfile, payload);
 		yield put(profileSuccess(data));
+	} catch (error: any) {
+		yield put(profileFailed(error));
+	}
+}
+
+function* update({ payload }: IFetchedUpdate) {
+	try {
+		const data: ProfileDto = yield call(profileAPI.update, payload);
+		yield put(statusSuccess(data));
 	} catch (error: any) {
 		yield put(profileFailed(error));
 	}

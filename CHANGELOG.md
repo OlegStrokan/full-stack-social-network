@@ -1,3 +1,11 @@
+# v1.7.3 (19.01.2022)
+
+## Features:
+
+Backend:
+1. Added update profile for frontend
+
+
 # v1.7.2 (19.01.2022)
 
 ## Features:

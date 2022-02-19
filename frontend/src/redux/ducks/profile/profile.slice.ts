@@ -4,6 +4,7 @@ import {
     IFetchedActivate,
 } from "./action.types";
 import { UpdateStatusDto } from "../../../types/profile/updateStatus.dto";
+import { UpdateProfileDto } from "../../../types/profile/updateProfile.dto";
 
 interface ProfileState {
     profile: ProfileDto | null;
@@ -31,6 +32,13 @@ export const profileSlice = createSlice({
         profileFailed(state, action: PayloadAction<any>) {
             state.loading = false;
             state.error = action.payload
+        },
+        fetchedUpdate(state, action: PayloadAction<UpdateProfileDto>) {
+            state.loading = false;
+        },
+        updateSuccess(state, action: PayloadAction<ProfileDto>) {
+            state.loading = false;
+            state.profile = action.payload
         },
         fetchedStatus(state, action: PayloadAction<UpdateStatusDto>) {
             state.loading = true;
