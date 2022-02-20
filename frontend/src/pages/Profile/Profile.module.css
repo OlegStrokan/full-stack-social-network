@@ -7,36 +7,56 @@
 
 .profileBackground {
     height: 250px;
-    width: 100%;
-    margin-bottom: 10px;
+    width: calc(100% - 2px);
     border: 1px solid;
+}
+
+.status {
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #ffffff;
 }
 
 .root {
     display: grid;
-    grid-template-columns: 300px 1fr;
-    grid-template-rows: 450px 1fr;
-    grid-gap: 0;
+    grid-template-columns: 300px 1fr 300px;
+    grid-template-rows: 440px 1fr;
+    grid-gap: 10px;
     padding: 0;
-    margin: 0;
     grid-template-areas:
-    "header header"
-    "info posts";
+    "header header header"
+    "info posts entities";
 }
 
 .profileHeader {
     grid-area: header;
 }
 
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileEntities {
+    grid-area: entities;
+    border-radius: 5px;
+    background-color: #e1e1e1;
+    color: #000;
+}
+
+.button {
+    margin-left: 10px;
+    padding: 8.5px 20px;
+    outline: 1px solid;
+}
 .profileInfo {
     grid-area: info;
-    margin: -20px 10px 0;
 }
 
 .profilePosts {
-    margin-top: -20px;
     grid-area: posts;
-    margin-right: 10px;
     border-radius: 5px;
     background-color: #e1e1e1;
     color: #000;
@@ -60,7 +80,6 @@
     background-color: #e1e1e1;
     border-radius: 5px;
     padding: 10px 0;
-    margin: 0 10px;
 }
 
 .profileInfo {

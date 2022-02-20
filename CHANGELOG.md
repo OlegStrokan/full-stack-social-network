@@ -1,3 +1,12 @@
+# v1.8.0 (20.01.2022)
+
+## Features:
+
+Frontend:
+1. Added profile entities page.
+2. Added update status for profile page.
+3. Changed grid in profile page
+
 # v1.7.3 (19.01.2022)
 
 ## Features:

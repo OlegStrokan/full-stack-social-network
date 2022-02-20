@@ -1,5 +1,5 @@
 
 export interface UpdateStatusDto {
-    id: number;
+    id?: number;
     status: string
 }
