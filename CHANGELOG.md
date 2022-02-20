@@ -1,3 +1,16 @@
+# v1.8.2 (20.01.2022)
+
+## Features:
+
+Backend:
+1. Updated get profile method
+
+Frontend:
+1. Updated posts in profile page
+
+## Fixes:
+Backend
+1. Fixed create post method
 
 # v1.8.1 (20.01.2022)
 

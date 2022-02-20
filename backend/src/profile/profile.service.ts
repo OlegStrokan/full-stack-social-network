@@ -76,7 +76,10 @@ export class ProfileService {
   }
 
   async getProfile(id: number): Promise<UserModel> {
-    const profile = await this.userRepository.findOne({ where: { id } });
+    const profile = await this.userRepository.findOne({
+      where: { id },
+      include: { all: true },
+    });
 
     if (!profile) {
       throw new HttpException("User not found", HttpStatus.NOT_FOUND);
