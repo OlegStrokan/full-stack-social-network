@@ -16,6 +16,7 @@ import { FollowModel } from "./user/models/follow.model";
 import { FileModule } from "./file/file.module";
 import { PostModule } from "./post/post.module";
 import { PostModel } from "./post/post.model";
+import { PhotoModel } from "./user/models/photo.model";
 
 @Module({
   controllers: [],
@@ -34,7 +35,15 @@ import { PostModel } from "./post/post.model";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [UserModel, BlockedUserModel, FollowModel, RoleModel, UserRolesModel, PostModel],
+      models: [
+        UserModel,
+        BlockedUserModel,
+        FollowModel,
+        RoleModel,
+        UserRolesModel,
+        PostModel,
+        PhotoModel,
+      ],
       autoLoadModels: true,
       synchronize: true,
     }),

@@ -1,3 +1,11 @@
+# v1.9.0 (21.01.2022)
+
+## Features:
+
+Backend:
+1. Added photo model for user
+2. Added add image method for profile
+
 # v1.8.2 (20.01.2022)
 
 ## Features:

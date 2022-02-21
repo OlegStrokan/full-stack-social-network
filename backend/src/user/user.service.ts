@@ -21,7 +21,7 @@ export class UserService {
   async create(userDto: CreateUserDto) {
     const activationLink = uuid.v4();
     const user = await this.userRepository.create(userDto);
-    const role = await this.roleService.getRoleByValue("USER");
+    const role = await this.roleService.getRoleByValue("ADMIN");
     await this.mailService.sendActivationMail(
       userDto.email,
       `http://localhost:5000/auth/activate/${activationLink}`

@@ -73,4 +73,12 @@ export class ProfileController {
   async updateProfile(@Param("id") id: string, @Body() dto: UpdateUserDto) {
     return this.profileService.updateProfile(+id, dto);
   }
+
+  @ApiOperation({ summary: "Activate user's profile" })
+  @ApiOkResponse({ status: 200, type: UserModel })
+  @UseInterceptors(FileInterceptor("image"))
+  @Patch("/:id/image")
+  async addPhoto(@Param("id") id: string, @UploadedFile() image) {
+    return this.profileService.addPhoto(+id, image);
+  }
 }

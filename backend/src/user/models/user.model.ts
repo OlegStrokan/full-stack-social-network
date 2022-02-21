@@ -4,6 +4,7 @@ import { UserRolesModel } from "../../role/models/user-roles.model";
 import { RoleModel } from "../../role/models/role.model";
 import { BlockedUserModel } from "./blocked-user.model";
 import { PostModel } from "../../post/post.model";
+import { PhotoModel } from "./photo.model";
 
 interface UserCreationAttr {
   email: string;
@@ -116,10 +117,9 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
   @HasMany(() => PostModel)
   posts: PostModel[];
 
-  /*
-  @HasMany(() => MediaModel)
-  media: Media[]
+  @HasMany(() => PhotoModel)
+  photos: PhotoModel[];
 
-  @HasMany(() => CommentModel)
+  /*@HasMany(() => CommentModel)
   comments: CommentModel[]*/
 }

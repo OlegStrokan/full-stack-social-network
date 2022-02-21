@@ -5,6 +5,7 @@ import { UserModel } from "../user/models/user.model";
 import { FileService } from "../file/file.service";
 import { UpdateStatusDto } from "../user/dto/update-status.dto";
 import { UpdateUserDto } from "../user/dto/update-user.dto";
+import { PhotoModel } from "../user/models/photo.model";
 
 @Injectable()
 export class ProfileService {
@@ -13,6 +14,8 @@ export class ProfileService {
     private userRepository: typeof UserModel,
     @InjectModel(FollowModel)
     private followRepository: typeof FollowModel,
+    @InjectModel(PhotoModel)
+    private photoRepository: typeof PhotoModel,
     private fileService: FileService
   ) {}
 
@@ -130,6 +133,23 @@ export class ProfileService {
     const user = await this.userRepository.findByPk(id);
     return {
       data: user,
+      statusCode: HttpStatus.OK,
+    };
+  }
+
+  async addPhoto(id: number, image) {
+    const user = await this.userRepository.findOne({ where: { id }, include: { all: true } });
+    if (!user) {
+      throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+    }
+
+    const fileName = await this.fileService.createFile(image);
+
+    const savedImage = await this.photoRepository.create({ userId: id, url: fileName });
+    await savedImage.save();
+
+    return {
+      user,
       statusCode: HttpStatus.OK,
     };
   }
