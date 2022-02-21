@@ -16,7 +16,7 @@ export const postAPI = {
         data.append('title', dto.title)
         data.append('content', dto.content)
         data.append('userId', String(dto.userId))
-        data.append('image', dto.image)
+        data.append('image', dto.image as string)
         return instance.post<PostDto[]>('/posts', dto).then((response) => response.data)
     },
     updatePost(dto: UpdatePostDto): Promise<PostDto[]> {

@@ -14,6 +14,17 @@ export class PostService {
   ) {}
 
   async create(createPostDto: CreatePostDto, image: File) {
+    if (!image) {
+      const post = await this.postRepository.create({
+        ...createPostDto,
+      });
+      await post.save();
+      const posts = await this.postRepository.findAll();
+      return {
+        data: posts,
+        statusCode: HttpStatus.OK,
+      };
+    }
     const fileName = await this.fileService.createFile(image);
     const post = await this.postRepository.create({
       ...createPostDto,

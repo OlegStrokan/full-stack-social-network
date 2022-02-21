@@ -21,5 +21,5 @@ export class CreatePostDto {
     example: "2983-2zed2-z2d2n-nac38",
     description: "Post's image/images",
   })
-  readonly image: string | string[];
+  readonly image?: string;
 }

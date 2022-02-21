@@ -3,6 +3,14 @@
 ## Features:
 
 Frontend:
+1. Added addPost component with functional
+2. Added createPost dto and validation for post
+
+# v1.9.1 (21.01.2022)
+
+## Features:
+
+Frontend:
 1. Added photo dto
 
 ## Fixes:

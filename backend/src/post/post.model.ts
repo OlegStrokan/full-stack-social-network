@@ -6,7 +6,7 @@ interface PostCreationAttrs {
   title: string;
   content: string;
   userId: number;
-  image: string | string[];
+  image?: string;
 }
 
 @Table({ tableName: "posts", createdAt: false, updatedAt: false })
@@ -50,8 +50,9 @@ export class PostModel extends Model<PostModel, PostCreationAttrs> {
   })
   @Column({
     type: DataType.STRING,
+    allowNull: true,
   })
-  image: string | string[];
+  image: string;
 
   @ApiProperty({
     example: "21",
