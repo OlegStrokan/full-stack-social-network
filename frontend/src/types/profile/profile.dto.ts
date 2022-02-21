@@ -1,4 +1,5 @@
 import { PostDto } from "../post/post.dto";
+import { PhotoDto } from "../photo/photo.dto";
 
 export interface ProfileDto {
 	id: number;
@@ -14,5 +15,6 @@ export interface ProfileDto {
 	about: string;
 	avatar: string;
 	posts: PostDto[];
+	photos: PhotoDto[]
 	roles: any[];
 }

@@ -1,3 +1,15 @@
+# v1.9.1 (21.01.2022)
+
+## Features:
+
+Frontend:
+1. Added photo dto
+
+## Fixes:
+
+Frontend:
+1. Fixed create/update post api method
+
 # v1.9.0 (21.01.2022)
 
 ## Features:

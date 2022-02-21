@@ -74,7 +74,7 @@ describe("UserController", () => {
     expect(mockUsersService.create).toHaveBeenCalledWith(createRequest);
   });
   it("should add user's role", () => {
-    expect(controller.addRole(addRoleRequest.id, addRoleRequest.dto)).toEqual({
+    expect(controller.addRole(String(addRoleRequest.id), addRoleRequest.dto)).toEqual({
       id: expect.any(Number),
       dto: { value: "USER" },
     });
