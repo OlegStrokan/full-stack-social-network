@@ -39,7 +39,6 @@ function* getPost({ payload }: IFetchedPost) {
 }
 
 function* createPost({ payload }: IFetchedCreate) {
-	debugger
 	try {
 		const data: PostDto[] = yield call(postAPI.createPost, payload);
 		yield put(createSuccess(data));

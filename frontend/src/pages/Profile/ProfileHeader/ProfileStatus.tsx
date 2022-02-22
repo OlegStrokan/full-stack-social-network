@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 // @ts-ignore
-import styles from "./Profile.module.css";
+import styles from "../Profile.module.css";
 import { useDispatch } from "react-redux";
-import { fetchedStatus } from "../../redux/ducks/profile/profile.slice";
+import { fetchedStatus } from "../../../redux/ducks/profile/profile.slice";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validationSchema } from "../../utils/validators/status";
+import { validationSchema } from "../../../utils/validators/status";
 import TextField from "@mui/material/TextField";
 
 
@@ -22,7 +22,6 @@ export const ProfileStatus: React.FC<ProfileInfo> = ({ status, id }) => {
 	const [editMode, setEditMode] = React.useState(false);
 
 	const onSubmit = (event: any) => {
-		debugger
 		setEditMode(false);
 		dispatch(fetchedStatus({ id, status: event.status }));
 	};

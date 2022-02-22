@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid } from "@mui/material";
 // @ts-ignore
-import styles from "./Profile.module.css";
-import { PostDto } from "../../types/post/post.dto";
+import styles from "../Profile.module.css";
+import { PostDto } from "../../../types/post/post.dto";
 import { AddPost } from "./AddPost";
 import { Posts } from "./Posts";
 
@@ -15,7 +15,7 @@ export const ProfilePosts: React.FC<ProfileInterface> = ({ posts, userId }) => {
   return (
     <Grid sx={{ p: 2 }}>
       <AddPost userId={userId}/>
-      <Posts posts={posts}/>
+      <Posts posts={posts} userId={userId}/>
     </Grid>
   );
 };

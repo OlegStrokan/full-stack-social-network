@@ -1,31 +1,32 @@
 import React from "react";
 import { Button, Grid } from "@mui/material";
 // @ts-ignore
-import styles from "../Login/Login.module.css";
+import styles from "../../Login/Login.module.css";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validationSchema } from "../../utils/validators/createPost";
-import { fetchedCreate } from "../../redux/ducks/post/post.slice";
+import { validationSchema } from "../../../utils/validators/createPost";
+import { fetchedCreate } from "../../../redux/ducks/post/post.slice";
 
 interface AddPostInterface {
-	userId: string | undefined
+	userId: string | undefined;
 }
 
 export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
-
 	const dispatch = useDispatch();
 	const onSubmit = (event: any) => {
-		debugger
-		dispatch(fetchedCreate(event))
+		dispatch(fetchedCreate(event));
 	};
 	const {
-		register, control, handleSubmit, formState: { errors },
+		register,
+		control,
+		handleSubmit,
+		formState: { errors }
 	} = useForm({
-		resolver: yupResolver(validationSchema),
+		resolver: yupResolver(validationSchema)
 	});
 
 	return (
@@ -65,8 +66,8 @@ export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
 						<Typography variant="subtitle2" color="error">
 							{errors.content?.message}
 						</Typography>
-					</Grid>
-					<Grid item xs={12} style={{ visibility: 'hidden'}}>
+				</Grid>
+					<Grid item xs={12} style={{ visibility: "hidden" }}>
 						<TextField
 							required
 							fullWidth
@@ -81,13 +82,8 @@ export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
 							{errors.userId?.message}
 						</Typography>
 					</Grid>
-					<Grid item xs={12}>
-						<Button
-							type="submit"
-							fullWidth
-							variant="contained"
-							sx={{ mt: 1, mb: 2, p: 2 }}
-						>
+					<Grid>
+						<Button type="submit" fullWidth variant="contained">
 							Submit
 						</Button>
 					</Grid>

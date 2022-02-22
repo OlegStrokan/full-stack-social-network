@@ -6,7 +6,6 @@
     grid-gap: 10px;
     padding: 0;
     margin: 0;
-    height: 100vh;
     grid-template-areas:
     "header header"
     "navbar content";
@@ -20,7 +19,6 @@
     grid-template-rows: 60px 1fr;
     padding: 0;
     margin: 0;
-    height: 100vh;
     grid-template-areas:
     "header header"
     "content content";

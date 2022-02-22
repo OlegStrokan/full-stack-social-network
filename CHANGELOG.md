@@ -1,4 +1,12 @@
-# v1.9.1 (21.01.2022)
+# v1.9.3 (21.01.2022)
+
+## Features:
+
+Frontend:
+1. Added delete post functional to UI
+2. Refactor in profile's folder
+
+# v1.9.2 (21.01.2022)
 
 ## Features:
 

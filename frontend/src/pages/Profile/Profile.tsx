@@ -1,5 +1,5 @@
 import React from "react";
-import { ProfilePosts } from "./ProfilePosts";
+import { ProfilePosts } from "./ProfilePosts/ProfilePosts";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { fetchedProfile } from "../../redux/ducks/profile/profile.slice";
@@ -8,8 +8,9 @@ import { Card, Grid } from "@mui/material";
 // @ts-ignore
 import styles from "./Profile.module.css";
 import { ProfileInfo } from "./ProfileInfo";
-import { ProfileHeader } from "./ProfileHeader";
+import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileEntities } from "./ProfileEntities";
+import { createSuccess, fetchedPost } from "../../redux/ducks/post/post.slice";
 
 interface ProfileInterface {
 	isAuth: boolean;
@@ -29,7 +30,7 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 			return navigate("/login");
 		}
 		dispatch(fetchedProfile(+url.id!));
-	}, [url.id, isAuth]);
+	}, [url.id, isAuth, dispatch, navigate]);
 
 
 	return (

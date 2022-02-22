@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 // @ts-ignore
-import styles from "./Profile.module.css";
-import { ProfileDto } from "../../types/profile/profile.dto";
+import styles from "../Profile.module.css";
+import { ProfileDto } from "../../../types/profile/profile.dto";
 import { ProfileStatus } from "./ProfileStatus";
 
 
