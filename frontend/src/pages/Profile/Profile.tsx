@@ -10,7 +10,6 @@ import styles from "./Profile.module.css";
 import { ProfileInfo } from "./ProfileInfo";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileEntities } from "./ProfileEntities";
-import { createSuccess, fetchedPost } from "../../redux/ducks/post/post.slice";
 
 interface ProfileInterface {
 	isAuth: boolean;
@@ -30,7 +29,7 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 			return navigate("/login");
 		}
 		dispatch(fetchedProfile(+url.id!));
-	}, [url.id, isAuth, dispatch, navigate]);
+	}, [url.id, isAuth]);
 
 
 	return (

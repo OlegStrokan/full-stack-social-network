@@ -19,6 +19,7 @@ import {
 	updateSuccess
 } from "./post.slice";
 import { PostDto } from "../../../types/post/post.dto";
+import { deletePostSuccess } from "../profile/profile.slice"
 
 function* getPosts() {
 	try {
@@ -58,8 +59,10 @@ function* updatePost({ payload }: IFetchedUpdate) {
 
 function* deletePost({ payload }: IFetchedUDelete) {
 	try {
+		debugger
 		const data: PostDto[] = yield call(postAPI.deletePost, payload);
 		yield put(deleteSuccess(data));
+		yield put(deletePostSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
 	}
@@ -89,6 +92,7 @@ export function* postWatcher() {
 	yield takeEvery("post/fetchedCreate", createPost);
 	yield takeEvery("post/fetchedUpdate", updatePost);
 	yield takeEvery("post/fetchedDelete", deletePost);
+	yield takeEvery("post/fetchedPostDelete", deletePost);
 	yield takeEvery("post/fetchedLike", likePost);
 	yield takeEvery("post/fetchedUnlike", unlikePost);
 }

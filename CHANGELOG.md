@@ -1,3 +1,12 @@
+# v1.9.4 (21.01.2022)
+
+## Features:
+
+Frontend:
+1. Changed return value in post api in frontend
+
+Backend:
+1. Updated auth/post/profile's return value in backend
 # v1.9.3 (21.01.2022)
 
 ## Features:

@@ -86,9 +86,11 @@ export class PostService {
         id,
       },
     });
+
+    const posts = await this.postRepository.findAll();
     return {
-      message: "success",
-      statusCode: HttpStatus.ACCEPTED,
+      data: posts,
+      statusCode: HttpStatus.OK,
     };
   }
 

@@ -47,7 +47,10 @@ export class ProfileService {
       follower_id: follow_id,
     });
     await follow.save();
-    return user;
+    return {
+      data: user,
+      statusCode: HttpStatus.OK,
+    };
   }
 
   async unfollow(user_id: number, unfollow_id: number) {
@@ -75,39 +78,54 @@ export class ProfileService {
     }
     await followModel.destroy();
 
-    return user;
+    return {
+      data: user,
+      statusCode: HttpStatus.OK,
+    };
   }
 
-  async getProfile(id: number): Promise<UserModel> {
-    const profile = await this.userRepository.findOne({
+  async getProfile(id: number): Promise<any> {
+    const user = await this.userRepository.findOne({
       where: { id },
       include: { all: true },
     });
 
-    if (!profile) {
+    if (!user) {
       throw new HttpException("User not found", HttpStatus.NOT_FOUND);
     }
-    return profile;
+    return {
+      data: user,
+      statusCode: HttpStatus.OK,
+    };
   }
 
   async changeAvatar(id: number, avatar: File) {
     const user = await this.getProfile(+id);
     user.avatar = await this.fileService.createFile(avatar);
-    return user;
+    return {
+      data: user,
+      statusCode: HttpStatus.OK,
+    };
   }
 
-  async changeStatus(id: number, userDto: UpdateStatusDto): Promise<UserModel> {
+  async changeStatus(id: number, userDto: UpdateStatusDto) {
     const user = await this.getProfile(id);
     user.status = userDto.status;
     await user.save();
-    return user;
+    return {
+      data: user,
+      statusCode: HttpStatus.OK,
+    };
   }
 
-  async activateProfile(id: number): Promise<UserModel> {
+  async activateProfile(id: number) {
     const user = await this.getProfile(id);
     user.activated = true;
     await user.save();
-    return user;
+    return {
+      data: user,
+      statusCode: HttpStatus.OK,
+    };
   }
 
   async updateProfile(id: number, dto: UpdateUserDto) {

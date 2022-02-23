@@ -77,7 +77,10 @@ export class AuthService {
       const tokenValue = token.split(" ")[1];
       if (bearer === "Bearer" || tokenValue) {
         const user = this.jwtService.verify(tokenValue);
-        return user;
+        return {
+          data: user,
+          statusCode: HttpStatus.OK,
+        };
       }
     } catch {
       throw new UnauthorizedException({
