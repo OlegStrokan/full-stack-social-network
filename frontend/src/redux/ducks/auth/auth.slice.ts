@@ -5,6 +5,7 @@ import { RegistrationDto } from "../../../types/auth/registration.dto";
 
 interface AuthState {
 	userId: number | null;
+	username: string | null;
 	isAuth: boolean;
 	loading: boolean;
 	error: any;
@@ -13,6 +14,7 @@ interface AuthState {
 
 const initialState: AuthState = {
 	userId: null,
+	username: null,
 	isAuth: false,
 	loading: false,
 	error: null,
@@ -53,7 +55,8 @@ export const authSlice = createSlice({
 		meSuccess(state, action: PayloadAction<IMeResponse>) {
 			state.loading = false;
 			state.isAuth = true;
-			state.userId = action.payload.id;
+			state.userId = action.payload.data.id;
+			state.username = action.payload.data.username;
 		},
 		authFailed(state, action: PayloadAction<any>) {
 			state.loading = false;

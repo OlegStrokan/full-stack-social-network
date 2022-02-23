@@ -7,12 +7,12 @@ import { useDispatch } from "react-redux";
 
 interface IHeader {
 	isAuth: boolean;
-	userId: number | null;
+	username: string | null;
 	navbar: boolean;
 	setNavbar: (value: boolean) => void;
 }
 
-export const Header: React.FC<IHeader> = ({ isAuth, userId, navbar, setNavbar }) => {
+export const Header: React.FC<IHeader> = ({ isAuth, username, navbar, setNavbar }) => {
 
 	const { pathname } = useLocation();
 
@@ -38,7 +38,7 @@ export const Header: React.FC<IHeader> = ({ isAuth, userId, navbar, setNavbar })
 					{!isAuth
 						? <Button color="inherit" onClick={() => <Navigate to="/login" />}>Login</Button>
 						: <>
-							<Typography sx={{ mr: 2 }}>id: {userId}</Typography>
+							<Typography sx={{ mr: 2 }}>{username}</Typography>
 							<Button color="inherit" variant="outlined" onClick={() => dispatch(fetchedLogout())}>Logout</Button>
 						</>
 					}

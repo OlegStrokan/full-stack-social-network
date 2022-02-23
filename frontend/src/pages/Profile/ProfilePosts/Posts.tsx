@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 // @ts-ignore
 import styles from "../Profile.module.css";
 import { PostDto } from "../../../types/post/post.dto";

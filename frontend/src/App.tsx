@@ -16,7 +16,7 @@ import styles from "./App.module.css";
 
 export const App = () => {
 	const dispatch = useDispatch();
-	const { isAuth, userId } = useSelector((state: RootState) => state.authReducer);
+	const { isAuth, username, userId } = useSelector((state: RootState) => state.authReducer);
 	const { initialized } = useSelector((state: RootState) => state.initializeReducer);
 	const [navbar, setNavbar] = React.useState<boolean>(false);
 
@@ -30,7 +30,7 @@ export const App = () => {
 
 	return (
 		<Card className={navbar ? styles.rootOpen : styles.rootClose}>
-			<div className={styles.header}><Header isAuth={isAuth} userId={userId} navbar={navbar}
+			<div className={styles.header}><Header isAuth={isAuth} username={username} navbar={navbar}
 												   setNavbar={setNavbar} /></div>
 			{navbar && <div className={styles.navbar}><Navbar isAuth={isAuth} userId={userId} /></div>}
 			<div className={styles.content}>

@@ -17,7 +17,6 @@ interface ProfileInterface {
 }
 
 export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
-
 	let navigate = useNavigate();
 	const { profile } = useSelector((state: RootState) => state.profileReducer);
 	let url = useParams<string>();

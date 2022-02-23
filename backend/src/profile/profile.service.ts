@@ -100,8 +100,14 @@ export class ProfileService {
   }
 
   async changeAvatar(id: number, avatar: File) {
-    const user = await this.getProfile(+id);
+    const user = await this.userRepository.findByPk(id);
+
+    if (!user) {
+      throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+    }
+
     user.avatar = await this.fileService.createFile(avatar);
+    await user.save();
     return {
       data: user,
       statusCode: HttpStatus.OK,
@@ -109,7 +115,12 @@ export class ProfileService {
   }
 
   async changeStatus(id: number, userDto: UpdateStatusDto) {
-    const user = await this.getProfile(id);
+    const user = await this.userRepository.findByPk(id);
+
+    if (!user) {
+      throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+    }
+
     user.status = userDto.status;
     await user.save();
     return {
@@ -119,7 +130,11 @@ export class ProfileService {
   }
 
   async activateProfile(id: number) {
-    const user = await this.getProfile(id);
+    const user = await this.userRepository.findByPk(id);
+
+    if (!user) {
+      throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+    }
     user.activated = true;
     await user.save();
     return {
@@ -142,7 +157,7 @@ export class ProfileService {
         location: dto.location,
         birth: dto.birth,
         job: dto.job,
-        info: dto.info,
+        about: dto.about,
         interests: dto.interests,
       },
       { where: { id } }

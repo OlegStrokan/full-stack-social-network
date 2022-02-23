@@ -92,7 +92,7 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
     description: "Description about yourself",
   })
   @Column({ type: DataType.STRING, allowNull: true })
-  info: string;
+  about: string;
 
   @ApiProperty({
     example: "Contribution to open source",

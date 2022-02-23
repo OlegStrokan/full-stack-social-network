@@ -61,7 +61,6 @@ function* updatePost({ payload }: IFetchedUpdate) {
 
 function* deletePost({ payload }: IFetchedUDelete) {
 	try {
-		debugger
 		const { data }: IApiOkResponse<PostDto[]>= yield call(postAPI.deletePost, payload);
 		yield put(deleteSuccess(data));
 		yield put(deletePostSuccess(data));

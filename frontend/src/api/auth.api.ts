@@ -8,7 +8,7 @@ export interface ISuccessResponse {
 }
 
 export interface ILoginResponse {
-	email: string;
+	username: string;
 	id: number;
 	roles: [
 		{
@@ -27,7 +27,10 @@ export interface ILoginResponse {
 	token: string;
 }
 
-export type IMeResponse = Omit<ILoginResponse, 'token'>
+export type IMeResponse = {
+	data: Omit<ILoginResponse, "token">,
+	statusCode: number;
+}
 
 export const authAPI = {
 	registration(dto: RegistrationDto): Promise<ISuccessResponse> {

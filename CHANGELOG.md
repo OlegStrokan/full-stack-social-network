@@ -1,3 +1,12 @@
+# v1.9.6 (23.01.2022)
+
+## Features:
+
+Frontend:
+1. Changed return values in profile services
+2. Changed profileInfo component
+3. Updated dto description
+
 # v1.9.5 (23.01.2022)
 
 ## Features:

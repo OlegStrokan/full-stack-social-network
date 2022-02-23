@@ -12,7 +12,11 @@ export interface ProfileDto {
 	banned: true;
 	banReason: string;
 	status: string;
+	location: string;
+	job: string;
+	birth: string;
 	about: string;
+	interests: string;
 	avatar: string;
 	posts: PostDto[];
 	photos: PhotoDto[]
