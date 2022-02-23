@@ -19,11 +19,12 @@ import {
 	updateSuccess
 } from "./post.slice";
 import { PostDto } from "../../../types/post/post.dto";
-import { deletePostSuccess } from "../profile/profile.slice"
+import { createPostSuccess, deletePostSuccess } from "../profile/profile.slice";
+import { IApiOkResponse } from "../../../api/instance.api";
 
 function* getPosts() {
 	try {
-		const data: PostDto[] = yield call(postAPI.getPosts);
+		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.getPosts);
 		yield put(postsSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
@@ -32,7 +33,7 @@ function* getPosts() {
 
 function* getPost({ payload }: IFetchedPost) {
 	try {
-		const data: PostDto = yield call(postAPI.getPost, payload);
+		const { data }: IApiOkResponse<PostDto> = yield call(postAPI.getPost, payload);
 		yield put(postSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
@@ -41,8 +42,9 @@ function* getPost({ payload }: IFetchedPost) {
 
 function* createPost({ payload }: IFetchedCreate) {
 	try {
-		const data: PostDto[] = yield call(postAPI.createPost, payload);
+		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.createPost, payload);
 		yield put(createSuccess(data));
+		yield put(createPostSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
 	}
@@ -50,7 +52,7 @@ function* createPost({ payload }: IFetchedCreate) {
 
 function* updatePost({ payload }: IFetchedUpdate) {
 	try {
-		const data: PostDto[] = yield call(postAPI.updatePost, payload);
+		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.updatePost, payload);
 		yield put(updateSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
@@ -60,7 +62,7 @@ function* updatePost({ payload }: IFetchedUpdate) {
 function* deletePost({ payload }: IFetchedUDelete) {
 	try {
 		debugger
-		const data: PostDto[] = yield call(postAPI.deletePost, payload);
+		const { data }: IApiOkResponse<PostDto[]>= yield call(postAPI.deletePost, payload);
 		yield put(deleteSuccess(data));
 		yield put(deletePostSuccess(data));
 	} catch (error: any) {
@@ -70,7 +72,7 @@ function* deletePost({ payload }: IFetchedUDelete) {
 
 function* likePost({ payload }: IFetchedLike) {
 	try {
-		const data: PostDto[] = yield call(postAPI.likePost, payload);
+		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.likePost, payload);
 		yield put(likeSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
@@ -79,7 +81,7 @@ function* likePost({ payload }: IFetchedLike) {
 
 function* unlikePost({ payload }: IFetchedUnlike) {
 	try {
-		const data: PostDto[] = yield call(postAPI.unlikePost, payload);
+		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.unlikePost, payload);
 		yield put(unlikeSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
@@ -88,8 +90,9 @@ function* unlikePost({ payload }: IFetchedUnlike) {
 
 export function* postWatcher() {
 	yield takeEvery("post/fetchedPosts", getPosts);
-	yield takeEvery("post/fetchedPost", getPost);
+	yield takeEvery("profile/fetchedPost", getPost);
 	yield takeEvery("post/fetchedCreate", createPost);
+	yield takeEvery("profile/fetchedPostCreate", createPost);
 	yield takeEvery("post/fetchedUpdate", updatePost);
 	yield takeEvery("post/fetchedDelete", deletePost);
 	yield takeEvery("post/fetchedPostDelete", deletePost);

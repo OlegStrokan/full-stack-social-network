@@ -1,11 +1,11 @@
 import { ProfileDto } from "../../../types/profile/profile.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-	IFetchedActivate
-} from "./action.types";
+import { IFetchedActivate } from "./action.types";
 import { UpdateStatusDto } from "../../../types/profile/updateStatus.dto";
 import { UpdateProfileDto } from "../../../types/profile/updateProfile.dto";
 import { PostDto } from "../../../types/post/post.dto";
+import { IApiOkResponse } from "../../../api/instance.api";
+import { CreatePostDto } from "../../../types/post/createPost.dto";
 
 interface ProfileState {
 	profile: ProfileDto | null;
@@ -72,16 +72,22 @@ export const profileSlice = createSlice({
 		activateSuccess(state, action: PayloadAction<ProfileDto>) {
 			state.profile = action.payload;
 		},
+		fetchedPostCreate(state, action: PayloadAction<CreatePostDto>) {
+			state.loading = true;
+		},
+		createPostSuccess(state, action: PayloadAction<PostDto[]>) {
+			state.loading = false;
+			// @ts-ignore
+			state.profile.posts = action.payload;
+		},
 		fetchedPostDelete(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
 		deletePostSuccess(state, action: PayloadAction<PostDto[]>) {
-			debugger
 			state.loading = false;
 			// @ts-ignore
-			state.profile.posts = action.payload.data;
+			state.profile.posts = action.payload;
 		}
-
 	}
 });
 
@@ -102,18 +108,9 @@ export const {
 	fetchedPostDelete,
 	updateSuccess,
 	fetchedUpdate,
-	deletePostSuccess
+	deletePostSuccess,
+	createPostSuccess,
+	fetchedPostCreate
 } = profileSlice.actions;
 
 export const profileReducer = profileSlice.reducer;
-
-
-
-
-
-
-
-
-
-
-

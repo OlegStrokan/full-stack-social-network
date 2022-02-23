@@ -1,4 +1,17 @@
-# v1.9.4 (21.01.2022)
+# v1.9.5 (23.01.2022)
+
+## Features:
+
+Frontend:
+1. Added post component.
+2. Added functional for posts page.
+3. Change types in slices and sagas
+
+## Fixes:
+
+Frontend: Fixed rerender error with posts in profile page
+
+4. # v1.9.4 (23.01.2022)
 
 ## Features:
 
@@ -7,7 +20,7 @@ Frontend:
 
 Backend:
 1. Updated auth/post/profile's return value in backend
-# v1.9.3 (21.01.2022)
+# v1.9.3 (22.01.2022)
 
 ## Features:
 

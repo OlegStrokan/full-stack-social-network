@@ -16,11 +16,12 @@ import {
 	unfollowSuccess
 } from "./profile.slice";
 import { ProfileDto } from "../../../types/profile/profile.dto";
+import { IApiOkResponse } from "../../../api/instance.api";
 
 
 function* getProfile({ payload }: IFetchedProfile) {
 	try {
-		const data: ProfileDto = yield call(profileAPI.getProfile, payload);
+		const { data }: IApiOkResponse<ProfileDto> = yield call(profileAPI.getProfile, payload);
 		yield put(profileSuccess(data));
 	} catch (error: any) {
 		yield put(profileFailed(error));
@@ -29,7 +30,7 @@ function* getProfile({ payload }: IFetchedProfile) {
 
 function* update({ payload }: IFetchedUpdate) {
 	try {
-		const data: ProfileDto = yield call(profileAPI.update, payload);
+		const { data }: IApiOkResponse<ProfileDto> = yield call(profileAPI.update, payload);
 		yield put(statusSuccess(data));
 	} catch (error: any) {
 		yield put(profileFailed(error));
@@ -38,7 +39,7 @@ function* update({ payload }: IFetchedUpdate) {
 
 function* updateStatus({ payload }: IFetchedStatus) {
 	try {
-		const data: ProfileDto = yield call(profileAPI.updateStatus, payload);
+		const { data }: IApiOkResponse<ProfileDto> = yield call(profileAPI.updateStatus, payload);
 		yield put(statusSuccess(data));
 	} catch (error: any) {
 		yield put(profileFailed(error));
@@ -47,7 +48,7 @@ function* updateStatus({ payload }: IFetchedStatus) {
 
 function* updateAvatar({ payload }: IFetchedAvatar) {
 	try {
-		const data: ProfileDto = yield call(profileAPI.updateAvatar, payload);
+		const { data }: IApiOkResponse<ProfileDto> = yield call(profileAPI.updateAvatar, payload);
 		yield put(avatarSuccess(data));
 	} catch (error: any) {
 		yield put(profileFailed(error));
@@ -56,7 +57,7 @@ function* updateAvatar({ payload }: IFetchedAvatar) {
 
 function* follow({ payload }: IFetchedFollow) {
 	try {
-		const data: ProfileDto = yield call(profileAPI.follow, payload);
+		const { data }: IApiOkResponse<ProfileDto> = yield call(profileAPI.follow, payload);
 		yield put(followSuccess(data));
 	} catch (error: any) {
 		yield put(profileFailed(error));
@@ -65,7 +66,7 @@ function* follow({ payload }: IFetchedFollow) {
 
 function* unfollow({ payload }: IFetchedUnfollow) {
 	try {
-		const data: ProfileDto = yield call(profileAPI.unfollow, payload);
+		const { data }: IApiOkResponse<ProfileDto> = yield call(profileAPI.unfollow, payload);
 		yield put(unfollowSuccess(data));
 	} catch (error: any) {
 		yield put(profileFailed(error));
@@ -74,7 +75,7 @@ function* unfollow({ payload }: IFetchedUnfollow) {
 
 function* activate({ payload }: IFetchedActivate) {
 	try {
-		const data: ProfileDto = yield call(profileAPI.activate, payload);
+		const { data }: IApiOkResponse<ProfileDto> = yield call(profileAPI.activate, payload);
 		yield put(activateSuccess(data));
 	} catch (error: any) {
 		yield put(profileFailed(error));
