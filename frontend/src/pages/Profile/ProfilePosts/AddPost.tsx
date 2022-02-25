@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Grid } from "@mui/material";
 // @ts-ignore
 import styles from "../../Login/Login.module.css";
+// @ts-ignore
+import style from "../Profile.module.css";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -30,17 +32,18 @@ export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
 	});
 
 	return (
-		<Grid>
+		<Grid className={style.addPostForm}>
 			<Box
 				component="form"
 				onSubmit={handleSubmit(onSubmit)}
-				className={styles.inputs}
 				noValidate
-				sx={{ mt: 3 }}
+				className={styles.inputs}
 			>
-				<Grid container spacing={2} className={styles.inputs}>
+				<Grid container>
+					<Typography variant="h6">Create new post:</Typography>
 					<Grid item xs={12}>
 						<TextField
+							sx={{ m: '10px 0' }}
 							required
 							fullWidth
 							id="title"
@@ -83,7 +86,7 @@ export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
 						</Typography>
 					</Grid>
 					<Grid>
-						<Button type="submit" fullWidth variant="contained">
+						<Button type="submit" sx={{ p: '10px 30px' }} variant="contained">
 							Submit
 						</Button>
 					</Grid>

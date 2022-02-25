@@ -1,3 +1,16 @@
+# v1.9.7 (25.01.2022)
+
+## Features:
+
+Frontend:
+1. Updated profile info
+2. Changed post's component
+
+## Features:
+
+Frontend:
+Fixed profile image link.
+
 # v1.9.6 (23.01.2022)
 
 ## Features:

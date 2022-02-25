@@ -9,12 +9,12 @@ interface ProfileInfoInterface {
 export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile }) => {
 	return (
 		<Grid>
-			<Typography variant="h6">{profile?.email}</Typography>
-			<Typography variant="h6">About: {profile?.about}</Typography>
-			<Typography variant="h6">Interests: {profile?.interests}</Typography>
-			<Typography variant="h6">Date of birth: {profile?.birth}</Typography>
-			<Typography variant="h6">Job: {profile?.job}</Typography>
-			<Typography variant="h6">Location: {profile?.location}</Typography>
+			<Typography variant="subtitle1">{profile?.email}</Typography>
+			<Typography variant="subtitle1">About: {profile?.about}</Typography>
+			<Typography variant="subtitle1">Interests: {profile?.interests}</Typography>
+			<Typography variant="subtitle1">Date of birth: {profile?.birth}</Typography>
+			<Typography variant="subtitle1">Job: {profile?.job}</Typography>
+			<Typography variant="subtitle1">Location: {profile?.location}</Typography>
 		</Grid>
 	);
 };

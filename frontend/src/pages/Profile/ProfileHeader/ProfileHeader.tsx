@@ -19,7 +19,7 @@ export const ProfileHeader: React.FC<ProfileInfo> = ({ profile }) => {
               account</Typography></Grid>}
 			<img src={profile?.avatar} className={styles.profileBackground} />
 			<Grid className={styles.profileMainInfo}>
-				<img src={profile?.avatar} className={styles.profileAvatar} />
+				<img src={'http://localhost:8000/'+profile?.avatar} className={styles.profileAvatar} />
 				<Grid>
 					<Typography variant="h5">{profile?.fullname}</Typography>
 					<ProfileStatus status={profile?.status} id={profile?.id}/>
