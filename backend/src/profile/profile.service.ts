@@ -100,7 +100,6 @@ export class ProfileService {
   }
 
   async changeAvatar(id: number, avatar: File) {
-    console.log(id, avatar);
     const user = await this.userRepository.findByPk(id);
 
     if (!user) {
@@ -116,7 +115,7 @@ export class ProfileService {
   }
 
   async changeStatus(id: number, userDto: UpdateStatusDto) {
-    const user = await this.userRepository.findByPk(id);
+    const user = await this.userRepository.findOne({ where: { id }, include: { all: true } });
 
     if (!user) {
       throw new HttpException("User not found", HttpStatus.NOT_FOUND);

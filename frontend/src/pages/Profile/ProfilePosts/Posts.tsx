@@ -17,9 +17,9 @@ export const Posts:React.FC<PostsInterface> = ({ posts, userId }) => {
 	return (
 		<Grid>
 			<Typography variant="h5">Posts</Typography>
-			{posts?.map((post) => {
+			{posts?.map((post, index) => {
 				return (
-					<Post post={post}/>
+					<Post post={post} key={index}/>
 				);
 			})}
 		</Grid>

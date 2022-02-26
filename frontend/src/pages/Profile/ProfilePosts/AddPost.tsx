@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Grid } from "@mui/material";
+import React, { ChangeEvent } from "react";
+import { Button, FormControl, FormControlLabel, Grid } from "@mui/material";
 // @ts-ignore
 import styles from "../../Login/Login.module.css";
 // @ts-ignore
@@ -8,17 +8,20 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "../../../utils/validators/createPost";
 import { fetchedCreate } from "../../../redux/ducks/post/post.slice";
+import { fetchedAvatar } from "../../../redux/ducks/profile/profile.slice";
 
 interface AddPostInterface {
 	userId: string | undefined;
 }
 
 export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
+
 	const dispatch = useDispatch();
+
 	const onSubmit = (event: any) => {
 		dispatch(fetchedCreate(event));
 	};
@@ -30,6 +33,8 @@ export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
 	} = useForm({
 		resolver: yupResolver(validationSchema)
 	});
+
+	const [image, setImage] = React.useState<File | null>(null);
 
 	return (
 		<Grid className={style.addPostForm}>
@@ -83,6 +88,52 @@ export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
 						/>
 						<Typography variant="subtitle2" color="error">
 							{errors.userId?.message}
+						</Typography>
+					</Grid>
+					<Grid>
+						<FormControl error={!!errors.file?.message}>
+							<FormControlLabel
+								control={(
+									<Controller
+										{...register('image')}
+										// @ts-ignore
+										inputRef={register()}
+										render={({ field: { onChange } }) => (
+											<Button
+												variant="contained"
+												component="label"
+												sx={{
+													ml: 1, mb: 2, p: 1,
+												}}
+											>
+												<input
+													type="file"
+													hidden
+													value={image?.name}
+													onChange={(e) => {
+														onChange(e.target.files);
+														// @ts-ignore
+														setImage(e.target.files);
+													}}
+													multiple
+												/>
+												Upload image
+											</Button>
+										)}
+										control={control}
+									/>
+								)}
+								label=""
+							/>
+						</FormControl>
+						<Typography variant="subtitle2">
+							{
+								// @ts-ignore
+								image && image[0].name
+							}
+						</Typography>
+						<Typography variant="subtitle2" color="error">
+							{errors.file?.message}
 						</Typography>
 					</Grid>
 					<Grid>

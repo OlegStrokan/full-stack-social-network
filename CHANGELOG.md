@@ -1,3 +1,16 @@
+# v2.0.1 (26.01.2022)
+
+## Features:
+
+Frontend:
+1. Updated add post functional.
+2. Added file control for add post component
+
+## Fixes:
+
+Backend:
+1. Updated return value on change status function
+
 # v2.0.0 (26.01.2022)
 
 ## Features:
