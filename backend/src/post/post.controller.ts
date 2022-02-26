@@ -36,28 +36,15 @@ export class PostController {
     return this.postService.findAll();
   }
 
-  @ApiOperation({
-    summary: "Find post",
-  })
-  @ApiOkResponse({
-    status: 200,
-    type: PostModel,
-  })
+  @ApiOperation({ summary: "Find post" })
+  @ApiOkResponse({ status: 200, type: PostModel })
   @Get("/:id")
-  getPost(
-    @Param("id")
-    id: string
-  ) {
+  getPost(@Param("id") id: string) {
     return this.postService.findOne(+id);
   }
 
-  @ApiOperation({
-    summary: "Update a post",
-  })
-  @ApiOkResponse({
-    status: 200,
-    type: PostModel,
-  })
+  @ApiOperation({ summary: "Update a post" })
+  @ApiOkResponse({ status: 200, type: PostModel })
   @Patch("/:id")
   update(
     @Param("id") id: string,
@@ -67,32 +54,17 @@ export class PostController {
     return this.postService.update(+id, updatePostDto, image);
   }
 
-  @ApiOperation({
-    summary: "Delete a post",
-  })
-  @ApiOkResponse({
-    status: 200,
-  })
+  @ApiOperation({ summary: "Delete a post" })
+  @ApiOkResponse({ status: 200 })
   @Delete("/:id")
-  delete(
-    @Param("id")
-    id: string
-  ) {
+  delete(@Param("id") id: string) {
     return this.postService.delete(+id);
   }
 
-  @ApiOperation({
-    summary: "Like a post",
-  })
-  @ApiOkResponse({
-    status: 200,
-    type: PostModel,
-  })
+  @ApiOperation({ summary: "Like a post" })
+  @ApiOkResponse({ status: 200, type: PostModel })
   @Patch("/like/:id")
-  like(
-    @Param("id")
-    id: string
-  ) {
+  like(@Param("id") id: string) {
     return this.postService.like(+id);
   }
 

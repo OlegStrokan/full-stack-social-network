@@ -1,19 +1,26 @@
-import { HttpException, HttpStatus, Injectable, Post } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { CreatePostDto } from "./dto/create-post.dto";
 import { UpdatePostDto } from "./dto/update-post.dto";
 import { InjectModel } from "@nestjs/sequelize";
 import { PostModel } from "./post.model";
 import { FileService } from "../file/file.service";
+import { PhotoModel } from "../user/models/photo.model";
 
 @Injectable()
 export class PostService {
   constructor(
     @InjectModel(PostModel)
     private postRepository: typeof PostModel,
+    @InjectModel(PhotoModel)
+    private photoRepository: typeof PhotoModel,
     private fileService: FileService
   ) {}
 
   async create(createPostDto: CreatePostDto, image: File) {
+    const user = this.postRepository.findOne({ where: { userId: createPostDto.userId } });
+    if (!user) {
+      throw new HttpException("User with this id not found", HttpStatus.NOT_FOUND);
+    }
     if (!image) {
       const post = await this.postRepository.create({
         ...createPostDto,
@@ -31,6 +38,11 @@ export class PostService {
       image: fileName,
     });
     await post.save();
+    await this.photoRepository.create({
+      userId: createPostDto.userId,
+      url: fileName,
+    });
+
     const posts = await this.postRepository.findAll();
     return {
       data: posts,

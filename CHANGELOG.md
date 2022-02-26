@@ -1,3 +1,10 @@
+# v1.9.9 (26.01.2022)
+
+## Features:
+
+Backend:
+1.  Added add photo to the gallery when adding a post functional.
+
 # v1.9.8 (26.01.2022)
 
 ## Features:
