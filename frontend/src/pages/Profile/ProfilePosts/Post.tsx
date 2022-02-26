@@ -18,7 +18,7 @@ export const Post:React.FC<PostInterface> = ({ post }) => {
 			<Typography>{post?.title}</Typography>
 			<Typography>{post?.content}</Typography>
 			<Typography>Likes count: {post?.likesCount}</Typography>
-			<img src={'http://localhost:8000/'+post?.image} />
+			<img width={400} src={'http://localhost:8000/'+post?.image} />
 			<Button onClick={() => 	dispatch(fetchedDelete(post?.id as number))} variant="contained">Delete</Button>
 		</Grid>
 	);

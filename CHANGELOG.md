@@ -1,3 +1,11 @@
+# v2.0.0 (26.01.2022)
+
+## Features:
+
+Frontend:
+1. Added profile gallery component
+2. Added route and logic system for displayed profile gallery
+
 # v1.9.9 (26.01.2022)
 
 ## Features:
