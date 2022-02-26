@@ -30,6 +30,10 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 		dispatch(fetchedProfile(+url.id!));
 	}, [url.id, isAuth]);
 
+	if (!profile) {
+		return <div>...loading</div>
+	}
+
 
 	return (
 		<Card className={styles.root}>

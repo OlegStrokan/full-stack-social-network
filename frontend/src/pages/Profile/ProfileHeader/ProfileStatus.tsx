@@ -39,8 +39,7 @@ export const ProfileStatus: React.FC<ProfileInfo> = ({ status, id }) => {
 					<Grid className={styles.status}>
 						<Typography variant="subtitle2">{status}</Typography>
 					</Grid>
-					<Button className={styles.button} variant="contained" onClick={() => setEditMode(true)}>Change
-						status</Button>
+					<Button className={styles.button} variant="contained" onClick={() => setEditMode(true)}>Change status</Button>
 				</Grid>
 				:
 				<Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>

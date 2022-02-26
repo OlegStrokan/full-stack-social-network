@@ -1,3 +1,11 @@
+# v1.9.8 (26.01.2022)
+
+## Features:
+
+Frontend:
+1. Added change avatar functional for frontend
+2. Changed payload in profile slice
+
 # v1.9.7 (25.01.2022)
 
 ## Features:

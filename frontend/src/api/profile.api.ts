@@ -17,6 +17,7 @@ export const profileAPI = {
         return instance.patch<IApiOkResponse<ProfileDto>>(`/profile/${dto.id}/status`, {status: dto.status}).then((response) => response.data)
     },
     updateAvatar(dto: UpdateAvatarDto): Promise<IApiOkResponse<ProfileDto>> {
+        debugger
         const data = new FormData();
         data.append('avatar', dto.avatar);
         return instance.patch<IApiOkResponse<ProfileDto>>(`/profile/${dto.id}/avatar`, data ).then((response) => response.data)

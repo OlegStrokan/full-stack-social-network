@@ -100,6 +100,7 @@ export class ProfileService {
   }
 
   async changeAvatar(id: number, avatar: File) {
+    console.log(id, avatar);
     const user = await this.userRepository.findByPk(id);
 
     if (!user) {

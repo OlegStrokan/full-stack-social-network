@@ -6,6 +6,7 @@ import { UpdateProfileDto } from "../../../types/profile/updateProfile.dto";
 import { PostDto } from "../../../types/post/post.dto";
 import { IApiOkResponse } from "../../../api/instance.api";
 import { CreatePostDto } from "../../../types/post/createPost.dto";
+import { UpdateAvatarDto } from "../../../types/profile/updateAvatar.dto";
 
 interface ProfileState {
 	profile: ProfileDto | null;
@@ -48,7 +49,7 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			state.profile = action.payload;
 		},
-		fetchedAvatar(state, action: PayloadAction<number>) {
+		fetchedAvatar(state, action: PayloadAction<UpdateAvatarDto>) {
 			state.loading = true;
 		},
 		avatarSuccess(state, action: PayloadAction<ProfileDto>) {
