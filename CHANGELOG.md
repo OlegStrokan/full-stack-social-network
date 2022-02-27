@@ -1,3 +1,10 @@
+# v2.0.2 (27.01.2022)
+
+## Features:
+
+Frontend:
+1. Updated profile gallery component
+
 # v2.0.1 (26.01.2022)
 
 ## Features:

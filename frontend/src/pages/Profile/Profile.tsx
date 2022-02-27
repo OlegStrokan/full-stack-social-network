@@ -3,7 +3,7 @@ import { ProfilePosts } from "./ProfilePosts/ProfilePosts";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { fetchedProfile } from "../../redux/ducks/profile/profile.slice";
-import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {  useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Card, Grid } from "@mui/material";
 // @ts-ignore
 import styles from "./Profile.module.css";
