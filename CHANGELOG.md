@@ -1,8 +1,15 @@
-# v2.1.0 (28.01.2022)
+# v2.1.1 (28.01.2022)
 
 ## Features:
 
 Backend:
+1. Added like.model with relation
+
+# v2.1.0 (28.01.2022)
+
+## Features:
+
+Frontend:
 1. Added working update photo functional
 2. Added post edit component
 3. Added update post validator
