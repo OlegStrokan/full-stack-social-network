@@ -10,12 +10,9 @@ import { PhotoModel } from "../user/models/photo.model";
 @Injectable()
 export class ProfileService {
   constructor(
-    @InjectModel(UserModel)
-    private userRepository: typeof UserModel,
-    @InjectModel(FollowModel)
-    private followRepository: typeof FollowModel,
-    @InjectModel(PhotoModel)
-    private photoRepository: typeof PhotoModel,
+    @InjectModel(UserModel) private userRepository: typeof UserModel,
+    @InjectModel(FollowModel) private followRepository: typeof FollowModel,
+    @InjectModel(PhotoModel) private photoRepository: typeof PhotoModel,
     private fileService: FileService
   ) {}
 

@@ -1,10 +1,13 @@
 import { Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { UserModel } from "./user.model";
+import { PostModel } from "src/post/post.model";
+import { Post } from "@nestjs/common";
 
 interface PhotoCreationAttr {
   userId: number;
   url: string;
+  postId: number;
 }
 
 @Table({ tableName: "photos" })
@@ -21,6 +24,11 @@ export class PhotoModel extends Model<PhotoModel, PhotoCreationAttr> {
   @ApiProperty({ example: "5", description: "Owner this photo/video" })
   @Column({ type: DataType.INTEGER })
   userId: number;
+
+  @ForeignKey(() => PostModel)
+  @ApiProperty({ example: "12", description: "In which post this image use" })
+  @Column({ type: DataType.INTEGER })
+  postId: number;
 
   @ApiProperty({
     example: "ewoh90823-2f23f4c-24f4ew-18hdf",

@@ -41,6 +41,7 @@ export class PostService {
     await this.photoRepository.create({
       userId: createPostDto.userId,
       url: fileName,
+      postId: post.id,
     });
 
     const posts = await this.postRepository.findAll();
@@ -93,9 +94,17 @@ export class PostService {
   }
 
   async delete(id: number) {
+    console.log(id);
+    const photo = await this.photoRepository.findOne({ where: { postId: id } });
     await this.postRepository.destroy({
       where: {
         id,
+      },
+    });
+
+    await this.photoRepository.destroy({
+      where: {
+        postId: photo.postId,
       },
     });
 

@@ -1,4 +1,12 @@
-# v2.0.2 (27.01.2022)
+# v2.0.3 (28.01.2022)
+
+## Features:
+
+Backend:
+1. Changed photo model
+2. Added image deletion when deleting a post functional
+
+3. # v2.0.2 (27.01.2022)
 
 ## Features:
 
