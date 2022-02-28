@@ -62,7 +62,7 @@
     z-index: 2;
     transform: translate(-50%, 0%);
     width: 90%;
-    max-height: 85%;
+    min-height: 85%;
     overflow: scroll;
 }
 

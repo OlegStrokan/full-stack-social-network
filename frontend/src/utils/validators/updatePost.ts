@@ -9,5 +9,6 @@ export const validationSchema = Yup.object().shape({
 		.required("Content is required")
 		.min(50, "Content must be at least 50 characters")
 		.max(1000, "Content must not exceed 1000 characters"),
-	userId: Yup.string(),
+	postId: Yup.string(),
+	likesCount: Yup.number(),
 });

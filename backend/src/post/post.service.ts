@@ -94,7 +94,6 @@ export class PostService {
   }
 
   async delete(id: number) {
-    console.log(id);
     const photo = await this.photoRepository.findOne({ where: { postId: id } });
     await this.postRepository.destroy({
       where: {

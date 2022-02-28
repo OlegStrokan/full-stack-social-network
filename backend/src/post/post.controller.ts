@@ -45,12 +45,14 @@ export class PostController {
 
   @ApiOperation({ summary: "Update a post" })
   @ApiOkResponse({ status: 200, type: PostModel })
+  @UseInterceptors(FileInterceptor("image"))
   @Patch("/:id")
   update(
     @Param("id") id: string,
     @Body() updatePostDto: UpdatePostDto,
     @UploadedFile() image
   ) {
+    console.log(id, updatePostDto, image);
     return this.postService.update(+id, updatePostDto, image);
   }
 

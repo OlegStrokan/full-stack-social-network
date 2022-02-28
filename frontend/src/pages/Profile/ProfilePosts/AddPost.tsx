@@ -12,7 +12,6 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "../../../utils/validators/createPost";
 import { fetchedCreate } from "../../../redux/ducks/post/post.slice";
-import { fetchedAvatar } from "../../../redux/ducks/profile/profile.slice";
 
 interface AddPostInterface {
 	userId: string | undefined;

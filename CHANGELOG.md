@@ -1,3 +1,12 @@
+# v2.1.0 (28.01.2022)
+
+## Features:
+
+Backend:
+1. Added working update photo functional
+2. Added post edit component
+3. Added update post validator
+
 # v2.0.3 (28.01.2022)
 
 ## Features:

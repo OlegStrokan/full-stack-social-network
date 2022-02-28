@@ -26,7 +26,7 @@ export const postAPI = {
         data.append('content', dto.content)
         data.append('likesCount', String(dto.likesCount))
         data.append('image', dto.image[0])
-        return instance.patch<IApiOkResponse<PostDto[]>>(`/posts${dto.id}`, data).then((response) => response.data)
+        return instance.patch<IApiOkResponse<PostDto[]>>(`/posts/${dto.postId}`, data).then((response) => response.data)
     },
     deletePost(id: number): Promise<IApiOkResponse<PostDto[]>> {
         return instance.delete<IApiOkResponse<PostDto[]>>(`posts/${id}`).then((response) => response.data)
