@@ -1,12 +1,18 @@
-# v2.1.2 (28.01.2022)
+# v2.1.3 (1.03.2022)
+
+## Features:
+
+Frontend:
+1. Updated profile page (posts, entities components)
+
+# v2.1.2 (1.03.2022)
 
 ## Features:
 
 Backend:
 1. Added role guard, role decorator
 
-
-2. # v2.1.1 (28.01.2022)
+2. # v2.1.1 (1.03.2022)
 
 ## Features:
 
@@ -16,7 +22,7 @@ Backend:
 Frontend:
 1. Change post's redux in frontend
 
-# v2.1.0 (28.01.2022)
+# v2.1.0 (28.02.2022)
 
 ## Features:
 
@@ -25,7 +31,7 @@ Frontend:
 2. Added post edit component
 3. Added update post validator
 
-# v2.0.3 (28.01.2022)
+# v2.0.3 (28.02.2022)
 
 ## Features:
 
@@ -33,14 +39,14 @@ Backend:
 1. Changed photo model
 2. Added image deletion when deleting a post functional
 
-3. # v2.0.2 (27.01.2022)
+3. # v2.0.2 (27.02.2022)
 
 ## Features:
 
 Frontend:
 1. Updated profile gallery component
 
-# v2.0.1 (26.01.2022)
+# v2.0.1 (26.02.2022)
 
 ## Features:
 
@@ -53,7 +59,7 @@ Frontend:
 Backend:
 1. Updated return value on change status function
 
-# v2.0.0 (26.01.2022)
+# v2.0.0 (26.02.2022)
 
 ## Features:
 
@@ -61,14 +67,14 @@ Frontend:
 1. Added profile gallery component
 2. Added route and logic system for displayed profile gallery
 
-# v1.9.9 (26.01.2022)
+# v1.9.9 (26.02.2022)
 
 ## Features:
 
 Backend:
 1.  Added add photo to the gallery when adding a post functional.
 
-# v1.9.8 (26.01.2022)
+# v1.9.8 (26.02.2022)
 
 ## Features:
 
@@ -76,7 +82,7 @@ Frontend:
 1. Added change avatar functional for frontend
 2. Changed payload in profile slice
 
-# v1.9.7 (25.01.2022)
+# v1.9.7 (25.02.2022)
 
 ## Features:
 
@@ -89,7 +95,7 @@ Frontend:
 Frontend:
 Fixed profile image link.
 
-# v1.9.6 (23.01.2022)
+# v1.9.6 (23.02.2022)
 
 ## Features:
 
@@ -98,7 +104,7 @@ Frontend:
 2. Changed profileInfo component
 3. Updated dto description
 
-# v1.9.5 (23.01.2022)
+# v1.9.5 (23.02.2022)
 
 ## Features:
 
@@ -111,7 +117,7 @@ Frontend:
 
 Frontend: Fixed rerender error with posts in profile page
 
-4. # v1.9.4 (23.01.2022)
+4. # v1.9.4 (23.02.2022)
 
 ## Features:
 
@@ -120,7 +126,7 @@ Frontend:
 
 Backend:
 1. Updated auth/post/profile's return value in backend
-# v1.9.3 (22.01.2022)
+# v1.9.3 (22.02.2022)
 
 ## Features:
 
@@ -128,7 +134,7 @@ Frontend:
 1. Added delete post functional to UI
 2. Refactor in profile's folder
 
-# v1.9.2 (21.01.2022)
+# v1.9.2 (21.02.2022)
 
 ## Features:
 
@@ -136,7 +142,7 @@ Frontend:
 1. Added addPost component with functional
 2. Added createPost dto and validation for post
 
-# v1.9.1 (21.01.2022)
+# v1.9.1 (21.02.2022)
 
 ## Features:
 
@@ -148,7 +154,7 @@ Frontend:
 Frontend:
 1. Fixed create/update post api method
 
-# v1.9.0 (21.01.2022)
+# v1.9.0 (21.02.2022)
 
 ## Features:
 
@@ -156,7 +162,7 @@ Backend:
 1. Added photo model for user
 2. Added add image method for profile
 
-# v1.8.2 (20.01.2022)
+# v1.8.2 (20.02.2022)
 
 ## Features:
 
@@ -170,7 +176,7 @@ Frontend:
 Backend
 1. Fixed create post method
 
-# v1.8.1 (20.01.2022)
+# v1.8.1 (20.02.2022)
 
 ## Features:
 
@@ -179,7 +185,7 @@ Frontend:
 2. Added correct update status functional
 3. Added status validator
 
-# v1.8.0 (20.01.2022)
+# v1.8.0 (20.02.2022)
 
 ## Features:
 
@@ -188,7 +194,7 @@ Frontend:
 2. Added update status for profile page
 3. Changed grid in profile page
 
-# v1.7.3 (19.01.2022)
+# v1.7.3 (19.02.2022)
 
 ## Features:
 
@@ -196,28 +202,28 @@ Backend:
 1. Added update profile for frontend
 
 
-# v1.7.2 (19.01.2022)
+# v1.7.2 (19.02.2022)
 
 ## Features:
 
 Backend:
 1. Updated update profile method
 
-# v1.7.1 (19.01.2022)
+# v1.7.1 (19.02.2022)
 
 ## Features:
 
 Backend:
 1. Updated user model
 
-# v1.7.0 (18.01.2022)
+# v1.7.0 (18.02.2022)
 
 ## Features:
 
 Backend:
 1. Added update profile function
 
-# v1.6.9 (18.01.2022)
+# v1.6.9 (18.02.2022)
 
 ## Features:
 
@@ -225,14 +231,14 @@ Frontend:
 1. Update user's profile
 1. Added new profile's components
 
-# v1.6.8 (18.01.2022)
+# v1.6.8 (18.02.2022)
 
 ## Features:
 
 Frontend:
 1. Added logout functional
 
-# v1.6.7 (18.01.2022)
+# v1.6.7 (18.02.2022)
 
 ## Features:
 
@@ -242,28 +248,28 @@ Frontend:
 Backend:
 1. Added default avatar in create user function
 
-# v1.6.6 (18.01.2022)
+# v1.6.6 (18.02.2022)
 
 ## Features:
 
 Frontend:
 1. Added header component, location to header
 
-# v1.6.5 (17.01.2022)
+# v1.6.5 (17.02.2022)
 
 ## Features:
 
 Frontend:
 1. Added initialize slice and saga for correctly initial render
 
-# v1.6.4 (17.01.2022)
+# v1.6.4 (17.02.2022)
 
 ## Features:
 
 Frontend:
 1. Updated route and redirect functional
 
-# v1.6.3 (17.01.2022)
+# v1.6.3 (17.02.2022)
 
 ## Fixes:
 
@@ -271,7 +277,7 @@ Frontend:
 1. Fixed profile's, role's, user's functional
 2. Deleted unnecessary action types
 
-# v1.6.2 (17.01.2022)
+# v1.6.2 (17.02.2022)
 
 ## Fixes:
 
@@ -279,7 +285,7 @@ Frontend:
 1. Fixed post's functional
 2. Deleted unnecessary action types
 
-# v1.6.1 (17.01.2022)
+# v1.6.1 (17.02.2022)
 
 ## Fixes:
 
@@ -287,7 +293,7 @@ Frontend:
 1. Fixed auth functional
 2. Deleted unnecessary action types
 
-# v1.6.0 (16.01.2022)
+# v1.6.0 (16.02.2022)
 
 ## Features:
 
@@ -303,7 +309,7 @@ Frontend:
 Backend:
 1. Reformat code with new prettier
 
-# v1.5.1 (16.01.2022)
+# v1.5.1 (16.02.2022)
 
 ## Features:
 
@@ -316,7 +322,7 @@ Backend:
 Backend:
 1. Changed return value in role service
 
-# v1.5.0 (16.01.2022)
+# v1.5.0 (16.02.2022)
 
 ## Features:
 
@@ -325,7 +331,7 @@ Frontend:
 2. Added roles page
 3. Added getRoles api method
 
-# v1.4.1 (16.01.2022)
+# v1.4.1 (16.02.2022)
 
 ## Features:
 
@@ -335,21 +341,21 @@ Frontend:
 ## Fixed:
 1. Fixed errors with user's redux
 
-# v1.4.0 (16.01.2022)
+# v1.4.0 (16.02.2022)
 
 ## Features:
 
 Frontend:
 1. Added user's saga. Changed payload in user's slice
 
-# v1.3.9 (15.01.2022)
+# v1.3.9 (15.02.2022)
 
 ## Features:
 
 Frontend:
 1. Added user's slice
 
-# v1.3.8 (15.01.2022)
+# v1.3.8 (15.02.2022)
 
 ## Features:
 
@@ -358,7 +364,7 @@ Frontend:
 2. Added new interfaces for users
 3. Changed return value in user service
 
-# v1.3.7 (15.01.2022)
+# v1.3.7 (15.02.2022)
 
 ## Features:
 
@@ -366,14 +372,14 @@ Frontend:
 1. Added post's sagas
 2. Changed post's action types
 
-# v1.3.6 (15.01.2022)
+# v1.3.6 (15.02.2022)
 
 ## Features:
 
 Backend:
 1. Changed return value in post services.
 
-# v1.3.5 (15.01.2022)
+# v1.3.5 (15.02.2022)
 
 ## Features:
 
@@ -381,7 +387,7 @@ Frontend:
 1. Added post's slice
 2. Changed return value in post api
 
-# v1.3.4 (14.01.2022)
+# v1.3.4 (14.02.2022)
 
 ## Features:
 
@@ -389,7 +395,7 @@ Frontend:
 1. Added post's action types
 2. Changed payload for profile api
 
-# v1.3.3 (13.01.2022)
+# v1.3.3 (13.02.2022)
 
 ## Features:
 
@@ -401,7 +407,7 @@ Frontend:
 Backend:
 1. Changed return value in profile service
 
-# v1.3.2 (13.01.2022)
+# v1.3.2 (13.02.2022)
 
 ## Features:
 
@@ -412,14 +418,14 @@ Frontend:
 Backend:
 1. Changed return value in profile service
 
-# v1.3.1 (13.01.2022)
+# v1.3.1 (13.02.2022)
 
 ## Features:
 
 Frontend:
 1. Added all reducers and reducers types for profile
 
-# v1.3.0 (12.01.2022)
+# v1.3.0 (12.02.2022)
 
 ## Features:
 
@@ -428,7 +434,7 @@ Frontend:
 1. Added redux for profile
 2. Changed payload types for profile api
 
-# v1.2.2 (11.01.2022)
+# v1.2.2 (11.02.2022)
 
 ## Features:
 
@@ -436,7 +442,7 @@ Frontend:
 
 1. Added registration functional
 
-# v1.2.1 (11.01.2022)
+# v1.2.1 (11.02.2022)
 
 ## Features:
 
@@ -445,7 +451,7 @@ Frontend:
 1. Changed action types.
 2. Working login functional (frontend)
 
-# v1.2.0 (11.01.2022)
+# v1.2.0 (11.02.2022)
 
 ## Features:
 
@@ -455,7 +461,7 @@ Frontend:
 2. Added auth interfaces.
 3. Changed action types
 
-# v1.1.0 (11.01.2022)
+# v1.1.0 (11.02.2022)
 
 ## Features:
 
@@ -467,7 +473,7 @@ Frontend:
 Backend: 
 1. Minor fix in user controller
 
-# v1.0.2 (11.01.2022)
+# v1.0.2 (11.02.2022)
 
 ## Features:
 
@@ -477,7 +483,7 @@ Frontend:
 Backend:
 1. Added unban functional for users
 
-# v1.0.1 (10.01.2022)
+# v1.0.1 (10.02.2022)
 
 ## Features:
 
@@ -485,7 +491,7 @@ Frontend:
 1. Added role's api
 2. Added interfaces for role
 
-# v1.0.0 (10.01.2022)
+# v1.0.0 (10.02.2022)
 
 ## Features:
 
@@ -493,7 +499,7 @@ Frontend:
 1. Added profile's api
 2. Added interfaces for profile
 
-# v0.11.1 (10.01.2022)
+# v0.11.1 (10.02.2022)
 
 ## Features:
 
@@ -504,7 +510,7 @@ Frontend:
 Backend:
 1. Minor fix in posts and profile controllers
 
-# v0.11.0 (8.01.2022)
+# v0.11.0 (8.02.2022)
 
 ## Features:
 
@@ -512,7 +518,7 @@ Backend:
 1. Added swagger decorator for all endpoints
 2. Added swagger configuration
 
-# v0.10.1 (8.01.2022)
+# v0.10.1 (8.02.2022)
 
 ## Features:
 
@@ -520,7 +526,7 @@ Frontend:
 1. Added registration/login api.
 2. Added api instance
 
-# v0.10.0 (8.01.2022)
+# v0.10.0 (8.02.2022)
 
 ## Features:
 
@@ -528,7 +534,7 @@ Frontend:
 1. Added profile and post page.
 2. Added all dependencies
 
-# v0.9.5 (8.01.2022)
+# v0.9.5 (8.02.2022)
 
 ## Features:
 
@@ -536,28 +542,28 @@ Frontend:
 1. Added signIn/signUp forms
 2. Added validators
 
-# v0.9.4 (7.01.2022)
+# v0.9.4 (7.02.2022)
 
 ## Features:
 
 Frontend:
 1. Added router for frontend
 
-# v0.9.3 (6.01.2022)
+# v0.9.3 (6.02.2022)
 
 ## Features:
 
 Backend:
 1. Added unfollow functional
 
-# v0.9.2 (6.01.2022)
+# v0.9.2 (6.02.2022)
 
 ## Features:
 
 Backend:
 1. Added exceptions for follow functional
 
-# v0.9.1 (6.01.2022)
+# v0.9.1 (6.02.2022)
 
 ## Fixes:
 
@@ -565,7 +571,7 @@ Backend:
 1. Deleted followers from user model
 2. Fixed follow functional
 
-# v0.9.0 (2.01.2022)
+# v0.9.0 (2.02.2022)
 
 ## Fixes:
 
@@ -573,14 +579,14 @@ Backend:
 1. Resolved all issues with post model
 2. Fixed some issues
 
-# v0.8.0 (1.01.2022)
+# v0.8.0 (1.02.2022)
 
 ## Features:
 
 Backend:
 1. Added user's ban functional
 
-# v0.7.9 (1.01.2022)
+# v0.7.9 (1.02.2022)
 
 ## Features:
 
@@ -591,14 +597,14 @@ Backend:
 
 1. Fixed user model (about field)
 
-# v0.7.8 (1.01.2022)
+# v0.7.8 (1.02.2022)
 
 ## Features:
 
 Backend:
 1. Resolve issues with profile image
 
-2. # v0.7.7 (1.01.2022)
+2. # v0.7.7 (1.02.2022)
 
 ## Features:
 

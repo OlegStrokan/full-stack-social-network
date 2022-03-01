@@ -101,9 +101,6 @@ export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
 											<Button
 												variant="contained"
 												component="label"
-												sx={{
-													ml: 1, mb: 2, p: 1,
-												}}
 											>
 												<input
 													type="file"
@@ -136,7 +133,7 @@ export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
 						</Typography>
 					</Grid>
 					<Grid>
-						<Button type="submit" sx={{ p: '10px 30px' }} variant="contained">
+						<Button type="submit" variant="contained">
 							Submit
 						</Button>
 					</Grid>

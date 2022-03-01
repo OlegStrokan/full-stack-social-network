@@ -16,7 +16,7 @@ interface PostsInterface {
 export const Posts:React.FC<PostsInterface> = ({ posts, userId }) => {
 	return (
 		<Grid>
-			<Typography variant="h5">Posts</Typography>
+			<Typography variant="h5" sx={{ mt: 1, textAlign: 'center' }}>Posts</Typography>
 			{posts?.map((post, index) => {
 				return (
 					<Post userId={userId} post={post} key={index}/>

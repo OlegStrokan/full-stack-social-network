@@ -40,7 +40,7 @@ export const Post: React.FC<PostInterface> = ({ post, userId }) => {
 	const [image, setImage] = React.useState<File | null>(null);
 
 	return (
-		<Grid className={styles.profilePost}>
+		<Grid>
 			{editMode ?
 				<Box
 					component="form"
@@ -161,23 +161,25 @@ export const Post: React.FC<PostInterface> = ({ post, userId }) => {
 					<Button onClick={() => setEditMode(false)} variant="contained">Back</Button>
 				</Box>
 				:
-				<>
-					<Typography>{post.title}</Typography>
-					<Typography>{post.content}</Typography>
-					<img width={400} src={"http://localhost:8000/" + post.image} />
-					<Button onClick={() => setEditMode(true)} variant="contained">Edit</Button>
-					<Button onClick={() => dispatch(fetchedDelete(post.id))} variant="contained">Delete</Button>
-					{post.isLiked ?
-						<IconButton color="secondary" aria-label="add an alarm"
-									onClick={() => dispatch(fetchedLike(post.id))}>
-							<FavoriteIcon />{post.likesCount}
-						</IconButton>
-						: <IconButton color="secondary" aria-label="add an alarm"
-									  onClick={() => dispatch(fetchedUnlike(post.id))}>
-							<FavoriteBorderIcon />{post.likesCount}
-						</IconButton>
-					}
-				</>
+				<Grid className={styles.profilePost}>
+					<Typography variant="h6">{post.title}</Typography>
+					<Typography variant="subtitle2" sx={{ p: 2 }}>{post.content}</Typography>
+					<img className={styles.postImage} src={"http://localhost:8000/" + post.image} />
+					<Grid>
+					<Button onClick={() => setEditMode(true)} sx={{ m: 2 }} variant="contained">Edit</Button>
+						{post.isLiked ?
+							<IconButton color="secondary" aria-label="add an alarm"
+										onClick={() => dispatch(fetchedLike(post.id))}>
+								<FavoriteIcon />{post.likesCount}
+							</IconButton>
+							: <IconButton color="secondary" aria-label="add an alarm"
+										  onClick={() => dispatch(fetchedUnlike(post.id))}>
+								<FavoriteBorderIcon />{post.likesCount}
+							</IconButton>
+						}
+					<Button onClick={() => dispatch(fetchedDelete(post.id))} sx={{ m: 2 }}  variant="contained">Delete</Button>
+					</Grid>
+				</Grid>
 			}
 		</Grid>
 	);
