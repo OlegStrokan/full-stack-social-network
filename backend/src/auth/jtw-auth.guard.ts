@@ -12,7 +12,6 @@ import { JwtService } from "@nestjs/jwt";
 export class JwtAuthGuard implements CanActivate {
   constructor(private jwtService: JwtService) {}
 
-  // Если функция canActivate возвращает true, значит доступ к эндпоинту разрешен
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     const req = context.switchToHttp().getRequest();
     try {

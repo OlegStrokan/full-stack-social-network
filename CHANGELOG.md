@@ -1,4 +1,12 @@
-# v2.1.1 (28.01.2022)
+# v2.1.2 (28.01.2022)
+
+## Features:
+
+Backend:
+1. Added role guard, role decorator
+
+
+2. # v2.1.1 (28.01.2022)
 
 ## Features:
 
