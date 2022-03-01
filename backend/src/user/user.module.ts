@@ -11,7 +11,7 @@ import { RoleModel } from "../role/models/role.model";
 import { RoleModule } from "../role/role.module";
 import { FollowModel } from "./models/follow.model";
 import { FileModule } from "../file/file.module";
-import { PostModel } from "../post/post.model";
+import { PostModel } from "../post/models/post.model";
 import { PhotoModel } from "./models/photo.model";
 
 @Module({

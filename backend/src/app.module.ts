@@ -15,7 +15,7 @@ import { ProfileModule } from "./profile/profile.module";
 import { FollowModel } from "./user/models/follow.model";
 import { FileModule } from "./file/file.module";
 import { PostModule } from "./post/post.module";
-import { PostModel } from "./post/post.model";
+import { PostModel } from "./post/models/post.model";
 import { PhotoModel } from "./user/models/photo.model";
 
 @Module({

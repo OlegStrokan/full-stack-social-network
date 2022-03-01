@@ -64,16 +64,18 @@ export const postSlice = createSlice({
 		fetchedLike(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
-		likeSuccess(state, action: PayloadAction<PostDto[]>) {
+		likeSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
-			state.posts = action.payload;
+			// @ts-ignore
+			state.posts.find((post) => post.id === action.payload.isLiked).isLiked = action.payload.isLiked;
 		},
 		fetchedUnlike(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
-		unlikeSuccess(state, action: PayloadAction<PostDto[]>) {
+		unlikeSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
-			state.posts = action.payload;
+			// @ts-ignore
+			state.posts.find((post) => post.id === action.payload.isLiked).isLiked = action.payload.isLiked;
 		}
 	}
 });

@@ -20,10 +20,4 @@ export class UpdatePostDto {
     description: "Post's image/images",
   })
   readonly image: string | string[];
-
-  @ApiProperty({
-    example: "32",
-    description: "Post's likes count",
-  })
-  readonly likesCount: number;
 }

@@ -13,7 +13,7 @@ import { PostService } from "./post.service";
 import { CreatePostDto } from "./dto/create-post.dto";
 import { UpdatePostDto } from "./dto/update-post.dto";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { PostModel } from "./post.model";
+import { PostModel } from "./models/post.model";
 import { FileInterceptor } from "@nestjs/platform-express";
 
 @ApiTags("Posts functional")

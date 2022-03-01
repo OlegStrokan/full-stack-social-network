@@ -4,5 +4,6 @@ export interface PostDto {
     content: string;
     image: string;
     likesCount: number;
+    isLiked: boolean;
     userId: number;
 }

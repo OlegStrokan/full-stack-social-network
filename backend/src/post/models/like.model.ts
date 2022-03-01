@@ -1,6 +1,7 @@
 import { Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { PostModel } from "./post.model";
+import { UserModel } from "../../user/models/user.model";
 
 interface LikeCreationAttr {
   userId: number;
@@ -19,10 +20,12 @@ export class LikeModel extends Model<LikeModel, LikeCreationAttr> {
   id: number;
 
   @ApiProperty({ example: "1", description: "User's id" })
-  @ForeignKey(() => PostModel)
+  @ForeignKey(() => UserModel)
+  @Column({ type: DataType.INTEGER })
   userId: number;
 
   @ApiProperty({ example: "1", description: "Post's id" })
   @ForeignKey(() => PostModel)
+  @Column({ type: DataType.INTEGER })
   postId: number;
 }

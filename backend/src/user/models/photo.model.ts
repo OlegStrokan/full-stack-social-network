@@ -1,7 +1,7 @@
 import { Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { UserModel } from "./user.model";
-import { PostModel } from "src/post/post.model";
+import { PostModel } from "src/post/models/post.model";
 import { Post } from "@nestjs/common";
 
 interface PhotoCreationAttr {

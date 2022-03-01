@@ -2,9 +2,11 @@ import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { CreatePostDto } from "./dto/create-post.dto";
 import { UpdatePostDto } from "./dto/update-post.dto";
 import { InjectModel } from "@nestjs/sequelize";
-import { PostModel } from "./post.model";
+import { PostModel } from "./models/post.model";
 import { FileService } from "../file/file.service";
 import { PhotoModel } from "../user/models/photo.model";
+import { UserModel } from "../user/models/user.model";
+import { LikeModel } from "./models/like.model";
 
 @Injectable()
 export class PostService {
@@ -13,11 +15,15 @@ export class PostService {
     private postRepository: typeof PostModel,
     @InjectModel(PhotoModel)
     private photoRepository: typeof PhotoModel,
+    @InjectModel(LikeModel)
+    private likeRepository: typeof LikeModel,
     private fileService: FileService
   ) {}
 
   async create(createPostDto: CreatePostDto, image: File) {
-    const user = this.postRepository.findOne({ where: { userId: createPostDto.userId } });
+    const user = this.postRepository.findOne({
+      where: { userId: createPostDto.userId },
+    });
     if (!user) {
       throw new HttpException("User with this id not found", HttpStatus.NOT_FOUND);
     }
@@ -116,27 +122,53 @@ export class PostService {
 
   async like(id: number) {
     const post = await this.postRepository.findByPk(id);
-    post.likesCount++;
+    const isAlreadyLiked = await this.likeRepository.findOne({
+      where: { userId: post.userId, postId: post.id },
+    });
 
+    if (isAlreadyLiked) {
+      throw new HttpException("You already liked this post", HttpStatus.BAD_REQUEST);
+    }
+
+    const like = await this.likeRepository.create({
+      userId: post.userId,
+      postId: post.id,
+    });
+
+    await like.save();
+
+    post.likesCount++;
+    post.isLiked = true;
     await post.save();
 
-    const posts = await this.postRepository.findAll();
-
     return {
-      data: posts,
+      data: post,
       statusCode: HttpStatus.OK,
     };
   }
 
   async unlike(id: number) {
     const post = await this.postRepository.findByPk(id);
+    console.log(post);
+    const isAlreadyLiked = await this.likeRepository.findOne({
+      where: { userId: post.userId, postId: post.id },
+    });
+
+    console.log(isAlreadyLiked);
+
+    if (!isAlreadyLiked) {
+      throw new HttpException("You already liked this post", HttpStatus.BAD_REQUEST);
+    }
+
+    await isAlreadyLiked.destroy();
+
     post.likesCount--;
+    post.isLiked = false;
 
     await post.save();
 
-    const posts = await this.postRepository.findAll();
     return {
-      data: posts,
+      data: post,
       statusCode: HttpStatus.OK,
     };
   }

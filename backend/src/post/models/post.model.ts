@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
-import { UserModel } from "../user/models/user.model";
+import { UserModel } from "../../user/models/user.model";
 
 interface PostCreationAttrs {
   title: string;
@@ -63,6 +63,16 @@ export class PostModel extends Model<PostModel, PostCreationAttrs> {
     defaultValue: 0,
   })
   likesCount: number;
+
+  @ApiProperty({
+    example: "true",
+    description: "If user likes this post",
+  })
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  isLiked: boolean;
 
   @ApiProperty({
     example: "2",

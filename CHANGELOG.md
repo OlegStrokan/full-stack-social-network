@@ -3,7 +3,10 @@
 ## Features:
 
 Backend:
-1. Added like.model with relation
+1. Updated like/unlike functional on backend (not complete)
+
+Frontend:
+1. Change post's redux in frontend
 
 # v2.1.0 (28.01.2022)
 

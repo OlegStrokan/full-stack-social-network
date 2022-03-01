@@ -3,7 +3,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { UserRolesModel } from "../../role/models/user-roles.model";
 import { RoleModel } from "../../role/models/role.model";
 import { BlockedUserModel } from "./blocked-user.model";
-import { PostModel } from "../../post/post.model";
+import { PostModel } from "../../post/models/post.model";
 import { PhotoModel } from "./photo.model";
 
 interface UserCreationAttr {

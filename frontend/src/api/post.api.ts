@@ -24,18 +24,18 @@ export const postAPI = {
         const data = new FormData();
         data.append('title', dto.title)
         data.append('content', dto.content)
-        data.append('likesCount', String(dto.likesCount))
         data.append('image', dto.image[0])
         return instance.patch<IApiOkResponse<PostDto[]>>(`/posts/${dto.postId}`, data).then((response) => response.data)
     },
     deletePost(id: number): Promise<IApiOkResponse<PostDto[]>> {
         return instance.delete<IApiOkResponse<PostDto[]>>(`posts/${id}`).then((response) => response.data)
     },
-    likePost(id: number): Promise<IApiOkResponse<PostDto[]>> {
-        return instance.patch<IApiOkResponse<PostDto[]>>(`posts/like/${id}`).then((response) => response.data)
+    likePost(id: number): Promise<IApiOkResponse<PostDto>> {
+        debugger
+        return instance.patch<IApiOkResponse<PostDto>>(`posts/like/${id}`).then((response) => response.data)
     },
-    unlikePost(id: number): Promise<IApiOkResponse<PostDto[]>> {
-        return instance.patch<IApiOkResponse<PostDto[]>>(`posts/like/${id}`).then((response) => response.data)
+    unlikePost(id: number): Promise<IApiOkResponse<PostDto>> {
+        return instance.patch<IApiOkResponse<PostDto>>(`posts/like/${id}`).then((response) => response.data)
     },
 
 }

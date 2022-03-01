@@ -3,5 +3,4 @@ export interface UpdatePostDto {
     title: string;
     content: string;
     image: any;
-    likesCount: number;
 }
