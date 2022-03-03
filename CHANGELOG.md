@@ -1,3 +1,9 @@
+# v2.1.4 (2.03.2022)
+## Features:
+
+Frontend:
+1. Updated styles in profile header and profile posts
+
 # v2.1.3 (1.03.2022)
 
 ## Features:
