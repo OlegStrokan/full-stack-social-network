@@ -13,9 +13,10 @@ import TextField from "@mui/material/TextField";
 interface ProfileInfo {
 	id?: number;
 	status?: string;
+	isOwner: boolean;
 }
 
-export const ProfileStatus: React.FC<ProfileInfo> = ({ status, id }) => {
+export const ProfileStatus: React.FC<ProfileInfo> = ({ status, id, isOwner }) => {
 
 	const dispatch = useDispatch();
 
@@ -39,13 +40,13 @@ export const ProfileStatus: React.FC<ProfileInfo> = ({ status, id }) => {
 					<Grid className={styles.status}>
 						<Typography variant="subtitle2">{status}</Typography>
 					</Grid>
-					<Button className={styles.button} variant="contained" size="small" onClick={() => setEditMode(true)}>Change status</Button>
+					{isOwner && <Button className={styles.button} variant="contained" size="small" onClick={() => setEditMode(true)}>Change status</Button>}
 				</Grid>
 				:
 				<Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>
 					<Grid className={styles.flex}>
-						<Button className={styles.button} variant="contained"
-								onClick={() => setEditMode(false)}>Back</Button>
+						{isOwner && <Button className={styles.button} variant="contained"
+								onClick={() => setEditMode(false)}>Back</Button>}
 						<Grid item xs={12}>
 							<TextField
 								required
@@ -60,7 +61,7 @@ export const ProfileStatus: React.FC<ProfileInfo> = ({ status, id }) => {
 								{errors.status?.message}
 							</Typography>
 						</Grid>
-						<Button className={styles.button} type="submit" size="small" variant="contained">Submit</Button>
+						{isOwner && <Button className={styles.button} type="submit" size="small" variant="contained">Submit</Button>}
 					</Grid>
 				</Box>
 			}

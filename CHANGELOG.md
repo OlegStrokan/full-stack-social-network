@@ -1,4 +1,13 @@
+
+# v2.1.5 (2.03.2022)
+
+## Features:
+
+Frontend:
+1. Added differentiation of functionality for the profile owner and the regular user
+
 # v2.1.4 (2.03.2022)
+
 ## Features:
 
 Frontend:

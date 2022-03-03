@@ -16,9 +16,10 @@ import FavoriteIcon from "@mui/icons-material/FavoriteBorder";
 interface PostInterface {
 	post: PostDto;
 	userId?: string;
+	isOwner: boolean;
 }
 
-export const Post: React.FC<PostInterface> = ({ post, userId }) => {
+export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
 
 
 	const [editMode, setEditMode] = React.useState(false);
@@ -166,7 +167,7 @@ export const Post: React.FC<PostInterface> = ({ post, userId }) => {
 					<Typography variant="subtitle2" sx={{ p: 2 }}>{post.content}</Typography>
 					<img className={styles.postImage} src={"http://localhost:8000/" + post.image} />
 					<Grid>
-					<Button onClick={() => setEditMode(true)} sx={{ m: 2 }} variant="contained">Edit</Button>
+						{isOwner && <Button onClick={() => setEditMode(true)} sx={{ m: 2 }} variant="contained">Edit</Button>}
 						{post.isLiked ?
 							<IconButton color="secondary" aria-label="add an alarm"
 										onClick={() => dispatch(fetchedLike(post.id))}>
@@ -177,7 +178,7 @@ export const Post: React.FC<PostInterface> = ({ post, userId }) => {
 								<FavoriteBorderIcon />{post.likesCount}
 							</IconButton>
 						}
-					<Button onClick={() => dispatch(fetchedDelete(post.id))} sx={{ m: 2 }}  variant="contained">Delete</Button>
+						{isOwner && <Button onClick={() => dispatch(fetchedDelete(post.id))} sx={{ m: 2 }}  variant="contained">Delete</Button>}
 					</Grid>
 				</Grid>
 			}

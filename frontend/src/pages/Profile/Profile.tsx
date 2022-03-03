@@ -24,7 +24,7 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const params = searchParams.get('gallery')
 	const dispatch = useDispatch();
-	const isOwner = +url.id! === userId;
+	const isOwner = +url.id! === userId
 	const [gallery, setGallery] = React.useState(false);
 
 	React.useEffect(() => {
@@ -46,18 +46,17 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 		<Card className={styles.root}>
 			{gallery && <ProfileGallery gallery={gallery} setGallery={setGallery} userId={profile.id} images={profile.photos}/>}
 			<Grid className={styles.profileHeader}>
-				<ProfileHeader profile={profile}/>
+				<ProfileHeader isOwner={isOwner} profile={profile}/>
 			</Grid>
 			<Grid className={styles.profileInfo}>
 				<ProfileInfo profile={profile} />
 			</Grid>
 			<Grid className={styles.profilePosts}>
-				<ProfilePosts userId={url.id} posts={profile?.posts} />
+				<ProfilePosts isOwner={isOwner} userId={url.id} posts={profile?.posts} />
 			</Grid>
 			<Grid className={styles.profileEntities}>
 				<ProfileEntities profile={profile} />
 			</Grid>
-			{isOwner && <div>updateProfile</div>}
 
 		</Card>
 	);

@@ -8,9 +8,10 @@ import { Post } from "../Profile/ProfilePosts/Post";
 
 interface PostInterface {
     isAuth: boolean;
+    isOwner: boolean;
 }
 
-export const Posts: React.FC<PostInterface> = ({ isAuth }) => {
+export const Posts: React.FC<PostInterface> = ({ isAuth, isOwner }) => {
     const { posts } = useSelector((state: RootState) => state.postReducer)
     let navigate = useNavigate();
     const dispatch = useDispatch()
@@ -29,7 +30,7 @@ export const Posts: React.FC<PostInterface> = ({ isAuth }) => {
     }
     return (
         <Card>
-            {posts.map((post) => <Post post={post}/>)}
+            {posts.map((post) => <Post isOwner={isOwner} post={post}/>)}
         </Card>
     );
 };

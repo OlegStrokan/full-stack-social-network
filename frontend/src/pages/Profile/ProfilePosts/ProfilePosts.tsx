@@ -6,14 +6,15 @@ import { Posts } from "./Posts";
 
 interface ProfileInterface {
   posts?: PostDto[];
+  isOwner: boolean;
   userId: string | undefined
 }
 
-export const ProfilePosts: React.FC<ProfileInterface> = ({ posts, userId }) => {
+export const ProfilePosts: React.FC<ProfileInterface> = ({ posts, userId, isOwner }) => {
   return (
     <Grid sx={{ p: 2 }}>
-      <AddPost userId={userId}/>
-      <Posts posts={posts} userId={userId}/>
+        {isOwner && <AddPost userId={userId}/>}
+      <Posts isOwner={isOwner} posts={posts} userId={userId}/>
     </Grid>
   );
 };

@@ -10,9 +10,10 @@ import { fetchedAvatar } from "../../../redux/ducks/profile/profile.slice";
 
 interface ProfileInfo {
 	profile: ProfileDto;
+	isOwner: boolean;
 }
 
-export const ProfileHeader: React.FC<ProfileInfo> = ({ profile }) => {
+export const ProfileHeader: React.FC<ProfileInfo> = ({ profile, isOwner }) => {
 
 	const dispatch = useDispatch();
 
@@ -30,12 +31,12 @@ return (
 		<img src={profile.avatar} className={styles.profileBackground} />
 		<Grid className={styles.profileMainInfo}>
 			<img src={"http://localhost:8000/" + profile.avatar} className={styles.profileAvatar} />
-			<Button variant="contained" component="label" size="small" color="primary" sx={{ ml: -5 }}>Change avatar
+			{isOwner && <Button variant="contained" component="label" size="small" color="primary" sx={{ ml: -5 }}>Change avatar
 				<input type="file" hidden onChange={onAvatarChange} />
-			</Button>
+			</Button>}
 			<Grid>
 				<Typography variant="h5" >{profile.fullname}</Typography>
-				<ProfileStatus status={profile.status} id={profile.id} />
+				<ProfileStatus isOwner={isOwner} status={profile.status} id={profile.id} />
 			</Grid>
 		</Grid>
 	</Grid>

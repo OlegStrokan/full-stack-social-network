@@ -10,16 +10,17 @@ import { Post } from "./Post";
 
 interface PostsInterface {
 	posts?: PostDto[];
-	userId: string | undefined
+	userId: string | undefined;
+	isOwner: boolean;
 }
 
-export const Posts:React.FC<PostsInterface> = ({ posts, userId }) => {
+export const Posts:React.FC<PostsInterface> = ({ posts, userId, isOwner }) => {
 	return (
 		<Grid>
 			<Typography variant="h5" sx={{ mt: 1, textAlign: 'center' }}>Posts</Typography>
 			{posts?.map((post, index) => {
 				return (
-					<Post userId={userId} post={post} key={index}/>
+					<Post isOwner={isOwner} userId={userId} post={post} key={index}/>
 				);
 			})}
 		</Grid>
