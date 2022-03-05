@@ -5,6 +5,7 @@ import { RegistrationDto } from "../../../types/auth/registration.dto";
 
 interface AuthState {
 	userId: number | null;
+	roles: any;
 	username: string | null;
 	isAuth: boolean;
 	loading: boolean;
@@ -14,6 +15,7 @@ interface AuthState {
 
 const initialState: AuthState = {
 	userId: null,
+	roles: null,
 	username: null,
 	isAuth: false,
 	loading: false,
@@ -39,6 +41,7 @@ export const authSlice = createSlice({
 			state.isAuth = true;
 			state.token = action.payload.token;
 			state.userId = action.payload.id;
+			state.roles = action.payload.roles;
 		},
 		fetchedLogout(state) {
 			state.loading = true;
@@ -57,6 +60,8 @@ export const authSlice = createSlice({
 			state.isAuth = true;
 			state.userId = action.payload.data.id;
 			state.username = action.payload.data.username;
+			state.roles = action.payload.data.roles;
+
 		},
 		authFailed(state, action: PayloadAction<any>) {
 			state.loading = false;

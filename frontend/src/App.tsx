@@ -16,7 +16,7 @@ import styles from "./App.module.css";
 
 export const App = () => {
 	const dispatch = useDispatch();
-	const { isAuth, username, userId } = useSelector((state: RootState) => state.authReducer);
+	const { isAuth, username, userId, roles } = useSelector((state: RootState) => state.authReducer);
 	const { initialized } = useSelector((state: RootState) => state.initializeReducer);
 	const [navbar, setNavbar] = React.useState<boolean>(false);
 
@@ -32,13 +32,13 @@ export const App = () => {
 		<Card className={navbar ? styles.rootOpen : styles.rootClose}>
 			<div className={styles.header}><Header isAuth={isAuth} username={username} navbar={navbar}
 												   setNavbar={setNavbar} /></div>
-			{navbar && <div className={styles.navbar}><Navbar isAuth={isAuth} userId={userId} /></div>}
+			{navbar && <div className={styles.navbar}><Navbar roles={roles}  isAuth={isAuth} userId={userId} /></div>}
 			<div className={styles.content}>
 				<Routes>
 					<Route path="/login" element={<Login userId={userId} isAuth={isAuth} />} />
 					<Route path="/" element={<Navigate to={`/profile/${userId}`} />} />
 					<Route path="/profile/:id" element={<Profile userId={userId} isAuth={isAuth} />} />
-					<Route path="/posts" element={<Posts isAuth={isAuth} isOwner={false} />} />
+					<Route path="/posts" element={<Posts isOwner={false} />} />
 					<Route path="/users" element={<Users isAuth={isAuth} />} />
 					<Route path="/roles" element={<Roles isAuth={isAuth} />} />
 				</Routes>

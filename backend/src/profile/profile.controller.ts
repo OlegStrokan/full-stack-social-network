@@ -8,6 +8,7 @@ import {
   UploadedFile,
   Body,
   UseInterceptors,
+  UseGuards,
 } from "@nestjs/common";
 import { ProfileService } from "./profile.service";
 import { UpdateStatusDto } from "../user/dto/update-status.dto";
@@ -15,6 +16,8 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { UserModel } from "../user/models/user.model";
 import { UpdateUserDto } from "../user/dto/update-user.dto";
+import { RolesGuard } from "../auth/roles.guard";
+import { Roles } from "../auth/role-auth.decorator";
 
 @ApiTags("Profile functional")
 @Controller("profile")
@@ -30,6 +33,8 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Change user's status" })
   @ApiOkResponse({ status: 200, type: UserModel })
+  @Roles("ADMIN", "USER")
+  @UseGuards(RolesGuard)
   @Patch("/:id/status")
   async changeStatus(@Param("id") id: string, @Body() userDto: UpdateStatusDto) {
     return this.profileService.changeStatus(+id, userDto);
@@ -37,6 +42,8 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Follow to user" })
   @ApiOkResponse({ status: 200 })
+  @Roles("ADMIN", "USER")
+  @UseGuards(RolesGuard)
   @Post("/:user_id/follow/:follow_id")
   async follow(@Param("user_id") user_id: string, @Param("follow_id") follow_id: string) {
     return this.profileService.follow(+user_id, +follow_id);
@@ -44,6 +51,8 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Unfollow user" })
   @ApiOkResponse({ status: 200 })
+  @Roles("ADMIN", "USER")
+  @UseGuards(RolesGuard)
   @Delete("/:user_id/unfollow/:unfollow_id")
   async unfollow(
     @Param("user_id") user_id: string,
@@ -54,6 +63,8 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Change user's avatar" })
   @ApiOkResponse({ status: 200 })
+  @Roles("ADMIN", "USER")
+  @UseGuards(RolesGuard)
   @Patch("/:id/avatar")
   @UseInterceptors(FileInterceptor("avatar"))
   async changeAvatar(@Param("id") id: string, @UploadedFile() avatar) {
@@ -62,6 +73,8 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Activate user's profile" })
   @ApiOkResponse({ status: 200, type: UserModel })
+  @Roles("ADMIN", "USER")
+  @UseGuards(RolesGuard)
   @Get("/:id/activate")
   async activateProfile(@Param("id") id: string) {
     return this.profileService.activateProfile(+id);
@@ -69,6 +82,8 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Update user's profile" })
   @ApiOkResponse({ status: 200, type: UserModel })
+  @Roles("ADMIN", "USER")
+  @UseGuards(RolesGuard)
   @Patch("/:id")
   async updateProfile(@Param("id") id: string, @Body() dto: UpdateUserDto) {
     return this.profileService.updateProfile(+id, dto);
@@ -76,6 +91,8 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Activate user's profile" })
   @ApiOkResponse({ status: 200, type: UserModel })
+  @Roles("ADMIN", "USER")
+  @UseGuards(RolesGuard)
   @UseInterceptors(FileInterceptor("image"))
   @Patch("/:id/image")
   async addPhoto(@Param("id") id: string, @UploadedFile() image) {

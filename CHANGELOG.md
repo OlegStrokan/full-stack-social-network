@@ -1,4 +1,11 @@
 
+# v2.1.6 (2.05.2022)
+
+## Features:
+
+Frontend:
+1. Added private endpoint, role restrictions. Changed auth.slice
+
 # v2.1.5 (2.03.2022)
 
 ## Features:

@@ -1,10 +1,12 @@
-import { Controller, Post, Body, Param, Get, Patch, Delete } from "@nestjs/common";
+import { Controller, Post, Body, Param, Get, Patch, Delete, UseGuards } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { AddRoleDto } from "./dto/add-role.dto";
 import { BanUserDto } from "./dto/ban-user.dto";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { UserModel } from "./models/user.model";
+import { RolesGuard } from "../auth/roles.guard";
+import { Roles } from "../auth/role-auth.decorator";
 
 @ApiTags("Users functional")
 @Controller("users")
@@ -13,6 +15,7 @@ export class UserController {
 
   @ApiOperation({ summary: "Get users" })
   @ApiOkResponse({ status: 200, type: [UserModel] })
+  @UseGuards(RolesGuard)
   @Get()
   getUsers() {
     return this.usersService.getUsers();
@@ -27,6 +30,8 @@ export class UserController {
 
   @ApiOperation({ summary: "Add role to user" })
   @ApiOkResponse({ status: 200, type: AddRoleDto })
+  @Roles("ADMIN")
+  @UseGuards(RolesGuard)
   @Post("/:id/role")
   addRole(@Param("id") id: string, @Body() dto: AddRoleDto) {
     return this.usersService.addRole(+id, dto);
@@ -34,6 +39,8 @@ export class UserController {
 
   @ApiOperation({ summary: "Ban a user" })
   @ApiOkResponse({ status: 200, type: UserModel })
+  @Roles("ADMIN")
+  @UseGuards(RolesGuard)
   @Patch("/:id/ban")
   ban(@Param("id") id: string, @Body() dto: BanUserDto) {
     return this.usersService.ban(+id, dto);
@@ -41,6 +48,8 @@ export class UserController {
 
   @ApiOperation({ summary: "Unban a user" })
   @ApiOkResponse({ status: 200, type: UserModel })
+  @Roles("ADMIN")
+  @UseGuards(RolesGuard)
   @Delete("/:id/ban")
   unban(@Param("id") id: string) {
     return this.usersService.unban(+id);

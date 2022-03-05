@@ -1,6 +1,7 @@
 import { instance } from "./instance.api";
 import { RegistrationDto } from "../types/auth/registration.dto";
 import { LoginDto } from "../types/auth/login.dto";
+import { IRoleDto } from "../types/role/role.dto";
 
 export interface ISuccessResponse {
 	message: string;
@@ -10,18 +11,7 @@ export interface ISuccessResponse {
 export interface ILoginResponse {
 	username: string;
 	id: number;
-	roles: [
-		{
-			id: number,
-			value: string,
-			description: string,
-			UserRolesModel: {
-				id: number,
-				roleId: number,
-				userId: number
-			}
-		}
-	],
+	roles: IRoleDto[];
 	iat: number,
 	exp: number,
 	token: string;
