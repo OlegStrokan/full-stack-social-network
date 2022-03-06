@@ -17,10 +17,17 @@ import { FileModule } from "./file/file.module";
 import { PostModule } from "./post/post.module";
 import { PostModel } from "./post/models/post.model";
 import { PhotoModel } from "./user/models/photo.model";
+import { APP_GUARD } from "@nestjs/core";
+import { RolesGuard } from "./auth/roles.guard";
 
 @Module({
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
   imports: [
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,

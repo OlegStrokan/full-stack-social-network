@@ -1,5 +1,12 @@
 
-# v2.1.6 (2.05.2022)
+# v2.1.7 (6.03.2022)
+
+## Features:
+
+Backend:
+1. Fixed role guard
+
+# v2.1.6 (5.03.2022)
 
 ## Features:
 

@@ -6,10 +6,17 @@ import { UserModel } from "../user/models/user.model";
 import { FollowModel } from "../user/models/follow.model";
 import { FileModule } from "../file/file.module";
 import { PhotoModel } from "../user/models/photo.model";
+import { RoleModule } from "../role/role.module";
+import { AuthModule } from "../auth/auth.module";
 
 @Module({
   controllers: [ProfileController],
   providers: [ProfileService],
-  imports: [SequelizeModule.forFeature([UserModel, FollowModel, PhotoModel]), FileModule],
+  imports: [
+    SequelizeModule.forFeature([UserModel, FollowModel, PhotoModel]),
+    FileModule,
+    RoleModule,
+    AuthModule,
+  ],
 })
 export class ProfileModule {}

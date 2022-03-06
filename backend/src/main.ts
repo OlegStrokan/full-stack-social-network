@@ -1,7 +1,8 @@
-import { NestFactory } from "@nestjs/core";
+import { NestFactory, Reflector } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { ValidationPipe } from "@nestjs/common";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { RolesGuard } from "./auth/roles.guard";
 
 async function bootstrap() {
   const PORT = process.env.PORT || 8888;
