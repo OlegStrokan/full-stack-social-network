@@ -48,7 +48,6 @@ function* updateStatus({ payload }: IFetchedStatus) {
 
 function* updateAvatar({ payload }: IFetchedAvatar) {
 	try {
-		debugger
 		const { data }: IApiOkResponse<ProfileDto> = yield call(profileAPI.updateAvatar, payload);
 		yield put(avatarSuccess(data));
 	} catch (error: any) {

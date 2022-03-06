@@ -96,7 +96,7 @@ export const {
 	updateSuccess,
 	createSuccess,
 	deleteSuccess,
-	fetchedDelete
+	fetchedDelete,
 } = postSlice.actions;
 
 export const postReducer = postSlice.reducer;

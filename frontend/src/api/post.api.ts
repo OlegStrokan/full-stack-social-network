@@ -31,7 +31,6 @@ export const postAPI = {
         return instance.delete<IApiOkResponse<PostDto[]>>(`posts/${id}`).then((response) => response.data)
     },
     likePost(id: number): Promise<IApiOkResponse<PostDto>> {
-        debugger
         return instance.patch<IApiOkResponse<PostDto>>(`posts/like/${id}`).then((response) => response.data)
     },
     unlikePost(id: number): Promise<IApiOkResponse<PostDto>> {

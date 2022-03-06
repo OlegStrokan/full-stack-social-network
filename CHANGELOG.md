@@ -1,4 +1,19 @@
 
+# v2.2.0 (6.03.2022)
+
+## Features:
+
+Frontend:
+1. Updated change image in gallery while changing post
+2. Fixed post rerender in profile page while updating
+
+# v2.1.9 (6.03.2022)
+
+## Features:
+
+Backend:
+1. Added change image in gallery while change post
+
 # v2.1.8 (6.03.2022)
 
 ## Features:

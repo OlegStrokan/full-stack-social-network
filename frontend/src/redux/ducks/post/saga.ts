@@ -19,7 +19,7 @@ import {
 	updateSuccess
 } from "./post.slice";
 import { PostDto } from "../../../types/post/post.dto";
-import { createPostSuccess, deletePostSuccess } from "../profile/profile.slice";
+import { createPostSuccess, deletePostSuccess, updatePostSuccess } from "../profile/profile.slice";
 import { IApiOkResponse } from "../../../api/instance.api";
 
 function* getPosts() {
@@ -54,6 +54,7 @@ function* updatePost({ payload }: IFetchedUpdate) {
 	try {
 		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.updatePost, payload);
 		yield put(updateSuccess(data));
+		yield put(updatePostSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
 	}

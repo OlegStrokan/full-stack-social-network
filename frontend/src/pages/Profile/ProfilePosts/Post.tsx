@@ -33,7 +33,6 @@ export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
 	});
 
 	const onSubmit = (event: any) => {
-		debugger
 		setEditMode(false);
 		dispatch(fetchedUpdate(event));
 	};

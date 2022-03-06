@@ -5,7 +5,6 @@ import { InjectModel } from "@nestjs/sequelize";
 import { PostModel } from "./models/post.model";
 import { FileService } from "../file/file.service";
 import { PhotoModel } from "../user/models/photo.model";
-import { UserModel } from "../user/models/user.model";
 import { LikeModel } from "./models/like.model";
 
 @Injectable()
@@ -80,6 +79,7 @@ export class PostService {
   async update(id: number, updatePostDto: UpdatePostDto, image: File) {
     const fileName = await this.fileService.createFile(image);
     const post = await this.postRepository.findByPk(id);
+    const photo = await this.photoRepository.findOne({ where: { postId: id } });
     if (!post) {
       throw new HttpException("Post with this id not found", HttpStatus.NOT_FOUND);
     }
@@ -90,6 +90,13 @@ export class PostService {
         image: fileName,
       },
       { where: { id } }
+    );
+
+    await this.photoRepository.update(
+      {
+        url: fileName,
+      },
+      { where: { id: photo.id } }
     );
 
     const posts = await this.postRepository.findAll();
