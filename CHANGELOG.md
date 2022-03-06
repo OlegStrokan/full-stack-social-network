@@ -1,4 +1,15 @@
 
+# v2.1.8 (6.03.2022)
+
+## Features:
+
+Frontend:
+1. Added AddRole form
+2. Added validator for role
+
+## Fixes:
+1. Fixed role saga
+
 # v2.1.7 (6.03.2022)
 
 ## Features:

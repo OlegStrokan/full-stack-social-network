@@ -2,8 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchedRoles } from "../../redux/ducks/role/role.slice";
 import { RootState } from "../../redux/store";
-import { Card } from "@mui/material";
+import { Card, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { AddRole } from "./AddRole";
 
 
 interface RolesInterface {
@@ -13,7 +14,7 @@ interface RolesInterface {
 
 export const Roles: React.FC<RolesInterface> = ({ isAuth}) => {
 	let navigate = useNavigate();
-	const { roles } = useSelector((state: RootState) => state.roleReducer)
+	const { roles, loading } = useSelector((state: RootState) => state.roleReducer)
 	const dispatch = useDispatch()
 
 	React.useEffect(() => {
@@ -23,9 +24,12 @@ export const Roles: React.FC<RolesInterface> = ({ isAuth}) => {
 			dispatch(fetchedRoles())
 	},[])
 
+	if (loading) return <div>....loading</div>
+
 	return (
 		<Card>
-			{roles?.map((role) => <div>role.value</div>)}
+			<AddRole/>
+			{roles?.map((role	) => <Typography variant="h6">{role.value}</Typography>)}
 			Roles page
 		</Card>
 	);

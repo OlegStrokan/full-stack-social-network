@@ -17,9 +17,8 @@ export const Posts: React.FC<PostInterface> = ({ isOwner }) => {
         dispatch(fetchedPosts())
     },[])
 
-    if (!posts) {
-        return <div>...loading</div>
-    }
+    if (!posts) return <div>...loading</div>
+
     return (
         <Card>
             {posts.map((post) => <Post isOwner={isOwner} post={post}/>)}

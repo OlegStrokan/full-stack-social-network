@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchedUsers } from "../../redux/ducks/user/user.slice";
 import { RootState } from "../../redux/store";
-import { Card } from "@mui/material";
+import { Card, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 
@@ -22,12 +22,11 @@ export const Users: React.FC<UsersInterface> = ({ isAuth}) => {
 		dispatch(fetchedUsers())
 	},[]);
 
-	if (loading) {
-		return <div>...loading</div>
-	}
+	if (loading) return <div>...loading</div>
+
 	return (
 		<Card>
-			{users?.map((user) => <div>{user.fullname}</div>)}
+			{users?.map((user) => <Typography variant="h6">{user.fullname}</Typography>)}
 			Users page
 		</Card>
 	);

@@ -7,30 +7,30 @@ import { RoleDto } from "../../../types/role/role.dto";
 function* getRoles() {
 	try {
 		const data: RoleDto[] = yield call(roleAPI.getRoles)
-		put(rolesSuccess(data))
+		yield put(rolesSuccess(data))
 	}
 	catch (error: any) {
-		put(rolesFailed(error))
+		yield put(rolesFailed(error))
 	}
 }
 
 function* getRole({ payload }: IFetchedRole) {
 	try {
 		const data: RoleDto = yield call(roleAPI.getRole, payload)
-		put(roleSuccess(data))
+		yield put(roleSuccess(data))
 	}
 	catch (error: any) {
-		put(rolesFailed(error))
+		yield put(rolesFailed(error))
 	}
 }
 
 function* createRole({ payload }: IFetchedCreate) {
 	try {
 		const data: RoleDto[] = yield call(roleAPI.createRole, payload)
-		put(createSuccess(data))
+		yield put(createSuccess(data))
 	}
 	catch (error: any) {
-		put(rolesFailed(error))
+		yield put(rolesFailed(error))
 	}
 }
 
