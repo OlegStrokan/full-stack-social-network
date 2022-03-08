@@ -7,12 +7,13 @@ import { FileModule } from "../file/file.module";
 import { PhotoModel } from "../user/models/photo.model";
 import { LikeModel } from "./models/like.model";
 import { AuthModule } from "../auth/auth.module";
+import { DislikeModel } from "./models/dislike.model";
 
 @Module({
   controllers: [PostController],
   providers: [PostService],
   imports: [
-    SequelizeModule.forFeature([PostModel, PhotoModel, LikeModel]),
+    SequelizeModule.forFeature([PostModel, PhotoModel, LikeModel, DislikeModel]),
     FileModule,
     AuthModule,
   ],

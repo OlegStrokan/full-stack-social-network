@@ -3,13 +3,13 @@ import { ApiProperty } from "@nestjs/swagger";
 import { PostModel } from "./post.model";
 import { UserModel } from "../../user/models/user.model";
 
-interface LikeCreationAttr {
+interface DisLikeCreationAttr {
   userId: number;
   postId: number;
 }
 
-@Table({ tableName: "likes", createdAt: false, updatedAt: false })
-export class LikeModel extends Model<LikeModel, LikeCreationAttr> {
+@Table({ tableName: "dislikes", createdAt: false, updatedAt: false })
+export class DislikeModel extends Model<DislikeModel, DisLikeCreationAttr> {
   @ApiProperty({ example: "1", description: "Unique identifier" })
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;
@@ -24,9 +24,9 @@ export class LikeModel extends Model<LikeModel, LikeCreationAttr> {
   @Column({ type: DataType.INTEGER })
   postId: number;
 
-  @ApiProperty({ example: "true", description: "is liked id" })
+  @ApiProperty({ example: "true", description: "Is disliked" })
   @Column({ type: DataType.BOOLEAN, defaultValue: true })
-  isLiked: boolean;
+  isDisliked: boolean;
 
   @BelongsTo(() => PostModel)
   source: PostModel;

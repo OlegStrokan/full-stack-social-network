@@ -19,6 +19,8 @@ import { PostModel } from "./post/models/post.model";
 import { PhotoModel } from "./user/models/photo.model";
 import { APP_GUARD } from "@nestjs/core";
 import { RolesGuard } from "./auth/roles.guard";
+import { LikeModel } from "./post/models/like.model";
+import { DislikeModel } from "./post/models/dislike.model";
 
 @Module({
   controllers: [],
@@ -50,6 +52,8 @@ import { RolesGuard } from "./auth/roles.guard";
         UserRolesModel,
         PostModel,
         PhotoModel,
+        LikeModel,
+        DislikeModel,
       ],
       autoLoadModels: true,
       synchronize: true,

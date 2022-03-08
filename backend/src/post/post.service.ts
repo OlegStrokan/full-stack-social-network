@@ -6,6 +6,7 @@ import { PostModel } from "./models/post.model";
 import { FileService } from "../file/file.service";
 import { PhotoModel } from "../user/models/photo.model";
 import { LikeModel } from "./models/like.model";
+import { DislikeModel } from "./models/dislike.model";
 
 @Injectable()
 export class PostService {
@@ -16,6 +17,8 @@ export class PostService {
     private photoRepository: typeof PhotoModel,
     @InjectModel(LikeModel)
     private likeRepository: typeof LikeModel,
+    @InjectModel(DislikeModel)
+    private dislikeRepository: typeof DislikeModel,
     private fileService: FileService
   ) {}
 
@@ -57,7 +60,7 @@ export class PostService {
   }
 
   async findAll() {
-    const posts = await this.postRepository.findAll();
+    const posts = await this.postRepository.findAll({ include: { all: true } });
     return {
       data: posts,
       statusCode: HttpStatus.OK,
@@ -144,8 +147,8 @@ export class PostService {
 
     await like.save();
 
-    post.likesCount++;
-    post.isLiked = true;
+    console.log("success");
+
     await post.save();
 
     return {
@@ -161,16 +164,11 @@ export class PostService {
       where: { userId: post.userId, postId: post.id },
     });
 
-    console.log(isAlreadyLiked);
-
     if (!isAlreadyLiked) {
       throw new HttpException("You already liked this post", HttpStatus.BAD_REQUEST);
     }
 
     await isAlreadyLiked.destroy();
-
-    post.likesCount--;
-    post.isLiked = false;
 
     await post.save();
 

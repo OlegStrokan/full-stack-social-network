@@ -1,4 +1,13 @@
 
+# v2.3.0 (8.03.2022)
+
+## Features:
+
+Backend:
+1. Added dislike model
+2. Added correctly working relation between post, like/dislike models
+3. Updated like method
+
 # v2.2.0 (6.03.2022)
 
 ## Features:
