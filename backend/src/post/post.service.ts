@@ -146,34 +146,34 @@ export class PostService {
     });
 
     await like.save();
-
-    console.log("success");
-
     await post.save();
 
+    const updatedPost = await this.postRepository.findByPk(id, { include: { all: true } });
+
     return {
-      data: post,
+      data: updatedPost,
       statusCode: HttpStatus.OK,
     };
   }
 
   async unlike(id: number) {
     const post = await this.postRepository.findByPk(id);
-    console.log(post);
     const isAlreadyLiked = await this.likeRepository.findOne({
       where: { userId: post.userId, postId: post.id },
     });
 
     if (!isAlreadyLiked) {
-      throw new HttpException("You already liked this post", HttpStatus.BAD_REQUEST);
+      throw new HttpException("You haven't liked this post yet", HttpStatus.BAD_REQUEST);
     }
 
     await isAlreadyLiked.destroy();
 
     await post.save();
 
+    const updatedPost = await this.postRepository.findByPk(id, { include: { all: true } });
+
     return {
-      data: post,
+      data: updatedPost,
       statusCode: HttpStatus.OK,
     };
   }

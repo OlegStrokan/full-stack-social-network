@@ -1,4 +1,11 @@
 
+# v2.3.1 (9.03.2022)
+
+## Features:
+
+Backend:
+1. Updated like/unlike methods
+
 # v2.3.0 (8.03.2022)
 
 ## Features:

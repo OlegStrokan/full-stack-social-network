@@ -7,7 +7,8 @@ import {
   Param,
   Delete,
   UploadedFile,
-  UseInterceptors, UseGuards
+  UseInterceptors,
+  UseGuards,
 } from "@nestjs/common";
 import { PostService } from "./post.service";
 import { CreatePostDto } from "./dto/create-post.dto";
@@ -58,7 +59,6 @@ export class PostController {
     @Body() updatePostDto: UpdatePostDto,
     @UploadedFile() image
   ) {
-    console.log(id, updatePostDto, image);
     return this.postService.update(+id, updatePostDto, image);
   }
 
