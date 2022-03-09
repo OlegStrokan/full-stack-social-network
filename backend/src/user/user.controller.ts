@@ -15,6 +15,7 @@ export class UserController {
 
   @ApiOperation({ summary: "Get users" })
   @ApiOkResponse({ status: 200, type: [UserModel] })
+  @Roles("ADMIN")
   @UseGuards(RolesGuard)
   @Get()
   getUsers() {

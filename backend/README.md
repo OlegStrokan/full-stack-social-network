@@ -16,39 +16,50 @@
 
 ## Available endpoints:
 
+- *@admin* - just for admin
+- *@private* - for user and admin
+- *@public* - for all users (include unauthorized)
+
 
 Auth functional:
-- POST */auth/registration - register new account*
-- POST */auth/login - login if you already have account*
+- POST */auth/registration - register new account* ```@public```
+- POST */auth/login - login if you already have account* ```@public```
+- GET */auth/me - is current user authorized* ```@private```
 
 Users functional:
-- GET */users - get all users*
-- POST */users - create user (register new account)*
-- POST */users/role/:id - assign a role to a user*
-- POST */users/ban/:id - ban a user*
-- DELETE */users/:id - delete certain user*
+- GET */users - get all users* ```@admin```
+- POST */users - create user (register new account)* ```@public```
+- POST */users/role/:id - assign a role to a user* ```@admin```
+- POST */users/ban/:id - ban a user* ```@admin```
+- DELETE */users/:id - delete certain user* ```@admin```
 
 Roles functional:
-- POST */roles - create user's role*
-- GET */roles/:value - get user's role*
+- POST */roles - create role* ```@admin```
+- GET */roles/:value - get role by value* ```@admin```
+- GET */roles - get roles* ```@admin```
 
 Profile functional:
 
-- GET */profile/:id - get user's profile*
-- PATCH */profile/:id/status - change user's status*
-- POST */profile/:user_id/follow/:follow_id - follow user*
-- DELETE */profile/:user_id/unfollow/:follow_id - unfollow user*
-- PATCH */profile/:id/avatar - change user's avatar*
-- GET */profile/:id/activate - activate user's profile*
+- GET */profile/:id - get user's profile* ```@public```
+- PATCH */profile/:id/status - change user's status* ```@private```
+- POST */profile/:user_id/follow/:follow_id - follow user* ```@private```
+- DELETE */profile/:user_id/unfollow/:follow_id - unfollow user* ```@private```
+- PATCH */profile/:id/avatar - change user's avatar* ```@private```
+- PATCH */profile/:id - change profile's data* ```@private```
+- PATCH */profile/:id/image - change avatar* ```@private```
+- GET */profile/:id/activate - activate user's profile* ```@private```
+- 
 
 Posts functional
-- GET */posts - get all posts*
-- GET */posts/:id - get post*
-- POST */posts - create new post*
-- PATCH */posts/:id - update existed post*
-- PATCH */posts/like/:id - like existed post*
-- DELETE */posts/:id - deleted existed post*
-- DELETE */posts/like/:id - like existed post*
+- GET */posts - get all posts* ```@public```
+- GET */posts/:id - get post* ```@public```
+- POST */posts - create new post* ```@private```
+- PATCH */posts/:id - update  post* ```@private```
+- DELETE */posts/:id - deleted post* ```@private```
+- PATCH */posts/like/:id - like post* ```@private```
+- DELETE */posts/like/:id - unlike post* ```@private```
+- PATCH */posts/like/:id - dislike post* ```@private```
+- DELETE */posts/like/:id - unDislike post* ```@private```
 
 
 
