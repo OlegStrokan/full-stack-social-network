@@ -140,6 +140,14 @@ export class PostService {
       throw new HttpException("You already liked this post", HttpStatus.BAD_REQUEST);
     }
 
+    const isAlreadyUnliked = await this.dislikeRepository.findOne({
+      where: { userId: post.userId, postId: post.id },
+    });
+
+    if (isAlreadyUnliked) {
+      await isAlreadyUnliked.destroy();
+    }
+
     const like = await this.likeRepository.create({
       userId: post.userId,
       postId: post.id,
@@ -167,6 +175,52 @@ export class PostService {
     }
 
     await isAlreadyLiked.destroy();
+
+    await post.save();
+
+    const updatedPost = await this.postRepository.findByPk(id, { include: { all: true } });
+
+    return {
+      data: updatedPost,
+      statusCode: HttpStatus.OK,
+    };
+  }
+
+  async dislike(id: number) {
+    const post = await this.postRepository.findByPk(id);
+    const isAlreadyLiked = await this.likeRepository.findOne({
+      where: { userId: post.userId, postId: post.id },
+    });
+
+    if (isAlreadyLiked) await isAlreadyLiked.destroy();
+
+    const dislike = await this.dislikeRepository.create({
+      userId: post.userId,
+      postId: post.id,
+    });
+
+    await dislike.save();
+    await post.save();
+
+    const updatedPost = await this.postRepository.findByPk(id, { include: { all: true } });
+
+    return {
+      data: updatedPost,
+      statusCode: HttpStatus.OK,
+    };
+  }
+
+  async undislike(id: number) {
+    const post = await this.postRepository.findByPk(id);
+    const isAlreadyUnliked = await this.dislikeRepository.findOne({
+      where: { userId: post.userId, postId: post.id },
+    });
+
+    if (!isAlreadyUnliked) {
+      throw new HttpException("You haven't disliked this post yet", HttpStatus.BAD_REQUEST);
+    }
+
+    await isAlreadyUnliked.destroy();
 
     await post.save();
 

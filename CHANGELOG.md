@@ -1,4 +1,11 @@
 
+# v2.3.2 (9.03.2022)
+
+## Features:
+
+Backend:
+1. Added dislike, unDislike correctly working method
+
 # v2.3.1 (9.03.2022)
 
 ## Features:

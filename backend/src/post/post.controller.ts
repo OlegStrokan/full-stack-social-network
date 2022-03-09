@@ -85,7 +85,25 @@ export class PostController {
   @Roles("ADMIN", "USER")
   @UseGuards(RolesGuard)
   @Delete("/like/:id")
-  unlike(@Param("id") id: string) {
+  unLike(@Param("id") id: string) {
     return this.postService.unlike(+id);
+  }
+
+  @ApiOperation({ summary: "Dislike a post" })
+  @ApiOkResponse({ status: 200, type: PostModel })
+  @UseGuards(RolesGuard)
+  @Roles("ADMIN", "USER")
+  @Patch("/dislike/:id")
+  dislike(@Param("id") id: string) {
+    return this.postService.dislike(+id);
+  }
+
+  @ApiOperation({ summary: "Undislike a post" })
+  @ApiOkResponse({ status: 200, type: PostModel })
+  @Roles("ADMIN", "USER")
+  @UseGuards(RolesGuard)
+  @Delete("/dislike/:id")
+  unDislike(@Param("id") id: string) {
+    return this.postService.undislike(+id);
   }
 }
