@@ -8,14 +8,17 @@ import { FileModule } from "../file/file.module";
 import { PhotoModel } from "../user/models/photo.model";
 import { RoleModule } from "../role/role.module";
 import { AuthModule } from "../auth/auth.module";
+import { PostModule } from "../post/post.module";
+import { PostModel } from "../post/models/post.model";
 
 @Module({
   controllers: [ProfileController],
   providers: [ProfileService],
   imports: [
-    SequelizeModule.forFeature([UserModel, FollowModel, PhotoModel]),
+    SequelizeModule.forFeature([UserModel, FollowModel, PhotoModel, PostModel]),
     FileModule,
     RoleModule,
+    PostModule,
     AuthModule,
   ],
 })

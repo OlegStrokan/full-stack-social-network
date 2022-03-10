@@ -6,6 +6,9 @@ import { FileService } from "../file/file.service";
 import { UpdateStatusDto } from "../user/dto/update-status.dto";
 import { UpdateUserDto } from "../user/dto/update-user.dto";
 import { PhotoModel } from "../user/models/photo.model";
+import { PostService } from "../post/post.service";
+import { PostModel } from "../post/models/post.model";
+import { PostModule } from "../post/post.module";
 
 @Injectable()
 export class ProfileService {
@@ -13,7 +16,9 @@ export class ProfileService {
     @InjectModel(UserModel) private userRepository: typeof UserModel,
     @InjectModel(FollowModel) private followRepository: typeof FollowModel,
     @InjectModel(PhotoModel) private photoRepository: typeof PhotoModel,
-    private fileService: FileService
+    @InjectModel(PostModel) private postModel: typeof PostModel,
+    private fileService: FileService,
+    private postService: PostService
   ) {}
 
   async follow(user_id: number, follow_id: number) {
@@ -90,6 +95,7 @@ export class ProfileService {
     if (!user) {
       throw new HttpException("User not found", HttpStatus.NOT_FOUND);
     }
+
     return {
       data: user,
       statusCode: HttpStatus.OK,

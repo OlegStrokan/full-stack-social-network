@@ -42,7 +42,7 @@ function* getPost({ payload }: IFetchedPost) {
 
 function* createPost({ payload }: IFetchedCreate) {
 	try {
-		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.createPost, payload);
+		const { data }: IApiOkResponse<PostDto> = yield call(postAPI.createPost, payload);
 		yield put(createSuccess(data));
 		yield put(createPostSuccess(data));
 	} catch (error: any) {

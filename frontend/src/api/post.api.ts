@@ -12,13 +12,13 @@ export const postAPI = {
     getPost(id: number): Promise<IApiOkResponse<PostDto>> {
         return instance.get<IApiOkResponse<PostDto>>(`/posts/${id}`).then((response) => response.data)
     },
-    createPost(dto: CreatePostDto): Promise<IApiOkResponse<PostDto[]>> {
+    createPost(dto: CreatePostDto): Promise<IApiOkResponse<PostDto>> {
         const data = new FormData();
         data.append('title', dto.title)
         data.append('content', dto.content)
         data.append('userId', String(dto.userId))
         data.append('image', dto.image[0])
-        return instance.post<IApiOkResponse<PostDto[]>>('/posts', data).then((response) => response.data)
+        return instance.post<IApiOkResponse<PostDto>>('/posts', data).then((response) => response.data)
     },
     updatePost(dto: UpdatePostDto): Promise<IApiOkResponse<PostDto[]>> {
         const data = new FormData();

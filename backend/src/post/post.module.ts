@@ -17,5 +17,6 @@ import { DislikeModel } from "./models/dislike.model";
     FileModule,
     AuthModule,
   ],
+  exports: [PostService]
 })
 export class PostModule {}

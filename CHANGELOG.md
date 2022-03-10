@@ -1,4 +1,16 @@
 
+# v2.3.4 (10.03.2022)
+
+## Features:
+
+Backend:
+1. Updated post service
+2. Added getPostById (userId)
+
+Frontend:
+1. Added like/unlike login to frontend
+2. Changed redux, api, sagas.
+
 # v2.3.3 (9.03.2022)
 
 ## Features:

@@ -91,21 +91,6 @@ export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
 								error={!!errors.postId}
 							/>
 						</Grid>
-						<Grid item xs={12} style={{ visibility: "hidden" }}>
-							<TextField
-								required
-								fullWidth
-								value={post.likesCount}
-								id="likesCount"
-								label="likesCount"
-								autoComplete="likesCount"
-								{...register("likesCount")}
-								error={!!errors.likesCount}
-							/>
-							<Typography variant="subtitle2" color="error">
-								{errors.likesCount?.message}
-							</Typography>
-						</Grid>
 						<Grid>
 							<FormControl error={!!errors.file?.message}>
 								<FormControlLabel
@@ -167,16 +152,15 @@ export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
 					<img className={styles.postImage} src={"http://localhost:8000/" + post.image} />
 					<Grid>
 						{isOwner && <Button onClick={() => setEditMode(true)} sx={{ m: 2 }} variant="contained">Edit</Button>}
-						{post.isLiked ?
+						{post.likes.length !== 0 ? post.likes.find((post) => post.userId === Number(userId)) &&
 							<IconButton color="secondary" aria-label="add an alarm"
-										onClick={() => dispatch(fetchedLike(post.id))}>
-								<FavoriteIcon />{post.likesCount}
+										onClick={() => dispatch(fetchedUnlike(post.id))}>
+								<FavoriteBorderIcon />{post.likes.length}
 							</IconButton>
-							: <IconButton color="secondary" aria-label="add an alarm"
-										  onClick={() => dispatch(fetchedUnlike(post.id))}>
-								<FavoriteBorderIcon />{post.likesCount}
-							</IconButton>
-						}
+						: <IconButton color="secondary" aria-label="add an alarm"
+									  onClick={() => dispatch(fetchedLike(post.id))}>
+								<FavoriteIcon />{post.likes.length}
+							</IconButton>}
 						{isOwner && <Button onClick={() => dispatch(fetchedDelete(post.id))} sx={{ m: 2 }}  variant="contained">Delete</Button>}
 					</Grid>
 				</Grid>

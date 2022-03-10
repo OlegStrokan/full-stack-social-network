@@ -33,6 +33,8 @@ export class PostService {
       const post = await this.postRepository.create({
         ...createPostDto,
       });
+      await post.$set("likes", []);
+      await post.$set("dislikes", []);
       await post.save();
       const posts = await this.postRepository.findAll();
       return {
@@ -45,6 +47,8 @@ export class PostService {
       ...createPostDto,
       image: fileName,
     });
+    await post.$set("likes", []);
+    await post.$set("dislikes", []);
     await post.save();
     await this.photoRepository.create({
       userId: createPostDto.userId,
@@ -52,9 +56,10 @@ export class PostService {
       postId: post.id,
     });
 
-    const posts = await this.postRepository.findAll();
+    const newPost = await this.postRepository.findByPk(post.id, { include: { all: true } });
+
     return {
-      data: posts,
+      data: newPost,
       statusCode: HttpStatus.OK,
     };
   }
@@ -65,6 +70,14 @@ export class PostService {
       data: posts,
       statusCode: HttpStatus.OK,
     };
+  }
+
+  async findByUser(id: number) {
+    const posts = await this.postRepository.findAll({
+      where: { userId: id },
+      include: { all: true },
+    });
+    return posts;
   }
 
   async findOne(id: number) {
@@ -153,6 +166,8 @@ export class PostService {
       postId: post.id,
     });
 
+    await post.$add("like", like.id);
+
     await like.save();
     await post.save();
 
@@ -175,6 +190,8 @@ export class PostService {
     }
 
     await isAlreadyLiked.destroy();
+
+    await post.$remove("like", isAlreadyLiked.id);
 
     await post.save();
 
