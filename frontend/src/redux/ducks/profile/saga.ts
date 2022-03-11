@@ -18,7 +18,6 @@ import {
 import { ProfileDto } from "../../../types/profile/profile.dto";
 import { IApiOkResponse } from "../../../api/instance.api";
 
-
 function* getProfile({ payload }: IFetchedProfile) {
 	try {
 		const { data }: IApiOkResponse<ProfileDto> = yield call(profileAPI.getProfile, payload);

@@ -3,16 +3,29 @@ import React from "react";
 import styles from "../Profile.module.css";
 import { Button, FormControl, FormControlLabel, Grid, IconButton, Typography } from "@mui/material";
 import { PostDto } from "../../../types/post/post.dto";
-import { fetchedDelete, fetchedLike, fetchedUnlike, fetchedUpdate } from "../../../redux/ducks/post/post.slice";
+import {
+	fetchedDelete,
+	fetchedDislike,
+	fetchedLike, fetchedUndislike,
+	fetchedUnlike,
+	fetchedUpdate
+} from "../../../redux/ducks/post/post.slice";
 import { useDispatch } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "../../../utils/validators/updatePost";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import {
+	fetchedPostDislike,
+	fetchedPostLike,
+	fetchedPostUndislike,
+	fetchedPostUnlike
+} from "../../../redux/ducks/profile/profile.slice";
 interface PostInterface {
 	post: PostDto;
 	userId?: string;
@@ -151,17 +164,24 @@ export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
 					<Typography variant="subtitle2" sx={{ p: 2 }}>{post.content}</Typography>
 					<img className={styles.postImage} src={"http://localhost:8000/" + post.image} />
 					<Grid>
-						{isOwner && <Button onClick={() => setEditMode(true)} sx={{ m: 2 }} variant="contained">Edit</Button>}
-						{post.likes.length !== 0 ? post.likes.find((post) => post.userId === Number(userId)) &&
-							<IconButton color="secondary" aria-label="add an alarm"
-										onClick={() => dispatch(fetchedUnlike(post.id))}>
-								<FavoriteIcon />{post.likes.length}
-							</IconButton>
-						: <IconButton color="secondary" aria-label="add an alarm"
-									  onClick={() => dispatch(fetchedLike(post.id))}>
-								<FavoriteBorderIcon  />{post.likes.length}
+						{isOwner &&
+                        <Button onClick={() => setEditMode(true)} sx={{ m: 2 }} variant="contained">Edit</Button>}
+						{post.likes?.length !== 0 ? post.likes?.find((post) => post.userId === Number(userId)) &&
+                          <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostUnlike(post.id))}>
+                            <ThumbUpAltIcon />{post.likes.length}
+                          </IconButton>
+							: <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostLike(post.id))}>
+								<ThumbUpOffAltIcon />{post.likes.length}
 							</IconButton>}
-						{isOwner && <Button onClick={() => dispatch(fetchedDelete(post.id))} sx={{ m: 2 }}  variant="contained">Delete</Button>}
+						{post.dislikes?.length !== 0 ? post.dislikes?.find((post) => post.userId === Number(userId)) &&
+                          <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostUndislike(post.id))}>
+                            <ThumbDownAltIcon />{post.dislikes.length}
+                          </IconButton>
+							: <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostDislike(post.id))}>
+								<ThumbDownOffAltIcon />{post.dislikes.length}
+							</IconButton>}
+						{isOwner && <Button onClick={() => dispatch(fetchedDelete(post.id))} sx={{ m: 2 }}
+                                            variant="contained">Delete</Button>}
 					</Grid>
 				</Grid>
 			}

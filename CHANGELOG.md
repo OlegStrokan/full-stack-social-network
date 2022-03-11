@@ -1,4 +1,11 @@
 
+# v2.3.7 (11.03.2022)
+
+## Features:
+
+Frontend:
+1. Updated dislike/undislike in post and profile slice (not complete)
+
 # v2.3.6 (11.03.2022)
 
 ## Features:

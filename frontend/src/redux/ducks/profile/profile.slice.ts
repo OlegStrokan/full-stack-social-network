@@ -79,7 +79,7 @@ export const profileSlice = createSlice({
 		createPostSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
 			// @ts-ignore
-			state.profile.posts = [state.profile.posts, action.payload]
+			state.profile.posts = [state.profile.posts, action.payload];
 		},
 		fetchedPostDelete(state, action: PayloadAction<number>) {
 			state.loading = true;
@@ -96,6 +96,42 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			// @ts-ignore
 			state.profile.posts = action.payload;
+		},
+		fetchedPostLike(state, action: PayloadAction<number>) {
+			state.loading = true;
+		},
+		likePostSuccess(state, action: PayloadAction<PostDto>) {
+			state.loading = false;
+			// @ts-ignore
+			const newPosts = state.profile.posts.filter((post) => post.id === action.payload.id);
+			state.profile!.posts = [...newPosts, action.payload];
+		},
+		fetchedPostUnlike(state, action: PayloadAction<number>) {
+			state.loading = true;
+		},
+		unlikePostSuccess(state, action: PayloadAction<PostDto>) {
+			state.loading = false;
+			// @ts-ignore
+			const newPosts = state.profile.posts.filter((post) => post.id === action.payload.id);
+			state.profile!.posts = [...newPosts, action.payload];
+		},
+		fetchedPostDislike(state, action: PayloadAction<number>) {
+			state.loading = true;
+		},
+		dislikePostSuccess(state, action: PayloadAction<PostDto>) {
+			state.loading = false;
+			// @ts-ignore
+			const newPosts = state.profile.posts.filter((post) => post.id === action.payload.id);
+			state.profile!.posts = [...newPosts, action.payload];
+		},
+		fetchedPostUndislike(state, action: PayloadAction<number>) {
+			state.loading = true;
+		},
+		undislikePostSuccess(state, action: PayloadAction<PostDto>) {
+			state.loading = false;
+			// @ts-ignore
+			const newPosts = state.profile.posts.filter((post) => post.id === action.payload.id);
+			state.profile!.posts = [...newPosts, action.payload];
 		}
 	}
 });
@@ -121,7 +157,15 @@ export const {
 	fetchedUpdate,
 	deletePostSuccess,
 	createPostSuccess,
-	fetchedPostCreate
+	fetchedPostCreate,
+	fetchedPostUndislike,
+	undislikePostSuccess,
+	likePostSuccess,
+	dislikePostSuccess,
+	fetchedPostLike,
+	fetchedPostUnlike,
+	fetchedPostDislike,
+	unlikePostSuccess
 } = profileSlice.actions;
 
 export const profileReducer = profileSlice.reducer;

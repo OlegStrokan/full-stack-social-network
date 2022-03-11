@@ -32,7 +32,7 @@ export const postSlice = createSlice({
 		},
 		postsFailed(state, action: PayloadAction<any>) {
 			state.loading = false;
-			state.currentPost = action.payload;
+			state.posts = action.payload;
 		},
 		fetchedPost(state, action: PayloadAction<number>) {
 			state.loading = true;
@@ -68,15 +68,17 @@ export const postSlice = createSlice({
 		likeSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
 			// @ts-ignore
-			state.posts.find((post) => post.id === action.payload.id) = action.payload;
+			const newPosts = state.posts.filter((post) = post.id === action.payload.id);
+			state.posts = [...newPosts, action.payload]
 		},
 		fetchedUnlike(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
 		unlikeSuccess(state, action: PayloadAction<PostDto>) {
-			state.loading = false;
+			state.loading = false
 			// @ts-ignore
-			state.posts.find((post) => post.id === action.payload.id) = action.payload;
+			const newPosts = state.posts.filter((post) = post.id === action.payload.id);
+			state.posts = [...newPosts, action.payload]
 		},
 		fetchedDislike(state, action: PayloadAction<number>) {
 			state.loading = true;
@@ -84,8 +86,8 @@ export const postSlice = createSlice({
 		dislikeSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
 			// @ts-ignore
-			state.posts.find((post) => post.id === action.payload.id) = action.payload;
-
+			const newPosts = state.posts.filter((post) = post.id === action.payload.id);
+			state.posts = [...newPosts, action.payload]
 		},
 		fetchedUndislike(state, action: PayloadAction<number>) {
 			state.loading = true;
@@ -93,7 +95,8 @@ export const postSlice = createSlice({
 		undislikeSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
 			// @ts-ignore
-			state.posts.find((post) => post.id === action.payload.id) = action.payload;
+			const newPosts = state.posts.filter((post) = post.id === action.payload.id);
+			state.posts = [...newPosts, action.payload]
 		}
 	}
 });
