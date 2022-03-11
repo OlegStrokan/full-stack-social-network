@@ -11,6 +11,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { UserModel } from "../../user/models/user.model";
 import { DislikeModel } from "./dislike.model";
 import { LikeModel } from "./like.model";
+import { options } from "tsconfig-paths/lib/options";
 
 interface PostCreationAttrs {
   title: string;

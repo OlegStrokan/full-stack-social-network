@@ -81,6 +81,7 @@ function* likePost({ payload }: IFetchedLike) {
 
 function* unlikePost({ payload }: IFetchedUnlike) {
 	try {
+		debugger
 		const { data }: IApiOkResponse<PostDto> = yield call(postAPI.unlikePost, payload);
 		yield put(unlikeSuccess(data));
 	} catch (error: any) {

@@ -81,7 +81,7 @@ export class PostService {
   }
 
   async findOne(id: number) {
-    const post = await this.postRepository.findByPk(id);
+    const post = await this.postRepository.findByPk(id, { include: { all: true } });
 
     if (!post) {
       throw new HttpException("Post with this id not found", HttpStatus.NOT_FOUND);
@@ -166,8 +166,6 @@ export class PostService {
       postId: post.id,
     });
 
-    await post.$add("like", like.id);
-
     await like.save();
     await post.save();
 
@@ -185,13 +183,7 @@ export class PostService {
       where: { userId: post.userId, postId: post.id },
     });
 
-    if (!isAlreadyLiked) {
-      throw new HttpException("You haven't liked this post yet", HttpStatus.BAD_REQUEST);
-    }
-
     await isAlreadyLiked.destroy();
-
-    await post.$remove("like", isAlreadyLiked.id);
 
     await post.save();
 

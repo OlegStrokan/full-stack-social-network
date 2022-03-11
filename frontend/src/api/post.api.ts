@@ -34,7 +34,7 @@ export const postAPI = {
         return instance.patch<IApiOkResponse<PostDto>>(`posts/like/${id}`).then((response) => response.data)
     },
     unlikePost(id: number): Promise<IApiOkResponse<PostDto>> {
-        return instance.patch<IApiOkResponse<PostDto>>(`posts/like/${id}`).then((response) => response.data)
+        return instance.delete<IApiOkResponse<PostDto>>(`posts/like/${id}`).then((response) => response.data)
     },
 
 }

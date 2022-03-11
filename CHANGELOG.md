@@ -1,4 +1,17 @@
 
+# v2.3.5 (11.03.2022)
+
+## Features:
+
+Frontend:
+1. Updated like/unlike in post component.
+
+
+## Fixes:
+
+Backend:
+1.Fixed nested copy of user's posts in backend
+
 # v2.3.4 (10.03.2022)
 
 ## Features:

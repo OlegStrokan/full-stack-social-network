@@ -10,8 +10,8 @@ import Box from "@mui/material/Box";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "../../../utils/validators/updatePost";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 interface PostInterface {
 	post: PostDto;
@@ -155,11 +155,11 @@ export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
 						{post.likes.length !== 0 ? post.likes.find((post) => post.userId === Number(userId)) &&
 							<IconButton color="secondary" aria-label="add an alarm"
 										onClick={() => dispatch(fetchedUnlike(post.id))}>
-								<FavoriteBorderIcon />{post.likes.length}
+								<FavoriteIcon />{post.likes.length}
 							</IconButton>
 						: <IconButton color="secondary" aria-label="add an alarm"
 									  onClick={() => dispatch(fetchedLike(post.id))}>
-								<FavoriteIcon />{post.likes.length}
+								<FavoriteBorderIcon  />{post.likes.length}
 							</IconButton>}
 						{isOwner && <Button onClick={() => dispatch(fetchedDelete(post.id))} sx={{ m: 2 }}  variant="contained">Delete</Button>}
 					</Grid>
