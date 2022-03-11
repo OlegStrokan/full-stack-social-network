@@ -68,7 +68,7 @@ export const postSlice = createSlice({
 		likeSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
 			// @ts-ignore
-			state.posts.find((post) => post.id === action.payload.isLiked).isLiked = action.payload.isLiked;
+			state.posts.find((post) => post.id === action.payload.id) = action.payload;
 		},
 		fetchedUnlike(state, action: PayloadAction<number>) {
 			state.loading = true;
@@ -76,7 +76,24 @@ export const postSlice = createSlice({
 		unlikeSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
 			// @ts-ignore
-			state.posts.find((post) => post.id === action.payload.isLiked).isLiked = action.payload.isLiked;
+			state.posts.find((post) => post.id === action.payload.id) = action.payload;
+		},
+		fetchedDislike(state, action: PayloadAction<number>) {
+			state.loading = true;
+		},
+		dislikeSuccess(state, action: PayloadAction<PostDto>) {
+			state.loading = false;
+			// @ts-ignore
+			state.posts.find((post) => post.id === action.payload.id) = action.payload;
+
+		},
+		fetchedUndislike(state, action: PayloadAction<number>) {
+			state.loading = true;
+		},
+		undislikeSuccess(state, action: PayloadAction<PostDto>) {
+			state.loading = false;
+			// @ts-ignore
+			state.posts.find((post) => post.id === action.payload.id) = action.payload;
 		}
 	}
 });
@@ -98,6 +115,10 @@ export const {
 	createSuccess,
 	deleteSuccess,
 	fetchedDelete,
+	dislikeSuccess,
+	undislikeSuccess,
+	fetchedUndislike,
+	fetchedDislike
 } = postSlice.actions;
 
 export const postReducer = postSlice.reducer;

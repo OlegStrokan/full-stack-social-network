@@ -1,10 +1,17 @@
 
+# v2.3.6 (11.03.2022)
+
+## Features:
+
+Frontend:
+1. Updated dislike/undislike to post's api, slice, sagas
+
 # v2.3.5 (11.03.2022)
 
 ## Features:
 
 Frontend:
-1. Updated like/unlike in post component.
+1. Updated like/unlike in post component
 
 
 ## Fixes:

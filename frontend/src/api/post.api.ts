@@ -36,5 +36,11 @@ export const postAPI = {
     unlikePost(id: number): Promise<IApiOkResponse<PostDto>> {
         return instance.delete<IApiOkResponse<PostDto>>(`posts/like/${id}`).then((response) => response.data)
     },
+    dislikePost(id: number): Promise<IApiOkResponse<PostDto>> {
+        return instance.patch<IApiOkResponse<PostDto>>(`posts/dislike/${id}`).then((response) => response.data)
+    },
+    undislikePost(id: number): Promise<IApiOkResponse<PostDto>> {
+        return instance.delete<IApiOkResponse<PostDto>>(`posts/dislike/${id}`).then((response) => response.data)
+    },
 
 }

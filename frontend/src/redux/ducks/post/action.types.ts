@@ -9,7 +9,9 @@ export enum PostActionTypes {
     FETCHED_UPDATE = 'FETCHED_UPDATE',
     FETCHED_DELETE = 'FETCHED_DELETE',
     FETCHED_LIKE = 'FETCHED_LIKE',
-    FETCHED_UNLIKE = 'FETCHED_UNLIKE'
+    FETCHED_UNLIKE = 'FETCHED_UNLIKE',
+    FETCHED_DISLIKE = 'FETCHED_DISLIKE',
+    FETCHED_UNDISLIKE = 'FETCHED_UNDISLIKE'
 }
 
 
@@ -45,6 +47,15 @@ export interface IFetchedUnlike extends Action<PostActionTypes> {
     payload: number
 }
 
+export interface IFetchedDislike extends Action<PostActionTypes> {
+    type: PostActionTypes.FETCHED_DISLIKE,
+    payload: number
+}
+
+export interface IFetchedUndislike extends Action<PostActionTypes> {
+    type: PostActionTypes.FETCHED_UNDISLIKE,
+    payload: number
+}
 
 
 

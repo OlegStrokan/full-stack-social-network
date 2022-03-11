@@ -1,8 +1,8 @@
 import {
-	IFetchedCreate,
+	IFetchedCreate, IFetchedDislike,
 	IFetchedLike,
 	IFetchedPost,
-	IFetchedUDelete,
+	IFetchedUDelete, IFetchedUndislike,
 	IFetchedUnlike,
 	IFetchedUpdate
 } from "./action.types";
@@ -10,11 +10,11 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { postAPI } from "../../../api/post.api";
 import {
 	createSuccess,
-	deleteSuccess,
+	deleteSuccess, dislikeSuccess,
 	likeSuccess,
 	postsFailed,
 	postsSuccess,
-	postSuccess,
+	postSuccess, undislikeSuccess,
 	unlikeSuccess,
 	updateSuccess
 } from "./post.slice";
@@ -89,6 +89,25 @@ function* unlikePost({ payload }: IFetchedUnlike) {
 	}
 }
 
+function* dislikePost({ payload }: IFetchedDislike) {
+	try {
+		const { data }: IApiOkResponse<PostDto> = yield call(postAPI.dislikePost, payload);
+		yield put(dislikeSuccess(data));
+	} catch (error: any) {
+		yield put(postsFailed(error));
+	}
+}
+
+function* undislikePost({ payload }: IFetchedUndislike) {
+	try {
+		debugger
+		const { data }: IApiOkResponse<PostDto> = yield call(postAPI.undislikePost, payload);
+		yield put(undislikeSuccess(data));
+	} catch (error: any) {
+		yield put(postsFailed(error));
+	}
+}
+
 export function* postWatcher() {
 	yield takeEvery("post/fetchedPosts", getPosts);
 	yield takeEvery("profile/fetchedPost", getPost);
@@ -99,4 +118,6 @@ export function* postWatcher() {
 	yield takeEvery("post/fetchedPostDelete", deletePost);
 	yield takeEvery("post/fetchedLike", likePost);
 	yield takeEvery("post/fetchedUnlike", unlikePost);
+	yield takeEvery("post/fetchedDislike", dislikePost);
+	yield takeEvery("post/fetchedUndislike", undislikePost);
 }
