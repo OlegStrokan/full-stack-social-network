@@ -169,10 +169,10 @@ export class PostService {
     await like.save();
     await post.save();
 
-    const updatedPost = await this.postRepository.findByPk(id, { include: { all: true } });
+    const posts = await this.postRepository.findAll({ include: { all: true } });
 
     return {
-      data: updatedPost,
+      data: posts,
       statusCode: HttpStatus.OK,
     };
   }
@@ -187,10 +187,10 @@ export class PostService {
 
     await post.save();
 
-    const updatedPost = await this.postRepository.findByPk(id, { include: { all: true } });
+    const posts = await this.postRepository.findAll({ include: { all: true } });
 
     return {
-      data: updatedPost,
+      data: posts,
       statusCode: HttpStatus.OK,
     };
   }
@@ -211,10 +211,10 @@ export class PostService {
     await dislike.save();
     await post.save();
 
-    const updatedPost = await this.postRepository.findByPk(id, { include: { all: true } });
+    const posts = await this.postRepository.findAll({ include: { all: true } });
 
     return {
-      data: updatedPost,
+      data: posts,
       statusCode: HttpStatus.OK,
     };
   }
@@ -233,10 +233,10 @@ export class PostService {
 
     await post.save();
 
-    const updatedPost = await this.postRepository.findByPk(id, { include: { all: true } });
+    const posts = await this.postRepository.findAll({ include: { all: true } });
 
     return {
-      data: updatedPost,
+      data: posts,
       statusCode: HttpStatus.OK,
     };
   }

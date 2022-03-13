@@ -1,4 +1,16 @@
 
+# v2.3.8 (13.03.2022)
+
+## Features:
+
+Backend:
+1. Change return data in post service,
+
+## Fixes:
+
+Frontend:
+1. Fixes render posts in profile page
+
 # v2.3.7 (11.03.2022)
 
 ## Features:

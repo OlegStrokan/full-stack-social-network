@@ -79,59 +79,49 @@ export const profileSlice = createSlice({
 		createPostSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
 			// @ts-ignore
-			state.profile.posts = [state.profile.posts, action.payload];
+			state.profile!.posts = [state.profile.posts, action.payload];
 		},
 		fetchedPostDelete(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
 		updatePostSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			// @ts-ignore
-			state.profile.posts = action.payload;
+			state.profile!.posts = action.payload;
 		},
 		fetchedPostUpdate(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
 		deletePostSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			// @ts-ignore
-			state.profile.posts = action.payload;
+			state.profile!.posts = action.payload;
 		},
 		fetchedPostLike(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
-		likePostSuccess(state, action: PayloadAction<PostDto>) {
+		likePostSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			// @ts-ignore
-			const newPosts = state.profile.posts.filter((post) => post.id === action.payload.id);
-			state.profile!.posts = [...newPosts, action.payload];
+			state.profile!.posts = action.payload;
 		},
 		fetchedPostUnlike(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
-		unlikePostSuccess(state, action: PayloadAction<PostDto>) {
+		unlikePostSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			// @ts-ignore
-			const newPosts = state.profile.posts.filter((post) => post.id === action.payload.id);
-			state.profile!.posts = [...newPosts, action.payload];
+			state.profile!.posts = action.payload;
 		},
 		fetchedPostDislike(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
-		dislikePostSuccess(state, action: PayloadAction<PostDto>) {
+		dislikePostSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			// @ts-ignore
-			const newPosts = state.profile.posts.filter((post) => post.id === action.payload.id);
-			state.profile!.posts = [...newPosts, action.payload];
+			state.profile!.posts = action.payload;
 		},
 		fetchedPostUndislike(state, action: PayloadAction<number>) {
 			state.loading = true;
 		},
-		undislikePostSuccess(state, action: PayloadAction<PostDto>) {
+		undislikePostSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
-			// @ts-ignore
-			const newPosts = state.profile.posts.filter((post) => post.id === action.payload.id);
-			state.profile!.posts = [...newPosts, action.payload];
+			state.profile!.posts = action.payload;
 		}
 	}
 });

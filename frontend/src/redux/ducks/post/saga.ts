@@ -75,7 +75,7 @@ function* deletePost({ payload }: IFetchedUDelete) {
 
 function* likePost({ payload }: IFetchedLike) {
 	try {
-		const { data }: IApiOkResponse<PostDto> = yield call(postAPI.likePost, payload);
+		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.likePost, payload);
 		yield put(likePostSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
@@ -84,7 +84,7 @@ function* likePost({ payload }: IFetchedLike) {
 
 function* unlikePost({ payload }: IFetchedUnlike) {
 	try {
-		const { data }: IApiOkResponse<PostDto> = yield call(postAPI.unlikePost, payload);
+		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.unlikePost, payload);
 		yield put(unlikePostSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
@@ -93,7 +93,7 @@ function* unlikePost({ payload }: IFetchedUnlike) {
 
 function* dislikePost({ payload }: IFetchedDislike) {
 	try {
-		const { data }: IApiOkResponse<PostDto> = yield call(postAPI.dislikePost, payload);
+		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.dislikePost, payload);
 		yield put(dislikePostSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));
@@ -102,7 +102,7 @@ function* dislikePost({ payload }: IFetchedDislike) {
 
 function* undislikePost({ payload }: IFetchedUndislike) {
 	try {
-		const { data }: IApiOkResponse<PostDto> = yield call(postAPI.undislikePost, payload);
+		const { data }: IApiOkResponse<PostDto[]> = yield call(postAPI.undislikePost, payload);
 		yield put(undislikePostSuccess(data));
 	} catch (error: any) {
 		yield put(postsFailed(error));

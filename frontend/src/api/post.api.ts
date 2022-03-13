@@ -30,17 +30,17 @@ export const postAPI = {
     deletePost(id: number): Promise<IApiOkResponse<PostDto[]>> {
         return instance.delete<IApiOkResponse<PostDto[]>>(`posts/${id}`).then((response) => response.data)
     },
-    likePost(id: number): Promise<IApiOkResponse<PostDto>> {
-        return instance.patch<IApiOkResponse<PostDto>>(`posts/like/${id}`).then((response) => response.data)
+    likePost(id: number): Promise<IApiOkResponse<PostDto[]>> {
+        return instance.patch<IApiOkResponse<PostDto[]>>(`posts/like/${id}`).then((response) => response.data)
     },
-    unlikePost(id: number): Promise<IApiOkResponse<PostDto>> {
-        return instance.delete<IApiOkResponse<PostDto>>(`posts/like/${id}`).then((response) => response.data)
+    unlikePost(id: number): Promise<IApiOkResponse<PostDto[]>> {
+        return instance.delete<IApiOkResponse<PostDto[]>>(`posts/like/${id}`).then((response) => response.data)
     },
-    dislikePost(id: number): Promise<IApiOkResponse<PostDto>> {
-        return instance.patch<IApiOkResponse<PostDto>>(`posts/dislike/${id}`).then((response) => response.data)
+    dislikePost(id: number): Promise<IApiOkResponse<PostDto[]>> {
+        return instance.patch<IApiOkResponse<PostDto[]>>(`posts/dislike/${id}`).then((response) => response.data)
     },
-    undislikePost(id: number): Promise<IApiOkResponse<PostDto>> {
-        return instance.delete<IApiOkResponse<PostDto>>(`posts/dislike/${id}`).then((response) => response.data)
+    undislikePost(id: number): Promise<IApiOkResponse<PostDto[]>> {
+        return instance.delete<IApiOkResponse<PostDto[]>>(`posts/dislike/${id}`).then((response) => response.data)
     },
 
 }
