@@ -37,7 +37,7 @@ export const App = () => {
 					<Route path="/login" element={<Login userId={userId} isAuth={isAuth} />} />
 					<Route path="/" element={<Navigate to={`/profile/${userId}`} />} />
 					<Route path="/profile/:id" element={<Profile userId={userId} isAuth={isAuth} />} />
-					<Route path="/users" element={<Users isAuth={isAuth} />} />
+					<Route path="/users" element={<Users isAuth={isAuth} userId={userId} />} />
 					<Route path="/roles" element={<Roles isAuth={isAuth} />} />
 				</Routes>
 			</div>

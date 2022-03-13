@@ -1,4 +1,11 @@
 
+# v2.4.0 (13.03.2022)
+
+## Features:
+
+Frontend:
+1. Updated users page. Added form for ban user (not complete)
+
 # v2.3.9 (13.03.2022)
 
 ## Features:
