@@ -1,22 +1,17 @@
 import {
-	IFetchedCreate, IFetchedDislike,
+	IFetchedCreate, IFetchedDelete, IFetchedDislike,
 	IFetchedLike,
 	IFetchedPost,
-	IFetchedUDelete, IFetchedUndislike,
+	IFetchedUndislike,
 	IFetchedUnlike,
 	IFetchedUpdate
 } from "./action.types";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { postAPI } from "../../../api/post.api";
 import {
-	createSuccess,
-	deleteSuccess, dislikeSuccess,
-	likeSuccess,
 	postsFailed,
 	postsSuccess,
-	postSuccess, undislikeSuccess,
-	unlikeSuccess,
-	updateSuccess
+	postSuccess
 } from "./post.slice";
 import { PostDto } from "../../../types/post/post.dto";
 import {
@@ -64,7 +59,7 @@ function* updatePost({ payload }: IFetchedUpdate) {
 	}
 }
 
-function* deletePost({ payload }: IFetchedUDelete) {
+function* deletePost({ payload }: IFetchedDelete) {
 	try {
 		const { data }: IApiOkResponse<PostDto[]>= yield call(postAPI.deletePost, payload);
 		yield put(deletePostSuccess(data));

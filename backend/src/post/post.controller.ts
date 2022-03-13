@@ -75,35 +75,35 @@ export class PostController {
   @ApiOkResponse({ status: 200, type: PostModel })
   @UseGuards(RolesGuard)
   @Roles("ADMIN", "USER")
-  @Patch("/like/:id")
-  like(@Param("id") id: string) {
-    return this.postService.like(+id);
+  @Patch("/:postId/like/:userId")
+  like(@Param("postId") postId: string, @Param("userId") userId: string) {
+    return this.postService.like(+postId, +userId);
   }
 
   @ApiOperation({ summary: "Unlike a post" })
   @ApiOkResponse({ status: 200, type: PostModel })
   @Roles("ADMIN", "USER")
   @UseGuards(RolesGuard)
-  @Delete("/like/:id")
-  unLike(@Param("id") id: string) {
-    return this.postService.unlike(+id);
+  @Delete("/:postId/like/:userId")
+  unLike(@Param("postId") postId: string, @Param("userId") userId: string) {
+    return this.postService.unlike(+postId, +userId);
   }
 
   @ApiOperation({ summary: "Dislike a post" })
   @ApiOkResponse({ status: 200, type: PostModel })
   @UseGuards(RolesGuard)
   @Roles("ADMIN", "USER")
-  @Patch("/dislike/:id")
-  dislike(@Param("id") id: string) {
-    return this.postService.dislike(+id);
+  @Patch("/:postId/dislike/:userId")
+  dislike(@Param("postId") postId: string, @Param("userId") userId: string) {
+    return this.postService.dislike(+postId, +userId);
   }
 
   @ApiOperation({ summary: "Undislike a post" })
   @ApiOkResponse({ status: 200, type: PostModel })
   @Roles("ADMIN", "USER")
   @UseGuards(RolesGuard)
-  @Delete("/dislike/:id")
-  unDislike(@Param("id") id: string) {
-    return this.postService.undislike(+id);
+  @Delete("/:postId/dislike/:userId")
+  unDislike(@Param("postId") postId: string, @Param("userId") userId: string) {
+    return this.postService.undislike(+postId, +userId);
   }
 }

@@ -52,7 +52,7 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 				<ProfileInfo profile={profile} />
 			</Grid>
 			<Grid className={styles.profilePosts}>
-				<ProfilePosts isOwner={isOwner} userId={url.id} posts={profile?.posts} />
+				<ProfilePosts isOwner={isOwner} userId={userId} posts={profile?.posts} />
 			</Grid>
 			<Grid className={styles.profileEntities}>
 				<ProfileEntities profile={profile} />

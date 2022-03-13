@@ -1,4 +1,16 @@
 
+# v2.3.9 (13.03.2022)
+
+## Features:
+
+Frontend:
+1. Updated likes/unlike on post component (final version)
+
+## Fixes:
+Backend:
+
+1. Fixed post services, fixed requests to database
+
 # v2.3.8 (13.03.2022)
 
 ## Features:

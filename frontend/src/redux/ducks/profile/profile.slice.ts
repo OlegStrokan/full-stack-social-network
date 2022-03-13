@@ -7,6 +7,7 @@ import { PostDto } from "../../../types/post/post.dto";
 import { IApiOkResponse } from "../../../api/instance.api";
 import { CreatePostDto } from "../../../types/post/createPost.dto";
 import { UpdateAvatarDto } from "../../../types/profile/updateAvatar.dto";
+import { LikeDislikePostDto } from "../../../types/post/likeDislikePost.dto";
 
 interface ProfileState {
 	profile: ProfileDto | null;
@@ -95,28 +96,28 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			state.profile!.posts = action.payload;
 		},
-		fetchedPostLike(state, action: PayloadAction<number>) {
+		fetchedPostLike(state, action: PayloadAction<LikeDislikePostDto>) {
 			state.loading = true;
 		},
 		likePostSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
 			state.profile!.posts = action.payload;
 		},
-		fetchedPostUnlike(state, action: PayloadAction<number>) {
+		fetchedPostUnlike(state, action: PayloadAction<LikeDislikePostDto>) {
 			state.loading = true;
 		},
 		unlikePostSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
 			state.profile!.posts = action.payload;
 		},
-		fetchedPostDislike(state, action: PayloadAction<number>) {
+		fetchedPostDislike(state, action: PayloadAction<LikeDislikePostDto>) {
 			state.loading = true;
 		},
 		dislikePostSuccess(state, action: PayloadAction<PostDto[]>) {
 			state.loading = false;
 			state.profile!.posts = action.payload;
 		},
-		fetchedPostUndislike(state, action: PayloadAction<number>) {
+		fetchedPostUndislike(state, action: PayloadAction<LikeDislikePostDto>) {
 			state.loading = true;
 		},
 		undislikePostSuccess(state, action: PayloadAction<PostDto[]>) {

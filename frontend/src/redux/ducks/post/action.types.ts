@@ -1,6 +1,7 @@
 import { Action } from "@reduxjs/toolkit";
 import { CreatePostDto } from "../../../types/post/createPost.dto";
 import { UpdatePostDto } from "../../../types/post/updatePost.dto";
+import { LikeDislikePostDto } from "../../../types/post/likeDislikePost.dto";
 
 
 export enum PostActionTypes {
@@ -31,30 +32,29 @@ export interface IFetchedUpdate extends Action<PostActionTypes> {
     payload: UpdatePostDto
 }
 
-
-export interface IFetchedUDelete extends Action<PostActionTypes> {
+export interface IFetchedDelete extends Action<PostActionTypes> {
     type: PostActionTypes.FETCHED_DELETE,
     payload: number
 }
 
 export interface IFetchedLike extends Action<PostActionTypes> {
     type: PostActionTypes.FETCHED_LIKE,
-    payload: number
+    payload: LikeDislikePostDto
 }
 
 export interface IFetchedUnlike extends Action<PostActionTypes> {
     type: PostActionTypes.FETCHED_UNLIKE,
-    payload: number
+    payload: LikeDislikePostDto
 }
 
 export interface IFetchedDislike extends Action<PostActionTypes> {
     type: PostActionTypes.FETCHED_DISLIKE,
-    payload: number
+    payload: LikeDislikePostDto
 }
 
 export interface IFetchedUndislike extends Action<PostActionTypes> {
     type: PostActionTypes.FETCHED_UNDISLIKE,
-    payload: number
+    payload: LikeDislikePostDto
 }
 
 

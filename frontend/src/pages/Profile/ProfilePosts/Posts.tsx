@@ -10,7 +10,7 @@ import { Post } from "./Post";
 
 interface PostsInterface {
 	posts?: PostDto[];
-	userId: string | undefined;
+	userId: number | null;
 	isOwner: boolean;
 }
 

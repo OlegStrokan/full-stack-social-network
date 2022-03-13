@@ -14,7 +14,7 @@ import { validationSchema } from "../../../utils/validators/createPost";
 import { fetchedCreate } from "../../../redux/ducks/post/post.slice";
 
 interface AddPostInterface {
-	userId: string | undefined;
+	userId: number | null;
 }
 
 export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {

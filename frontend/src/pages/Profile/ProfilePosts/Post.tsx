@@ -5,9 +5,6 @@ import { Button, FormControl, FormControlLabel, Grid, IconButton, Typography } f
 import { PostDto } from "../../../types/post/post.dto";
 import {
 	fetchedDelete,
-	fetchedDislike,
-	fetchedLike, fetchedUndislike,
-	fetchedUnlike,
 	fetchedUpdate
 } from "../../../redux/ducks/post/post.slice";
 import { useDispatch } from "react-redux";
@@ -28,12 +25,12 @@ import {
 } from "../../../redux/ducks/profile/profile.slice";
 interface PostInterface {
 	post: PostDto;
-	userId?: string;
+	userId: number | null;
 	isOwner: boolean;
 }
 
 export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
-
+debugger
 
 	const [editMode, setEditMode] = React.useState(false);
 
@@ -166,18 +163,18 @@ export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
 					<Grid>
 						{isOwner &&
                         <Button onClick={() => setEditMode(true)} sx={{ m: 2 }} variant="contained">Edit</Button>}
-						{post.likes?.length !== 0 ? post.likes?.find((post) => post.userId === Number(userId)) &&
-                          <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostUnlike(post.id))}>
+						{post.likes?.find((post) => post.userId === Number(userId)) ?
+                          <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostUnlike({ postId: post.id, userId: Number(userId) }))}>
                             <ThumbUpAltIcon />{post.likes.length}
                           </IconButton>
-							: <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostLike(post.id))}>
+							: <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostLike({ postId: post.id, userId: Number(userId) }))}>
 								<ThumbUpOffAltIcon />{post.likes.length}
 							</IconButton>}
-						{post.dislikes?.length !== 0 ? post.dislikes?.find((post) => post.userId === Number(userId)) &&
-                          <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostUndislike(post.id))}>
+						{post.dislikes?.find((post) => post.userId === Number(userId)) ?
+                          <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostUndislike({ postId: post.id, userId: Number(userId) }))}>
                             <ThumbDownAltIcon />{post.dislikes.length}
                           </IconButton>
-							: <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostDislike(post.id))}>
+							: <IconButton color="secondary" aria-label="add an alarm" onClick={() => dispatch(fetchedPostDislike({ postId: post.id, userId: Number(userId) }))}>
 								<ThumbDownOffAltIcon />{post.dislikes.length}
 							</IconButton>}
 						{isOwner && <Button onClick={() => dispatch(fetchedDelete(post.id))} sx={{ m: 2 }}

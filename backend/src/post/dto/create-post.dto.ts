@@ -17,9 +17,6 @@ export class CreatePostDto {
   @ApiProperty({ example: "82", description: "Post's author" })
   readonly userId: number;
 
-  @ApiProperty({
-    example: "2983-2zed2-z2d2n-nac38",
-    description: "Post's image/images",
-  })
+  @ApiProperty({ example: "2983-2zed2-z2d2n-nac38", description: "Post's image/images" })
   readonly image?: string;
 }

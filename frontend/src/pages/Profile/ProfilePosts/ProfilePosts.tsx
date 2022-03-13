@@ -7,7 +7,7 @@ import { Posts } from "./Posts";
 interface ProfileInterface {
   posts?: PostDto[];
   isOwner: boolean;
-  userId: string | undefined
+  userId: number | null;
 }
 
 export const ProfilePosts: React.FC<ProfileInterface> = ({ posts, userId, isOwner }) => {

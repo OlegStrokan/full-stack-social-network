@@ -27,14 +27,6 @@ export const Navbar: React.FC<IHeader> = ({ userId, isAuth, roles }) => {
 					:
 					<>
 						<ListItem disablePadding>
-							<ListItemButton onClick={() => navigate("/posts")}>
-								<ListItemIcon>
-									<Inbox />
-								</ListItemIcon>
-								<ListItemText primary="Posts" />
-							</ListItemButton>
-						</ListItem>
-						<ListItem disablePadding>
 							<ListItemButton onClick={() => navigate(`/profile/${userId}`)}>
 								<ListItemIcon>
 									<Drafts />
