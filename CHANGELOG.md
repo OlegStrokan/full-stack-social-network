@@ -1,4 +1,13 @@
 
+# v2.4.2 (15.03.2022)
+
+## Features:
+
+Frontend:
+1. Refactored users page
+2. Updated add role, ban user functional (not complete)
+
+
 # v2.4.1 (15.03.2022)
 
 ## Features:

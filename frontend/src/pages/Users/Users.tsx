@@ -10,8 +10,9 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validationSchema } from "../../utils/validators/addRole";
+import { validationSchema } from "../../utils/validators/banUser";
 import { IRoleDto } from "../../types/role/role.dto";
+import { AddRole } from "./AddRole";
 
 interface UsersInterface {
 	isAuth: boolean;
@@ -41,13 +42,14 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 	if (loading) return <div>...loading</div>;
 
 	const onSubmitBan = (event: any) => {
-		dispatch(fetchedBanUser({ userId: event.userId, banReason: event.banReason }))
+		dispatch(fetchedBanUser({ userId: userId as number, banReason: event.banReason }))
 	};
 
 	const onSubmitRole = (event: any) => {
-		dispatch(fetchedAddRole({ userId: event.userId, value: event.role }))
+		dispatch(fetchedAddRole({ userId: userId as number, value: event.role }))
 	};
 
+	console.log(errors)
 	return (
 		<Grid>
 			{users?.filter((user) => user.id !== userId).map((user, i) => {
@@ -63,10 +65,10 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 										id={String(i)}
 										label="Ban Reason"
 										autoComplete="Ban Reason"
-										{...register('banReason')}
-										error={!!errors.banReason}
+										{...register(`banReason[${i}].banReason`)}
 										sx={{ mb: -5 }}
 									/>
+									<Typography variant="h5">{errors.banReason}</Typography>
 								</Grid>
 								<Grid>
 									<TextField
@@ -75,11 +77,8 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 										fullWidth
 										id={String(i)}
 										value={userId}
-										{...register('userId')}
+										{...register(`banReason[${i}].userId`)}
 									/>
-									<Typography variant="subtitle2" color="error">
-										{errors.banReason?.message}
-									</Typography>
 								</Grid>
 								<Grid item xs={12}>
 									<Button variant="contained" type="submit">
@@ -92,42 +91,8 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 						<Button variant="contained" onClick={() => fetchedUnbanUser(user.id)}>Unban</Button>
 					}
 					{roles?.map((role) => role.value === 'ADMIN' ) &&
-						 <Grid>
-                           <Box key={user.id} component="form" onSubmit={handleSubmit(onSubmitRole)} noValidate sx={{ mt: 3 }}>
-                             <Grid container spacing={2} width={400}>
-                               <Grid item xs={12}>
-                                 <TextField
-                                   required
-                                   fullWidth
-                                   id={String(i)}
-                                   label="role"
-                                   autoComplete="Role"
-								   {...register('role')}
-                                   error={!!errors.role}
-                                   sx={{ mb: -5 }}
-                                 />
-                               </Grid>
-                               <Grid>
-                                 <TextField
-                                   style={{ visibility: 'hidden'}}
-                                   required
-                                   fullWidth
-                                   id={String(i)}
-                                   value={userId}
-								   {...register('userId')}
-                                 />
-                                 <Typography variant="subtitle2" color="error">
-									 {errors.role?.message}
-                                 </Typography>
-                               </Grid>
-                               <Grid item xs={12}>
-                                 <Button variant="contained" type="submit">
-                                   Add Role
-                                 </Button>
-                               </Grid>
-                             </Grid>
-                           </Box>
-						</Grid>
+						 <AddRole onSubmitRole={onSubmitRole} userId={userId}/>
+
 					}
 				</Grid>;
 			})}

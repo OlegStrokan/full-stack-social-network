@@ -76,6 +76,7 @@ export class UserService {
   }
 
   async ban(id: number, dto: BanUserDto) {
+    console.log(id, dto);
     const user = await this.userRepository.findByPk(id);
     if (user) {
       user.banned = true;
