@@ -7,7 +7,7 @@ import { IRoleDto } from "../../types/role/role.dto";
 interface IHeader {
 	isAuth: boolean;
 	userId: number | null;
-	roles: IRoleDto[];
+	roles: IRoleDto[] | null;
 }
 
 export const Navbar: React.FC<IHeader> = ({ userId, isAuth, roles }) => {
@@ -34,7 +34,7 @@ export const Navbar: React.FC<IHeader> = ({ userId, isAuth, roles }) => {
 								<ListItemText primary="Profile" />
 							</ListItemButton>
 						</ListItem>
-						{roles.map((role) => role.value === "ADMIN") &&
+						{roles?.map((role) => role.value === "ADMIN") &&
                         <>
                           <ListItem disablePadding>
                             <ListItemButton onClick={() => navigate(`/users`)}>

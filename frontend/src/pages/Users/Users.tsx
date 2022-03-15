@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchedBanUser, fetchedUnbanUser, fetchedUsers } from "../../redux/ducks/user/user.slice";
+import { fetchedAddRole, fetchedBanUser, fetchedUnbanUser, fetchedUsers } from "../../redux/ducks/user/user.slice";
 import { RootState } from "../../redux/store";
 import { Button, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -10,17 +10,17 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validationSchema } from "../../utils/validators/banUser";
+import { validationSchema } from "../../utils/validators/addRole";
+import { IRoleDto } from "../../types/role/role.dto";
 
 interface UsersInterface {
 	isAuth: boolean;
 	userId: number | null;
+	roles: IRoleDto[] | null;
 }
 
 
-export const Users: React.FC<UsersInterface> = ({ isAuth, userId }) => {
-debugger
-	const [banReason, setBanReason] = React.useState<string>('');
+export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 
 	let navigate = useNavigate();
 	const { users, loading } = useSelector((state: RootState) => state.userReducer);
@@ -40,23 +40,27 @@ debugger
 
 	if (loading) return <div>...loading</div>;
 
-	const onSubmit = (event: any) => {
+	const onSubmitBan = (event: any) => {
 		dispatch(fetchedBanUser({ userId: event.userId, banReason: event.banReason }))
+	};
+
+	const onSubmitRole = (event: any) => {
+		dispatch(fetchedAddRole({ userId: event.userId, value: event.role }))
 	};
 
 	return (
 		<Grid>
-			{users?.filter((user) => user.id !== userId).map((user) => {
+			{users?.filter((user) => user.id !== userId).map((user, i) => {
 				return <Grid className={styles.user}>
 					<Typography variant="h6">{user.fullname}</Typography>
 					{!user.banned ?
-						<Box key={user.id} component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>
+						<Box key={user.id} component="form" onSubmit={handleSubmit(onSubmitBan)} noValidate sx={{ mt: 3 }}>
 							<Grid container spacing={2} width={400}>
 								<Grid item xs={12}>
 									<TextField
 										required
 										fullWidth
-										id="banReason"
+										id={String(i)}
 										label="Ban Reason"
 										autoComplete="Ban Reason"
 										{...register('banReason')}
@@ -69,6 +73,7 @@ debugger
 										style={{ visibility: 'hidden'}}
 										required
 										fullWidth
+										id={String(i)}
 										value={userId}
 										{...register('userId')}
 									/>
@@ -86,8 +91,47 @@ debugger
 						:
 						<Button variant="contained" onClick={() => fetchedUnbanUser(user.id)}>Unban</Button>
 					}
+					{roles?.map((role) => role.value === 'ADMIN' ) &&
+						 <Grid>
+                           <Box key={user.id} component="form" onSubmit={handleSubmit(onSubmitRole)} noValidate sx={{ mt: 3 }}>
+                             <Grid container spacing={2} width={400}>
+                               <Grid item xs={12}>
+                                 <TextField
+                                   required
+                                   fullWidth
+                                   id={String(i)}
+                                   label="role"
+                                   autoComplete="Role"
+								   {...register('role')}
+                                   error={!!errors.role}
+                                   sx={{ mb: -5 }}
+                                 />
+                               </Grid>
+                               <Grid>
+                                 <TextField
+                                   style={{ visibility: 'hidden'}}
+                                   required
+                                   fullWidth
+                                   id={String(i)}
+                                   value={userId}
+								   {...register('userId')}
+                                 />
+                                 <Typography variant="subtitle2" color="error">
+									 {errors.role?.message}
+                                 </Typography>
+                               </Grid>
+                               <Grid item xs={12}>
+                                 <Button variant="contained" type="submit">
+                                   Add Role
+                                 </Button>
+                               </Grid>
+                             </Grid>
+                           </Box>
+						</Grid>
+					}
 				</Grid>;
 			})}
 		</Grid>
 	);
 };
+

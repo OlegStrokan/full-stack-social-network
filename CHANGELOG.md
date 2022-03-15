@@ -1,10 +1,19 @@
 
+# v2.4.1 (15.03.2022)
+
+## Features:
+
+Frontend:
+1. Added add role to user in users page.
+2. Added add role validator
+
 # v2.4.0 (13.03.2022)
 
 ## Features:
 
 Frontend:
 1. Updated users page. Added form for ban user (not complete)
+2. Added ban user validator
 
 # v2.3.9 (13.03.2022)
 

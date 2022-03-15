@@ -2,10 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ILoginResponse, IMeResponse } from "../../../api/auth.api";
 import { LoginDto } from "../../../types/auth/login.dto";
 import { RegistrationDto } from "../../../types/auth/registration.dto";
+import { IRoleDto } from "../../../types/role/role.dto";
 
 interface AuthState {
 	userId: number | null;
-	roles: any;
+	roles: IRoleDto[] | null;
 	username: string | null;
 	isAuth: boolean;
 	loading: boolean;
