@@ -1,4 +1,11 @@
 
+# v2.5.0 (16.03.2022)
+
+## Features:
+
+Backend:
+1. Added basic websockets initialized
+
 # v2.4.2 (15.03.2022)
 
 ## Features:
