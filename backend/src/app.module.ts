@@ -21,6 +21,7 @@ import { APP_GUARD } from "@nestjs/core";
 import { RolesGuard } from "./auth/roles.guard";
 import { LikeModel } from "./post/models/like.model";
 import { DislikeModel } from "./post/models/dislike.model";
+import { ChatGateway } from "./chat/chat.gateway";
 
 @Module({
   controllers: [],
@@ -29,6 +30,7 @@ import { DislikeModel } from "./post/models/dislike.model";
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
+    ChatGateway,
   ],
   imports: [
     ConfigModule.forRoot({
