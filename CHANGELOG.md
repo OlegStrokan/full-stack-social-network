@@ -1,3 +1,10 @@
+# v2.5.1 (16.03.2022)
+
+## Features:
+
+Backend:
+1. Added alert namespace
+2. Updated chat namespace
 
 # v2.5.0 (16.03.2022)
 
