@@ -7,7 +7,7 @@ import {
 import { Logger } from "@nestjs/common";
 import { Server, Socket } from "socket.io";
 
-@WebSocketGateway({ namespace: "/message" })
+@WebSocketGateway({ namespace: "/message", cors: { origin: "http://localhost:3000" } })
 export class MessageGateway implements OnGatewayInit {
   @WebSocketServer() wss: Server;
 
@@ -17,20 +17,20 @@ export class MessageGateway implements OnGatewayInit {
     this.logger.log("Initialized");
   }
 
-  @SubscribeMessage("message to server")
+  @SubscribeMessage("messageToServer")
   handleMessage(client: Socket, message: { sender: string; room: string; message: string }) {
     this.wss.to(message.room).emit("Message to client", message);
   }
 
-  @SubscribeMessage("join chat")
+  @SubscribeMessage("joinChat")
   handleJoinChat(client: Socket, chat: string) {
     client.join(chat);
-    client.emit("joined chat", chat);
+    client.emit("joined message", chat);
   }
 
-  @SubscribeMessage("leave chat")
+  @SubscribeMessage("leaveChat")
   handleLeaveChat(client: Socket, chat: string) {
     client.leave(chat);
-    client.emit("left chat", chat);
+    client.emit("left message", chat);
   }
 }
