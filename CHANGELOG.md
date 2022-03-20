@@ -23,6 +23,13 @@ Backend:
 1. Added alert namespace
 2. Updated chat namespace
 
+# v2.6.1 (20.03.2022)
+
+## Features:
+
+Backend:
+1. Added license
+
 # v2.5.0 (16.03.2022)
 
 ## Features:
