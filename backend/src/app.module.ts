@@ -22,11 +22,13 @@ import { RolesGuard } from "./auth/roles.guard";
 import { LikeModel } from "./post/models/like.model";
 import { DislikeModel } from "./post/models/dislike.model";
 import { MessageGateway } from "./message/message.gateway";
-import { MessageController } from "./message/message.controller";
 import { MessageModule } from "./message/message.module";
+import { UserConversationModel } from "./message/models/user-conversation.model";
+import { ConversationModel } from "./message/models/conversation.model";
+import { MessageModel } from "./message/models/message.model";
+import { ActiveConversationModel } from "./message/models/active-conversation";
 
 @Module({
-  controllers: [MessageController],
   providers: [
     {
       provide: APP_GUARD,
@@ -58,6 +60,10 @@ import { MessageModule } from "./message/message.module";
         PhotoModel,
         LikeModel,
         DislikeModel,
+        UserConversationModel,
+        ConversationModel,
+        MessageModel,
+        ActiveConversationModel,
       ],
       autoLoadModels: true,
       synchronize: true,
@@ -69,6 +75,7 @@ import { MessageModule } from "./message/message.module";
     PostModule,
     ProfileModule,
     FileModule,
+    MessageModule,
     MessageModule,
   ],
 })

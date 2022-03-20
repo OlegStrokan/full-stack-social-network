@@ -1,4 +1,23 @@
-# v2.5.1 (16.03.2022)
+# v2.6.2 (20.03.2022)
+
+## Features:
+
+Backend:
+1. Injected models in conversation service
+
+## Fixed:
+
+Backend: 
+1. Fixed models in message module
+
+# v2.6.1 (20.03.2022)
+
+## Features:
+
+Backend:
+1. Added license
+
+# v2.6.0 (16.03.2022)
 
 ## Features:
 
@@ -6,8 +25,7 @@ Backend:
 1. Added conversation service, model.
 2. Added user-conversation, active-conversation and message-conversation models
 
-# v2.5.1 (16.03.2022)
-
+# v2.5.2
 ## Features:
 
 Backend:
@@ -23,12 +41,6 @@ Backend:
 1. Added alert namespace
 2. Updated chat namespace
 
-# v2.6.1 (20.03.2022)
-
-## Features:
-
-Backend:
-1. Added license
 
 # v2.5.0 (16.03.2022)
 

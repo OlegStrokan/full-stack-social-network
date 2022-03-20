@@ -1,13 +1,17 @@
 import { Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { UserModel } from "../../user/models/user.model";
+import { ConversationModel } from "./conversation.model";
 
-interface MessageCreationAttr {
+interface ActiveConversationCreationAttr {
   userId: number;
 }
 
 @Table({ tableName: "active-conversations" })
-export class ConversationModel extends Model<ConversationModel, MessageCreationAttr> {
+export class ActiveConversationModel extends Model<
+  ActiveConversationModel,
+  ActiveConversationCreationAttr
+> {
   @ApiProperty({ example: "92", description: "Unique identifier" })
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;

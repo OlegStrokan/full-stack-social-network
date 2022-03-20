@@ -7,7 +7,7 @@ interface UserConversationCreationAttr {
   id: number;
 }
 
-@Table({ tableName: "user-conversation" })
+@Table({ tableName: "user-conversations" })
 export class UserConversationModel extends Model<
   UserConversationModel,
   UserConversationCreationAttr
