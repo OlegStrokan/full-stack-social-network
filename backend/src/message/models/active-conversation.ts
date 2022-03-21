@@ -5,6 +5,8 @@ import { ConversationModel } from "./conversation.model";
 
 interface ActiveConversationCreationAttr {
   userId: number;
+  conversationId: number;
+  socketId: string;
 }
 
 @Table({ tableName: "active-conversations" })
@@ -22,8 +24,8 @@ export class ActiveConversationModel extends Model<
   userId: number;
 
   @ApiProperty({ example: "5", description: "Socket's id" })
-  @Column({ type: DataType.INTEGER })
-  socketId: number;
+  @Column({ type: DataType.STRING })
+  socketId: string;
 
   @ForeignKey(() => ConversationModel)
   @ApiProperty({ example: "5", description: "Conversation's id" })

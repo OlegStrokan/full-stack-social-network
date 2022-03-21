@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { ConversationModel } from "./models/conversation.model";
 import { MessageModel } from "./models/message.model";
@@ -42,5 +42,50 @@ export class ConversationService {
     }
 
     return conversation;
+  }
+
+  async joinConversation(friendId: number, userId: number, socketId: string) {
+    const conversation = await this.getConversation(userId, friendId);
+
+    if (!conversation) {
+      throw new HttpException(`No conversation exists for this users`, HttpStatus.NOT_FOUND);
+    }
+
+    const activeConversation = await this.activateConversationRepository.findOne({
+      where: { userId },
+    });
+    if (activeConversation) {
+      await this.activateConversationRepository.destroy({
+        where: { id: userId },
+      });
+    }
+
+    return await this.activateConversationRepository.create({
+      userId,
+      conversationId: conversation.id,
+      socketId,
+    });
+  }
+
+  async leaveConversation(socketId: string) {
+    return await this.activateConversationRepository.destroy({
+      where: { socketId },
+    });
+  }
+
+  async getActiveUsers(conversationId: number) {
+    return await this.activateConversationRepository.destroy({
+      where: { conversationId },
+    });
+  }
+
+  async createMessage(message: string) {
+    return await this.messageRepository.create({ message: message });
+  }
+
+  async getMessages(conversationId: number) {
+    return await this.messageRepository.findAll({
+      where: { conversation: { id: conversationId } },
+    });
   }
 }

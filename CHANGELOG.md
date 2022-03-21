@@ -1,3 +1,11 @@
+# v2.6.4 (21.03.2022)
+
+## Features:
+
+Backend:
+1. Updated message and conversation model
+2. Added join/leave conversation methods. Added methods for messages
+
 # v2.6.3 (21.03.2022)
 
 ## Features:

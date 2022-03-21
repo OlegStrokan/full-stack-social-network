@@ -4,7 +4,8 @@ import { UserModel } from "../../user/models/user.model";
 import { ConversationModel } from "./conversation.model";
 
 interface MessageCreationAttr {
-  id: number;
+  message: string;
+  conversation: ConversationModel;
 }
 
 @Table({ tableName: "messages" })
@@ -21,5 +22,5 @@ export class MessageModel extends Model<MessageModel, MessageCreationAttr> {
   user: UserModel[];
 
   @BelongsTo(() => ConversationModel)
-  conversations: ConversationModel;
+  conversation: ConversationModel;
 }
