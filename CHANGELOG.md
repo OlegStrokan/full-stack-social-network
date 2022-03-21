@@ -1,3 +1,11 @@
+# v2.6.5 (21.03.2022)
+
+## Features:
+
+Backend:
+1. Added helper methods for development
+2. Added methods for get conversation, users and conversations with users
+
 # v2.6.4 (21.03.2022)
 
 ## Features:

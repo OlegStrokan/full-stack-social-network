@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { ConversationModel } from "./models/conversation.model";
 import { MessageModel } from "./models/message.model";
@@ -21,9 +21,6 @@ export class ConversationService {
   ) {}
 
   async getConversation(creatorId: number, friendId: number) {
-    /*  return this.conversationRepository.findOne({
-      where: { users: { id: creatorId, friendId } },
-    });*/
     return await this.conversationRepository.findOne({
       where: {
         [Op.or]: [{ users: { id: creatorId } }, { users: { id: friendId } }],
@@ -42,6 +39,25 @@ export class ConversationService {
     }
 
     return conversation;
+  }
+
+  async getConversationsForUser(userId: number) {
+    return await this.conversationRepository.findAll({ where: { users: { id: userId } } });
+  }
+
+  async getUsersInConversation(conversationId: number) {
+    return await this.conversationRepository.findAll({
+      where: { id: conversationId },
+      include: { all: true },
+    });
+  }
+
+  async getConversationsWithUsers(userId: number) {
+    const conversations = await this.getConversationsForUser(userId);
+    let users = [];
+    conversations.map((conversation) => {
+      users = [...users, this.getUsersInConversation(conversation.id)];
+    });
   }
 
   async joinConversation(friendId: number, userId: number, socketId: string) {
@@ -86,6 +102,29 @@ export class ConversationService {
   async getMessages(conversationId: number) {
     return await this.messageRepository.findAll({
       where: { conversation: { id: conversationId } },
+    });
+  }
+
+  // only helper methods. Would remove below in production
+
+  async removeActiveConversations() {
+    return await this.activateConversationRepository.destroy({
+      where: {},
+      truncate: true,
+    });
+  }
+
+  async removeMessages() {
+    return await this.messageRepository.destroy({
+      where: {},
+      truncate: true,
+    });
+  }
+
+  async removeConversations() {
+    return await this.conversationRepository.destroy({
+      where: {},
+      truncate: true,
     });
   }
 }
