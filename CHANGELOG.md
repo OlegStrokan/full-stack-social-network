@@ -1,3 +1,11 @@
+# v2.6.3 (21.03.2022)
+
+## Features:
+
+Backend:
+1. Added get conversation and create conversation methods
+2. Updated conversation interface
+
 # v2.6.2 (20.03.2022)
 
 ## Features:

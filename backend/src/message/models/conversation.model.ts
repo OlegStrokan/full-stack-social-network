@@ -6,6 +6,7 @@ import { UserConversationModel } from "./user-conversation.model";
 
 interface ConversationCreationAttr {
   userId: number;
+  users: UserModel[];
 }
 
 @Table({ tableName: "conversations" })
