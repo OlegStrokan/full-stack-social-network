@@ -1,3 +1,10 @@
+# v2.6.7 (21.03.2022)
+
+## Features:
+
+Backend:
+1. Added handle connect/disconnect methods for messages
+
 # v2.6.5 (21.03.2022)
 
 ## Features:
