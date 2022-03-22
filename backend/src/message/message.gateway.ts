@@ -12,7 +12,7 @@ import { ConversationService } from "./conversation.service";
 import { UserModel } from "../user/models/user.model";
 import { MessageModel } from "./models/message.model";
 
-@WebSocketGateway({ cors: { origin: "http://localhost:3000" } })
+@WebSocketGateway({ cors: { origin: "http://localhost:8000/chat" } })
 export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect, OnModuleInit {
   constructor(
     private authService: AuthService,
@@ -22,17 +22,13 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
   @WebSocketServer()
   server: Server;
 
-  async onModuleInit() {
-    await this.conversationService.removeActiveConversations();
-    await this.conversationService.removeMessages();
-    await this.conversationService.removeConversations();
-  }
+  async onModuleInit() {}
 
-  handleConnection(socket: Socket) {
+  async handleConnection(socket: Socket) {
     console.log("HANDLE CONNECTION");
     const jwt = socket.handshake.headers.authorization || null;
-    const isAuth = this.authService.me(jwt);
-    if (!isAuth) {
+    const isAuth = await this.authService.me(jwt);
+    if (isAuth.statusCode !== 200) {
       return this.handleDisconnect(socket);
     }
   }

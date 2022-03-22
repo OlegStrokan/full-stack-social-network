@@ -76,7 +76,6 @@ import { ActiveConversationModel } from "./message/models/active-conversation";
     ProfileModule,
     FileModule,
     MessageModule,
-    MessageModule,
   ],
 })
 export class AppModule {}

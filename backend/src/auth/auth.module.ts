@@ -19,7 +19,7 @@ import { FileModule } from "../file/file.module";
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, JwtModule],
   exports: [AuthService, JwtModule],
 })
 export class AuthModule {}

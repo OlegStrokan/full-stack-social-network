@@ -19,10 +19,10 @@ export class UserConversationModel extends Model<
   @ApiProperty({ example: "5", description: "User's id" })
   @Column({ type: DataType.INTEGER })
   @ForeignKey(() => UserModel)
-  userId: UserModel[];
+  userId: number[];
 
   @ApiProperty({ example: "5", description: "Conversation's id" })
   @Column({ type: DataType.INTEGER })
   @ForeignKey(() => ConversationModel)
-  conversationId: ConversationModel[];
+  conversationId: number[];
 }

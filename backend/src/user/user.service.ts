@@ -6,7 +6,6 @@ import * as uuid from "uuid";
 import { MailService } from "../mail/mail.service";
 import { RoleService } from "../role/role.service";
 import { AddRoleDto } from "./dto/add-role.dto";
-import { FileService } from "../file/file.service";
 import { BanUserDto } from "./dto/ban-user.dto";
 
 @Injectable()

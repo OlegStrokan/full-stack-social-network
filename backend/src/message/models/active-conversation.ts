@@ -18,17 +18,17 @@ export class ActiveConversationModel extends Model<
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;
 
-  @ForeignKey(() => UserModel)
   @ApiProperty({ example: "5", description: "User's id" })
   @Column({ type: DataType.INTEGER })
+  @ForeignKey(() => UserModel)
   userId: number;
 
   @ApiProperty({ example: "5", description: "Socket's id" })
   @Column({ type: DataType.STRING })
   socketId: string;
 
-  @ForeignKey(() => ConversationModel)
   @ApiProperty({ example: "5", description: "Conversation's id" })
   @Column({ type: DataType.INTEGER })
+  @ForeignKey(() => ConversationModel)
   conversationId: number;
 }

@@ -104,27 +104,4 @@ export class ConversationService {
       where: { conversation: { id: conversationId } },
     });
   }
-
-  // only helper methods. Would remove below in production
-
-  async removeActiveConversations() {
-    return await this.activateConversationRepository.destroy({
-      where: {},
-      truncate: true,
-    });
-  }
-
-  async removeMessages() {
-    return await this.messageRepository.destroy({
-      where: {},
-      truncate: true,
-    });
-  }
-
-  async removeConversations() {
-    return await this.conversationRepository.destroy({
-      where: {},
-      truncate: true,
-    });
-  }
 }

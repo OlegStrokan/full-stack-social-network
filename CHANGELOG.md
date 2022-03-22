@@ -3,6 +3,14 @@
 ## Features:
 
 Backend:
+1. Updated models (for message) updated app.
+2. Deleted helper methods
+
+# v2.6.8 (28.03.2022)
+
+## Features:
+
+Backend:
 1. Added subscribe methods: send message, create/join/leave conversation
 
 # v2.6.7 (21.03.2022)

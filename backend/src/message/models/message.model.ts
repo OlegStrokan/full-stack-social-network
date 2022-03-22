@@ -1,4 +1,4 @@
-import { BelongsTo, Column, DataType, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { UserModel } from "../../user/models/user.model";
 import { ConversationModel } from "./conversation.model";
@@ -19,8 +19,14 @@ export class MessageModel extends Model<MessageModel, MessageCreationAttr> {
   message: string;
 
   @BelongsTo(() => UserModel)
-  user: UserModel[];
+  user: UserModel;
+
+  @ForeignKey(() => UserModel)
+  userId: number;
 
   @BelongsTo(() => ConversationModel)
   conversation: ConversationModel;
+
+  @ForeignKey(() => ConversationModel)
+  conversationId: number;
 }
