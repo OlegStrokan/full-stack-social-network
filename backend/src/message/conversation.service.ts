@@ -90,7 +90,7 @@ export class ConversationService {
   }
 
   async getActiveUsers(conversationId: number) {
-    return await this.activateConversationRepository.destroy({
+    return await this.activateConversationRepository.findAll({
       where: { conversationId },
     });
   }
