@@ -23,7 +23,7 @@ export class UserService {
     const role = await this.roleService.getRoleByValue("USER");
     await this.mailService.sendActivationMail(
       userDto.email,
-      `http://localhost:5000/auth/activate/${activationLink}`
+      `http://localhost:8000/auth/activate/${activationLink}`
     );
     user.activationLink = activationLink;
     user.avatar =
@@ -75,7 +75,6 @@ export class UserService {
   }
 
   async ban(id: number, dto: BanUserDto) {
-    console.log(id, dto);
     const user = await this.userRepository.findByPk(id);
     if (user) {
       user.banned = true;

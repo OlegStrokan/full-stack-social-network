@@ -12,6 +12,8 @@ export class ConversationService {
   constructor(
     @InjectModel(ConversationModel)
     private conversationRepository: typeof ConversationModel,
+    @InjectModel(UserModel)
+    private userRepository: typeof UserModel,
     @InjectModel(MessageModel)
     private messageRepository: typeof MessageModel,
     @InjectModel(ActiveConversationModel)
@@ -21,19 +23,27 @@ export class ConversationService {
   ) {}
 
   async getConversation(creatorId: number, friendId: number) {
-    return await this.conversationRepository.findOne({
-      where: {
-        [Op.or]: [{ users: { id: creatorId } }, { users: { id: friendId } }],
-      },
+    console.log(creatorId, friendId);
+    return await this.userConversationRepository.findOne({
+      where: { firstUser: creatorId || friendId, secondUser: creatorId || friendId },
     });
+  }
+
+  async getConversations() {
+    const conversations = await this.conversationRepository.findAll({
+      include: { all: true },
+    });
+    console.log(conversations);
+    return conversations;
   }
 
   async createConversation(creator: UserModel, friend: UserModel) {
     const conversation = await this.getConversation(creator.id, friend.id);
-
+    console.log(conversation);
     if (!conversation) {
-      const conversation = await this.conversationRepository.create({
-        users: [creator, friend],
+      const conversation = await this.userConversationRepository.create({
+        firstUser: creator.id,
+        secondUser: friend.id,
       });
       await conversation.save();
     }
@@ -42,7 +52,11 @@ export class ConversationService {
   }
 
   async getConversationsForUser(userId: number) {
-    return await this.conversationRepository.findAll({ where: { users: { id: userId } } });
+    return await this.userRepository.findAll({
+      where: { id: userId },
+      include: [this.conversationRepository],
+      attributes: ["id"],
+    });
   }
 
   async getUsersInConversation(conversationId: number) {

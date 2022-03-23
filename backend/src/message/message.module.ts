@@ -7,6 +7,7 @@ import { MessageModel } from "./models/message.model";
 import { UserConversationModel } from "./models/user-conversation.model";
 import { ActiveConversationModel } from "./models/active-conversation";
 import { AuthModule } from "../auth/auth.module";
+import { UserModel } from "../user/models/user.model";
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AuthModule } from "../auth/auth.module";
       MessageModel,
       UserConversationModel,
       ActiveConversationModel,
+      UserModel,
     ]),
   ],
   providers: [MessageGateway, ConversationService],

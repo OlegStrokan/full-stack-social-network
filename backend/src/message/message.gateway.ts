@@ -12,7 +12,7 @@ import { ConversationService } from "./conversation.service";
 import { UserModel } from "../user/models/user.model";
 import { MessageModel } from "./models/message.model";
 
-@WebSocketGateway({ cors: { origin: "http://localhost:8000/chat" } })
+@WebSocketGateway()
 export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect, OnModuleInit {
   constructor(
     private authService: AuthService,
@@ -27,20 +27,28 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
   async handleConnection(socket: Socket) {
     console.log("HANDLE CONNECTION");
     const jwt = socket.handshake.headers.authorization || null;
-    const isAuth = await this.authService.me(jwt);
-    if (isAuth.statusCode !== 200) {
+    const user = await this.authService.me(jwt);
+    if (user.statusCode === 200) {
+      socket.data.user = user.data;
+      return this.getConversations(socket, user.data.id);
+    } else {
       return this.handleDisconnect(socket);
     }
   }
 
-  handleDisconnect(socket: Socket) {
+  async handleDisconnect(socket: Socket) {
     console.log("HANDLE DISCONNECT");
-    return this.conversationService.leaveConversation(socket.id);
+    return await this.conversationService.leaveConversation(socket.id);
   }
 
-  getConversations(socket: Socket, userId: number) {
+  async getConversations(socket: Socket, userId: number) {
     const conversations = this.conversationService.getConversationsWithUsers(userId);
     return this.server.to(socket.id).emit("conversations", conversations);
+  }
+
+  @SubscribeMessage("getConversations")
+  async getConversation() {
+    return await this.conversationService.getConversations();
   }
 
   @SubscribeMessage("sendMessage")
@@ -68,6 +76,7 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
 
   @SubscribeMessage("joinConversation")
   async joinConversation(socket: Socket, friendId: number) {
+    console.log(friendId);
     const conversation = await this.conversationService.joinConversation(
       friendId,
       socket.data.user.id,

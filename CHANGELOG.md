@@ -1,4 +1,12 @@
-# v2.6.8 (28.03.2022)
+# v2.7.0 (29.03.2022)
+
+## Features:
+
+Backend:
+1. Updated requests to database
+2. Updated creation interfaces
+
+# v2.6.9 (28.03.2022)
 
 ## Features:
 

@@ -4,7 +4,8 @@ import { ConversationModel } from "./conversation.model";
 import { UserModel } from "../../user/models/user.model";
 
 interface UserConversationCreationAttr {
-  id: number;
+  firstUser: number;
+  secondUser: number;
 }
 
 @Table({ tableName: "user-conversations" })
@@ -19,10 +20,15 @@ export class UserConversationModel extends Model<
   @ApiProperty({ example: "5", description: "User's id" })
   @Column({ type: DataType.INTEGER })
   @ForeignKey(() => UserModel)
-  userId: number[];
+  firstUser: number;
+
+  @ApiProperty({ example: "5", description: "User's id" })
+  @Column({ type: DataType.INTEGER })
+  @ForeignKey(() => UserModel)
+  secondUser: number;
 
   @ApiProperty({ example: "5", description: "Conversation's id" })
   @Column({ type: DataType.INTEGER })
   @ForeignKey(() => ConversationModel)
-  conversationId: number[];
+  conversationId: number;
 }
