@@ -1,4 +1,11 @@
-# v2.7.0 (29.03.2022)
+# v2.7.1 (27.03.2022)
+
+## Fixes:
+
+Backend:
+1. Fixed create conversation method
+
+# v2.7.0 (25.03.2022)
 
 ## Features:
 
@@ -6,7 +13,7 @@ Backend:
 1. Updated requests to database
 2. Updated creation interfaces
 
-# v2.6.9 (28.03.2022)
+# v2.6.9 (24.03.2022)
 
 ## Features:
 
@@ -14,7 +21,7 @@ Backend:
 1. Updated models (for message) updated app.
 2. Deleted helper methods
 
-# v2.6.8 (28.03.2022)
+# v2.6.8 (24.03.2022)
 
 ## Features:
 

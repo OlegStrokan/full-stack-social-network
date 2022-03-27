@@ -30,7 +30,7 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
     const user = await this.authService.me(jwt);
     if (user.statusCode === 200) {
       socket.data.user = user.data;
-      return this.getConversations(socket, user.data.id);
+      return this.server.to(socket.id).emit("info", "CONNECTED");
     } else {
       return this.handleDisconnect(socket);
     }
@@ -42,7 +42,7 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
   }
 
   async getConversations(socket: Socket, userId: number) {
-    const conversations = this.conversationService.getConversationsWithUsers(userId);
+    const conversations = await this.conversationService.getConversationsWithUsers(userId);
     return this.server.to(socket.id).emit("conversations", conversations);
   }
 
@@ -69,14 +69,13 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
   }
 
   @SubscribeMessage("createConversation")
-  async createConversation(socket: Socket, friend: UserModel) {
-    await this.conversationService.createConversation(socket.data.user, friend);
+  async createConversation(socket: Socket, dto: { friendId: number }) {
+    await this.conversationService.createConversation(socket.data.user.id, dto.friendId);
     return this.getConversations(socket, socket.data.user.id);
   }
 
   @SubscribeMessage("joinConversation")
   async joinConversation(socket: Socket, friendId: number) {
-    console.log(friendId);
     const conversation = await this.conversationService.joinConversation(
       friendId,
       socket.data.user.id,

@@ -4,7 +4,6 @@ import { ConversationModel } from "./models/conversation.model";
 import { MessageModel } from "./models/message.model";
 import { ActiveConversationModel } from "./models/active-conversation";
 import { UserConversationModel } from "./models/user-conversation.model";
-import { Op } from "sequelize";
 import { UserModel } from "../user/models/user.model";
 
 @Injectable()
@@ -23,31 +22,29 @@ export class ConversationService {
   ) {}
 
   async getConversation(creatorId: number, friendId: number) {
-    console.log(creatorId, friendId);
     return await this.userConversationRepository.findOne({
       where: { firstUser: creatorId || friendId, secondUser: creatorId || friendId },
     });
   }
 
   async getConversations() {
-    const conversations = await this.conversationRepository.findAll({
+    return await this.conversationRepository.findAll({
       include: { all: true },
     });
-    console.log(conversations);
-    return conversations;
   }
 
-  async createConversation(creator: UserModel, friend: UserModel) {
-    const conversation = await this.getConversation(creator.id, friend.id);
-    console.log(conversation);
+  async createConversation(creatorId: number, friendId: number) {
+    const conversation = await this.getConversation(creatorId, friendId);
     if (!conversation) {
-      const conversation = await this.userConversationRepository.create({
-        firstUser: creator.id,
-        secondUser: friend.id,
+      const newConversation = await this.conversationRepository.create();
+      await newConversation.save();
+      const newUserConversation = await this.userConversationRepository.create({
+        firstUser: creatorId,
+        secondUser: friendId,
+        conversationId: newConversation.id,
       });
-      await conversation.save();
+      return await newUserConversation.save();
     }
-
     return conversation;
   }
 
@@ -60,18 +57,21 @@ export class ConversationService {
   }
 
   async getUsersInConversation(conversationId: number) {
-    return await this.conversationRepository.findAll({
-      where: { id: conversationId },
+    return await this.userConversationRepository.findAll({
+      where: { conversationId },
       include: { all: true },
     });
   }
 
   async getConversationsWithUsers(userId: number) {
+    console.log("userId", userId);
     const conversations = await this.getConversationsForUser(userId);
+    console.log("conversationsWithUsers", conversations);
     let users = [];
-    conversations.map((conversation) => {
-      users = [...users, this.getUsersInConversation(conversation.id)];
+    conversations.map(async (conversation) => {
+      users = [...users, [...(await this.getUsersInConversation(conversation.id))]];
     });
+    return users;
   }
 
   async joinConversation(friendId: number, userId: number, socketId: string) {
