@@ -53,16 +53,16 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
 
   @SubscribeMessage("sendMessage")
   async handleMessage(socket: Socket, newMessage: MessageModel) {
-    if (!newMessage.conversation) {
+    if (!newMessage.conversationId) {
       throw new HttpException(`No conversation exists for this users`, HttpStatus.NOT_FOUND);
     }
     const { user } = socket.data;
     newMessage.user = user;
 
-    if (newMessage.conversation.id) {
-      await this.conversationService.createMessage(newMessage.message);
+    if (newMessage.conversationId) {
+      await this.conversationService.createMessage(newMessage);
       const activeUsers = await this.conversationService.getActiveUsers(
-        newMessage.conversation.id
+        newMessage.conversationId
       );
       activeUsers.map((user) => this.server.to(user.socketId).emit("newMessage", newMessage));
     }
@@ -75,10 +75,10 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
   }
 
   @SubscribeMessage("joinConversation")
-  async joinConversation(socket: Socket, friendId: number) {
+  async joinConversation(socket: Socket, dto: { friendId: number }) {
     const conversation = await this.conversationService.joinConversation(
-      friendId,
       socket.data.user.id,
+      dto.friendId,
       socket.id
     );
     const messages = await this.conversationService.getMessages(conversation.conversationId);

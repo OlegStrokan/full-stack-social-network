@@ -1,3 +1,10 @@
+# v2.7.2 (28.03.2022)
+
+## Fixes:
+
+Backend:
+1. Fixed all requests to database
+
 # v2.7.1 (27.03.2022)
 
 ## Fixes:

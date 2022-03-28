@@ -5,7 +5,8 @@ import { ConversationModel } from "./conversation.model";
 
 interface MessageCreationAttr {
   message: string;
-  conversation: ConversationModel;
+  userId: number;
+  conversationId: number;
 }
 
 @Table({ tableName: "messages" })
