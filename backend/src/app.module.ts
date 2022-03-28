@@ -21,16 +21,20 @@ import { APP_GUARD } from "@nestjs/core";
 import { RolesGuard } from "./auth/roles.guard";
 import { LikeModel } from "./post/models/like.model";
 import { DislikeModel } from "./post/models/dislike.model";
-import { ChatGateway } from "./chat/chat.gateway";
+import { MessageGateway } from "./message/message.gateway";
+import { MessageModule } from "./message/message.module";
+import { UserConversationModel } from "./message/models/user-conversation.model";
+import { ConversationModel } from "./message/models/conversation.model";
+import { MessageModel } from "./message/models/message.model";
+import { ActiveConversationModel } from "./message/models/active-conversation";
 
 @Module({
-  controllers: [],
   providers: [
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
-    ChatGateway,
+    MessageGateway,
   ],
   imports: [
     ConfigModule.forRoot({
@@ -56,6 +60,10 @@ import { ChatGateway } from "./chat/chat.gateway";
         PhotoModel,
         LikeModel,
         DislikeModel,
+        UserConversationModel,
+        ConversationModel,
+        MessageModel,
+        ActiveConversationModel,
       ],
       autoLoadModels: true,
       synchronize: true,
@@ -67,6 +75,7 @@ import { ChatGateway } from "./chat/chat.gateway";
     PostModule,
     ProfileModule,
     FileModule,
+    MessageModule,
   ],
 })
 export class AppModule {}

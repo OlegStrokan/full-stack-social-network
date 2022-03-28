@@ -181,7 +181,6 @@ export class PostService {
   }
 
   async unlike(postId: number, userId: number) {
-    console.log(postId, userId);
     const post = await this.postRepository.findByPk(postId);
     const isAlreadyLiked = await this.likeRepository.findOne({
       where: { userId, postId },

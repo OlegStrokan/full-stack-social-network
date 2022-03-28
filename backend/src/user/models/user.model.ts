@@ -5,6 +5,9 @@ import { RoleModel } from "../../role/models/role.model";
 import { BlockedUserModel } from "./blocked-user.model";
 import { PostModel } from "../../post/models/post.model";
 import { PhotoModel } from "./photo.model";
+import { ConversationModel } from "../../message/models/conversation.model";
+import { MessageModel } from "../../message/models/message.model";
+import { UserConversationModel } from "../../message/models/user-conversation.model";
 
 interface UserCreationAttr {
   email: string;
@@ -119,6 +122,12 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
 
   @HasMany(() => PhotoModel)
   photos: PhotoModel[];
+
+  @BelongsToMany(() => ConversationModel, () => UserConversationModel)
+  conversations: ConversationModel[];
+
+  @HasMany(() => MessageModel)
+  messages: MessageModel[];
 
   /*@HasMany(() => CommentModel)
   comments: CommentModel[]*/

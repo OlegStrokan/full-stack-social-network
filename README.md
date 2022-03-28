@@ -7,9 +7,11 @@
 * ### Sequelize
 * ### Swagger
 * ### Docker
+* ### Web sockets/socket.io
 
 ## Frontend stack:
 * ### React
 * ### Redux-toolkit
 * ### Redux-saga
 * ### Material UI
+* ### Web sockets/socket.io

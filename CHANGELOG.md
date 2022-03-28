@@ -1,3 +1,82 @@
+# v2.7.2 (28.03.2022)
+
+## Fixes:
+
+Backend:
+1. Fixed all requests to database
+
+# v2.7.1 (27.03.2022)
+
+## Fixes:
+
+Backend:
+1. Fixed create conversation method
+
+# v2.7.0 (25.03.2022)
+
+## Features:
+
+Backend:
+1. Updated requests to database
+2. Updated creation interfaces
+
+# v2.6.9 (24.03.2022)
+
+## Features:
+
+Backend:
+1. Updated models (for message) updated app.
+2. Deleted helper methods
+
+# v2.6.8 (24.03.2022)
+
+## Features:
+
+Backend:
+1. Added subscribe methods: send message, create/join/leave conversation
+
+# v2.6.7 (21.03.2022)
+
+## Features:
+
+Backend:
+1. Added handle connect/disconnect methods for messages
+
+# v2.6.5 (21.03.2022)
+
+## Features:
+
+Backend:
+1. Added helper methods for development
+2. Added methods for get conversation, users and conversations with users
+
+# v2.6.4 (21.03.2022)
+
+## Features:
+
+Backend:
+1. Updated message and conversation model
+2. Added join/leave conversation methods. Added methods for messages
+
+# v2.6.3 (21.03.2022)
+
+## Features:
+
+Backend:
+1. Added get conversation and create conversation methods
+2. Updated conversation interface
+
+# v2.6.2 (20.03.2022)
+
+## Features:
+
+Backend:
+1. Injected models in conversation service
+
+## Fixed:
+
+Backend: 
+1. Fixed models in message module
 
 # v2.6.1 (20.03.2022)
 
@@ -5,6 +84,31 @@
 
 Backend:
 1. Added license
+
+# v2.6.0 (16.03.2022)
+
+## Features:
+
+Backend:
+1. Added conversation service, model.
+2. Added user-conversation, active-conversation and message-conversation models
+
+# v2.5.2
+## Features:
+
+Backend:
+1. Deleted alerts
+2. Added message module, model
+3. Changed User model
+
+# v2.5.1 (16.03.2022)
+
+## Features:
+
+Backend:
+1. Added alert namespace
+2. Updated chat namespace
+
 
 # v2.5.0 (16.03.2022)
 
