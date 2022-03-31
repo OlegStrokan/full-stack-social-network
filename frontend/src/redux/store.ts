@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 	postReducer,
 	userReducer,
 	roleReducer,
-	initializeReducer
+	initializeReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

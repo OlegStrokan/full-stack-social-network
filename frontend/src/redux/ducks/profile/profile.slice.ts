@@ -4,7 +4,6 @@ import { IFetchedActivate } from "./action.types";
 import { UpdateStatusDto } from "../../../types/profile/updateStatus.dto";
 import { UpdateProfileDto } from "../../../types/profile/updateProfile.dto";
 import { PostDto } from "../../../types/post/post.dto";
-import { IApiOkResponse } from "../../../api/instance.api";
 import { CreatePostDto } from "../../../types/post/createPost.dto";
 import { UpdateAvatarDto } from "../../../types/profile/updateAvatar.dto";
 import { LikeDislikePostDto } from "../../../types/post/likeDislikePost.dto";

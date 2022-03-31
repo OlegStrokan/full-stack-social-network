@@ -1,3 +1,12 @@
+# v2.8.0 (28.03.2022)
+
+## Features:
+
+Backend:
+1. Added redux for messages
+2. Added message and conversation dto
+3. Added message component
+
 # v2.7.2 (28.03.2022)
 
 ## Fixes:
