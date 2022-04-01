@@ -1,3 +1,11 @@
+# v2.8.2 (1.04.2022)
+
+## Features:
+
+Backend:
+1. Added change password method
+2. Changed mail service
+
 # v2.8.1 (1.04.2022)
 
 ## Features:

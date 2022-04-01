@@ -16,8 +16,8 @@ import { UpdatePostDto } from "./dto/update-post.dto";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { PostModel } from "./models/post.model";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { RolesGuard } from "../auth/roles.guard";
-import { Roles } from "../auth/role-auth.decorator";
+import { RolesGuard } from "../auth/guards/roles.guard";
+import { Roles } from "../auth/decorators/role-auth.decorator";
 
 @ApiTags("Posts functional")
 @Controller("posts")

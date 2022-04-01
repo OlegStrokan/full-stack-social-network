@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { CreateUserDto } from "../user/dto/create-user.dto";
 import * as bcrypt from "bcryptjs";
@@ -6,6 +6,9 @@ import { LoginUserDto } from "../user/dto/login-user.dto";
 import { JwtService } from "@nestjs/jwt";
 import { UserModel } from "../user/models/user.model";
 import { MailService } from "../mail/mail.service";
+import { ChangePasswordDto } from "../user/dto/change-password.dto";
+import { AST } from "eslint";
+import Token = AST.Token;
 
 @Injectable()
 export class AuthService {
@@ -94,8 +97,17 @@ export class AuthService {
     }
 
     const token = await this.generateToken(user);
-    const forgotLink = `http://localhost:8000/auth/forgotPassword?token=${token}`;
+    const forgotLink = `http://localhost:8000/auth/forgot/password?token=${token.token}`;
 
     await this.mailService.forgotPasswordMail(user.email, forgotLink, user.fullname);
+  }
+
+  async changePassword(token: string, dto: ChangePasswordDto) {
+    console.log(token, dto);
+    const user = this.jwtService.decode(token);
+    console.log(user);
+    const hashPassword = await bcrypt.hash(dto.password, 5);
+    await this.userService.updatePassword(13, hashPassword);
+    return true;
   }
 }

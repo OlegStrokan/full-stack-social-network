@@ -34,6 +34,7 @@ export class MailService {
   }
 
   async forgotPasswordMail(to: string, link: string, name: string) {
+    console.log(to, link, name);
     await this.transporter.sendMail({
       from: "oleg18ua71@gmail.com",
       to: to,

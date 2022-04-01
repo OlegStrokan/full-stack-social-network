@@ -18,7 +18,7 @@ import { PostModule } from "./post/post.module";
 import { PostModel } from "./post/models/post.model";
 import { PhotoModel } from "./user/models/photo.model";
 import { APP_GUARD } from "@nestjs/core";
-import { RolesGuard } from "./auth/roles.guard";
+import { RolesGuard } from "./auth/guards/roles.guard";
 import { LikeModel } from "./post/models/like.model";
 import { DislikeModel } from "./post/models/dislike.model";
 import { MessageGateway } from "./message/message.gateway";
