@@ -5,10 +5,15 @@ import * as bcrypt from "bcryptjs";
 import { LoginUserDto } from "../user/dto/login-user.dto";
 import { JwtService } from "@nestjs/jwt";
 import { UserModel } from "../user/models/user.model";
+import { MailService } from "../mail/mail.service";
 
 @Injectable()
 export class AuthService {
-  constructor(private userService: UserService, private jwtService: JwtService) {}
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+    private mailService: MailService
+  ) {}
 
   async registration(userDto: CreateUserDto) {
     const candidate = await this.userService.getByEmail(userDto.email);
@@ -42,10 +47,7 @@ export class AuthService {
     const user = await this.userService.getByEmail(userDto.email);
 
     if (!user) {
-      throw new UnauthorizedException({
-        message: "Incorrect email or password",
-        statusCode: HttpStatus.UNAUTHORIZED,
-      });
+      throw new HttpException(`Incorrect email or password`, HttpStatus.UNAUTHORIZED);
     }
 
     const passwordEquals = await bcrypt.compare(userDto.password, user.password);
@@ -54,10 +56,7 @@ export class AuthService {
       return user;
     }
 
-    throw new UnauthorizedException({
-      message: "Incorrect email or password",
-      statusCode: HttpStatus.UNAUTHORIZED,
-    });
+    throw new HttpException(`Incorrect email or password`, HttpStatus.UNAUTHORIZED);
   }
 
   private async generateToken(user: UserModel) {
@@ -83,10 +82,20 @@ export class AuthService {
         };
       }
     } catch {
-      throw new UnauthorizedException({
-        message: "You are not authorized",
-        statusCode: HttpStatus.UNAUTHORIZED,
-      });
+      throw new HttpException(`You are not authorized`, HttpStatus.UNAUTHORIZED);
     }
+  }
+
+  async forgotPassword(email: string) {
+    const user = await this.userService.getByEmail(email);
+
+    if (!user) {
+      throw new HttpException(`User with this email not fount`, HttpStatus.NOT_FOUND);
+    }
+
+    const token = await this.generateToken(user);
+    const forgotLink = `http://localhost:8000/auth/forgotPassword?token=${token}`;
+
+    await this.mailService.forgotPasswordMail(user.email, forgotLink, user.fullname);
   }
 }

@@ -1,3 +1,11 @@
+# v2.8.1 (1.04.2022)
+
+## Features:
+
+Backend:
+1. Added forgot password endpoint
+2. Added forgot password mail method
+
 # v2.7.2 (28.03.2022)
 
 ## Fixes:
