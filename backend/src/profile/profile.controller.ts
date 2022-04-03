@@ -16,8 +16,8 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { UserModel } from "../user/models/user.model";
 import { UpdateUserDto } from "../user/dto/update-user.dto";
-import { RolesGuard } from "../auth/roles.guard";
-import { Roles } from "../auth/role-auth.decorator";
+import { RolesGuard } from "../auth/guards/roles.guard";
+import { Roles } from "../auth/decorators/role-auth.decorator";
 
 @ApiTags("Profile functional")
 @Controller("profile")

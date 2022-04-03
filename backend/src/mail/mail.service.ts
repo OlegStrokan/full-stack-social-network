@@ -19,15 +19,30 @@ export class MailService {
 
   async sendActivationMail(to: string, link: string) {
     await this.transporter.sendMail({
-      from: "oleg14ua71@gmail.com",
+      from: "oleg18ua71@gmail.com",
       to: to,
-      subject: "Активация аккаунта на " + "http://localhost:5000",
+      subject: "Активация аккаунта на " + "http://localhost:8000",
       text: "",
       html: `
             <div>
             <h1>Thank you for registering!</h1>
             <h2>To activate, follow the link</h2>
             <a href="${link}">{link}</a>
+            </div>
+            `,
+    });
+  }
+
+  async forgotPasswordMail(to: string, link: string, name: string) {
+    await this.transporter.sendMail({
+      from: "oleg18ua71@gmail.com",
+      to: to,
+      subject: "Please use this" + "http://localhost:8000",
+      text: "",
+      html: `
+            <div>
+            <h1>Hello, ${name}</h1>
+            <h2>Please use this   <a href="${link}">{link}</a> to reset your password</h2>
             </div>
             `,
     });

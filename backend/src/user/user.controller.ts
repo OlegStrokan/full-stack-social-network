@@ -5,8 +5,8 @@ import { AddRoleDto } from "./dto/add-role.dto";
 import { BanUserDto } from "./dto/ban-user.dto";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { UserModel } from "./models/user.model";
-import { RolesGuard } from "../auth/roles.guard";
-import { Roles } from "../auth/role-auth.decorator";
+import { RolesGuard } from "../auth/guards/roles.guard";
+import { Roles } from "../auth/decorators/role-auth.decorator";
 
 @ApiTags("Users functional")
 @Controller("users")

@@ -42,6 +42,10 @@ export class UserService {
     });
   }
 
+  async updatePassword(userId: number, password: string) {
+    return await this.userRepository.update({ password }, { where: { id: userId } });
+  }
+
   async addRole(id: number, dto: AddRoleDto): Promise<UserModel[]> {
     const user = await this.userRepository.findByPk(id);
     const role = await this.roleService.getRoleByValue(dto.value);
