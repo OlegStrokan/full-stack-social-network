@@ -49,7 +49,6 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 		dispatch(fetchedAddRole({ userId: userId as number, value: event.role }))
 	};
 
-	console.log(errors)
 	return (
 		<Grid>
 			{users?.filter((user) => user.id !== userId).map((user, i) => {
