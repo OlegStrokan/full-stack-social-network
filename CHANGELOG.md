@@ -1,3 +1,11 @@
+# v2.8.2 (3.04.2022)
+
+## Features:
+
+Backend:
+1. Updated change password method
+2. Updated auth endpoints
+
 # v2.8.2 (1.04.2022)
 
 ## Features:

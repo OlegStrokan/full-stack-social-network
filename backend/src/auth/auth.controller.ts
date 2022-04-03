@@ -45,14 +45,14 @@ export class AuthController {
 
   @ApiOperation({ summary: "Forgot password request" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Post("/password/forgot")
+  @Post("/forgot_password")
   forgotPassword(@Body() dto: ForgotPasswordDto) {
     return this.authService.forgotPassword(dto.email);
   }
 
   @ApiOperation({ summary: "Change password" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Patch("/password/change/:token")
+  @Patch("/change_password/:token")
   changePassword(@Body() dto: ChangePasswordDto, @Param("token") token: string) {
     return this.authService.changePassword(token, dto);
   }

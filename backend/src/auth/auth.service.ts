@@ -97,17 +97,15 @@ export class AuthService {
     }
 
     const token = await this.generateToken(user);
-    const forgotLink = `http://localhost:8000/auth/forgot/password?token=${token.token}`;
+    const forgotLink = `http://localhost:8000/auth/forgot_password/${token.token}`;
 
     await this.mailService.forgotPasswordMail(user.email, forgotLink, user.fullname);
   }
 
   async changePassword(token: string, dto: ChangePasswordDto) {
-    console.log(token, dto);
-    const user = this.jwtService.decode(token);
-    console.log(user);
+    const user = this.jwtService.decode(token) as UserModel;
     const hashPassword = await bcrypt.hash(dto.password, 5);
-    await this.userService.updatePassword(13, hashPassword);
+    await this.userService.updatePassword(user.id, hashPassword);
     return true;
   }
 }
