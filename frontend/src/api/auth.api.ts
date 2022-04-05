@@ -38,5 +38,9 @@ export const authAPI = {
 	sendEmail(email: string): Promise<void> {
 		return instance.get<void>("/auth/forgot_password")
 			.then((response) => response.data);
+	},
+	setPassword(password: string): Promise<void> {
+		return instance.get<void>("/auth/change_password/:change_password")
+			.then((response) => response.data);
 	}
 };

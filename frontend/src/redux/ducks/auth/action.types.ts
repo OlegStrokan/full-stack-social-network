@@ -29,3 +29,8 @@ export interface IFetchedSendEmail extends Action<AuthActionTypes> {
     type: AuthActionTypes.FETCHED_SEND_EMAIL,
     payload: string
 }
+
+export interface IFetchedSetPassword extends Action<string>{
+    type: AuthActionTypes.FETCHED_SET_PASSWORD,
+    payload: string
+}

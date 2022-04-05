@@ -23,7 +23,7 @@ const initialState: AuthState = {
 	loading: false,
 	error: null,
 	token: null,
-	isSendedEmail: false,
+	isSendedEmail: false
 };
 
 export const authSlice = createSlice({
@@ -69,9 +69,17 @@ export const authSlice = createSlice({
 		fetchedSendEmail(state, action: PayloadAction<string>) {
 			state.loading = true;
 		},
-		sendMessageSuccess(state) {
+		sendEmailSuccess(state) {
 			state.loading = false;
 			state.isSendedEmail = true;
+
+		},
+		fetchedSetPassword(state, action: PayloadAction<string>) {
+			state.loading = true;
+		},
+		setPasswordSuccess(state) {
+			state.loading = false;
+			state.isSendedEmail = false;
 
 		},
 		authFailed(state, action: PayloadAction<any>) {
@@ -90,7 +98,11 @@ export const {
 	registrationSuccess,
 	meSuccess,
 	authFailed,
-	fetchedMe
+	fetchedMe,
+	fetchedSetPassword,
+	fetchedSendEmail,
+	sendEmailSuccess,
+	setPasswordSuccess
 } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

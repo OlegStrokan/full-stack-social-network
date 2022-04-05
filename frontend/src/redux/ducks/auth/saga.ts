@@ -1,7 +1,14 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { authAPI, ILoginResponse, IMeResponse } from "../../../api/auth.api";
-import { IFetchedLogin, IFetchedRegistration, IFetchedSendEmail } from "./action.types";
-import { authFailed, loginSuccess, logoutSuccess, meSuccess, registrationSuccess } from "./auth.slice";
+import { IFetchedLogin, IFetchedRegistration, IFetchedSendEmail, IFetchedSetPassword } from "./action.types";
+import {
+	authFailed,
+	fetchedSendEmail,
+	loginSuccess,
+	logoutSuccess,
+	meSuccess,
+	registrationSuccess, sendEmailSuccess, setPasswordSuccess
+} from "./auth.slice";
 
 export function* registration({ payload }: IFetchedRegistration) {
 	try {
@@ -15,7 +22,7 @@ export function* registration({ payload }: IFetchedRegistration) {
 export function* login({ payload }: IFetchedLogin) {
 	try {
 		const data: ILoginResponse = yield call(authAPI.login, payload);
-		localStorage.setItem('token',  data.token);
+		localStorage.setItem("token", data.token);
 		yield put(loginSuccess(data));
 	} catch (error: any) {
 		yield put(authFailed(error));
@@ -24,7 +31,7 @@ export function* login({ payload }: IFetchedLogin) {
 
 export function* logout() {
 	try {
-		localStorage.removeItem('token');
+		localStorage.removeItem("token");
 		yield put(logoutSuccess());
 	} catch (error: any) {
 		yield put(authFailed(error));
@@ -43,8 +50,17 @@ export function* me() {
 
 export function* sendEmail({ payload }: IFetchedSendEmail) {
 	try {
-		const data: IMeResponse = yield call(authAPI.sendEmail, payload);
-		yield put(meSuccess(data));
+		yield call(authAPI.sendEmail, payload);
+		yield put(sendEmailSuccess());
+	} catch (error: any) {
+		yield put(authFailed(error));
+	}
+}
+
+export function* setPassword({ payload }: IFetchedSetPassword) {
+	try {
+		yield call(authAPI.setPassword, payload);
+		yield put(setPasswordSuccess());
 	} catch (error: any) {
 		yield put(authFailed(error));
 	}
@@ -57,4 +73,5 @@ export function* authWatcher() {
 	yield takeEvery("auth/fetchedLogout", logout);
 	yield takeEvery("auth/fetchedMe", me);
 	yield takeEvery("auth/fetchedSendEmail", sendEmail);
+	yield takeEvery("auth/fetchedNewPassword", setPassword);
 }

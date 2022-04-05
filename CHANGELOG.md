@@ -1,3 +1,11 @@
+# v2.8.4 (5.04.2022)
+
+## Features:
+
+Frontend:
+1. Added forgot password redux/api
+2. Added forgot password component
+
 # v2.8.3 (5.04.2022)
 
 ## Features:
