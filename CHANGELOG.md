@@ -1,3 +1,10 @@
+# v2.8.3 (5.04.2022)
+
+## Features:
+
+Frontend:
+1. Added send Email redux/api functional
+
 # v2.8.2 (3.04.2022)
 
 ## Features:

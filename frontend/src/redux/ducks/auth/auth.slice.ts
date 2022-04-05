@@ -12,6 +12,7 @@ interface AuthState {
 	loading: boolean;
 	error: any;
 	token: string | null;
+	isSendedEmail: boolean;
 }
 
 const initialState: AuthState = {
@@ -21,7 +22,8 @@ const initialState: AuthState = {
 	isAuth: false,
 	loading: false,
 	error: null,
-	token: null
+	token: null,
+	isSendedEmail: false,
 };
 
 export const authSlice = createSlice({
@@ -62,6 +64,14 @@ export const authSlice = createSlice({
 			state.userId = action.payload.data.id;
 			state.username = action.payload.data.username;
 			state.roles = action.payload.data.roles;
+
+		},
+		fetchedSendEmail(state, action: PayloadAction<string>) {
+			state.loading = true;
+		},
+		sendMessageSuccess(state) {
+			state.loading = false;
+			state.isSendedEmail = true;
 
 		},
 		authFailed(state, action: PayloadAction<any>) {

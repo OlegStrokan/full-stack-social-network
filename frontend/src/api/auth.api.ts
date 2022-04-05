@@ -34,5 +34,9 @@ export const authAPI = {
 	me(): Promise<IMeResponse> {
 		return instance.get<IMeResponse>("/auth/me")
 			.then((response) => response.data);
+	},
+	sendEmail(email: string): Promise<void> {
+		return instance.get<void>("/auth/forgot_password")
+			.then((response) => response.data);
 	}
 };
