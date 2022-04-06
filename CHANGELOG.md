@@ -1,3 +1,11 @@
+# v2.8.6 (6.04.2022)
+
+## Features:
+
+Backend:
+1. Updated forgot password functional
+2. Added new set password/send email dtos
+
 # v2.8.2 (3.04.2022)
 
 ## Features:

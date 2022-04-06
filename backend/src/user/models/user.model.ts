@@ -45,10 +45,17 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
 
   @ApiProperty({
     example: "http://localhost:5000/290jrf-8203d9i-23jd8923j",
-    description: "Activation link",
+    description: "Activation link for activate account",
   })
   @Column({ type: DataType.STRING, allowNull: true })
   activationLink: string;
+
+  @ApiProperty({
+    example: "2938rjwf9832hd2893j",
+    description: "Verification code for reset password",
+  })
+  @Column({ type: DataType.STRING, allowNull: true })
+  verificationCode: string;
 
   @ApiProperty({ example: "true", description: "Activated email or not" })
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
