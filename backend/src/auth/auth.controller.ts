@@ -47,6 +47,7 @@ export class AuthController {
   @ApiOkResponse({ status: 200, type: UserModel })
   @Post("/forgot_password")
   forgotPassword(@Body() dto: ForgotPasswordDto) {
+    console.log(dto);
     return this.authService.forgotPassword(dto.email);
   }
 

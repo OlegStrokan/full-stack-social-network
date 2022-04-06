@@ -108,7 +108,7 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
           </Grid>
         </Grid>
       </Box>
-          : <ForgotPassword forgotPassword={forgotPassword} setForgotPassword={setForgotPassword} /> }
+          : <ForgotPassword password={forgotPassword} setForgotPassword={setForgotPassword} /> }
     </Box>
   );
 };

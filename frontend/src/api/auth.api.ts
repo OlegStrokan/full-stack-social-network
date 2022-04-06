@@ -36,11 +36,11 @@ export const authAPI = {
 			.then((response) => response.data);
 	},
 	sendEmail(email: string): Promise<void> {
-		return instance.get<void>("/auth/forgot_password")
+		return instance.post<void>("/auth/forgot_password", email)
 			.then((response) => response.data);
 	},
 	setPassword(password: string): Promise<void> {
-		return instance.get<void>("/auth/change_password/:change_password")
+		return instance.patch<void>("/auth/change_password/:token", password)
 			.then((response) => response.data);
 	}
 };

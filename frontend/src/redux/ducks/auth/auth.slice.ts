@@ -12,7 +12,10 @@ interface AuthState {
 	loading: boolean;
 	error: any;
 	token: string | null;
-	isSendedEmail: boolean;
+	forgotPassword: {
+		isSendedMail: boolean,
+		isSetPassword: boolean,
+	},
 }
 
 const initialState: AuthState = {
@@ -23,7 +26,10 @@ const initialState: AuthState = {
 	loading: false,
 	error: null,
 	token: null,
-	isSendedEmail: false
+	forgotPassword: {
+		isSendedMail: false,
+		isSetPassword: false
+	}
 };
 
 export const authSlice = createSlice({
@@ -71,7 +77,7 @@ export const authSlice = createSlice({
 		},
 		sendEmailSuccess(state) {
 			state.loading = false;
-			state.isSendedEmail = true;
+			state.forgotPassword.isSendedMail = true;
 
 		},
 		fetchedSetPassword(state, action: PayloadAction<string>) {
@@ -79,7 +85,7 @@ export const authSlice = createSlice({
 		},
 		setPasswordSuccess(state) {
 			state.loading = false;
-			state.isSendedEmail = false;
+			state.forgotPassword.isSetPassword = true;
 
 		},
 		authFailed(state, action: PayloadAction<any>) {

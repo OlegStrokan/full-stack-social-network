@@ -1,3 +1,12 @@
+# v2.8.5 (6.04.2022)
+
+## Features:
+
+Frontend:
+1. Update forgot password Api/redux
+2. Added validator
+3. Updated forgot password component
+
 # v2.8.4 (5.04.2022)
 
 ## Features:
