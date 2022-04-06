@@ -6,9 +6,7 @@ import { LoginUserDto } from "../user/dto/login-user.dto";
 import { JwtService } from "@nestjs/jwt";
 import { UserModel } from "../user/models/user.model";
 import { MailService } from "../mail/mail.service";
-import { ChangePasswordDto } from "../user/dto/change-password.dto";
-import { AST } from "eslint";
-import Token = AST.Token;
+import * as uuid from "uuid";
 
 @Injectable()
 export class AuthService {
@@ -89,23 +87,34 @@ export class AuthService {
     }
   }
 
-  async forgotPassword(email: string) {
+  async sendVerificationEmail(email: string) {
     const user = await this.userService.getByEmail(email);
 
     if (!user) {
       throw new HttpException(`User with this email not fount`, HttpStatus.NOT_FOUND);
     }
-
-    const token = await this.generateToken(user);
-    const forgotLink = `http://localhost:8000/auth/forgot_password/${token.token}`;
-
-    await this.mailService.forgotPasswordMail(user.email, forgotLink, user.fullname);
+    const code = uuid.v4();
+    user.verificationCode = code;
+    await user.save();
+    await this.mailService.sendCode(user.email, code, user.fullname);
   }
 
-  async changePassword(token: string, dto: ChangePasswordDto) {
-    const user = this.jwtService.decode(token) as UserModel;
-    const hashPassword = await bcrypt.hash(dto.password, 5);
-    await this.userService.updatePassword(user.id, hashPassword);
-    return true;
+  async verifyCode(email: string, code) {
+    const user = await this.userService.getByEmail(email);
+    if (!user) {
+      throw new HttpException(`User with this email not fount`, HttpStatus.NOT_FOUND);
+    }
+    return user.verificationCode === code;
+  }
+
+  async changePassword(email: string, code: string, password: string) {
+    const user = await this.userService.getByEmail(email);
+    const isAccepted = this.verifyCode(email, code);
+    if (isAccepted) {
+      const hashPassword = await bcrypt.hash(password, 5);
+      await this.userService.updatePassword(user.id, hashPassword);
+      return true;
+    }
+    return false;
   }
 }
