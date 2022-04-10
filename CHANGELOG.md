@@ -1,3 +1,15 @@
+#2.8.8 (10.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Components for message page
+
+## Fixes:
+
+Frontend:
+1. Deleted unnecessary code from message component
+
 #2.8.7 (10.04.2022)
 
 ## Features:
