@@ -7,8 +7,6 @@ import { JwtService } from "@nestjs/jwt";
 import { UserModel } from "../user/models/user.model";
 import { MailService } from "../mail/mail.service";
 import { ChangePasswordDto } from "../user/dto/change-password.dto";
-import { AST } from "eslint";
-import Token = AST.Token;
 
 @Injectable()
 export class AuthService {

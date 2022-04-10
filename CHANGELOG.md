@@ -1,4 +1,14 @@
-# v2.8.2 (3.04.2022)
+#2.8.7 (10.04.2022)
+
+## Features:
+
+Backend:
+1. Updated message's gateway
+
+Frontend:
+1. Updated message's redux
+
+#2.8.3 (3.04.2022)
 
 ## Features:
 
