@@ -15,8 +15,6 @@ export const MessagesPage:React.FC<MessagesPageInterface> = ({ isAuth }) => {
 			return navigate("/login");
 		}
 
-		const socket = io('http://localhost:8001');
-		socket.open();
 	},[])
 
 

@@ -1,3 +1,11 @@
+#2.8.9 (11.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Message api (subscribe/unsubscribe methods)
+2. Added new types for messages api
+
 #2.8.8 (10.04.2022)
 
 ## Features:
