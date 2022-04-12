@@ -4,14 +4,14 @@ import { MessageDto } from "../../../types/message/message.dto";
 
 interface MessageState {
   conversations: ConversationDto[] | null;
-  openedConversation: ConversationDto | null;
+  openConversation: ConversationDto | null;
   loading: boolean;
   error: any;
 }
 
 const initialState: MessageState = {
   conversations: null,
-  openedConversation: null,
+  openConversation: null,
   loading: false,
   error: null,
 };
@@ -42,14 +42,14 @@ const messageSlice = createSlice({
     },
     joinConversationSuccess(state, action: PayloadAction<ConversationDto>) {
       state.loading = false;
-      state.openedConversation = action.payload;
+      state.openConversation = action.payload;
     },
     fetchedLeaveConversation(state, action: PayloadAction<number>) {
       state.loading = true;
     },
     leaveConversationSuccess(state) {
       state.loading = false;
-      state.openedConversation = null;
+      state.openConversation = null;
     },
     fetchedSendMessage(state, action: PayloadAction<MessageDto>) {
       state.loading = true;

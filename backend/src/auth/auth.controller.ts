@@ -38,7 +38,6 @@ export class AuthController {
   @ApiOkResponse({ status: 200, type: UserModel })
   @Get("/me")
   me(@Headers() headers) {
-    console.log(headers);
     return this.authService.me(headers.authorization);
   }
 

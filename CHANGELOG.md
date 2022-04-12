@@ -1,3 +1,16 @@
+#2.9.0 (11.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated socket api (not complete)
+
+## Fixes:
+
+Frontend:
+1. Fixed error with socket's credentials
+
+
 #2.8.9 (11.04.2022)
 
 ## Features:

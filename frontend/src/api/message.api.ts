@@ -12,10 +12,16 @@ const closeHandler = () => {
 }
 
 const createChannel = () => {
+	console.log('OPEN SOCKET')
 	socket?.off('close', closeHandler);
 	socket?.close();
 	socket = io('http://localhost:8001');
 	socket.on('close', closeHandler);
+}
+
+const messageHandler = (e: MessageEvent) => {
+	let newMessages = JSON.parse(e.data);
+	subscribers.forEach((subscriber) => subscriber(newMessages));
 }
 
 export const MessageApi = {
@@ -24,6 +30,9 @@ export const MessageApi = {
 		return () => {
 			subscribers = subscribers.filter((subscriber) => subscriber !== callback)
 		}
+	},
+	unsubscribe(callback: SubscriberType) {
+		subscribers = subscribers.filter((subscriber) => subscriber !== callback)
 	}
 
 

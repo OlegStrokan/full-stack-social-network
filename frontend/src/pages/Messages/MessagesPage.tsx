@@ -10,11 +10,22 @@ export const MessagesPage:React.FC<MessagesPageInterface> = ({ isAuth }) => {
 
 	const navigate = useNavigate();
 
+
 	React.useEffect(() => {
 		if (!isAuth) {
 			return navigate("/login");
 		}
 
+		const socket = io('http://localhost:8001', {
+			transportOptions: {
+				polling: {
+					extraHeaders: {
+						'Authorization': `Bearer ${localStorage.getItem('token')}`
+					},
+				},
+			},
+		});
+		socket.open();
 	},[])
 
 
