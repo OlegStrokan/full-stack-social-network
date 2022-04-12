@@ -1,3 +1,11 @@
+#2.9.1 (11.04.2022)
+
+## Features:
+
+Frontend:
+1. Added getConversation/initializeSocket sagas
+2. Added socket instance with user's credentials
+
 #2.9.0 (11.04.2022)
 
 ## Features:

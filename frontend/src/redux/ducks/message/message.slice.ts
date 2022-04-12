@@ -1,6 +1,7 @@
 import { ConversationDto } from "../../../types/message/conversation.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MessageDto } from "../../../types/message/message.dto";
+import { Socket } from "socket.io-client";
 
 interface MessageState {
   conversations: ConversationDto[] | null;
@@ -20,10 +21,11 @@ const messageSlice = createSlice({
   name: "message",
   initialState,
   reducers: {
-    fetchedInitialize(state) {
+    fetchedInit(state, action: PayloadAction<Socket>) {
       state.loading = true;
     },
     initializeSuccess(state, action: PayloadAction<ConversationDto[]>) {
+     debugger;
       state.loading = false;
       state.conversations = action.payload;
     },
@@ -65,7 +67,7 @@ const messageSlice = createSlice({
 export const messageReducer = messageSlice.reducer;
 
 export const {
-  fetchedInitialize,
+  fetchedInit,
   initializeFailed,
   initializeSuccess,
   createConversationSuccess,

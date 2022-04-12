@@ -26,7 +26,6 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
 
   async handleConnection(socket: Socket) {
     console.log("HANDLE CONNECTION");
-    console.log(socket.handshake.headers);
     const jwt = socket.handshake.headers.authorization || null;
     const user = await this.authService.me(jwt);
     if (user.statusCode === 200) {

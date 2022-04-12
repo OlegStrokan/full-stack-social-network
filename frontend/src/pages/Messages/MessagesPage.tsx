@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { io } from "socket.io-client";
+import { useDispatch } from "react-redux";
+import { fetchedInit } from "../../redux/ducks/message/message.slice";
+import { socket } from "../../api/message.api";
 
 interface MessagesPageInterface {
 	isAuth: boolean;
@@ -10,22 +12,16 @@ export const MessagesPage:React.FC<MessagesPageInterface> = ({ isAuth }) => {
 
 	const navigate = useNavigate();
 
+	const dispatch = useDispatch();
 
 	React.useEffect(() => {
 		if (!isAuth) {
 			return navigate("/login");
 		}
 
-		const socket = io('http://localhost:8001', {
-			transportOptions: {
-				polling: {
-					extraHeaders: {
-						'Authorization': `Bearer ${localStorage.getItem('token')}`
-					},
-				},
-			},
-		});
-		socket.open();
+		dispatch(fetchedInit(socket))
+
+
 	},[])
 
 
