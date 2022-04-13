@@ -1,3 +1,10 @@
+#2.9.2 (13.04.2022)
+
+## Features:
+
+Frontend:
+1. Fixed get conversation method in backend
+
 #2.9.1 (11.04.2022)
 
 ## Features:

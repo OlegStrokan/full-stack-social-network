@@ -72,12 +72,7 @@ export class ConversationService {
   }
 
   async getConversationsWithUsers(userId: number) {
-    const conversations = await this.getConversationsForUser(userId);
-    let users = [];
-    conversations.map(async (conversation) => {
-      users = [...users, [...(await this.getUsersInConversation(conversation.id))]];
-    });
-    return users;
+    return await this.getConversationsForUser(userId);
   }
 
   async joinConversation(userId: number, friendId: number, socketId: string) {

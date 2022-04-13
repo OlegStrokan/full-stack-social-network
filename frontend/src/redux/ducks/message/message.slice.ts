@@ -1,4 +1,4 @@
-import { ConversationDto } from "../../../types/message/conversation.dto";
+import { ConversationDto, CreateConversationDto, JoinConversationDto } from "../../../types/message/conversation.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MessageDto } from "../../../types/message/message.dto";
 import { Socket } from "socket.io-client";
@@ -25,21 +25,20 @@ const messageSlice = createSlice({
       state.loading = true;
     },
     initializeSuccess(state, action: PayloadAction<ConversationDto[]>) {
-     debugger;
       state.loading = false;
       state.conversations = action.payload;
     },
     initializeFailed(state, action: PayloadAction<any>) {
       state.error = action.payload;
     },
-    fetchedCreateConversation(state, action: PayloadAction<ConversationDto>) {
+    fetchedCreateConversation(state, action: PayloadAction<CreateConversationDto>) {
       state.loading = true;
     },
     createConversationSuccess(state, action: PayloadAction<ConversationDto[]>) {
       state.loading = false;
       state.conversations = action.payload;
     },
-    fetchedJoinConversation(state, action: PayloadAction<number>) {
+    fetchedJoinConversation(state, action: PayloadAction<JoinConversationDto>) {
       state.loading = true;
     },
     joinConversationSuccess(state, action: PayloadAction<ConversationDto>) {

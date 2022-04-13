@@ -5,7 +5,6 @@ import { postWatcher } from "./ducks/post/saga";
 import { userWatcher } from "./ducks/user/saga";
 import { roleWatcher } from "./ducks/role/saga";
 import { initializeWatcher } from "./ducks/initialize/saga";
-import { messageWatcher } from "./ducks/message/saga";
 
 export function* rootSaga() {
 	yield  all([
@@ -14,7 +13,6 @@ export function* rootSaga() {
 		postWatcher(),
 		userWatcher(),
 		roleWatcher(),
-		initializeWatcher(),
-		messageWatcher()
+		initializeWatcher()
 	]);
 }
