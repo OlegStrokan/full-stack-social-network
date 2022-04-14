@@ -3,7 +3,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { UserModel } from "../../user/models/user.model";
 import { ConversationModel } from "./conversation.model";
 
-interface MessageCreationAttr {
+export interface MessageCreationAttr {
   message: string;
   userId: number;
   conversationId: number;

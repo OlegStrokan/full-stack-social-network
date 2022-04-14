@@ -1,6 +1,13 @@
+#2.9.3 (14.04.2022)
+
+## Fixes:
+
+Frontend:
+1. Fixed all messages method on backend
+
 #2.9.2 (13.04.2022)
 
-## Features:
+## Fixes:
 
 Frontend:
 1. Fixed get conversation method in backend

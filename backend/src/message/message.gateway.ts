@@ -56,8 +56,6 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
     if (!newMessage.conversationId) {
       throw new HttpException(`No conversation exists for this users`, HttpStatus.NOT_FOUND);
     }
-    const { user } = socket.data;
-    newMessage.user = user;
 
     if (newMessage.conversationId) {
       await this.conversationService.createMessage(newMessage);
