@@ -1,3 +1,12 @@
+#2.9.6. (14.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Conversation component
+2. Change conversation list
+3. Added logic to add message component
+
 #2.9.5. (14.04.2022)
 
 ## Features:

@@ -3,27 +3,22 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { socket } from "../../api/message.api";
 import { ConversationDto } from "../../types/message/conversation.dto";
-import { Button } from "@mui/material";
-import { Messages } from "./Messages";
-import { AddMessageForm } from "./AddMessage";
-import { Conversations } from "./Conversations";
-import { MessageDto } from "../../types/message/message.dto";
+import { ConversationList } from "./ConversationList";
+import { Conversation } from "./Conversation";
 
 interface MessagesPageInterface {
 	isAuth: boolean;
+	userId: number | null,
 }
 
-export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth }) => {
+export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth, userId }) => {
 
 	const [conversations, setConversations] = React.useState<ConversationDto[]>([]);
-	const [messages, setMessages] = React.useState<MessageDto[]>([]);
 
 	React.useEffect(() => {
 		if (!isAuth) {
 			return navigate("/login");
 		}
-		 socket.emit('joinConversation', { friendId: 3})
-		// socket.emit('sendMessage', {  message: "Hello", userId: 1, conversationId: 3 })
 		// socket.emit('createConversation', { friendId: 3})
 		// socket.emit('leaveConversation')
 		socket.on("conversations", (data) => {
@@ -31,10 +26,10 @@ export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth }) => {
 			setConversations([...conversations, data]);
 		});
 
-		socket.on("messages", (data) => {
+		/*socket.on("messages", (data) => {
 			console.log(data);
 			setMessages([...messages, data]);
-		});
+		});*/
 
 
 		return () => {
@@ -46,6 +41,7 @@ export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth }) => {
 
 
 
+
 	const navigate = useNavigate();
 
 	const dispatch = useDispatch();
@@ -53,9 +49,9 @@ export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth }) => {
 
 	return (
 		<div>
-			<Conversations conversations={conversations}/>
-			<Messages socket={socket}/>
-			<AddMessageForm socket={socket}/>
+			<ConversationList conversations={conversations}/>
+			<Conversation userId={userId} socket={socket} />
+
 		</div>
 	);
 };

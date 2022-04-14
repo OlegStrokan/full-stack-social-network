@@ -40,7 +40,7 @@ export const App = () => {
 					<Route path="/profile/:id" element={<Profile userId={userId} isAuth={isAuth} />} />
 					<Route path="/users" element={<Users isAuth={isAuth} userId={userId} roles={roles} />} />
 					<Route path="/roles" element={<Roles isAuth={isAuth} />} />
-					<Route path="/messages" element={<MessagesPage isAuth={isAuth} />} />
+					<Route path="/messages" element={<MessagesPage userId={userId} isAuth={isAuth} />} />
 				</Routes>
 			</div>
 		</Card>
