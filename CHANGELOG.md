@@ -1,3 +1,10 @@
+#2.9.4. (14.04.2022)
+
+## Features:
+
+Backend:
+1. Updated backend README
+
 #2.9.3 (14.04.2022)
 
 ## Fixes:

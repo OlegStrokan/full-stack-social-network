@@ -6,12 +6,7 @@
 * ### Sequelize
 * ### Swagger
 * ### Docker
-
-
-## Frontend stack:
-* ### React
-* ### Redux-toolkit
-* ### Material UI
+* ### Websockets/socket.io
 
 
 ## Available endpoints:
@@ -61,6 +56,21 @@ Posts functional
 - PATCH */posts/like/:id - dislike post* ```@private```
 - DELETE */posts/like/:id - unDislike post* ```@private```
 
+
+Message functional
+
+- WS *:8001 - messages page* ```@private```
+
+Receiving events:
+1. *getConversation* -  Get conversation on connection
+2. *leaveConversation* -  Delete active conversation
+3. *createConversation* - Create new conversation
+4. *sendMessage* - Send new message
+
+Sending events:
+1. *conversations* - send conversation
+2. *messages* - send all messages in conversation
+3. *newMessage* = send new message to all active users
 
 
 ## Running the app
