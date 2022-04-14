@@ -1,9 +1,10 @@
-#2.9.4. (14.04.2022)
+#2.9.5. (14.04.2022)
 
 ## Features:
 
-Backend:
-1. Updated backend README
+Frontend:
+1. Added Message form, conversation list
+2. Tested receive message method
 
 #2.9.3 (14.04.2022)
 
