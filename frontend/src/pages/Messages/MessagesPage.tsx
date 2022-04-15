@@ -2,9 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { socket } from "../../api/message.api";
-import { ConversationDto } from "../../types/message/conversation.dto";
+import { UserConversationDto } from "../../types/message/conversation.dto";
 import { ConversationList } from "./ConversationList";
 import { Conversation } from "./Conversation";
+import { Grid } from "@mui/material";
 
 interface MessagesPageInterface {
 	isAuth: boolean;
@@ -13,7 +14,7 @@ interface MessagesPageInterface {
 
 export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth, userId }) => {
 
-	const [conversations, setConversations] = React.useState<ConversationDto[]>([]);
+	const [conversations, setConversations] = React.useState<UserConversationDto[]>([]);
 
 	React.useEffect(() => {
 		if (!isAuth) {
@@ -23,13 +24,8 @@ export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth, userId }
 		// socket.emit('leaveConversation')
 		socket.on("conversations", (data) => {
 			console.log(data);
-			setConversations([...conversations, data]);
+			setConversations([...conversations, ...data]);
 		});
-
-		/*socket.on("messages", (data) => {
-			console.log(data);
-			setMessages([...messages, data]);
-		});*/
 
 
 		return () => {
@@ -48,10 +44,13 @@ export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth, userId }
 
 
 	return (
-		<div>
-			<ConversationList conversations={conversations}/>
-			<Conversation userId={userId} socket={socket} />
+		<Grid>
+			{conversations.length !== 0 &&
+			<Grid>
+              <ConversationList conversations={conversations}/>
+              <Conversation userId={userId} socket={socket} />
+			</Grid>}
 
-		</div>
+		</Grid>
 	);
 };

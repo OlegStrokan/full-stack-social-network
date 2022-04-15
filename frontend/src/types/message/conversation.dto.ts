@@ -7,6 +7,13 @@ export interface ConversationDto {
   messages?: MessageDto[]
 }
 
+export interface UserConversationDto {
+  id: number;
+  firstUser: number;
+  secondUser: number;
+  conversationId: number;
+}
+
 export interface CreateConversationDto {
   socket: Socket;
   friendId: number;

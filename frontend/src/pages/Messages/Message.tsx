@@ -1,5 +1,6 @@
 import React from "react";
 import { MessageDto } from "../../types/message/message.dto";
+import { Grid } from "@mui/material";
 
 interface MessageInterface {
 	message: MessageDto
@@ -8,8 +9,8 @@ interface MessageInterface {
 export const Message:React.FC<MessageInterface> = ({ message }) => {
 
 	return (
-		<div>
-			Message page
-		</div>
+		<Grid>
+			{message.message}
+		</Grid>
 	);
 };

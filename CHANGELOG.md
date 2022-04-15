@@ -1,3 +1,11 @@
+#2.9.7. (15.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated route logic
+2. Added add message functional
+
 #2.9.6. (14.04.2022)
 
 ## Features:

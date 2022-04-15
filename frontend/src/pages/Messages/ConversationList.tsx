@@ -1,18 +1,18 @@
 import React from "react";
-import { ConversationDto } from "../../types/message/conversation.dto";
+import { UserConversationDto } from "../../types/message/conversation.dto";
 import { Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 
 interface IConversations {
-	conversations: ConversationDto[];
+	conversations: any[];
 }
 
 export const ConversationList: React.FC<IConversations> = ({ conversations }) => {
 	return (
 		<Grid>
-			{conversations.map((conversation) => {
-				return <Link to={`/${conversation.id}`}>
+			{conversations?.map((conversation: UserConversationDto) => {
+				return <Link to={`/messages/${conversation.secondUser}`}>
 					<Typography>{conversation.id}</Typography>
 				</Link>;
 			})}

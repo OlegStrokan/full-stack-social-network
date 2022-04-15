@@ -28,6 +28,6 @@ export const AddMessageForm: React.FC<IAddMessageForm> = ({ socket, userId }) =>
 				value={message}
 				onChange={(e) => setMessage(e.currentTarget.value)}
 			/>
-		<Button onClick={() => null} variant="contained">Send</Button>
+		<Button onClick={() => onSubmit()} variant="contained">Send</Button>
 	</Grid>
 }

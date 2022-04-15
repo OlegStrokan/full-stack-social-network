@@ -2,16 +2,18 @@ import React from "react";
 import { MessageDto } from "../../types/message/message.dto";
 import { Message } from "./Message";
 import { Socket } from "socket.io-client";
+import { Grid } from "@mui/material";
 
-export const Messages: React.FC<{socket: Socket | null}> = ({ socket  }) => {
 
-	const [messages, setMessages] = React.useState<MessageDto[]>([]);
+interface IMessage {
+	socket: Socket | null,
+	messages: MessageDto[]
+}
 
-	React.useEffect(() => {
+export const Messages: React.FC<IMessage> = ({ socket, messages  }) => {
 
-	},[])
-	return <div style={{height: '400px', overflowY: 'auto'}}>
+
+	return <Grid style={{height: '400px', overflowY: 'auto'}}>
 		{messages.map((m, index) => <Message key={index} message={m}/>)}
-
-	</div>
+	</Grid>
 }
