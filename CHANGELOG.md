@@ -80,6 +80,9 @@ Frontend:
 
 #2.8.7 (10.04.2022)
 
+# v2.8.6 (6.04.2022)
+
+
 ## Features:
 
 Backend:
@@ -89,6 +92,10 @@ Frontend:
 1. Updated message's redux
 
 #2.8.3 (3.04.2022)
+1. Updated forgot password functional
+2. Added new set password/send email dtos
+
+# v2.8.2 (3.04.2022)
 
 ## Features:
 

@@ -33,16 +33,16 @@ export class MailService {
     });
   }
 
-  async forgotPasswordMail(to: string, link: string, name: string) {
+  async sendCode(to: string, code: string, name: string) {
     await this.transporter.sendMail({
       from: "oleg18ua71@gmail.com",
       to: to,
-      subject: "Please use this" + "http://localhost:8000",
+      subject: "Your digit code",
       text: "",
       html: `
             <div>
             <h1>Hello, ${name}</h1>
-            <h2>Please use this   <a href="${link}">{link}</a> to reset your password</h2>
+            <h2>Please use this code: ${code} to reset your password</h2>
             </div>
             `,
     });
