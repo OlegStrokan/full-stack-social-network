@@ -12,6 +12,7 @@ import { Header } from "./components/Header/Header";
 import { Navbar } from "./components/Navbar/Navbar";
 // @ts-ignore
 import styles from "./App.module.css";
+import { MessagesPage } from "./pages/Messages/MessagesPage";
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -39,6 +40,9 @@ export const App = () => {
 					<Route path="/profile/:id" element={<Profile userId={userId} isAuth={isAuth} />} />
 					<Route path="/users" element={<Users isAuth={isAuth} userId={userId} roles={roles} />} />
 					<Route path="/roles" element={<Roles isAuth={isAuth} />} />
+					<Route path="/messages" element={<MessagesPage userId={userId} isAuth={isAuth} />} >
+						<Route path=":id" element={<MessagesPage userId={userId} isAuth={isAuth} />}/>
+					</Route>
 				</Routes>
 			</div>
 		</Card>

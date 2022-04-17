@@ -14,4 +14,4 @@
 * ### Redux-toolkit
 * ### Redux-saga
 * ### Material UI
-* ### Web sockets/socket.io
+* ### Socket.io

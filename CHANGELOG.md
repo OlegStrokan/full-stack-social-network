@@ -1,8 +1,97 @@
+#2.9.7. (15.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated route logic
+2. Added add message functional
+
+#2.9.6. (14.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Conversation component
+2. Change conversation list
+3. Added logic to add message component
+
+#2.9.5. (14.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Message form, conversation list
+2. Tested receive message method
+
+#2.9.3 (14.04.2022)
+
+## Fixes:
+
+Frontend:
+1. Fixed all messages method on backend
+
+#2.9.2 (13.04.2022)
+
+## Fixes:
+
+Frontend:
+1. Fixed get conversation method in backend
+
+#2.9.1 (11.04.2022)
+
+## Features:
+
+Frontend:
+1. Added getConversation/initializeSocket sagas
+2. Added socket instance with user's credentials
+
+#2.9.0 (11.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated socket api (not complete)
+
+## Fixes:
+
+Frontend:
+1. Fixed error with socket's credentials
+
+
+#2.8.9 (11.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Message api (subscribe/unsubscribe methods)
+2. Added new types for messages api
+
+#2.8.8 (10.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Components for message page
+
+## Fixes:
+
+Frontend:
+1. Deleted unnecessary code from message component
+
+#2.8.7 (10.04.2022)
+
 # v2.8.6 (6.04.2022)
+
 
 ## Features:
 
 Backend:
+1. Updated message's gateway
+
+Frontend:
+1. Updated message's redux
+
+#2.8.3 (3.04.2022)
 1. Updated forgot password functional
 2. Added new set password/send email dtos
 
@@ -29,6 +118,15 @@ Backend:
 Backend:
 1. Added forgot password endpoint
 2. Added forgot password mail method
+
+# v2.8.0 (28.03.2022)
+
+## Features:
+
+Backend:
+1. Added redux for messages
+2. Added message and conversation dto
+3. Added message component
 
 # v2.7.2 (28.03.2022)
 

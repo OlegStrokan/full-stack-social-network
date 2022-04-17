@@ -9,9 +9,9 @@ import { HttpException, HttpStatus, OnModuleInit } from "@nestjs/common";
 import { Server, Socket } from "socket.io";
 import { AuthService } from "../auth/auth.service";
 import { ConversationService } from "./conversation.service";
-import { UserModel } from "../user/models/user.model";
 import { MessageModel } from "./models/message.model";
 
+@WebSocketGateway(8001, { cors: { origin: "*" } })
 @WebSocketGateway()
 export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect, OnModuleInit {
   constructor(
@@ -30,7 +30,7 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
     const user = await this.authService.me(jwt);
     if (user.statusCode === 200) {
       socket.data.user = user.data;
-      return this.server.to(socket.id).emit("info", "CONNECTED");
+      await this.getConversations(socket, user.data.id);
     } else {
       return this.handleDisconnect(socket);
     }
@@ -56,8 +56,6 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
     if (!newMessage.conversationId) {
       throw new HttpException(`No conversation exists for this users`, HttpStatus.NOT_FOUND);
     }
-    const { user } = socket.data;
-    newMessage.user = user;
 
     if (newMessage.conversationId) {
       await this.conversationService.createMessage(newMessage);
