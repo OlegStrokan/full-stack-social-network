@@ -34,3 +34,52 @@
 .countrySelect > * {
     min-width: 75px;
 }
+
+.forgotRoot {
+    padding: 20px;
+    margin-top: 100px;
+    position: absolute;
+    width: 600px;
+    min-height: 100%;
+    top: 0;
+    left: calc(50% - 300px);
+    text-align: center;
+
+}
+
+/*------success modal window------*/
+.modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    display: flex;
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.modal_active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.alert {
+    transform: scale(0);
+    width: 350px;
+    background-color: #fff;
+    height: 210px;
+    transition: 0.4s all;
+    position: relative;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.alert_active {
+    transform: scale(1);
+}

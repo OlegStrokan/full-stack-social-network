@@ -14,6 +14,7 @@ import { Button } from '@mui/material';
 import { useDispatch } from "react-redux";
 import { fetchedLogin } from "../../redux/ducks/auth/auth.slice";
 import { LoginDto } from "../../types/auth/login.dto";
+import { ForgotPassword } from "./ForgotPassword";
 
 interface SignInInterface {
   onModelChange: () => void;
@@ -32,6 +33,9 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
   });
 
 
+  const [forgotPassword, setForgotPassword] = React.useState<boolean>(false);
+
+
   return (
     <Box
       sx={{
@@ -47,6 +51,7 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
       <Typography component="h1" variant="h5">
         Sign in
       </Typography>
+      {!forgotPassword ?
       <Box component="form" onSubmit={handleSubmit(onSubmit)} className={styles.inputs} noValidate sx={{ mt: 3 }}>
         <Grid container spacing={2} className={styles.inputs}>
           <Grid item xs={12}>
@@ -89,6 +94,13 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
             </Button>
           </Grid>
 
+
+          <Grid item xs={12}>
+            <Typography className={styles.link} variant="subtitle1" onClick={() => setForgotPassword(!forgotPassword)}>
+              {'Forgot password?'}
+            </Typography>
+          </Grid>
+
           <Grid item xs={12}>
             <Typography className={styles.link} variant="subtitle1" onClick={() => onModelChange()}>
               {'Don\'t have an account? Sign Up'}
@@ -96,6 +108,7 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
           </Grid>
         </Grid>
       </Box>
+          : <ForgotPassword password={forgotPassword} setForgotPassword={setForgotPassword} /> }
     </Box>
   );
 };

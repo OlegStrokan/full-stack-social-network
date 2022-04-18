@@ -61,6 +61,13 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   activated: boolean;
 
+  @ApiProperty({
+    example: "02934u203r9j",
+    description: "Code",
+  })
+  @Column({ type: DataType.STRING, allowNull: true })
+  verificationCode: string;
+
   @ApiProperty({ example: "true", description: "Banned or not" })
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   banned: boolean;

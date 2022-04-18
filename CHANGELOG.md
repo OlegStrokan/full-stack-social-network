@@ -1,4 +1,14 @@
-#2.9.7. (15.04.2022)
+
+
+# v2.9.8 (18.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated forgot password functional
+2. Added modal window when password was updated
+3. 
+# v2.9.7. (15.04.2022)
 
 ## Features:
 
@@ -15,7 +25,7 @@ Frontend:
 2. Change conversation list
 3. Added logic to add message component
 
-#2.9.5. (14.04.2022)
+# v2.9.5. (14.04.2022)
 
 ## Features:
 
@@ -23,21 +33,21 @@ Frontend:
 1. Added Message form, conversation list
 2. Tested receive message method
 
-#2.9.3 (14.04.2022)
+# v2.9.3 (14.04.2022)
 
 ## Fixes:
 
 Frontend:
 1. Fixed all messages method on backend
 
-#2.9.2 (13.04.2022)
+# v2.9.2 (13.04.2022)
 
 ## Fixes:
 
 Frontend:
 1. Fixed get conversation method in backend
 
-#2.9.1 (11.04.2022)
+# v2.9.1 (11.04.2022)
 
 ## Features:
 
@@ -45,7 +55,7 @@ Frontend:
 1. Added getConversation/initializeSocket sagas
 2. Added socket instance with user's credentials
 
-#2.9.0 (11.04.2022)
+# v2.9.0 (11.04.2022)
 
 ## Features:
 
@@ -58,7 +68,7 @@ Frontend:
 1. Fixed error with socket's credentials
 
 
-#2.8.9 (11.04.2022)
+# v2.8.9 (11.04.2022)
 
 ## Features:
 
@@ -66,7 +76,7 @@ Frontend:
 1. Added Message api (subscribe/unsubscribe methods)
 2. Added new types for messages api
 
-#2.8.8 (10.04.2022)
+# v2.8.8 (10.04.2022)
 
 ## Features:
 
@@ -78,10 +88,7 @@ Frontend:
 Frontend:
 1. Deleted unnecessary code from message component
 
-#2.8.7 (10.04.2022)
-
-# v2.8.6 (6.04.2022)
-
+# v2.8.7 (10.04.2022)
 
 ## Features:
 
@@ -91,11 +98,35 @@ Backend:
 Frontend:
 1. Updated message's redux
 
-#2.8.3 (3.04.2022)
-1. Updated forgot password functional
-2. Added new set password/send email dtos
 
-# v2.8.2 (3.04.2022)
+# v2.8.6 (6.04.2022)
+
+## Features:
+
+Backend:
+1. Updated message's gateway
+
+Frontend:
+1. Updated message's redux
+
+# v2.8.5 (6.04.2022)
+
+## Features:
+
+Frontend
+1. Added Conversation component
+2. Change conversation list
+3. Added logic to add message component
+
+# v2.8.4 (5.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Message form, conversation list
+2. Tested receive message method
+
+# v2.8.3 (3.04.2022)
 
 ## Features:
 

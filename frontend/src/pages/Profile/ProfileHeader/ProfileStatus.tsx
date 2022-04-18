@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { fetchedStatus } from "../../../redux/ducks/profile/profile.slice";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validationSchema } from "../../../utils/validators/status";
+import { validationSchema } from "../../../utils/validators/updateStatus";
 import TextField from "@mui/material/TextField";
 
 

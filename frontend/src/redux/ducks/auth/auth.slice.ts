@@ -3,6 +3,8 @@ import { ILoginResponse, IMeResponse } from "../../../api/auth.api";
 import { LoginDto } from "../../../types/auth/login.dto";
 import { RegistrationDto } from "../../../types/auth/registration.dto";
 import { IRoleDto } from "../../../types/role/role.dto";
+import { SetPasswordDto } from '../../../types/auth/set-password.dto';
+import { VerifyCodeDto } from '../../../types/auth/verify-code.dto';
 
 interface AuthState {
 	userId: number | null;
@@ -12,6 +14,11 @@ interface AuthState {
 	loading: boolean;
 	error: any;
 	token: string | null;
+	forgotPassword: {
+		isSendedMail: boolean,
+		isVerifiedCode: boolean,
+		isSetPassword: boolean,
+	},
 }
 
 const initialState: AuthState = {
@@ -21,7 +28,12 @@ const initialState: AuthState = {
 	isAuth: false,
 	loading: false,
 	error: null,
-	token: null
+	token: null,
+	forgotPassword: {
+		isSendedMail: false,
+		isVerifiedCode: false,
+		isSetPassword: false,
+	}
 };
 
 export const authSlice = createSlice({
@@ -64,6 +76,30 @@ export const authSlice = createSlice({
 			state.roles = action.payload.data.roles;
 
 		},
+		fetchedSendEmail(state, action: PayloadAction<string>) {
+			state.loading = true;
+		},
+		sendEmailSuccess(state) {
+			state.loading = false;
+			state.forgotPassword.isSendedMail = true;
+
+		},
+		fetchedVerifyCode(state, action: PayloadAction<VerifyCodeDto>) {
+			state.loading = true;
+		},
+		verifyCodeSuccess(state) {
+			state.loading = false;
+			state.forgotPassword.isVerifiedCode = true;
+
+		},
+		fetchedSetPassword(state, action: PayloadAction<SetPasswordDto>) {
+			state.loading = true;
+		},
+		setPasswordSuccess(state) {
+			state.loading = false;
+			state.forgotPassword.isSetPassword = true;
+
+		},
 		authFailed(state, action: PayloadAction<any>) {
 			state.loading = false;
 			state.error = action.payload;
@@ -80,7 +116,13 @@ export const {
 	registrationSuccess,
 	meSuccess,
 	authFailed,
-	fetchedMe
+	fetchedMe,
+	fetchedSetPassword,
+	fetchedSendEmail,
+	sendEmailSuccess,
+	setPasswordSuccess,
+	verifyCodeSuccess,
+	fetchedVerifyCode
 } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

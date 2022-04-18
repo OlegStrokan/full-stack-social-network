@@ -30,6 +30,9 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
     const user = await this.authService.me(jwt);
     if (user.statusCode === 200) {
       socket.data.user = user.data;
+      return this.server
+        .to(socket.id)
+        .emit("conversation", this.getConversations(socket, socket.data.user.id));
       await this.getConversations(socket, user.data.id);
     } else {
       return this.handleDisconnect(socket);

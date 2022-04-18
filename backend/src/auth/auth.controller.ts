@@ -6,6 +6,7 @@ import { ApiOperation, ApiTags, ApiOkResponse } from "@nestjs/swagger";
 import { UserModel } from "../user/models/user.model";
 import { RolesGuard } from "./guards/roles.guard";
 import { Roles } from "./decorators/role-auth.decorator";
+import { VerifyCodeDto } from "../user/dto/verify-code.dto";
 import { SetPasswordDto } from "../user/dto/set-password.dto";
 import { SendVerificationEmailDto } from "../user/dto/send-verification-email.dto";
 
@@ -48,9 +49,16 @@ export class AuthController {
     return this.authService.sendVerificationEmail(dto.email);
   }
 
+  @ApiOperation({ summary: "Verify code" })
+  @ApiOkResponse({ status: 200, type: UserModel })
+  @Patch("/verify_code")
+  verifyCode(@Body() dto: VerifyCodeDto): Promise<boolean> {
+    return this.authService.verifyCode(dto.email, dto.code);
+  }
+
   @ApiOperation({ summary: "Change password" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Patch("/change_password")
+  @Patch("/set_password")
   changePassword(@Body() dto: SetPasswordDto): Promise<boolean> {
     return this.authService.changePassword(dto.email, dto.code, dto.password);
   }
