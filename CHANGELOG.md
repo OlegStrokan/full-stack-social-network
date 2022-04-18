@@ -1,11 +1,15 @@
 
-
-# v2.9.9.1 (18.04.2022)
+# v3.0.0 (18.04.2022)
 
 ## Features:
 
 Frontend:
-1. Added udpate profile component
+1. Finished profile. Removed cors from backend
+
+## Features:
+
+Frontend:
+1. Added updated profile component
 2. Validator,
 3. Updated profile saga
 

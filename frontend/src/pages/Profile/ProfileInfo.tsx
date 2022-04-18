@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { validationSchema } from '../../utils/validators/updateProfile';
 import { useDispatch } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { fetchedUpdate } from '../../redux/ducks/profile/profile.slice';
 
 interface ProfileInfoInterface {
 	profile: ProfileDto;
@@ -24,14 +25,25 @@ export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile }) => {
 
 	const [editMode, setEditMode] = React.useState(false);
 
-	const onSubmit = () => {
-
+	const onSubmit = (event: any) => {
+			dispatch(fetchedUpdate({
+				email: event.email,
+				fullname: event.fullname,
+				location: event.location,
+				job: event.job,
+				birth: event.birth,
+				about: event.about,
+				interests: event.interests,
+				id: profile.id,
+			}))
+				setEditMode(!editMode)
 	}
 
 	return (
 		<Grid>
 			{!editMode ?
 			<>
+				<Button variant="outlined" onClick={() => setEditMode(!editMode)}>Edit</Button>
 				<Typography variant="subtitle1">{profile.email}</Typography>
 				<Typography variant="subtitle1">About: {profile.about}</Typography>
 				<Typography variant="subtitle1">Interests: {profile.interests}</Typography>
@@ -54,6 +66,7 @@ export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile }) => {
 									autoFocus
 									{...register('email')}
 									error={!!errors.email}
+									defaultValue={profile.email}
 								/>
 								<Typography variant="subtitle2" color="error">
 									{errors.username?.message}
@@ -69,6 +82,7 @@ export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile }) => {
 									autoComplete="Full name"
 									{...register('fullname')}
 									error={!!errors.fullname}
+									defaultValue={profile.fullname}
 								/>
 								<Typography variant="subtitle2" color="error">
 									{errors.fullname?.message}
@@ -86,6 +100,7 @@ export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile }) => {
 									autoFocus
 									{...register('location')}
 									error={!!errors.location}
+									defaultValue={profile.location}
 								/>
 								<Typography variant="subtitle2" color="error">
 									{errors.location?.message}
@@ -103,6 +118,7 @@ export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile }) => {
 									autoFocus
 									{...register('job')}
 									error={!!errors.job}
+									defaultValue={profile.job}
 								/>
 								<Typography variant="subtitle2" color="error">
 									{errors.job?.message}
@@ -119,6 +135,7 @@ export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile }) => {
 									autoFocus
 									{...register('birth')}
 									error={!!errors.birth}
+									defaultValue={profile.birth}
 								/>
 								<Typography variant="subtitle2" color="error">
 									{errors.birth?.message}
@@ -130,15 +147,16 @@ export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile }) => {
 									margin="normal"
 									required
 									fullWidth
-									id="info"
+									id="about"
 									label="Info about yourself"
 									autoComplete="Info about yourself"
 									autoFocus
-									{...register('info')}
-									error={!!errors.info}
+									{...register('about')}
+									error={!!errors.about}
+									defaultValue={profile.about}
 								/>
 								<Typography variant="subtitle2" color="error">
-									{errors.info?.message}
+									{errors.about?.message}
 								</Typography>
 							</Grid>
 
@@ -153,6 +171,7 @@ export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile }) => {
 									autoFocus
 									{...register('interests')}
 									error={!!errors.interests}
+									defaultValue={profile.interests}
 								/>
 								<Typography variant="subtitle2" color="error">
 									{errors.interests?.message}

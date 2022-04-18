@@ -17,7 +17,7 @@ export const validationSchema = Yup.object().shape({
 	birth: Yup.string()
 		.min(10, 'Date of birth must be at least 10 characters')
 		.max(20, 'Date of birth must not exceed 20 characters'),
-	info: Yup.string()
+	about: Yup.string()
 		.min(10, 'Info about you must be at least 10 characters')
 		.max(100, 'Password must not exceed 100 characters'),
 	interests: Yup.string()

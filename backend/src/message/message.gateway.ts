@@ -11,7 +11,6 @@ import { AuthService } from "../auth/auth.service";
 import { ConversationService } from "./conversation.service";
 import { MessageModel } from "./models/message.model";
 
-@WebSocketGateway(8001, { cors: { origin: "*" } })
 @WebSocketGateway()
 export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect, OnModuleInit {
   constructor(
@@ -33,7 +32,6 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
       return this.server
         .to(socket.id)
         .emit("conversation", this.getConversations(socket, socket.data.user.id));
-      await this.getConversations(socket, user.data.id);
     } else {
       return this.handleDisconnect(socket);
     }

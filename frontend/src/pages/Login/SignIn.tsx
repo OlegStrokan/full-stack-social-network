@@ -11,10 +11,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './Login.module.css';
 import { validationSchema } from '../../utils/validators/signIn';
 import { Button } from '@mui/material';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchedLogin } from "../../redux/ducks/auth/auth.slice";
 import { LoginDto } from "../../types/auth/login.dto";
 import { ForgotPassword } from "./ForgotPassword";
+import { RootState } from '../../redux/store';
 
 interface SignInInterface {
   onModelChange: () => void;
@@ -22,6 +23,7 @@ interface SignInInterface {
 
 export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
 
+  const { error, loading } = useSelector((state: RootState) => state.authReducer)
   const dispatch = useDispatch();
   const onSubmit = (event: any) => {
     dispatch(fetchedLogin(event))
@@ -87,20 +89,21 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
             <Button
               type="submit"
               fullWidth
+              disabled={loading}
               variant="contained"
               sx={{ mt: 1, mb: 2, p: 2 }}
             >
               Sign In
             </Button>
           </Grid>
-
-
+          <Grid item xs={12}>
+          {error && <Typography variant="h6" color="error">{error}</Typography>}
+          </Grid>
           <Grid item xs={12}>
             <Typography className={styles.link} variant="subtitle1" onClick={() => setForgotPassword(!forgotPassword)}>
               {'Forgot password?'}
             </Typography>
           </Grid>
-
           <Grid item xs={12}>
             <Typography className={styles.link} variant="subtitle1" onClick={() => onModelChange()}>
               {'Don\'t have an account? Sign Up'}

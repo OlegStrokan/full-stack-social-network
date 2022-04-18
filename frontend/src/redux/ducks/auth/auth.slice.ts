@@ -102,7 +102,7 @@ export const authSlice = createSlice({
 		},
 		authFailed(state, action: PayloadAction<any>) {
 			state.loading = false;
-			state.error = action.payload;
+			state.error = action.payload.response.data.message;
 		}
 	}
 });

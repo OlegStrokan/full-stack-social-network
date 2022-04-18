@@ -83,7 +83,6 @@ function* flow(): Generator<any> {
 
 export function* initSockets({ payload }: IFetchedInit) {
 	try {
-		debugger;
 		yield payload.on("conversation", (res) => {
 			console.log(res);
 		});
@@ -94,7 +93,6 @@ export function* initSockets({ payload }: IFetchedInit) {
 
 /*export function* createConversation({ payload }: IFetchedCreateConversation) {
 	try {
-		debugger;
 		yield call(payload.socket.emit("createConversation", payload));
 	} catch (error) {
 		yield put(initializeFailed(error));

@@ -51,7 +51,7 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Unfollow user" })
   @ApiOkResponse({ status: 200 })
-  @Roles("ADMIN", "USER")
+  @Roles("admin", "user")
   @UseGuards(RolesGuard)
   @Delete("/:user_id/unfollow/:unfollow_id")
   async unfollow(
@@ -63,7 +63,7 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Change user's avatar" })
   @ApiOkResponse({ status: 200 })
-  @Roles("ADMIN", "USER")
+  @Roles("admin", "user")
   @UseGuards(RolesGuard)
   @Patch("/:id/avatar")
   @UseInterceptors(FileInterceptor("avatar"))
@@ -73,7 +73,7 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Activate user's profile" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Roles("ADMIN", "USER")
+  @Roles("admin", "user")
   @UseGuards(RolesGuard)
   @Get("/:id/activate")
   async activateProfile(@Param("id") id: string) {
@@ -82,7 +82,7 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Update user's profile" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Roles("ADMIN", "USER")
+  @Roles("admin", "user")
   @UseGuards(RolesGuard)
   @Patch("/:id")
   async updateProfile(@Param("id") id: string, @Body() dto: UpdateUserDto) {
@@ -91,7 +91,7 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Activate user's profile" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Roles("ADMIN", "USER")
+  @Roles("admin", "user")
   @UseGuards(RolesGuard)
   @UseInterceptors(FileInterceptor("image"))
   @Patch("/:id/image")
