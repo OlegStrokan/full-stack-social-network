@@ -2,6 +2,8 @@ import { instance } from "./instance.api";
 import { RegistrationDto } from "../types/auth/registration.dto";
 import { LoginDto } from "../types/auth/login.dto";
 import { IRoleDto } from "../types/role/role.dto";
+import { VerifyCodeDto } from '../types/auth/verify-code.dto';
+import { SetPasswordDto } from '../types/auth/set-password.dto';
 
 export interface ISuccessResponse {
 	message: string;
@@ -36,11 +38,15 @@ export const authAPI = {
 			.then((response) => response.data);
 	},
 	sendEmail(email: string): Promise<void> {
-		return instance.post<void>("/auth/forgot_password", email)
+		return instance.post<void>("/auth/send_verification_email", { email })
 			.then((response) => response.data);
 	},
-	setPassword(password: string): Promise<void> {
-		return instance.patch<void>("/auth/change_password/:token", password)
+	verifyCode(dto: VerifyCodeDto): Promise<void> {
+		return instance.patch<void>("/auth/verify_code", dto)
+			.then((response) => response.data);
+	},
+	setPassword(dto: SetPasswordDto): Promise<void> {
+		return instance.patch<void>("/auth/set_password", dto)
 			.then((response) => response.data);
 	}
 };

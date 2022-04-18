@@ -1,14 +1,20 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { authAPI, ILoginResponse, IMeResponse } from "../../../api/auth.api";
-import { IFetchedLogin, IFetchedRegistration, IFetchedSendEmail, IFetchedSetPassword } from "./action.types";
+import {
+	IFetchedLogin,
+	IFetchedRegistration,
+	IFetchedSendEmail,
+	IFetchedSetPassword,
+	IFetchedVerifyCode
+} from './action.types';
 import {
 	authFailed,
 	fetchedSendEmail,
 	loginSuccess,
 	logoutSuccess,
 	meSuccess,
-	registrationSuccess, sendEmailSuccess, setPasswordSuccess
-} from "./auth.slice";
+	registrationSuccess, sendEmailSuccess, setPasswordSuccess, verifyCodeSuccess
+} from './auth.slice';
 
 export function* registration({ payload }: IFetchedRegistration) {
 	try {
@@ -57,6 +63,16 @@ export function* sendEmail({ payload }: IFetchedSendEmail) {
 	}
 }
 
+export function* verifyCode({ payload }: IFetchedVerifyCode) {
+	try {
+		yield call(authAPI.verifyCode, payload);
+		yield put(verifyCodeSuccess());
+	} catch (error: any) {
+		yield put(authFailed(error));
+	}
+}
+
+
 export function* setPassword({ payload }: IFetchedSetPassword) {
 	try {
 		yield call(authAPI.setPassword, payload);
@@ -73,5 +89,6 @@ export function* authWatcher() {
 	yield takeEvery("auth/fetchedLogout", logout);
 	yield takeEvery("auth/fetchedMe", me);
 	yield takeEvery("auth/fetchedSendEmail", sendEmail);
-	yield takeEvery("auth/fetchedNewPassword", setPassword);
+	yield takeEvery("auth/fetchedVerifyCode", verifyCode);
+	yield takeEvery("auth/fetchedSetPassword", setPassword);
 }

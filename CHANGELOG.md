@@ -1,3 +1,13 @@
+
+
+# v2.9.8 (18.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated forgot password functional
+2. Added modal window when password was updated
+
 # v2.8.5 (6.04.2022)
 
 ## Features:

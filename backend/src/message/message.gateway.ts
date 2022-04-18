@@ -9,7 +9,6 @@ import { HttpException, HttpStatus, OnModuleInit } from "@nestjs/common";
 import { Server, Socket } from "socket.io";
 import { AuthService } from "../auth/auth.service";
 import { ConversationService } from "./conversation.service";
-import { UserModel } from "../user/models/user.model";
 import { MessageModel } from "./models/message.model";
 
 @WebSocketGateway()
@@ -30,7 +29,9 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
     const user = await this.authService.me(jwt);
     if (user.statusCode === 200) {
       socket.data.user = user.data;
-      return this.server.to(socket.id).emit("info", "CONNECTED");
+      return this.server
+        .to(socket.id)
+        .emit("conversation", this.getConversations(socket, socket.data.user.id));
     } else {
       return this.handleDisconnect(socket);
     }

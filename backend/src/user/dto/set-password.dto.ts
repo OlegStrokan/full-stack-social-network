@@ -1,9 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString } from "class-validator";
+import { VerifyCodeDto } from "./verify-code.dto";
 
-export class ChangePasswordDto {
-  @IsNotEmpty()
-  @IsString()
+export class SetPasswordDto extends VerifyCodeDto {
   @ApiProperty({
     example: "2832ufj209",
     description: "Password",

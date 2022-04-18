@@ -3,6 +3,8 @@ import { ILoginResponse, IMeResponse } from "../../../api/auth.api";
 import { LoginDto } from "../../../types/auth/login.dto";
 import { RegistrationDto } from "../../../types/auth/registration.dto";
 import { IRoleDto } from "../../../types/role/role.dto";
+import { SetPasswordDto } from '../../../types/auth/set-password.dto';
+import { VerifyCodeDto } from '../../../types/auth/verify-code.dto';
 
 interface AuthState {
 	userId: number | null;
@@ -14,6 +16,7 @@ interface AuthState {
 	token: string | null;
 	forgotPassword: {
 		isSendedMail: boolean,
+		isVerifiedCode: boolean,
 		isSetPassword: boolean,
 	},
 }
@@ -28,7 +31,8 @@ const initialState: AuthState = {
 	token: null,
 	forgotPassword: {
 		isSendedMail: false,
-		isSetPassword: false
+		isVerifiedCode: false,
+		isSetPassword: false,
 	}
 };
 
@@ -80,7 +84,15 @@ export const authSlice = createSlice({
 			state.forgotPassword.isSendedMail = true;
 
 		},
-		fetchedSetPassword(state, action: PayloadAction<string>) {
+		fetchedVerifyCode(state, action: PayloadAction<VerifyCodeDto>) {
+			state.loading = true;
+		},
+		verifyCodeSuccess(state) {
+			state.loading = false;
+			state.forgotPassword.isVerifiedCode = true;
+
+		},
+		fetchedSetPassword(state, action: PayloadAction<SetPasswordDto>) {
 			state.loading = true;
 		},
 		setPasswordSuccess(state) {
@@ -108,7 +120,9 @@ export const {
 	fetchedSetPassword,
 	fetchedSendEmail,
 	sendEmailSuccess,
-	setPasswordSuccess
+	setPasswordSuccess,
+	verifyCodeSuccess,
+	fetchedVerifyCode
 } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;
