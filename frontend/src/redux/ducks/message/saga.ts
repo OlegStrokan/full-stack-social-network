@@ -1,9 +1,8 @@
-import { call, cancel, put, take, takeEvery } from "redux-saga/effects";
-import { createConversationSuccess, initializeFailed, initializeSuccess, sendMessageSuccess } from "./message.slice";
-import { IFetchedCreateConversation, IFetchedInit } from "./action.types";
+import { put} from "redux-saga/effects";
+import { createConversationSuccess, initializeFailed} from "./message.slice";
+import { IFetchedInit } from "./action.types";
 import { io, Socket } from "socket.io-client";
 import { eventChannel } from "redux-saga";
-import { fork } from "child_process";
 
 
 function connect(): Promise<Socket> {
@@ -84,7 +83,6 @@ function* flow(): Generator<any> {
 
 export function* initSockets({ payload }: IFetchedInit) {
 	try {
-		debugger;
 		yield payload.on("conversation", (res) => {
 			console.log(res);
 		});
@@ -95,7 +93,6 @@ export function* initSockets({ payload }: IFetchedInit) {
 
 /*export function* createConversation({ payload }: IFetchedCreateConversation) {
 	try {
-		debugger;
 		yield call(payload.socket.emit("createConversation", payload));
 	} catch (error) {
 		yield put(initializeFailed(error));

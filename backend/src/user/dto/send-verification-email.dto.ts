@@ -1,5 +1,4 @@
 import { ApiProperty } from "@nestjs/swagger";
-export class SendVerificationEmailDto {
 
 export class SendVerificationEmailDto {
   @ApiProperty({

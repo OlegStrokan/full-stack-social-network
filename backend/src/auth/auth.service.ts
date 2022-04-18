@@ -7,7 +7,6 @@ import { JwtService } from "@nestjs/jwt";
 import { UserModel } from "../user/models/user.model";
 import { MailService } from "../mail/mail.service";
 import * as uuid from "uuid";
-import { ChangePasswordDto } from "../user/dto/change-password.dto";
 
 @Injectable()
 export class AuthService {
@@ -100,7 +99,7 @@ export class AuthService {
     await this.mailService.sendCode(user.email, code, user.fullname);
   }
 
-  async verifyCode(email: string, code) {
+  async verifyCode(email: string, code: string) {
     const user = await this.userService.getByEmail(email);
     if (!user) {
       throw new HttpException(`User with this email not fount`, HttpStatus.NOT_FOUND);

@@ -36,14 +36,12 @@ export class UpdateUserDto {
   readonly birth: string;
 
   @ApiProperty({ example: "I am Oleh Strokan...", description: "Description about yourself" })
-  @IsString({ message: "Must be a string" })
   @Length(10, 50, {
     message: "About must be longer then 10 symbols and smaller then 50 symbols",
   })
   readonly about: string;
 
   @ApiProperty({ example: "Contribution to open source", description: "Interests" })
-  @IsString({ message: "Must be a string" })
   @Length(10, 50, {
     message: "Interests name must be longer then 10 symbols and smaller then 50 symbols",
   })

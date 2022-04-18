@@ -1,7 +1,7 @@
 import { ConversationDto, CreateConversationDto, JoinConversationDto } from "../../../types/message/conversation.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MessageDto } from "../../../types/message/message.dto";
 import { Socket } from "socket.io-client";
+import { MessageDto } from '../../../types/message/message.dto';
 
 interface MessageState {
   conversations: ConversationDto[] | null;

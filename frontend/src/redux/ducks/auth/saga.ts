@@ -9,7 +9,6 @@ import {
 } from './action.types';
 import {
 	authFailed,
-	fetchedSendEmail,
 	loginSuccess,
 	logoutSuccess,
 	meSuccess,
@@ -49,7 +48,7 @@ export function* me() {
 		const data: IMeResponse = yield call(authAPI.me);
 		yield put(meSuccess(data));
 	} catch (error: any) {
-		yield put(authFailed(error));
+		yield null;
 	}
 }
 

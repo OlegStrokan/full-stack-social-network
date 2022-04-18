@@ -5,6 +5,6 @@ export interface UpdateProfileDto {
 	location: string;
 	job: string;
 	birth: string;
-	info: string;
+	about: string;
 	interests: string;
 }

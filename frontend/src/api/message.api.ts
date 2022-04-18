@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-export const socket = io("http://localhost:8001", {
+export const socket = io("http://localhost:8000", {
 	transportOptions: {
 		polling: {
 			extraHeaders: {
