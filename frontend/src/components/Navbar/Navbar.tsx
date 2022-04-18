@@ -34,6 +34,14 @@ export const Navbar: React.FC<IHeader> = ({ userId, isAuth, roles }) => {
 								<ListItemText primary="Profile" />
 							</ListItemButton>
 						</ListItem>
+						<ListItem disablePadding>
+							<ListItemButton onClick={() => navigate(`/messages`)}>
+								<ListItemIcon>
+									<Drafts />
+								</ListItemIcon>
+								<ListItemText primary="Messages" />
+							</ListItemButton>
+						</ListItem>
 						{roles?.map((role) => role.value === "ADMIN") &&
                         <>
                           <ListItem disablePadding>

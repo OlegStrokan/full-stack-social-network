@@ -11,6 +11,7 @@ import { AuthService } from "../auth/auth.service";
 import { ConversationService } from "./conversation.service";
 import { MessageModel } from "./models/message.model";
 
+@WebSocketGateway(8001, { cors: { origin: "*" } })
 @WebSocketGateway()
 export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect, OnModuleInit {
   constructor(
@@ -32,6 +33,7 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
       return this.server
         .to(socket.id)
         .emit("conversation", this.getConversations(socket, socket.data.user.id));
+      await this.getConversations(socket, user.data.id);
     } else {
       return this.handleDisconnect(socket);
     }
@@ -57,8 +59,6 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
     if (!newMessage.conversationId) {
       throw new HttpException(`No conversation exists for this users`, HttpStatus.NOT_FOUND);
     }
-    const { user } = socket.data;
-    newMessage.user = user;
 
     if (newMessage.conversationId) {
       await this.conversationService.createMessage(newMessage);

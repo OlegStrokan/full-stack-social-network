@@ -6,9 +6,9 @@ import { ApiOperation, ApiTags, ApiOkResponse } from "@nestjs/swagger";
 import { UserModel } from "../user/models/user.model";
 import { RolesGuard } from "./guards/roles.guard";
 import { Roles } from "./decorators/role-auth.decorator";
-import { SendVerificationEmailDto } from "../user/dto/send-verification-email.dto";
-import { SetPasswordDto } from "../user/dto/set-password.dto";
 import { VerifyCodeDto } from "../user/dto/verify-code.dto";
+import { SetPasswordDto } from "../user/dto/set-password.dto";
+import { SendVerificationEmailDto } from "../user/dto/send-verification-email.dto";
 
 @ApiTags("Auth functional")
 @Controller("auth")
@@ -37,8 +37,6 @@ export class AuthController {
 
   @ApiOperation({ summary: "Is current user authorized" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Roles("ADMIN", "USER")
-  @UseGuards(RolesGuard)
   @Get("/me")
   me(@Headers() headers) {
     return this.authService.me(headers.authorization);

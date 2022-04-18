@@ -6,8 +6,8 @@ import { LoginUserDto } from "../user/dto/login-user.dto";
 import { JwtService } from "@nestjs/jwt";
 import { UserModel } from "../user/models/user.model";
 import { MailService } from "../mail/mail.service";
-import { AST } from "eslint";
 import * as uuid from "uuid";
+import { ChangePasswordDto } from "../user/dto/change-password.dto";
 
 @Injectable()
 export class AuthService {

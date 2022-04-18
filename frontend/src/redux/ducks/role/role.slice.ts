@@ -3,10 +3,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CreateRoleDto } from "../../../types/role/createRole.dto";
 
 interface RoleState {
-	roles: RoleDto[] | null,
-	currentRole: RoleDto | null,
-	loading: boolean,
-	error: any,
+	roles: RoleDto[] | null;
+	currentRole: RoleDto | null;
+	loading: boolean;
+	error: any;
 }
 
 const initialState: RoleState = {
@@ -56,6 +56,6 @@ export const {
 	rolesSuccess,
 	roleSuccess,
 	createSuccess
-}  = roleSlice.actions
+} = roleSlice.actions;
 
-export const roleReducer = roleSlice.reducer
+export const roleReducer = roleSlice.reducer;

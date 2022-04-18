@@ -19,8 +19,8 @@ export class CreateUserDto {
 
   @ApiProperty({ example: "Oleh Strokan", description: "Full name" })
   @IsString({ message: "Must be a string" })
-  @Length(5, 20, {
-    message: "Full name must be longer then 5 symbols and smaller then 20 symbols",
+  @Length(5, 40, {
+    message: "Full name must be longer then 5 symbols and smaller then 40 symbols",
   })
   readonly fullname: string;
 

@@ -7,32 +7,126 @@
 Frontend:
 1. Updated forgot password functional
 2. Added modal window when password was updated
+3. 
+# v2.9.7. (15.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated route logic
+2. Added add message functional
+
+#2.9.6. (14.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Conversation component
+2. Change conversation list
+3. Added logic to add message component
+
+# v2.9.5. (14.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Message form, conversation list
+2. Tested receive message method
+
+# v2.9.3 (14.04.2022)
+
+## Fixes:
+
+Frontend:
+1. Fixed all messages method on backend
+
+# v2.9.2 (13.04.2022)
+
+## Fixes:
+
+Frontend:
+1. Fixed get conversation method in backend
+
+# v2.9.1 (11.04.2022)
+
+## Features:
+
+Frontend:
+1. Added getConversation/initializeSocket sagas
+2. Added socket instance with user's credentials
+
+# v2.9.0 (11.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated socket api (not complete)
+
+## Fixes:
+
+Frontend:
+1. Fixed error with socket's credentials
+
+
+# v2.8.9 (11.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Message api (subscribe/unsubscribe methods)
+2. Added new types for messages api
+
+# v2.8.8 (10.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Components for message page
+
+## Fixes:
+
+Frontend:
+1. Deleted unnecessary code from message component
+
+# v2.8.7 (10.04.2022)
+
+## Features:
+
+Backend:
+1. Updated message's gateway
+
+Frontend:
+1. Updated message's redux
+
+
+# v2.8.6 (6.04.2022)
+
+## Features:
+
+Backend:
+1. Updated message's gateway
+
+Frontend:
+1. Updated message's redux
 
 # v2.8.5 (6.04.2022)
 
 ## Features:
 
-Frontend:
-1. Update forgot password Api/redux
-2. Added validator
-3. Updated forgot password component
+Frontend
+1. Added Conversation component
+2. Change conversation list
+3. Added logic to add message component
 
 # v2.8.4 (5.04.2022)
 
 ## Features:
 
 Frontend:
-1. Added forgot password redux/api
-2. Added forgot password component
+1. Added Message form, conversation list
+2. Tested receive message method
 
-# v2.8.3 (5.04.2022)
-
-## Features:
-
-Frontend:
-1. Added send Email redux/api functional
-
-# v2.8.2 (3.04.2022)
+# v2.8.3 (3.04.2022)
 
 ## Features:
 
@@ -55,6 +149,15 @@ Backend:
 Backend:
 1. Added forgot password endpoint
 2. Added forgot password mail method
+
+# v2.8.0 (28.03.2022)
+
+## Features:
+
+Backend:
+1. Added redux for messages
+2. Added message and conversation dto
+3. Added message component
 
 # v2.7.2 (28.03.2022)
 
