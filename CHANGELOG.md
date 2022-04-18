@@ -1,5 +1,15 @@
 
 
+# v2.9.9.1 (18.04.2022)
+
+## Features:
+
+Frontend:
+1. Added udpate profile component
+2. Validator,
+3. Updated profile saga
+
+
 # v2.9.9 (18.04.2022)
 
 ## Features:

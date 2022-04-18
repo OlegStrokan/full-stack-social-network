@@ -8,6 +8,7 @@ interface ProfileEntitiesInterface {
 }
 
 export const ProfileEntities: React.FC<ProfileEntitiesInterface> = ({ profile }) => {
+
 	return (
 		<Grid>
 			<Typography variant="h6"><Link to={'/profile/'+profile.id+'?gallery=true'}>Photos</Link></Typography>

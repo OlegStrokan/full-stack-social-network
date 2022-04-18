@@ -86,6 +86,7 @@ export function* profileWatcher() {
 	yield takeEvery("profile/fetchedProfile", getProfile);
 	yield takeEvery("profile/fetchedStatus", updateStatus);
 	yield takeEvery("profile/fetchedAvatar", updateAvatar);
+	yield takeEvery("profile/fetchedUpdate", update);
 	yield takeEvery("profile/fetchedFollow", follow);
 	yield takeEvery("profile/fetchedUnfollow", unfollow);
 	yield takeEvery("profile/fetchedActivate", activate);
