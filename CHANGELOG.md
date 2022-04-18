@@ -1,5 +1,12 @@
 
 
+# v2.9.9 (18.04.2022)
+
+## Features:
+
+Frontend:
+1. Deleted unnecessary files, updated messages types
+
 # v2.9.8 (18.04.2022)
 
 ## Features:
@@ -7,7 +14,7 @@
 Frontend:
 1. Updated forgot password functional
 2. Added modal window when password was updated
-3. 
+
 # v2.9.7. (15.04.2022)
 
 ## Features:
