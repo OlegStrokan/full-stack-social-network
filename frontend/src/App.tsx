@@ -7,7 +7,7 @@ import { Roles } from "./pages/Roles/Roles";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import { fetchedInitialize } from "./redux/ducks/initialize/initialize.slice";
-import { Card, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { Header } from "./components/Header/Header";
 import { Navbar } from "./components/Navbar/Navbar";
 // @ts-ignore

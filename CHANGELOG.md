@@ -1,3 +1,11 @@
+# v3.1.3 (22.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated Profile Header
+2. Added profile header css module
+
 # v3.1.2 (22.04.2022)
 
 ## Features:

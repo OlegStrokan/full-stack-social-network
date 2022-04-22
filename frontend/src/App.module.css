@@ -2,7 +2,6 @@
 
 
 .rootOpen {
-    background-color: #eeeeee;
     display: grid;
     grid-template-columns: 225px 1fr;
     grid-template-rows: 60px 1fr;
@@ -17,7 +16,6 @@
 
 .rootClose {
     outline: 1px solid;
-    background-color: #eeeeee;
     display: grid;
     grid-gap: 10px;
     min-height: 100vh;

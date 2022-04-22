@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { fetchedProfile } from "../../redux/ducks/profile/profile.slice";
 import {  useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { Card, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 // @ts-ignore
 import styles from "./Profile.module.css";
 import { ProfileInfo } from "./ProfileInfo";
@@ -43,7 +43,7 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 
 
 	return (
-		<Card className={styles.root}>
+		<Grid className={styles.root}>
 			{gallery && <ProfileGallery gallery={gallery} setGallery={setGallery} userId={profile.id} images={profile.photos}/>}
 			<Grid className={styles.profileHeader}>
 				<ProfileHeader isOwner={isOwner} profile={profile}/>
@@ -58,6 +58,6 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 				<ProfileEntities profile={profile} />
 			</Grid>
 
-		</Card>
+		</Grid>
 	);
 };

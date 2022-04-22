@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { Drafts, Inbox } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { IRoleDto } from "../../types/role/role.dto";
@@ -13,7 +13,7 @@ interface IHeader {
 export const Navbar: React.FC<IHeader> = ({ userId, isAuth, roles }) => {
 	const navigate = useNavigate();
 	return (
-		<Card>
+		<Grid>
 			<List>
 				{!isAuth ?
 					<ListItem disablePadding>
@@ -65,6 +65,6 @@ export const Navbar: React.FC<IHeader> = ({ userId, isAuth, roles }) => {
 					</>
 				}
 			</List>
-		</Card>
+		</Grid>
 	);
 };

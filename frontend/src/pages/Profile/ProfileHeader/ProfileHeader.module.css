@@ -1,0 +1,47 @@
+.root {
+    border-bottom: 1px solid #000;
+}
+
+.profileAvatarImg {
+    border-radius: 50%;
+    background-color: #d2d2d2;
+    width: 275px;
+    height: 275px;
+    margin: -200px 0 0 0px;
+}
+
+.profileAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+}
+
+.profileBackground {
+    height: 300px;
+    width: calc(100% - 2px);
+}
+
+.activateProfile {
+    position: fixed;
+    left: 50px;
+    top: 50px;
+    background: #ffffff;
+    height: 60px;
+    text-align: center;
+    border-radius: 5px;
+    color: #444444;
+    padding: 10px 25px;
+    border: 5px solid;
+
+}
+
+
+.profileMainInfo {
+    display: flex;
+    height: 130px;
+    align-items: flex-end;
+    border-radius: 5px;
+    padding: 10px 0;
+}
