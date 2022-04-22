@@ -1,3 +1,12 @@
+# v3.1.2 (22.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated global theme
+2. Updated profile header layout
+3. Fixed issues with min-height
+
 # v3.1.1 (22.04.2022)
 
 ## Features:

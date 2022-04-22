@@ -39,14 +39,7 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
 
 
   return (
-    <Box
-      sx={{
-        marginTop: 8,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
+    <Box className={styles.logIn}>
       <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
         <LockOutlinedIcon/>
       </Avatar>

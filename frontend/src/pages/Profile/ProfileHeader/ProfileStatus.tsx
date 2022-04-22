@@ -40,7 +40,7 @@ export const ProfileStatus: React.FC<ProfileInfo> = ({ status, id, isOwner }) =>
 					<Grid className={styles.status}>
 						<Typography variant="subtitle2">{status}</Typography>
 					</Grid>
-					{isOwner && <Button className={styles.button} variant="contained" size="small" onClick={() => setEditMode(true)}>Change status</Button>}
+					{isOwner && <Button  variant="contained"  onClick={() => setEditMode(true)}>Change status</Button>}
 				</Grid>
 				:
 				<Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>

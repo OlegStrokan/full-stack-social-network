@@ -1,8 +1,12 @@
+* { padding: 0; margin: 0; }
+
+
 .rootOpen {
     background-color: #eeeeee;
     display: grid;
     grid-template-columns: 225px 1fr;
     grid-template-rows: 60px 1fr;
+    min-height: 100vh;
     grid-gap: 10px;
     padding: 0;
     margin: 0;
@@ -12,9 +16,11 @@
 }
 
 .rootClose {
+    outline: 1px solid;
     background-color: #eeeeee;
     display: grid;
     grid-gap: 10px;
+    min-height: 100vh;
     grid-template-columns: 1fr;
     grid-template-rows: 60px 1fr;
     padding: 0;

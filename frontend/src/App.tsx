@@ -7,7 +7,7 @@ import { Roles } from "./pages/Roles/Roles";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import { fetchedInitialize } from "./redux/ducks/initialize/initialize.slice";
-import { Card } from "@mui/material";
+import { Card, Grid } from '@mui/material';
 import { Header } from "./components/Header/Header";
 import { Navbar } from "./components/Navbar/Navbar";
 // @ts-ignore
@@ -29,7 +29,7 @@ export const App = () => {
 	}
 
 	return (
-		<Card className={navbar ? styles.rootOpen : styles.rootClose}>
+		<Grid className={navbar ? styles.rootOpen : styles.rootClose}>
 			<div className={styles.header}><Header isAuth={isAuth} username={username} navbar={navbar}
 												   setNavbar={setNavbar} /></div>
 			{navbar && <div className={styles.navbar}><Navbar roles={roles}  isAuth={isAuth} userId={userId} /></div>}
@@ -45,7 +45,7 @@ export const App = () => {
 					</Route>
 				</Routes>
 			</div>
-		</Card>
+		</Grid>
 	);
 };
 

@@ -77,7 +77,7 @@
     margin: 10px;
 }
 .button {
-    margin-left: 10px;
+   padding: 10px 30px;
 }
 .profileInfo {
     grid-area: info;

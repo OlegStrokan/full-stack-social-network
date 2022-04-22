@@ -33,7 +33,7 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Change user's status" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Roles("ADMIN", "USER")
+  @Roles("admin", "user")
   @UseGuards(RolesGuard)
   @Patch("/:id/status")
   async changeStatus(@Param("id") id: string, @Body() userDto: UpdateStatusDto) {
@@ -42,7 +42,7 @@ export class ProfileController {
 
   @ApiOperation({ summary: "Follow to user" })
   @ApiOkResponse({ status: 200 })
-  @Roles("ADMIN", "USER")
+  @Roles("admin", "user")
   @UseGuards(RolesGuard)
   @Post("/:user_id/follow/:follow_id")
   async follow(@Param("user_id") user_id: string, @Param("follow_id") follow_id: string) {
