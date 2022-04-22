@@ -13,6 +13,7 @@ interface AuthState {
 	isAuth: boolean;
 	loading: boolean;
 	error: any;
+	isRegister: boolean;
 	token: string | null;
 	forgotPassword: {
 		isSendedMail: boolean,
@@ -27,6 +28,7 @@ const initialState: AuthState = {
 	username: null,
 	isAuth: false,
 	loading: false,
+	isRegister: false,
 	error: null,
 	token: null,
 	forgotPassword: {
@@ -45,6 +47,8 @@ export const authSlice = createSlice({
 		},
 		registrationSuccess(state, action: PayloadAction<void>) {
 			state.loading = false;
+			state.isRegister = true;
+
 		},
 		fetchedLogin(state, action: PayloadAction<LoginDto>) {
 			state.loading = true;
@@ -82,6 +86,7 @@ export const authSlice = createSlice({
 		sendEmailSuccess(state) {
 			state.loading = false;
 			state.forgotPassword.isSendedMail = true;
+			state.error = null;
 
 		},
 		fetchedVerifyCode(state, action: PayloadAction<VerifyCodeDto>) {
@@ -90,6 +95,7 @@ export const authSlice = createSlice({
 		verifyCodeSuccess(state) {
 			state.loading = false;
 			state.forgotPassword.isVerifiedCode = true;
+			state.error = null;
 
 		},
 		fetchedSetPassword(state, action: PayloadAction<SetPasswordDto>) {
@@ -98,6 +104,7 @@ export const authSlice = createSlice({
 		setPasswordSuccess(state) {
 			state.loading = false;
 			state.forgotPassword.isSetPassword = true;
+			state.error = null;
 
 		},
 		authFailed(state, action: PayloadAction<any>) {

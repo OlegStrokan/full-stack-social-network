@@ -1,3 +1,13 @@
+# v3.1.0 (22.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Modal window for forgot password
+2. Added error handling for auth redux
+
+Backend:
+Updated return data in verify code method
 
 # v3.0.0 (18.04.2022)
 
@@ -5,6 +15,8 @@
 
 Frontend:
 1. Finished profile. Removed cors from backend
+
+# v2.9.9.1 (18.04.2022)
 
 ## Features:
 

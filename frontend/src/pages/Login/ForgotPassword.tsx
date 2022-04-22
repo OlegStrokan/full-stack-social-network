@@ -1,18 +1,20 @@
-import React from "react";
+import React from 'react';
 import { Box, Button, Grid, Link, TextField, Typography } from '@mui/material';
 // @ts-ignore
 import styles from './Login.module.css';
-import { validationSchema } from "../../utils/validators/forgotPassword";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { fetchedSendEmail, fetchedSetPassword, fetchedVerifyCode } from "../../redux/ducks/auth/auth.slice";
+import { validationSchema } from '../../utils/validators/forgotPassword';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { fetchedSendEmail, fetchedSetPassword, fetchedVerifyCode } from '../../redux/ducks/auth/auth.slice';
+import { ForgotModalWindow } from '../../components/ForgotModalWindow/ForgotModalWindow';
 
 interface IForgotPassword {
 	password: boolean;
 	setForgotPassword: (state: boolean) => void;
 }
+
 export const ForgotPassword: React.FC<IForgotPassword> = ({ password, setForgotPassword }) => {
 	const {
 		register, handleSubmit, formState: { errors },
@@ -20,7 +22,7 @@ export const ForgotPassword: React.FC<IForgotPassword> = ({ password, setForgotP
 		resolver: yupResolver(validationSchema),
 	});
 
-	const { forgotPassword, loading } = useSelector((state: RootState) => state.authReducer);
+	const { forgotPassword, loading, error } = useSelector((state: RootState) => state.authReducer);
 	const dispatch = useDispatch();
 
 	const onSubmit = (event: any) => {
@@ -35,30 +37,18 @@ export const ForgotPassword: React.FC<IForgotPassword> = ({ password, setForgotP
 
 	return (
 		<Grid>
-			<Grid className={styles.forgotRoot}>
-				<Grid className={(!forgotPassword.isSendedMail || !forgotPassword.isVerifiedCode || !forgotPassword.isSetPassword) ? styles.modal : `${styles.modal} ${styles.modal_active}`}>
-					<Grid className={(!forgotPassword.isSendedMail || !forgotPassword.isVerifiedCode || !forgotPassword.isSetPassword) ? styles.alert : `${styles.alert} ${styles.alert_active}`}>
-						<Typography variant="h5">Success!</Typography>
-						<Grid>
-							<Typography variant="h6" sx={{ mt: 1, mb: 4 }}>Your password has been updated.</Typography>
-							<Grid className={styles.logInButton}>
-								<Button
-									onClick={() => {
-										// eslint-disable-next-line no-restricted-globals
-										location.reload();
-									}}
-									variant="contained"
-								>
-									Log in
-								</Button>
-							</Grid>
-						</Grid>
-					</Grid>
-				</Grid>
-			</Grid>
+			<ForgotModalWindow forgotPassword={forgotPassword}/>
 			<Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
 				<Grid container spacing={2} className={styles.inputs}>
-					{forgotPassword.isSendedMail && <Grid sx={{ mt: 4 }}><Typography variant="h6">Digit code was sent to your email!</Typography></Grid>}
+					<Grid item xs={12} style={{ textAlign: 'center' }} sx={{ mt: 3, mb: -2 }}>
+						{forgotPassword.isSendedMail
+							?
+							<Grid><Typography variant="h6">Digit code was sent to your
+								email!</Typography></Grid>
+							: <Typography variant="subtitle2">
+								We will send activation code on your email
+							</Typography>}
+					</Grid>
 					<Grid item xs={12}>
 						<TextField
 							margin="normal"
@@ -112,8 +102,17 @@ export const ForgotPassword: React.FC<IForgotPassword> = ({ password, setForgotP
 							</Typography>
 						</Grid>
 					)}
+					<Grid item xs={12}>
+						{error && <Typography variant="h6" color="error">{error}</Typography>}
+					</Grid>
 					<Grid item xs={12} className={styles.logInButton}>
-						<Button variant="contained" type="submit" disabled={loading} fullWidth>
+						<Button
+							variant="contained"
+							type="submit"
+							disabled={loading}
+							fullWidth
+							sx={{ mt: 1, mb: 2, p: 2 }}
+						>
 							{!loading && !forgotPassword.isSendedMail && !forgotPassword.isVerifiedCode && !forgotPassword.isSetPassword && 'Send Code'}
 							{!loading && forgotPassword.isSendedMail && !forgotPassword.isVerifiedCode && !forgotPassword.isSetPassword && 'Set code'}
 							{!loading && forgotPassword.isSendedMail && forgotPassword.isVerifiedCode && !forgotPassword.isSetPassword && 'Set password'}
@@ -121,10 +120,10 @@ export const ForgotPassword: React.FC<IForgotPassword> = ({ password, setForgotP
 						</Button>
 					</Grid>
 					<Grid item xs={12} textAlign="center">
-						{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-						<Link variant="body1" style={{ color: '#707070', cursor: 'pointer' }} onClick={() => setForgotPassword(!forgotPassword)}>
-							<Button variant="contained">Log in</Button>
-						</Link>
+						<Typography className={styles.link} variant="subtitle1"
+									onClick={() => setForgotPassword(!forgotPassword)}>
+							Back
+						</Typography>
 					</Grid>
 				</Grid>
 			</Box>

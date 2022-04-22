@@ -51,7 +51,7 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
         <LockOutlinedIcon/>
       </Avatar>
       <Typography component="h1" variant="h5">
-        Sign in
+        {!forgotPassword ? 'Sign in' : 'Forgot password'}
       </Typography>
       {!forgotPassword ?
       <Box component="form" onSubmit={handleSubmit(onSubmit)} className={styles.inputs} noValidate sx={{ mt: 3 }}>
@@ -101,12 +101,12 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
           </Grid>
           <Grid item xs={12}>
             <Typography className={styles.link} variant="subtitle1" onClick={() => setForgotPassword(!forgotPassword)}>
-              {'Forgot password?'}
+              Forgot password?
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography className={styles.link} variant="subtitle1" onClick={() => onModelChange()}>
-              {'Don\'t have an account? Sign Up'}
+              Don't have an account? Sign Up
             </Typography>
           </Grid>
         </Grid>
