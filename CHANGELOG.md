@@ -1,3 +1,10 @@
+# v3.1.1 (22.04.2022)
+
+## Features:
+
+Frontend:
+1. Added custom material ui theme
+
 # v3.1.0 (22.04.2022)
 
 ## Features:
