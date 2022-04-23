@@ -36,9 +36,9 @@ export class PostService {
       await post.$set("likes", []);
       await post.$set("dislikes", []);
       await post.save();
-      const posts = await this.postRepository.findAll();
+      const newPost = await this.postRepository.findByPk(post.id, { include: { all: true } });
       return {
-        data: posts,
+        data: newPost,
         statusCode: HttpStatus.OK,
       };
     }
@@ -65,23 +65,18 @@ export class PostService {
   }
 
   async findAll() {
-    const posts = await this.postRepository.findAll({ include: { all: true } });
-    return {
-      data: posts,
-      statusCode: HttpStatus.OK,
-    };
+    return await this.postRepository.findAll({ include: { all: true } });
   }
 
   async findByUser(id: number) {
-    const posts = await this.postRepository.findAll({
+    return await this.postRepository.findAll({
       where: { userId: id },
       include: { all: true },
     });
-    return posts;
   }
 
   async findOne(id: number) {
-    const post = await this.postRepository.findByPk(id, { include: { all: true } });
+    const post = await this.findByUser(id);
 
     if (!post) {
       throw new HttpException("Post with this id not found", HttpStatus.NOT_FOUND);
@@ -115,7 +110,7 @@ export class PostService {
       { where: { id: photo.id } }
     );
 
-    const posts = await this.postRepository.findAll();
+    const posts = await this.findAll();
     return {
       data: posts,
       statusCode: HttpStatus.OK,
@@ -136,7 +131,7 @@ export class PostService {
       },
     });
 
-    const posts = await this.postRepository.findAll();
+    const posts = await this.findAll();
     return {
       data: posts,
       statusCode: HttpStatus.OK,

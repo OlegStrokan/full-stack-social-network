@@ -1,0 +1,52 @@
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    display: flex;
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.modal_active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.alert {
+    transform: scale(0);
+    width: 80vw;
+    overflow: scroll;
+    background-color: #fff;
+    min-height: 50%;
+    max-height: 90%;
+    transition: 0.4s all;
+    position: relative;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.alert_active {
+    transform: scale(1);
+}
+
+.galleryGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.galleryImage {
+    border-radius: 10px;
+    margin: 10px;
+    width: 400px;
+    height: 300px;
+}

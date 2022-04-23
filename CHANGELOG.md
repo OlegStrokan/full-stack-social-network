@@ -1,3 +1,68 @@
+# v3.2.0 (23.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated add post form
+
+Backend:
+1. Updated response value in post service
+## Fixes:
+
+Frontend
+1. Fixed create post method
+2. Fixed scroll in profile gallery
+
+
+# v3.1.5 (23.04.2022)
+
+## Features:
+
+Frontend:
+1. Reversed posts array in profile page
+2. Updated styles in profile gallery
+
+# v3.1.4 (23.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated Profile info, removed grid gap
+
+# v3.1.3 (22.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated Profile Header
+2. Added profile header css module
+
+# v3.1.2 (22.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated global theme
+2. Updated profile header layout
+3. Fixed issues with min-height
+
+# v3.1.1 (22.04.2022)
+
+## Features:
+
+Frontend:
+1. Added custom material ui theme
+
+# v3.1.0 (22.04.2022)
+
+## Features:
+
+Frontend:
+1. Added Modal window for forgot password
+2. Added error handling for auth redux
+
+Backend:
+Updated return data in verify code method
 
 # v3.0.0 (18.04.2022)
 
@@ -5,6 +70,8 @@
 
 Frontend:
 1. Finished profile. Removed cors from backend
+
+# v2.9.9.1 (18.04.2022)
 
 ## Features:
 

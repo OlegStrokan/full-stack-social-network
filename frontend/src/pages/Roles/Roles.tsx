@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchedRoles } from "../../redux/ducks/role/role.slice";
 import { RootState } from "../../redux/store";
-import { Card, Typography } from "@mui/material";
+import { Grid, Typography } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import { AddRole } from "./AddRole";
 
@@ -27,11 +27,11 @@ export const Roles: React.FC<RolesInterface> = ({ isAuth}) => {
 	if (loading) return <div>....loading</div>
 
 	return (
-		<Card>
+		<Grid>
 			<AddRole/>
 			{roles?.map((role	) => <Typography variant="h6">{role.value}</Typography>)}
 			Roles page
-		</Card>
+		</Grid>
 	);
 };
 

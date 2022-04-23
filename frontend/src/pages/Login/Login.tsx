@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '@mui/material';
+import { Grid } from '@mui/material';
 // @ts-ignore
 import styles from './Login.module.css'
 import { SignIn } from './SignIn';
@@ -27,8 +27,8 @@ export const Login:React.FC<LoginInterface> = ({ isAuth, userId }) => {
   };
 
   return (
-    <Card className={styles.root}>
+    <Grid className={styles.root}>
       {!register ? <SignUp onModelChange={onModelChange} /> : <SignIn onModelChange={onModelChange} />}
-    </Card>
+    </Grid>
   );
 }

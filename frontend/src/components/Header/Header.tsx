@@ -18,30 +18,33 @@ export const Header: React.FC<IHeader> = ({ isAuth, username, navbar, setNavbar 
 
 	const dispatch = useDispatch();
 
+	const containLogin = pathname.includes('login');
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static">
+			<AppBar position="static" color="primary">
 				<Toolbar>
-					<IconButton
-						onClick={() => setNavbar(!navbar)}
-						size="large"
-						edge="start"
-						color="inherit"
-						aria-label="menu"
-						sx={{ mr: 2 }}
-					>
-						<Menu />
-					</IconButton>
+					{!containLogin &&
+						<IconButton
+							onClick={() => setNavbar(!navbar)}
+							size="large"
+							edge="start"
+							color="inherit"
+							aria-label="menu"
+							sx={{ mr: 2 }}
+						>
+							<Menu/>
+						</IconButton>
+					}
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						{pathname.slice(1)}
 					</Typography>
-					{!isAuth
-						? <Button color="inherit" onClick={() => <Navigate to="/login" />}>Login</Button>
-						: <>
-							<Typography sx={{ mr: 2 }}>{username}</Typography>
-							<Button color="inherit" variant="outlined" onClick={() => dispatch(fetchedLogout())}>Logout</Button>
-						</>
+					{!isAuth && !containLogin
+						&& <Button color="inherit" onClick={() => <Navigate to="/login" />}>Login</Button>
 					}
+					{isAuth && <>
+						<Typography sx={{ mr: 2 }}>{username}</Typography>
+						<Button color="inherit" variant="outlined" onClick={() => dispatch(fetchedLogout())}>Logout</Button>
+					</>}
 				</Toolbar>
 			</AppBar>
 		</Box>

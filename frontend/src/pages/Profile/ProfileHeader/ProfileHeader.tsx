@@ -1,12 +1,12 @@
-import React, { ChangeEvent } from "react";
-import { Button, Grid, Typography } from "@mui/material";
+import React, { ChangeEvent } from 'react';
+import { Button, Card, Grid, Typography } from '@mui/material';
 // @ts-ignore
-import styles from "../Profile.module.css";
-import { ProfileDto } from "../../../types/profile/profile.dto";
-import { ProfileStatus } from "./ProfileStatus";
-import { useDispatch } from "react-redux";
-import { fetchedAvatar } from "../../../redux/ducks/profile/profile.slice";
-
+import styles from './ProfileHeader.module.css';
+import { ProfileDto } from '../../../types/profile/profile.dto';
+import { ProfileStatus } from './ProfileStatus';
+import { useDispatch } from 'react-redux';
+import { fetchedAvatar } from '../../../redux/ducks/profile/profile.slice';
+import ClearIcon from '@mui/icons-material/Clear';
 
 interface ProfileInfo {
 	profile: ProfileDto;
@@ -15,31 +15,40 @@ interface ProfileInfo {
 
 export const ProfileHeader: React.FC<ProfileInfo> = ({ profile, isOwner }) => {
 
-	const dispatch = useDispatch();
+		const dispatch = useDispatch();
 
-	const onAvatarChange = (event: ChangeEvent<HTMLInputElement>) => {
-		if (event.target.files && event.target.files.length) {
-			dispatch(fetchedAvatar({ id: profile.id, avatar: event.target.files[0] }));
-		}
-	};
+		const onAvatarChange = (event: ChangeEvent<HTMLInputElement>) => {
+			if (event.target.files && event.target.files.length) {
+				dispatch(fetchedAvatar({ id: profile.id, avatar: event.target.files[0] }));
+			}
+		};
 
-return (
-	<Grid>
-		{!profile?.activated &&
-        <Grid className={styles.activateProfile}><Typography variant="h6">Please activate your
-          account</Typography></Grid>}
-		<img src={profile.avatar} className={styles.profileBackground} />
-		<Grid className={styles.profileMainInfo}>
-			<img src={"http://localhost:8000/" + profile.avatar} className={styles.profileAvatar} />
-			{isOwner && <Button variant="contained" component="label" size="small" color="primary" sx={{ ml: -5 }}>Change avatar
-				<input type="file" hidden onChange={onAvatarChange} />
-			</Button>}
-			<Grid>
-				<Typography variant="h5" >{profile.fullname}</Typography>
-				<ProfileStatus isOwner={isOwner} status={profile.status} id={profile.id} />
+		const [activateProfile, setActivateProfile] = React.useState<boolean>(false);
+
+		return (
+			<Grid className={styles.root}>
+				{!profile?.activated && !activateProfile &&
+                <Grid className={styles.activateProfile}>
+					<Grid style={{ display: 'flex', alignItems: 'center' }}>
+					<Typography variant="h6" sx={{ mr: 1 }}>Please activate your account!</Typography>
+					<ClearIcon style={{ cursor: 'pointer' }} onClick={() => setActivateProfile(!activateProfile)}/>
+                    </Grid>
+				</Grid>}
+				<img src={'http://localhost:8000/' + profile.avatar} className={styles.profileBackground}/>
+				<Grid className={styles.profileMainInfo}>
+					<div className={styles.profileAvatar}>
+							<img src={'http://localhost:8000/' + profile.avatar} className={styles.profileAvatarImg}/>
+						{isOwner &&
+                        <Button variant="contained" component="label" color="primary" sx={{ mt: 2 }}>Change avatar
+                            <input type="file" hidden onChange={onAvatarChange}/>
+                        </Button>}
+					</div>
+					<Grid>
+						<Typography variant="h4">{profile.fullname}</Typography>
+						<ProfileStatus isOwner={isOwner} status={profile.status} id={profile.id}/>
+					</Grid>
+				</Grid>
 			</Grid>
-		</Grid>
-	</Grid>
-);
-}
+		);
+	}
 ;

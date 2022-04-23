@@ -79,7 +79,7 @@ export const profileSlice = createSlice({
 		createPostSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
 			// @ts-ignore
-			state.profile!.posts = [state.profile.posts, action.payload];
+			state.profile!.posts = [...state.profile.posts, action.payload];
 		},
 		fetchedPostDelete(state, action: PayloadAction<number>) {
 			state.loading = true;

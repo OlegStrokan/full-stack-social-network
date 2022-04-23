@@ -1,5 +1,5 @@
-import { call, put, takeEvery } from "redux-saga/effects";
-import { authAPI, ILoginResponse, IMeResponse } from "../../../api/auth.api";
+import { call, put, takeEvery } from 'redux-saga/effects';
+import { authAPI, ILoginResponse, IMeResponse } from '../../../api/auth.api';
 import {
 	IFetchedLogin,
 	IFetchedRegistration,
@@ -27,7 +27,7 @@ export function* registration({ payload }: IFetchedRegistration) {
 export function* login({ payload }: IFetchedLogin) {
 	try {
 		const data: ILoginResponse = yield call(authAPI.login, payload);
-		localStorage.setItem("token", data.token);
+		localStorage.setItem('token', data.token);
 		yield put(loginSuccess(data));
 	} catch (error: any) {
 		yield put(authFailed(error));
@@ -36,7 +36,7 @@ export function* login({ payload }: IFetchedLogin) {
 
 export function* logout() {
 	try {
-		localStorage.removeItem("token");
+		localStorage.removeItem('token');
 		yield put(logoutSuccess());
 	} catch (error: any) {
 		yield put(authFailed(error));
@@ -83,11 +83,11 @@ export function* setPassword({ payload }: IFetchedSetPassword) {
 
 
 export function* authWatcher() {
-	yield takeEvery("auth/fetchedRegistration", registration);
-	yield takeEvery("auth/fetchedLogin", login);
-	yield takeEvery("auth/fetchedLogout", logout);
-	yield takeEvery("auth/fetchedMe", me);
-	yield takeEvery("auth/fetchedSendEmail", sendEmail);
-	yield takeEvery("auth/fetchedVerifyCode", verifyCode);
-	yield takeEvery("auth/fetchedSetPassword", setPassword);
+	yield takeEvery('auth/fetchedRegistration', registration);
+	yield takeEvery('auth/fetchedLogin', login);
+	yield takeEvery('auth/fetchedLogout', logout);
+	yield takeEvery('auth/fetchedMe', me);
+	yield takeEvery('auth/fetchedSendEmail', sendEmail);
+	yield takeEvery('auth/fetchedVerifyCode', verifyCode);
+	yield takeEvery('auth/fetchedSetPassword', setPassword);
 }

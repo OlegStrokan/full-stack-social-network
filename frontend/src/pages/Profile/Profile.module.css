@@ -1,20 +1,4 @@
-.profileAvatar {
-    border-radius: 50%;
-    background-color: #d2d2d2;
-    width: 275px;
-    height: 275px;
-    margin: -200px 0 0 50px;
-}
 
-.profileBackground {
-    height: 250px;
-    width: calc(100% - 2px);
-    border: 1px solid;
-}
-
-.status {
-    margin: 0 20px;
-}
 
 .addPostForm {
     padding: 25px;
@@ -25,7 +9,6 @@
     display: grid;
     grid-template-columns: 350px 1fr 350px;
     grid-template-rows: 445px 1fr;
-    grid-gap: 10px;
     padding: 0;
     grid-template-areas:
     "header header header"
@@ -36,59 +19,27 @@
     grid-area: header;
 }
 
-.flex {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
 .profileEntities {
     grid-area: entities;
     border-radius: 5px;
-    background-color: #e1e1e1;
     color: #000;
     text-align: center;
     padding: 10px 0;
+    min-height: 800px;
 }
 
-.profileGallery {
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    position: absolute;
-    padding: 20px;
-    top: 78px; /* position the top  edge of the element at the middle of the parent */
-    left: 50%; /* position the left edge of the element at the middle of the parent */
-    z-index: 2;
-    transform: translate(-50%, 0%);
-    min-height: 85%;
-    min-width: 90%;
-    overflow: scroll;
-}
 
-.galleryGrid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.galleryImage {
-    border-radius: 10px;
-    margin: 10px;
-}
-.button {
-    margin-left: 10px;
-}
 .profileInfo {
     grid-area: info;
 }
 
 .profilePosts {
     grid-area: posts;
-    border-radius: 5px;
-    background-color: #e1e1e1;
+    background-color: #f3f3f3;
     color: #000;
     padding: 10px 0;
+    border-right: 1px solid;
+    border-left: 1px solid;
 }
 
 .profilePost {
@@ -107,29 +58,15 @@
     border-radius: 10px;
 }
 
-.activateProfile {
-    height: 50px;
-    text-align: center;
-    border-radius: 5px;
-    background-color: #e1e1e1;
-    color: #000;
-    padding: 10px 0;
-    margin: 10px;
-}
-
-.profileMainInfo {
-    display: flex;
-    height: 120px;
-    align-items: flex-end;
-    background-color: #e1e1e1;
-    border-radius: 5px;
-    padding: 10px 0;
-}
 
 .profileInfo {
     text-align: center;
     border-radius: 5px;
-    background-color: #e1e1e1;
     color: #000;
     padding: 10px 0;
+}
+
+.profileInfoBlock {
+    text-align: left;
+    margin: 20px;
 }

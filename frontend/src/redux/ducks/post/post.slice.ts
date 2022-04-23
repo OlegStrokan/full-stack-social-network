@@ -46,7 +46,7 @@ export const postSlice = createSlice({
 		createSuccess(state, action: PayloadAction<PostDto>) {
 			state.loading = false;
 			// @ts-ignore
-			state.posts = [state.posts, action.payload]
+			state.posts = [...state.posts, action.payload]
 		},
 		fetchedUpdate(state, action: PayloadAction<UpdatePostDto>) {
 			state.loading = true;

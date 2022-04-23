@@ -23,11 +23,14 @@ export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
 
 	const onSubmit = (event: any) => {
 		dispatch(fetchedCreate(event));
+		setImage(null);
+		reset({ title: '', content: ''})
 	};
 	const {
 		register,
 		control,
 		handleSubmit,
+		reset,
 		formState: { errors }
 	} = useForm({
 		resolver: yupResolver(validationSchema)
@@ -65,6 +68,9 @@ export const AddPost: React.FC<AddPostInterface> = ({ userId }) => {
 							required
 							fullWidth
 							id="content"
+							multiline
+							rows={10}
+							maxRows={20}
 							label="Content"
 							autoComplete="Content"
 							{...register("content")}

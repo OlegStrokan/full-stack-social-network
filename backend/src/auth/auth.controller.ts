@@ -52,7 +52,7 @@ export class AuthController {
   @ApiOperation({ summary: "Verify code" })
   @ApiOkResponse({ status: 200, type: UserModel })
   @Patch("/verify_code")
-  verifyCode(@Body() dto: VerifyCodeDto): Promise<boolean> {
+  verifyCode(@Body() dto: VerifyCodeDto) {
     return this.authService.verifyCode(dto.email, dto.code);
   }
 
