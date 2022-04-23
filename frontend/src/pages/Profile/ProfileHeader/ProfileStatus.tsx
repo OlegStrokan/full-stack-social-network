@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 // @ts-ignore
-import styles from "../Profile.module.css";
+import styles from "./ProfileHeader.module.css";
 import { useDispatch } from "react-redux";
 import { fetchedStatus } from "../../../redux/ducks/profile/profile.slice";
 import { useForm } from "react-hook-form";
@@ -34,23 +34,25 @@ export const ProfileStatus: React.FC<ProfileInfo> = ({ status, id, isOwner }) =>
 
 
 	return (
-		<Grid>
+		<Grid className={styles.statusWithButton}>
 			{!editMode
 				? <Grid className={styles.flex}>
-					<Grid className={styles.status}>
-						<Typography variant="subtitle2">{status}</Typography>
+					<Grid>
+						<Typography variant="h6">{status}</Typography>
 					</Grid>
-					{isOwner && <Button  variant="contained"  onClick={() => setEditMode(true)}>Change status</Button>}
+					{isOwner && <Button  variant="contained" sx={{ ml: 3 }} onClick={() => setEditMode(true)}>Change</Button>}
 				</Grid>
 				:
-				<Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 3 }}>
+				<Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
 					<Grid className={styles.flex}>
-						{isOwner && <Button className={styles.button} variant="contained"
+						{isOwner && <Button  variant="contained"
 								onClick={() => setEditMode(false)}>Back</Button>}
 						<Grid item xs={12}>
 							<TextField
 								required
+								defaultValue={status}
 								fullWidth
+								sx={{ width: '500px', ml: 1, mr: 1 }}
 								id="status"
 								label="Status"
 								autoComplete="Status"
@@ -61,7 +63,7 @@ export const ProfileStatus: React.FC<ProfileInfo> = ({ status, id, isOwner }) =>
 								{errors.status?.message}
 							</Typography>
 						</Grid>
-						{isOwner && <Button className={styles.button} type="submit" size="small" variant="contained">Submit</Button>}
+						{isOwner && <Button type="submit" variant="contained">Submit</Button>}
 					</Grid>
 				</Box>
 			}

@@ -19,7 +19,7 @@ interface ProfileInterface {
 
 export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 	let navigate = useNavigate();
-	const { profile } = useSelector((state: RootState) => state.profileReducer);
+	const { profile, error, loading } = useSelector((state: RootState) => state.profileReducer);
 	let url = useParams<string>();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const params = searchParams.get('gallery')
@@ -49,7 +49,7 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 				<ProfileHeader isOwner={isOwner} profile={profile}/>
 			</Grid>
 			<Grid className={styles.profileInfo}>
-				<ProfileInfo profile={profile} />
+				<ProfileInfo profile={profile} error={error} />
 			</Grid>
 			<Grid className={styles.profilePosts}>
 				<ProfilePosts isOwner={isOwner} userId={userId} posts={profile?.posts} />

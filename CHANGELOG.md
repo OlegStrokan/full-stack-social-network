@@ -1,3 +1,10 @@
+# v3.1.4 (23.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated Profile info, removed grid gap
+
 # v3.1.3 (22.04.2022)
 
 ## Features:

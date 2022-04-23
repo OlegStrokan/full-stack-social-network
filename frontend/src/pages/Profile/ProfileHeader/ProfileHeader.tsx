@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { Button, Grid, Typography } from '@mui/material';
+import { Button, Card, Grid, Typography } from '@mui/material';
 // @ts-ignore
 import styles from './ProfileHeader.module.css';
 import { ProfileDto } from '../../../types/profile/profile.dto';
@@ -37,7 +37,7 @@ export const ProfileHeader: React.FC<ProfileInfo> = ({ profile, isOwner }) => {
                         </Button>}
 					</div>
 					<Grid>
-						<Typography variant="h5">{profile.fullname}</Typography>
+						<Typography variant="h4">{profile.fullname}</Typography>
 						<ProfileStatus isOwner={isOwner} status={profile.status} id={profile.id}/>
 					</Grid>
 				</Grid>

@@ -1,5 +1,7 @@
 .root {
     border-bottom: 1px solid #000;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .profileAvatarImg {
@@ -7,7 +9,7 @@
     background-color: #d2d2d2;
     width: 275px;
     height: 275px;
-    margin: -200px 0 0 0px;
+    margin: -200px 0 0 0;
 }
 
 .profileAvatar {
@@ -17,16 +19,29 @@
     flex-direction: column;
     width: 400px;
 }
-
 .profileBackground {
     height: 300px;
-    width: calc(100% - 2px);
+    width: 100%;
+}
+.statusWithButton {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .activateProfile {
     position: fixed;
-    left: 50px;
-    top: 50px;
+    right: 50px;
+    bottom: 50px;
     background: #ffffff;
     height: 60px;
     text-align: center;
