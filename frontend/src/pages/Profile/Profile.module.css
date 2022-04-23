@@ -28,31 +28,6 @@
     min-height: 800px;
 }
 
-.profileGallery {
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    position: absolute;
-    padding: 20px;
-    top: 78px; /* position the top  edge of the element at the middle of the parent */
-    left: 50%; /* position the left edge of the element at the middle of the parent */
-    z-index: 2;
-    transform: translate(-50%, 0%);
-    min-height: 85%;
-    min-width: 90%;
-    overflow: scroll;
-}
-
-.galleryGrid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.galleryImage {
-    border-radius: 10px;
-    margin: 10px;
-}
 
 .profileInfo {
     grid-area: info;

@@ -10,7 +10,7 @@ import styles from "./Profile.module.css";
 import { ProfileInfo } from "./ProfileInfo";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileEntities } from "./ProfileEntities";
-import { ProfileGallery } from "./ProfileGallery";
+import { ProfileGallery } from "./ProfileGallery/ProfileGallery";
 
 interface ProfileInterface {
 	isAuth: boolean;

@@ -30,7 +30,6 @@ interface PostInterface {
 }
 
 export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
-debugger
 
 	const [editMode, setEditMode] = React.useState(false);
 
@@ -49,6 +48,9 @@ debugger
 
 	const [image, setImage] = React.useState<File | null>(null);
 
+	if (!post) {
+		return <div>'...Loading'</div>
+	}
 	return (
 		<Grid>
 			{editMode ?

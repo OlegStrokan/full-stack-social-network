@@ -1,3 +1,11 @@
+# v3.1.5 (23.04.2022)
+
+## Features:
+
+Frontend:
+1. Reversed posts array in profile page
+2. Updated styles in profile gallery
+
 # v3.1.4 (23.04.2022)
 
 ## Features:
