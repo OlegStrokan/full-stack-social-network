@@ -6,7 +6,7 @@ import { ProfileDto } from '../../../types/profile/profile.dto';
 import { ProfileStatus } from './ProfileStatus';
 import { useDispatch } from 'react-redux';
 import { fetchedAvatar } from '../../../redux/ducks/profile/profile.slice';
-
+import ClearIcon from '@mui/icons-material/Clear';
 
 interface ProfileInfo {
 	profile: ProfileDto;
@@ -23,10 +23,17 @@ export const ProfileHeader: React.FC<ProfileInfo> = ({ profile, isOwner }) => {
 			}
 		};
 
+		const [activateProfile, setActivateProfile] = React.useState<boolean>(false);
+
 		return (
 			<Grid className={styles.root}>
-				{!profile?.activated &&
-                <Grid className={styles.activateProfile}><Typography variant="h6">Please activate your account!</Typography></Grid>}
+				{!profile?.activated && !activateProfile &&
+                <Grid className={styles.activateProfile}>
+					<Grid style={{ display: 'flex', alignItems: 'center' }}>
+					<Typography variant="h6" sx={{ mr: 1 }}>Please activate your account!</Typography>
+					<ClearIcon style={{ cursor: 'pointer' }} onClick={() => setActivateProfile(!activateProfile)}/>
+                    </Grid>
+				</Grid>}
 				<img src={'http://localhost:8000/' + profile.avatar} className={styles.profileBackground}/>
 				<Grid className={styles.profileMainInfo}>
 					<div className={styles.profileAvatar}>

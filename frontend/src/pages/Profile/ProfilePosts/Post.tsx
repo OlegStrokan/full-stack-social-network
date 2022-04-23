@@ -49,7 +49,7 @@ export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
 	const [image, setImage] = React.useState<File | null>(null);
 
 	if (!post) {
-		return <div>'...Loading'</div>
+		return <div>...Loading</div>
 	}
 	return (
 		<Grid>
@@ -81,6 +81,9 @@ export const Post: React.FC<PostInterface> = ({ post, userId, isOwner }) => {
 							<TextField
 								required
 								fullWidth
+								multiline
+								rows={5}
+								maxRows={20}
 								id="content"
 								label="Content"
 								autoComplete="Content"

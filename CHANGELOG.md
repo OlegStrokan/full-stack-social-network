@@ -1,3 +1,19 @@
+# v3.2.0 (23.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated add post form
+
+Backend:
+1. Updated response value in post service
+## Fixes:
+
+Frontend
+1. Fixed create post method
+2. Fixed scroll in profile gallery
+
+
 # v3.1.5 (23.04.2022)
 
 ## Features:

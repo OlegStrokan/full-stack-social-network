@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import { PhotoDto } from "../../../types/photo/photo.dto";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // @ts-ignore
 import styles from "./ProfileGallery.module.css";
 
