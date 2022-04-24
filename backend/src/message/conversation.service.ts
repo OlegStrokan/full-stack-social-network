@@ -1,10 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { ConversationModel } from "./models/conversation.model";
+import { ActiveConversationModel } from "./models/active_conversation.model";
 import { MessageModel } from "./models/message.model";
-import { ActiveConversationModel } from "./models/active-conversation";
-import { UserConversationModel } from "./models/user-conversation.model";
-import { UserModel } from "../user/models/user.model";
 import { Op } from "sequelize";
 
 @Injectable()
@@ -12,113 +10,101 @@ export class ConversationService {
   constructor(
     @InjectModel(ConversationModel)
     private conversationRepository: typeof ConversationModel,
-    @InjectModel(UserModel)
-    private userRepository: typeof UserModel,
-    @InjectModel(MessageModel)
-    private messageRepository: typeof MessageModel,
     @InjectModel(ActiveConversationModel)
-    private activateConversationRepository: typeof ActiveConversationModel,
-    @InjectModel(UserConversationModel)
-    private userConversationRepository: typeof UserConversationModel
+    private activeConversationRepository: typeof ActiveConversationModel,
+    @InjectModel(MessageModel)
+    private messageRepository: typeof MessageModel
   ) {}
 
-  async getConversation(creatorId: number, friendId: number) {
-    const conversation1 = await this.userConversationRepository.findOne({
-      where: { firstUser: creatorId, secondUser: friendId },
-    });
-
-    if (!conversation1) {
-      return await this.userConversationRepository.findOne({
-        where: { firstUser: friendId, secondUser: creatorId },
-      });
-    }
-    return conversation1;
-  }
-
-  async getConversations() {
-    return await this.conversationRepository.findAll({
-      include: { all: true },
-    });
-  }
-
-  async createConversation(creatorId: number, friendId: number) {
-    const conversation = await this.getConversation(creatorId, friendId);
-    if (!conversation) {
-      const newConversation = await this.conversationRepository.create();
-      await newConversation.save();
-      const newUserConversation = await this.userConversationRepository.create({
-        firstUser: creatorId,
-        secondUser: friendId,
-        conversationId: newConversation.id,
-      });
-      return await newUserConversation.save();
-    }
-    return conversation;
-  }
-
-  async getConversationsForUser(userId: number) {
-    return await this.userConversationRepository.findAll({
+  async getConversations(userId: number) {
+    const conversations = await this.conversationRepository.findAll({
       where: {
         [Op.or]: [{ firstUser: userId }, { secondUser: userId }],
       },
     });
+
+    if (!conversations) {
+      throw new HttpException("No conversation For this user", HttpStatus.NOT_FOUND);
+    }
+
+    return conversations;
   }
 
-  async getUsersInConversation(conversationId: number) {
-    return await this.userConversationRepository.findAll({
-      where: { conversationId },
-      include: { all: true },
+  async getConversationWithUsers(firstUser: number, secondUser: number) {
+    return await this.conversationRepository.findOne({
+      where: {
+        [Op.or]: [
+          { firstUser: firstUser || secondUser },
+          { secondUser: firstUser || secondUser },
+        ],
+      },
     });
   }
 
-  async getConversationsWithUsers(userId: number) {
-    return await this.getConversationsForUser(userId);
-  }
-
-  async joinConversation(userId: number, friendId: number, socketId: string) {
-    const conversation = await this.getConversation(userId, friendId);
-
+  async joinConversation(socketId: string, conversationId: number) {
+    const conversation = this.conversationRepository.findOne({
+      where: { id: conversationId },
+    });
     if (!conversation) {
-      throw new HttpException(`No conversation exists for this users`, HttpStatus.NOT_FOUND);
+      throw new HttpException("No conversation For this user", HttpStatus.NOT_FOUND);
     }
-    const activeConversation = await this.activateConversationRepository.findOne({
-      where: { userId },
-    });
-    if (activeConversation) {
-      await this.activateConversationRepository.destroy({
-        where: { userId: userId },
-      });
-    }
-    return await this.activateConversationRepository.create({
-      userId,
-      conversationId: conversation.id,
-      socketId,
-    });
-  }
 
-  async leaveConversation(socketId: string) {
-    return await this.activateConversationRepository.destroy({
-      where: { socketId },
-    });
-  }
-
-  async getActiveUsers(conversationId: number) {
-    return await this.activateConversationRepository.findAll({
+    const activeConversation = await this.activeConversationRepository.findOne({
       where: { conversationId },
     });
-  }
 
-  async createMessage(dto: MessageModel) {
-    return await this.messageRepository.create({
-      message: dto.message,
-      conversationId: dto.conversationId,
-      userId: dto.userId,
-    });
+    if (activeConversation) {
+      await this.activeConversationRepository.destroy({ where: { conversationId } });
+    }
+
+    return await this.activeConversationRepository.create({ conversationId, socketId });
   }
 
   async getMessages(conversationId: number) {
     return await this.messageRepository.findAll({
-      where: { conversationId: conversationId },
+      where: { conversationId },
+    });
+  }
+
+  async getActiveUsers(conversationId: number) {
+    return await this.activeConversationRepository.findAll({
+      where: { conversationId },
+    });
+  }
+
+  async sendMessage(socket, message: MessageModel) {
+    const conversation = this.activeConversationRepository.findOne({
+      where: { conversationId: message.conversationId },
+    });
+
+    if (!conversation) {
+      throw new HttpException("No conversation For this user", HttpStatus.NOT_FOUND);
+    }
+
+    await this.messageRepository.create({
+      text: message.text,
+      conversationId: Number(message.conversationId),
+      senderId: Number(socket.data.user.id),
+    });
+  }
+
+  async createConversation(firstUser: number, secondUser: number) {
+    const conversation = await this.getConversationWithUsers(firstUser, secondUser);
+
+    if (conversation) {
+      return conversation;
+    }
+
+    const newConversation = await this.conversationRepository.create({
+      firstUser,
+      secondUser,
+    });
+    await newConversation.save();
+  }
+
+  async leaveConversation(socketId: string) {
+    return await this.activeConversationRepository.destroy({
+      where: { socketId },
     });
   }
 }

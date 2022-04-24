@@ -1,3 +1,33 @@
+# v3.4.0 (24.04.2022)
+
+## Features:
+
+Backend:
+1. Added send message and join conversation methods
+2. Updated decorators in message gateway
+
+# v3.3.1 (24.04.2022)
+
+## Features:
+
+Backend:
+1. Added handle connection method (checks if current user authorized)
+2. Added get/leave conversation methods
+
+# v3.3.0 (24.04.2022)
+
+## Features:
+
+Backend:
+1. Added messages module
+2. Added new conversation, active-conversations and messages module
+3. Updated user module with relations
+
+## Fixes:
+
+Backend
+1. Rewrite some snake_case to camelCase
+
 # v3.2.0 (23.04.2022)
 
 ## Features:

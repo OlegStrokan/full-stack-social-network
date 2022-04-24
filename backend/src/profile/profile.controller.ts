@@ -44,8 +44,8 @@ export class ProfileController {
   @ApiOkResponse({ status: 200 })
   @Roles("admin", "user")
   @UseGuards(RolesGuard)
-  @Post("/:user_id/follow/:follow_id")
-  async follow(@Param("user_id") user_id: string, @Param("follow_id") follow_id: string) {
+  @Post("/:user_id/follow/:followId")
+  async follow(@Param("user_id") user_id: string, @Param("followId") follow_id: string) {
     return this.profileService.follow(+user_id, +follow_id);
   }
 

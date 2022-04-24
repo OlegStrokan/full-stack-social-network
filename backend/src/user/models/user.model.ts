@@ -7,7 +7,6 @@ import { PostModel } from "../../post/models/post.model";
 import { PhotoModel } from "./photo.model";
 import { ConversationModel } from "../../message/models/conversation.model";
 import { MessageModel } from "../../message/models/message.model";
-import { UserConversationModel } from "../../message/models/user-conversation.model";
 
 interface UserCreationAttr {
   email: string;
@@ -19,12 +18,7 @@ interface UserCreationAttr {
 @Table({ tableName: "users" })
 export class UserModel extends Model<UserModel, UserCreationAttr> {
   @ApiProperty({ example: "21", description: "Unique identifier" })
-  @Column({
-    type: DataType.INTEGER,
-    unique: true,
-    autoIncrement: true,
-    primaryKey: true,
-  })
+  @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;
 
   @ApiProperty({ example: "user@gmail.com", description: "Email address" })
@@ -65,10 +59,7 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   banned: boolean;
 
-  @ApiProperty({
-    example: "Reason for blocking",
-    description: "Reason for blocking",
-  })
+  @ApiProperty({ example: "Reason for blocking", description: "Reason for blocking" })
   @Column({ type: DataType.STRING, allowNull: true })
   banReason: string;
 
@@ -76,66 +67,53 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
   @Column({ type: DataType.STRING, allowNull: true })
   status: string;
 
-  @ApiProperty({
-    example: "Madison Square 5",
-    description: "Location",
-  })
+  @ApiProperty({ example: "Madison Square 5", description: "Location" })
   @Column({ type: DataType.STRING, allowNull: true })
   location: string;
 
-  @ApiProperty({
-    example: "Programmer",
-    description: "Current job",
-  })
+  @ApiProperty({ example: "Programmer", description: "Current job" })
   @Column({ type: DataType.STRING, allowNull: true })
   job: string;
 
-  @ApiProperty({
-    example: "02.11.2001",
-    description: "Date of birth",
-  })
+  @ApiProperty({ example: "02.11.2001", description: "Date of birth" })
   @Column({ type: DataType.STRING, allowNull: true })
   birth: string;
 
-  @ApiProperty({
-    example: "I am Oleh Strokan...",
-    description: "Description about yourself",
-  })
+  @ApiProperty({ example: "I am Oleh Strokan...", description: "Description about yourself" })
   @Column({ type: DataType.STRING, allowNull: true })
   about: string;
 
-  @ApiProperty({
-    example: "Contribution to open source",
-    description: "Interests",
-  })
+  @ApiProperty({ example: "Contribution to open source", description: "Interests" })
   @Column({ type: DataType.STRING, allowNull: true })
   interests: string;
 
-  @ApiProperty({
-    example: "w98432hrdw9epj328e21ed-0",
-    description: "User's avatar link",
-  })
+  @ApiProperty({ example: "w98432hrdw9epj328e21ed-0", description: "User's avatar link" })
   @Column({ type: DataType.STRING, allowNull: true })
   avatar: string;
 
   @HasMany(() => BlockedUserModel)
   blockedUsers: BlockedUserModel[];
 
+  @ApiProperty({ example: [MessageModel], description: "User's roles" })
   @BelongsToMany(() => RoleModel, () => UserRolesModel)
   roles: RoleModel[];
 
+  @ApiProperty({ example: [MessageModel], description: "User's posts" })
   @HasMany(() => PostModel)
   posts: PostModel[];
 
+  @ApiProperty({ example: [MessageModel], description: "User's photos" })
   @HasMany(() => PhotoModel)
   photos: PhotoModel[];
 
-  @BelongsToMany(() => ConversationModel, () => UserConversationModel)
+  @ApiProperty({ example: [MessageModel], description: "User's conversations" })
+  @HasMany(() => ConversationModel)
   conversations: ConversationModel[];
 
+  @ApiProperty({ example: [MessageModel], description: "User's messages" })
   @HasMany(() => MessageModel)
   messages: MessageModel[];
 
   /*@HasMany(() => CommentModel)
-  comments: CommentModel[]*/
+	comments: CommentModel[]*/
 }

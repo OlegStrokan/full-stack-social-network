@@ -21,12 +21,10 @@ import { APP_GUARD } from "@nestjs/core";
 import { RolesGuard } from "./auth/guards/roles.guard";
 import { LikeModel } from "./post/models/like.model";
 import { DislikeModel } from "./post/models/dislike.model";
-import { MessageGateway } from "./message/message.gateway";
 import { MessageModule } from "./message/message.module";
-import { UserConversationModel } from "./message/models/user-conversation.model";
-import { ConversationModel } from "./message/models/conversation.model";
 import { MessageModel } from "./message/models/message.model";
-import { ActiveConversationModel } from "./message/models/active-conversation";
+import { ConversationModel } from "./message/models/conversation.model";
+import { ActiveConversationModel } from "./message/models/active_conversation.model";
 
 @Module({
   providers: [
@@ -34,7 +32,6 @@ import { ActiveConversationModel } from "./message/models/active-conversation";
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
-    MessageGateway,
   ],
   imports: [
     ConfigModule.forRoot({
@@ -60,9 +57,8 @@ import { ActiveConversationModel } from "./message/models/active-conversation";
         PhotoModel,
         LikeModel,
         DislikeModel,
-        UserConversationModel,
-        ConversationModel,
         MessageModel,
+        ConversationModel,
         ActiveConversationModel,
       ],
       autoLoadModels: true,

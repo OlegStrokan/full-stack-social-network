@@ -3,8 +3,8 @@ import { UserModel } from "./user.model";
 import { ApiProperty } from "@nestjs/swagger";
 
 interface FollowAttrCreation {
-  user_id: number;
-  follower_id: number;
+  userId: number;
+  followerId: number;
 }
 
 @Table({ tableName: "followers" })
@@ -21,10 +21,10 @@ export class FollowModel extends Model<FollowModel, FollowAttrCreation> {
   @ApiProperty({ example: "19", description: "User's identifier" })
   @ForeignKey(() => UserModel)
   @Column({ type: DataType.INTEGER })
-  user_id: number;
+  userId: number;
 
   @ApiProperty({ example: "32", description: "Follower's identifier" })
   @ForeignKey(() => UserModel)
   @Column({ type: DataType.INTEGER })
-  follower_id: number;
+  followerId: number;
 }
