@@ -1,33 +1,40 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { Column, DataType, ForeignKey, Model } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
-import { UserModel } from "../../user/models/user.model";
 import { ConversationModel } from "./conversation.model";
+import { UserModel } from "../../user/models/user.model";
 
-export interface MessageCreationAttr {
-  message: string;
-  userId: number;
+interface IMessageModel {
+  text: string;
   conversationId: number;
+  senderId: number;
+  receiverId: number;
 }
 
-@Table({ tableName: "messages" })
-export class MessageModel extends Model<MessageModel, MessageCreationAttr> {
-  @ApiProperty({ example: "92", description: "Unique identifier" })
+export class MessageModel extends Model<MessageModel, IMessageModel> {
+  @ApiProperty({ example: "4", description: "Message's id" })
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;
 
-  @ApiProperty({ example: "92", description: "Unique identifier" })
+  @ApiProperty({ example: "Hello!", description: "Message's text" })
   @Column({ type: DataType.STRING })
-  message: string;
+  text: number;
 
-  @BelongsTo(() => UserModel)
-  user: UserModel;
+  @ApiProperty({ example: "false", description: "Message's status" })
+  @Column({ type: DataType.BOOLEAN, defaultValue: false })
+  isRead: number;
 
-  @ForeignKey(() => UserModel)
-  userId: number;
-
-  @BelongsTo(() => ConversationModel)
-  conversation: ConversationModel;
-
+  @ApiProperty({ example: "93", description: "Conversation id" })
+  @Column({ type: DataType.INTEGER })
   @ForeignKey(() => ConversationModel)
   conversationId: number;
+
+  @ApiProperty({ example: "93", description: "Sender id" })
+  @Column({ type: DataType.INTEGER })
+  @ForeignKey(() => UserModel)
+  senderId: number;
+
+  @ApiProperty({ example: "93", description: "Receiver id" })
+  @Column({ type: DataType.INTEGER })
+  @ForeignKey(() => UserModel)
+  receiverId: number;
 }

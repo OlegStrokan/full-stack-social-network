@@ -16,10 +16,10 @@ export class BlockedUserModel extends Model<BlockedUserModel> {
   @ApiProperty({ example: "81", description: "Blocker's identifier" })
   @ForeignKey(() => UserModel)
   @Column({ type: DataType.INTEGER })
-  blocker_id: number;
+  blockerId: number;
 
   @ApiProperty({ example: "34", description: "Blockade's identifier" })
   @ForeignKey(() => UserModel)
   @Column({ type: DataType.INTEGER })
-  blocked_id: number;
+  blockedId: number;
 }

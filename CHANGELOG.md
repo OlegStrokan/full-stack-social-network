@@ -1,3 +1,17 @@
+# v3.3.0 (24.04.2022)
+
+## Features:
+
+Backend:
+1. Added messages module
+2. Added new conversation, active-conversations and messages module
+3. Updated user module with relations
+
+## Fixes:
+
+Backend
+1. Rewrite some snake_case to camelCase
+
 # v3.2.0 (23.04.2022)
 
 ## Features:

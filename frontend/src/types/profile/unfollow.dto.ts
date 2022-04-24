@@ -1,5 +1,5 @@
 export interface UnfollowDto {
-    user_id: number;
-    unfollow_id: number;
+    userId: number;
+    unfollowId: number;
 
 }

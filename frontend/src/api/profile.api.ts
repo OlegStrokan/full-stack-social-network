@@ -22,10 +22,10 @@ export const profileAPI = {
         return instance.patch<IApiOkResponse<ProfileDto>>(`/profile/${dto.id}/avatar`, data ).then((response) => response.data)
     },
     follow(dto: FollowDto): Promise<IApiOkResponse<ProfileDto>> {
-        return instance.patch<IApiOkResponse<ProfileDto>>(`/profile/${dto.user_id}/follow/${dto.follow_id}`).then((response) => response.data)
+        return instance.patch<IApiOkResponse<ProfileDto>>(`/profile/${dto.userId}/follow/${dto.followId}`).then((response) => response.data)
     },
     unfollow(dto: UnfollowDto): Promise<IApiOkResponse<ProfileDto>> {
-        return instance.delete<IApiOkResponse<ProfileDto>>(`/profile/${dto.user_id}/unfollow/${dto.unfollow_id}`).then((response) => response.data)
+        return instance.delete<IApiOkResponse<ProfileDto>>(`/profile/${dto.userId}/unfollow/${dto.unfollowId}`).then((response) => response.data)
     },
     activate(id: number): Promise<IApiOkResponse<ProfileDto>> {
         return instance.get<IApiOkResponse<ProfileDto>>(`/profile/${id}/activate`).then((response) => response.data)

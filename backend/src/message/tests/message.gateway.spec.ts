@@ -1,7 +1,7 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { MessageGateway } from "../message.gateway";
 
-describe("ChatGateway", () => {
+describe("MessageGateway", () => {
   let gateway: MessageGateway;
 
   beforeEach(async () => {

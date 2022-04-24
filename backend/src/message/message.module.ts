@@ -1,26 +1,18 @@
 import { Module } from "@nestjs/common";
+import { MessageService } from "./message.service";
 import { MessageGateway } from "./message.gateway";
-import { ConversationService } from "./conversation.service";
-import { SequelizeModule } from "@nestjs/sequelize";
-import { ConversationModel } from "./models/conversation.model";
-import { MessageModel } from "./models/message.model";
-import { UserConversationModel } from "./models/user-conversation.model";
-import { ActiveConversationModel } from "./models/active-conversation";
 import { AuthModule } from "../auth/auth.module";
-import { UserModel } from "../user/models/user.model";
+import { SequelizeModule } from "@nestjs/sequelize";
+import { MessageModel } from "./models/message.model";
+import { ActiveConversationModel } from "./models/active_conversation.model";
+import { ConversationModel } from "./models/conversation.model";
 
 @Module({
   imports: [
     AuthModule,
-    SequelizeModule.forFeature([
-      ConversationModel,
-      MessageModel,
-      UserConversationModel,
-      ActiveConversationModel,
-      UserModel,
-    ]),
+    SequelizeModule.forFeature([MessageModel, ConversationModel, ActiveConversationModel]),
   ],
-  providers: [MessageGateway, ConversationService],
-  exports: [ConversationService],
+  providers: [MessageService, MessageGateway],
+  exports: [MessageService],
 })
 export class MessageModule {}
