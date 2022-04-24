@@ -17,36 +17,35 @@ export class ProfileService {
     @InjectModel(FollowModel) private followRepository: typeof FollowModel,
     @InjectModel(PhotoModel) private photoRepository: typeof PhotoModel,
     @InjectModel(PostModel) private postModel: typeof PostModel,
-    private fileService: FileService,
-    private postService: PostService
+    private fileService: FileService
   ) {}
 
-  async follow(user_id: number, follow_id: number) {
-    if (user_id === follow_id) {
+  async follow(userId: number, followId: number) {
+    if (userId === followId) {
       throw new HttpException("You can't follow yourself", HttpStatus.BAD_REQUEST);
     }
 
-    const user = await this.userRepository.findByPk(user_id);
+    const user = await this.userRepository.findByPk(userId);
 
     if (!user) {
       throw new HttpException("User not found", HttpStatus.NOT_FOUND);
     }
-    const followUser = await this.userRepository.findByPk(follow_id);
+    const followUser = await this.userRepository.findByPk(followId);
 
     if (!followUser) {
       throw new HttpException("User not found", HttpStatus.NOT_FOUND);
     }
     const followModel = await this.followRepository.findOne({
       where: {
-        follower_id: follow_id,
+        followerId: followId,
       },
     });
     if (followModel) {
       throw new HttpException("You can't follow user two times", HttpStatus.BAD_REQUEST);
     }
     const follow = await this.followRepository.create({
-      user_id: user_id,
-      follower_id: follow_id,
+      userId: userId,
+      followerId: followId,
     });
     await follow.save();
     return {
@@ -55,24 +54,24 @@ export class ProfileService {
     };
   }
 
-  async unfollow(user_id: number, unfollow_id: number) {
-    if (user_id === unfollow_id) {
+  async unfollow(userId: number, unfollowId: number) {
+    if (userId === unfollowId) {
       throw new HttpException("You can't unfollow yourself", HttpStatus.BAD_REQUEST);
     }
 
-    const user = await this.userRepository.findByPk(user_id);
+    const user = await this.userRepository.findByPk(userId);
 
     if (!user) {
       throw new HttpException("User not found", HttpStatus.NOT_FOUND);
     }
-    const followUser = await this.userRepository.findByPk(unfollow_id);
+    const followUser = await this.userRepository.findByPk(unfollowId);
 
     if (!followUser) {
       throw new HttpException("User not found", HttpStatus.NOT_FOUND);
     }
     const followModel = await this.followRepository.findOne({
       where: {
-        follower_id: unfollow_id,
+        followerId: unfollowId,
       },
     });
     if (!followModel) {

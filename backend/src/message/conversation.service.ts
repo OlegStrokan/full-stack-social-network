@@ -30,15 +30,81 @@ export class ConversationService {
     return conversations;
   }
 
-  async leaveConversation(socketId: string) {
-    const activeConversation = await this.activeConversationRepository.destroy({
-      where: { socketId },
+  async getConversationWithUsers(firstUser: number, secondUser: number) {
+    return await this.conversationRepository.findOne({
+      where: {
+        [Op.or]: [
+          { firstUser: firstUser || secondUser },
+          { secondUser: firstUser || secondUser },
+        ],
+      },
     });
+  }
 
-    if (!activeConversation) {
+  async joinConversation(socketId: string, conversationId: number) {
+    const conversation = this.conversationRepository.findOne({
+      where: { id: conversationId },
+    });
+    if (!conversation) {
       throw new HttpException("No conversation For this user", HttpStatus.NOT_FOUND);
     }
 
-    return HttpStatus.OK;
+    const activeConversation = await this.activeConversationRepository.findOne({
+      where: { conversationId },
+    });
+
+    if (activeConversation) {
+      await this.activeConversationRepository.destroy({ where: { conversationId } });
+    }
+
+    return await this.activeConversationRepository.create({ conversationId, socketId });
+  }
+
+  async getMessages(conversationId: number) {
+    return await this.messageRepository.findAll({
+      where: { conversationId },
+    });
+  }
+
+  async getActiveUsers(conversationId: number) {
+    return await this.activeConversationRepository.findAll({
+      where: { conversationId },
+    });
+  }
+
+  async sendMessage(socket, message: MessageModel) {
+    const conversation = this.activeConversationRepository.findOne({
+      where: { conversationId: message.conversationId },
+    });
+
+    if (!conversation) {
+      throw new HttpException("No conversation For this user", HttpStatus.NOT_FOUND);
+    }
+
+    await this.messageRepository.create({
+      text: message.text,
+      conversationId: Number(message.conversationId),
+      senderId: Number(socket.data.user.id),
+    });
+  }
+
+  async createConversation(firstUser: number, secondUser: number) {
+    const conversation = await this.getConversationWithUsers(firstUser, secondUser);
+
+    if (conversation) {
+      return conversation;
+    }
+
+    const newConversation = await this.conversationRepository.create({
+      firstUser,
+      secondUser,
+    });
+    await newConversation.save();
+  }
+
+  async leaveConversation(socketId: string) {
+    return await this.activeConversationRepository.destroy({
+      where: { socketId },
+    });
   }
 }

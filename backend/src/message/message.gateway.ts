@@ -1,16 +1,12 @@
-import {
-  OnGatewayConnection,
-  OnGatewayDisconnect,
-  WebSocketGateway,
-  WebSocketServer,
-} from "@nestjs/websockets";
-import { OnModuleInit } from "@nestjs/common";
+import { SubscribeMessage, WebSocketGateway, WebSocketServer } from "@nestjs/websockets";
 import { AuthService } from "../auth/auth.service";
 import { ConversationService } from "./conversation.service";
 import { Server, Socket } from "socket.io";
+import { MessageModel } from "./models/message.model";
+import { NestGateway } from "@nestjs/websockets/interfaces/nest-gateway.interface";
 
-@WebSocketGateway()
-export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect, OnModuleInit {
+@WebSocketGateway(8001, { cors: { origin: "*" } })
+export class MessageGateway implements NestGateway {
   constructor(
     private authService: AuthService,
     private conversationService: ConversationService
@@ -19,30 +15,57 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayDisconnect,
   @WebSocketServer()
   server: Server;
 
-  async onModuleInit() {}
-
   async handleConnection(socket: Socket) {
     console.log("HANDLE CONNECTION");
     const jwt = socket.handshake.headers.authorization || null;
     const user = await this.authService.me(jwt);
     if (user.statusCode === 200) {
       socket.data.user = user.data;
-      return this.server
-        .to(socket.id)
-        .emit("conversations", this.getConversations(socket.data.user.id));
+      return this.getConversations(socket, socket.data.user.id);
     } else {
       return null;
     }
   }
-
-  async getConversations(userId: number) {
-    return await this.conversationService.getConversations(userId);
+  async getConversations(socket: Socket, userId: number) {
+    return this.server
+      .to(socket.id)
+      .emit("conversations", this.conversationService.getConversations(userId));
   }
 
+  @SubscribeMessage("sendMessage")
+  async sendMessage(socket: Socket, message: MessageModel) {
+    const newMessage = await this.conversationService.sendMessage(socket, message);
+
+    const activeUsers = await this.conversationService.getActiveUsers(message.conversationId);
+
+    activeUsers.map((user) => this.server.to(user.socketId).emit("newMessage", newMessage));
+  }
+
+  @SubscribeMessage("createConversation")
+  async createConversation(socket: Socket, secondUser: string) {
+    await this.conversationService.createConversation(socket.data.user.id, Number(secondUser));
+    return this.getConversations(socket, socket.data.user.id);
+  }
+
+  @SubscribeMessage("joinConversation")
+  async joinConversation(socket: Socket, conversationId: number) {
+    const activeConversation = await this.conversationService.joinConversation(
+      socket.id,
+      conversationId
+    );
+    const messages = await this.conversationService.getMessages(
+      activeConversation.conversationId
+    );
+    return this.server.to(socket.id).emit("messages", messages);
+  }
+
+  @SubscribeMessage("leaveConversation")
   async leaveConversation(socketId: string) {
     return this.conversationService.leaveConversation(socketId);
   }
+
   handleDisconnect(socket: Socket) {
+    console.log("HANDLE_DISCONNECTION");
     return this.leaveConversation(socket.id);
   }
 }

@@ -1,4 +1,4 @@
-import { Column, DataType, ForeignKey, Model } from "sequelize-typescript";
+import { Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { ConversationModel } from "./conversation.model";
 
@@ -7,6 +7,7 @@ interface IActiveConversationModel {
   socketId: string;
 }
 
+@Table({ tableName: "active_conversations", createdAt: false, updatedAt: false })
 export class ActiveConversationModel extends Model<
   ActiveConversationModel,
   IActiveConversationModel

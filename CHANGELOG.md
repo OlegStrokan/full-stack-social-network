@@ -1,3 +1,11 @@
+# v3.4.0 (24.04.2022)
+
+## Features:
+
+Backend:
+1. Added send message and join conversation methods
+2. Updated decorators in message gateway
+
 # v3.3.1 (24.04.2022)
 
 ## Features:

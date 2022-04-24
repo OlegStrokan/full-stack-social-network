@@ -3,8 +3,8 @@ import { UserModel } from "./user.model";
 import { ApiProperty } from "@nestjs/swagger";
 
 interface FollowAttrCreation {
-  user_id: number;
-  follower_id: number;
+  userId: number;
+  followerId: number;
 }
 
 @Table({ tableName: "followers" })
