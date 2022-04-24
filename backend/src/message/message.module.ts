@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { MessageService } from "./message.service";
+import { ConversationService } from "./conversation.service";
 import { MessageGateway } from "./message.gateway";
 import { AuthModule } from "../auth/auth.module";
 import { SequelizeModule } from "@nestjs/sequelize";
@@ -12,7 +12,7 @@ import { ConversationModel } from "./models/conversation.model";
     AuthModule,
     SequelizeModule.forFeature([MessageModel, ConversationModel, ActiveConversationModel]),
   ],
-  providers: [MessageService, MessageGateway],
-  exports: [MessageService],
+  providers: [ConversationService, MessageGateway],
+  exports: [ConversationService],
 })
 export class MessageModule {}

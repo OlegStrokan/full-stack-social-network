@@ -1,3 +1,11 @@
+# v3.3.1 (24.04.2022)
+
+## Features:
+
+Backend:
+1. Added handle connection method (checks if current user authorized)
+2. Added get/leave conversation methods
+
 # v3.3.0 (24.04.2022)
 
 ## Features:
