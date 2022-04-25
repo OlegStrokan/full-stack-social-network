@@ -22,10 +22,12 @@ export const Conversation: React.FC<IConversation> = ({ socket, userId }) => {
 		}
 		socket?.emit('joinConversation', {conversationId: Number(params.id)});
 		socket?.on("messages", (data) => {
-			console.log(data);
-			setMessages([...messages, ...data]);
+			setMessages((messages) => [...messages, ...data])
 		});
-	},[params])
+		socket?.on("newMessage", (data) => {
+			setMessages((messages) => [...messages, data])
+		});
+	},[params, socket, params.id])
 
 	return (
 		<Grid>

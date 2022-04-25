@@ -1,9 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/sequelize";
-import { ConversationModel } from "./models/conversation.model";
-import { ActiveConversationModel } from "./models/active_conversation.model";
-import { MessageModel } from "./models/message.model";
-import { Op } from "sequelize";
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
+import { ConversationModel } from './models/conversation.model';
+import { ActiveConversationModel } from './models/active_conversation.model';
+import { MessageModel } from './models/message.model';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class ConversationService {
@@ -56,7 +56,6 @@ export class ConversationService {
     if (activeConversation) {
       await this.activeConversationRepository.destroy({ where: { conversationId } });
     }
-    console.log("success");
     return await this.activeConversationRepository.create({ conversationId, socketId });
   }
 
@@ -81,7 +80,7 @@ export class ConversationService {
       throw new HttpException("No conversation For this user", HttpStatus.NOT_FOUND);
     }
 
-    await this.messageRepository.create({
+    return await this.messageRepository.create({
       text: message.text,
       conversationId: Number(message.conversationId),
       senderId: Number(socket.data.user.id),

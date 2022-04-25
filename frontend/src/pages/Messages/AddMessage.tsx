@@ -14,6 +14,7 @@ export const AddMessageForm: React.FC<IAddMessageForm> = ({ socket, userId, conv
 	const [message, setMessage] = React.useState('');
 
 	const onSubmit = () => {
+		debugger;
 		socket?.emit('sendMessage', {  text: message, senderId: userId, conversationId: conversationId })
 		setMessage('');
 	}

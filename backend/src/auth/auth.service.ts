@@ -94,9 +94,7 @@ export class AuthService {
       throw new HttpException(`User with this email not fount`, HttpStatus.NOT_FOUND);
     }
     const code = uuid.v4();
-    console.log(user.verificationCode);
     user.verificationCode = code;
-    console.log(user.verificationCode);
 
     await user.save();
     await this.mailService.sendCode(user.email, code, user.fullname);
@@ -104,7 +102,6 @@ export class AuthService {
 
   async verifyCode(email: string, code: string) {
     const user = await this.userService.getByEmail(email);
-    console.log(user.verificationCode);
     if (!user) {
       throw new HttpException(`User with this email not fount`, HttpStatus.NOT_FOUND);
     }

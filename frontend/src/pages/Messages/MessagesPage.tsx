@@ -34,8 +34,7 @@ export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth, userId }
 		if (!isAuth) {
 			return navigate("/login");
 		}
-		// socket.emit('createConversation', { friendId: 3})
-		// socket.emit('leaveConversation')
+
 		socket?.on("conversations", (data) => {
 			setConversations([...conversations, ...data]);
 		});

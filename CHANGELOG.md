@@ -1,3 +1,10 @@
+# v3.5.1 (25.04.2022)
+
+## Features:
+
+Backend:
+1. Added correctly working conversation (just prototype)
+
 # v3.5.0 (25.04.2022)
 
 ## Features:

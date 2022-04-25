@@ -37,7 +37,6 @@ export class MessageGateway implements NestGateway {
     const newMessage = await this.conversationService.sendMessage(socket, message);
 
     const activeUsers = await this.conversationService.getActiveUsers(message.conversationId);
-
     activeUsers.map((user) => this.server.to(user.socketId).emit("newMessage", newMessage));
   }
 
@@ -49,7 +48,6 @@ export class MessageGateway implements NestGateway {
 
   @SubscribeMessage("joinConversation")
   async joinConversation(socket: Socket, dto: { conversationId: number }) {
-    console.log(socket.id, dto.conversationId);
     const activeConversation = await this.conversationService.joinConversation(
       socket.id,
       dto.conversationId
