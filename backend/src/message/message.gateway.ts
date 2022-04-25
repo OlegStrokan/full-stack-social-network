@@ -42,6 +42,7 @@ export class MessageGateway implements NestGateway {
 
   @SubscribeMessage("createConversation")
   async createConversation(socket: Socket, dto: { secondUser: number }) {
+    console.log(dto.secondUser);
     await this.conversationService.createConversation(socket.data.user.id, dto.secondUser);
     return this.getConversations(socket, socket.data.user.id);
   }

@@ -36,7 +36,7 @@ export const Conversation: React.FC<IConversation> = ({ socket, userId }) => {
 			</Grid>
 			:
 			<Grid>
-				<Messages socket={socket} messages={messages}/>
+				<Messages socket={socket} messages={messages} userId={userId}/>
 				<AddMessageForm socket={socket} userId={userId} conversationId={Number(params.id)} />
 			</Grid>
 			}

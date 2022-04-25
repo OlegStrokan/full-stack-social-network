@@ -16,15 +16,19 @@ export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth, userId }
 
 	const [conversations, setConversations] = React.useState<UserConversationDto[]>([]);
 
-	const socket = io("http://localhost:8001", {
-		transportOptions: {
-			polling: {
-				extraHeaders: {
-					"Authorization": `Bearer ${localStorage.getItem("token")}`
+	let socket: Socket | null = null;
+	if (isAuth) {
+		 socket = io("http://localhost:8001", {
+			transportOptions: {
+				polling: {
+					extraHeaders: {
+						"Authorization": `Bearer ${localStorage.getItem("token")}`
+					}
 				}
 			}
-		}})
+		})
 
+	}
 
 	const navigate = useNavigate();
 
@@ -45,7 +49,7 @@ export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth, userId }
 			socket?.disconnect();
 			socket?.off();
 		}
-	},[])
+	},[isAuth])
 
 
 

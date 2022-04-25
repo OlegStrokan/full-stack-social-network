@@ -1,9 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { ConversationModel } from './models/conversation.model';
-import { ActiveConversationModel } from './models/active_conversation.model';
-import { MessageModel } from './models/message.model';
-import { Op } from 'sequelize';
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/sequelize";
+import { ConversationModel } from "./models/conversation.model";
+import { ActiveConversationModel } from "./models/active_conversation.model";
+import { MessageModel } from "./models/message.model";
+import { Op } from "sequelize";
 
 @Injectable()
 export class ConversationService {
@@ -33,7 +33,7 @@ export class ConversationService {
   async getConversationWithUsers(firstUser: number, secondUser: number) {
     return await this.conversationRepository.findOne({
       where: {
-        [Op.or]: [
+        [Op.and]: [
           { firstUser: firstUser || secondUser },
           { secondUser: firstUser || secondUser },
         ],
@@ -98,6 +98,7 @@ export class ConversationService {
       firstUser,
       secondUser,
     });
+
     await newConversation.save();
   }
 
