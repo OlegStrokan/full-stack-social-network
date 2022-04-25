@@ -1,7 +1,7 @@
 export interface MessageDto {
 	id: number;
-	message: string;
-	userId: number;
+	text: string;
+	senderId: number;
 	conversationId: number;
+	isRead: boolean;
 }
-

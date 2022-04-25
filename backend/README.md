@@ -20,6 +20,9 @@ Auth functional:
 - POST */auth/registration - register new account* ```@public```
 - POST */auth/login - login if you already have account* ```@public```
 - GET */auth/me - is current user authorized* ```@private```
+- POST */auth/send_verification_email - send verification email* ```@public```
+- PATCH */auth/verify_code - verify digit code* ```@public```
+- PATCH */auth/set_password - set new password* ```@public```
 
 Users functional:
 - GET */users - get all users* ```@admin```
@@ -62,15 +65,14 @@ Message functional
 - WS *:8001 - messages page* ```@private```
 
 Receiving events:
-1. *getConversation* -  Get conversation on connection
+1. *createConversation* - Create new conversation
 2. *leaveConversation* -  Delete active conversation
-3. *createConversation* - Create new conversation
-4. *sendMessage* - Send new message
+3. *sendMessage* - Send new message
 
 Sending events:
-1. *conversations* - send conversation
-2. *messages* - send all messages in conversation
-3. *newMessage* = send new message to all active users
+1. handleConnection - *conversations* - send conversation
+2. joinConversation - *messages* - send all messages in conversation
+3. sendMessage - *newMessage* = send new message to all active users
 
 
 ## Running the app

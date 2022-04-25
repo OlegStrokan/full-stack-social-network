@@ -1,3 +1,10 @@
+# v3.5.0 (25.04.2022)
+
+## Features:
+
+Backend:
+1. Updated frontend message logic (conditions, dtos)
+
 # v3.4.0 (24.04.2022)
 
 ## Features:

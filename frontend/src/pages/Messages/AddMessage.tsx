@@ -6,17 +6,17 @@ import { Socket } from "socket.io-client";
 interface IAddMessageForm {
 	socket: Socket | null;
 	userId: number | null;
+	conversationId: number;
 }
 
-export const AddMessageForm: React.FC<IAddMessageForm> = ({ socket, userId }) => {
+export const AddMessageForm: React.FC<IAddMessageForm> = ({ socket, userId, conversationId }) => {
 
 	const [message, setMessage] = React.useState('');
 
 	const onSubmit = () => {
-		socket?.emit('sendMessage', {  message, userId, conversationId: 3 })
+		socket?.emit('sendMessage', {  text: message, senderId: userId, conversationId: conversationId })
 		setMessage('');
 	}
-
 
 	return <Grid>
 			<TextField

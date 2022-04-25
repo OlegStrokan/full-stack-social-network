@@ -12,7 +12,12 @@ interface PostsInterface {
 }
 
 export const Posts:React.FC<PostsInterface> = ({ posts, userId, isOwner }) => {
-	let newPosts = [...posts!]
+
+	if (!posts) {
+		return <div>...Loading</div>
+	}
+
+	let newPosts = [...posts]
 	return (
 		<Grid>
 			<Typography variant="h5" sx={{ mt: 1, textAlign: 'center' }}>Posts</Typography>

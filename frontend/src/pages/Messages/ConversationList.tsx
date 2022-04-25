@@ -12,7 +12,7 @@ export const ConversationList: React.FC<IConversations> = ({ conversations }) =>
 	return (
 		<Grid>
 			{conversations?.map((conversation: UserConversationDto) => {
-				return <Link to={`/messages/${conversation.secondUser}`}>
+				return <Link to={`/messages/${conversation.id}`}>
 					<Typography>{conversation.id}</Typography>
 				</Link>;
 			})}

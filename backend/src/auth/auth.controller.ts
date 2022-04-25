@@ -1,11 +1,9 @@
-import { Body, Controller, Get, Post, Headers, UseGuards, Patch } from "@nestjs/common";
+import { Body, Controller, Get, Post, Headers, Patch } from "@nestjs/common";
 import { CreateUserDto } from "../user/dto/create-user.dto";
 import { AuthService } from "./auth.service";
 import { LoginUserDto } from "../user/dto/login-user.dto";
 import { ApiOperation, ApiTags, ApiOkResponse } from "@nestjs/swagger";
 import { UserModel } from "../user/models/user.model";
-import { RolesGuard } from "./guards/roles.guard";
-import { Roles } from "./decorators/role-auth.decorator";
 import { VerifyCodeDto } from "../user/dto/verify-code.dto";
 import { SetPasswordDto } from "../user/dto/set-password.dto";
 import { SendVerificationEmailDto } from "../user/dto/send-verification-email.dto";

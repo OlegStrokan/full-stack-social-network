@@ -56,7 +56,7 @@ export class ConversationService {
     if (activeConversation) {
       await this.activeConversationRepository.destroy({ where: { conversationId } });
     }
-
+    console.log("success");
     return await this.activeConversationRepository.create({ conversationId, socketId });
   }
 

@@ -20,7 +20,7 @@ export const Conversation: React.FC<IConversation> = ({ socket, userId }) => {
 		if (!params.id) {
 			return;
 		}
-		socket?.emit('joinConversation', {friendId: Number(params.id)});
+		socket?.emit('joinConversation', {conversationId: Number(params.id)});
 		socket?.on("messages", (data) => {
 			console.log(data);
 			setMessages([...messages, ...data]);
@@ -35,7 +35,7 @@ export const Conversation: React.FC<IConversation> = ({ socket, userId }) => {
 			:
 			<Grid>
 				<Messages socket={socket} messages={messages}/>
-				<AddMessageForm socket={socket} userId={userId} />
+				<AddMessageForm socket={socket} userId={userId} conversationId={Number(params.id)} />
 			</Grid>
 			}
 

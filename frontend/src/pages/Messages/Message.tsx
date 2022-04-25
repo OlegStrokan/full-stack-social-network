@@ -10,7 +10,7 @@ export const Message:React.FC<MessageInterface> = ({ message }) => {
 
 	return (
 		<Grid>
-			{message.message}
+			{message.text}
 		</Grid>
 	);
 };
