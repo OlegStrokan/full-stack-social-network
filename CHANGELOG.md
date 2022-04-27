@@ -1,4 +1,11 @@
-# v3.5.3 (26.04.2022)
+# v3.5.4 (27.04.2022)
+
+## Fixes:
+
+Frontend:
+1. Added register success modal window
+
+# v3.5.3 (27.04.2022)
 
 ## Fixes:
 

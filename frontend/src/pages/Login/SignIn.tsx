@@ -13,7 +13,6 @@ import { validationSchema } from '../../utils/validators/signIn';
 import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchedLogin } from "../../redux/ducks/auth/auth.slice";
-import { LoginDto } from "../../types/auth/login.dto";
 import { ForgotPassword } from "./ForgotPassword";
 import { RootState } from '../../redux/store';
 
@@ -93,14 +92,14 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
           {error && <Typography variant="h6" color="error">{error}</Typography>}
           </Grid>
           <Grid item xs={12}>
-            <Typography className={styles.link} variant="subtitle1" onClick={() => setForgotPassword(!forgotPassword)}>
+            <Button className={styles.link} onClick={() => setForgotPassword(!forgotPassword)}>
               Forgot password?
-            </Typography>
+            </Button>
           </Grid>
           <Grid item xs={12}>
-            <Typography className={styles.link} variant="subtitle1" onClick={() => onModelChange()}>
+            <Button className={styles.link}  onClick={() => onModelChange()}>
               Don't have an account? Sign Up
-            </Typography>
+            </Button>
           </Grid>
         </Grid>
       </Box>
