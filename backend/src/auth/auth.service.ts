@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { CreateUserDto } from "../user/dto/create-user.dto";
 import * as bcrypt from "bcryptjs";
@@ -75,7 +75,7 @@ export class AuthService {
     try {
       const bearer = token.split(" ")[0];
       const tokenValue = token.split(" ")[1];
-      if (bearer === "Bearer" || tokenValue) {
+      if (bearer === "Bearer" || tokenValue !== "null") {
         const user = this.jwtService.verify(tokenValue);
         return {
           data: user,
@@ -83,7 +83,10 @@ export class AuthService {
         };
       }
     } catch {
-      throw new HttpException(`You are not authorized`, HttpStatus.UNAUTHORIZED);
+      throw new UnauthorizedException({
+        message: "User are not authorized",
+        statusCode: HttpStatus.UNAUTHORIZED,
+      });
     }
   }
 

@@ -1,13 +1,20 @@
-# v3.5.4 (27.04.2022)
+# v3.5.5 (27.04.2022)
 
 ## Fixes:
+
+Backend:
+1. Updated auth/me method
+
+# v3.5.4 (27.04.2022)
+
+## Features:
 
 Frontend:
 1. Added register success modal window
 
 # v3.5.3 (27.04.2022)
 
-## Fixes:
+## Features:
 
 Frontend:
 1. Updated user dto
