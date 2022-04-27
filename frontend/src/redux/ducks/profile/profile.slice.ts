@@ -7,6 +7,7 @@ import { PostDto } from "../../../types/post/post.dto";
 import { CreatePostDto } from "../../../types/post/createPost.dto";
 import { UpdateAvatarDto } from "../../../types/profile/updateAvatar.dto";
 import { LikeDislikePostDto } from "../../../types/post/likeDislikePost.dto";
+import { FollowDto } from '../../../types/profile/follow.dto';
 
 interface ProfileState {
 	profile: ProfileDto | null;
@@ -55,13 +56,13 @@ export const profileSlice = createSlice({
 		avatarSuccess(state, action: PayloadAction<ProfileDto>) {
 			state.profile = action.payload;
 		},
-		fetchedFollow(state, action: PayloadAction<number>) {
+		fetchedFollow(state, action: PayloadAction<FollowDto>) {
 			state.loading = true;
 		},
 		followSuccess(state, action: PayloadAction<ProfileDto>) {
 			state.profile = action.payload;
 		},
-		fetchedUnfollow(state, action: PayloadAction<number>) {
+		fetchedUnfollow(state, action: PayloadAction<FollowDto>) {
 			state.loading = true;
 		},
 		unfollowSuccess(state, action: PayloadAction<ProfileDto>) {

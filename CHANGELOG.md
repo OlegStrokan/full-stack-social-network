@@ -1,3 +1,11 @@
+# v3.5.3 (26.04.2022)
+
+## Fixes:
+
+Frontend:
+1. Updated user dto
+2. Updated profile info logic
+
 # v3.5.2 (25.04.2022)
 
 ## Fixes:

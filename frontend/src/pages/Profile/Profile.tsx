@@ -46,10 +46,10 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 		<Grid className={styles.root}>
 			{gallery && <ProfileGallery gallery={gallery} setGallery={setGallery} userId={profile.id} images={profile.photos}/>}
 			<Grid className={styles.profileHeader}>
-				<ProfileHeader isOwner={isOwner} profile={profile}/>
+				<ProfileHeader isOwner={isOwner} profile={profile} userId={userId!}/>
 			</Grid>
 			<Grid className={styles.profileInfo}>
-				<ProfileInfo profile={profile} error={error} />
+				<ProfileInfo isOwner={isOwner} profile={profile} error={error} />
 			</Grid>
 			<Grid className={styles.profilePosts}>
 				<ProfilePosts isOwner={isOwner} userId={userId} posts={profile?.posts} />

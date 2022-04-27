@@ -25,7 +25,7 @@ export class ProfileService {
       throw new HttpException("You can't follow yourself", HttpStatus.BAD_REQUEST);
     }
 
-    const user = await this.userRepository.findByPk(userId);
+    const user = await this.userRepository.findByPk(userId, { nest: true });
 
     if (!user) {
       throw new HttpException("User not found", HttpStatus.NOT_FOUND);

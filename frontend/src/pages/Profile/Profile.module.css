@@ -8,7 +8,7 @@
 .root {
     display: grid;
     grid-template-columns: 350px 1fr 350px;
-    grid-template-rows: 445px 1fr;
+    grid-template-rows: 480px 1fr;
     padding: 0;
     grid-template-areas:
     "header header header"

@@ -7,6 +7,7 @@ import { PostModel } from "../../post/models/post.model";
 import { PhotoModel } from "./photo.model";
 import { ConversationModel } from "../../message/models/conversation.model";
 import { MessageModel } from "../../message/models/message.model";
+import { FollowModel } from './follow.model';
 
 interface UserCreationAttr {
   email: string;
@@ -109,6 +110,10 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
   @ApiProperty({ example: [MessageModel], description: "User's conversations" })
   @HasMany(() => ConversationModel)
   conversations: ConversationModel[];
+
+  @ApiProperty({ example: [FollowModel], description: "User's follows" })
+  @HasMany(() => FollowModel)
+  follows: FollowModel[];
 
   @ApiProperty({ example: [MessageModel], description: "User's messages" })
   @HasMany(() => MessageModel)
