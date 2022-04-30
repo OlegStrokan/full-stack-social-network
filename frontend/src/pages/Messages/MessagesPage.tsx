@@ -4,8 +4,10 @@ import { useDispatch } from "react-redux";
 import { UserConversationDto } from "../../types/message/conversation.dto";
 import { ConversationList } from "./ConversationList";
 import { Conversation } from "./Conversation";
-import { Grid } from "@mui/material";
+// @ts-ignore
+import styles from './MessagePage.module.css'
 import { io, Socket } from 'socket.io-client';
+import { Grid } from '@mui/material';
 
 interface MessagesPageInterface {
 	isAuth: boolean;
@@ -54,13 +56,12 @@ export const MessagesPage: React.FC<MessagesPageInterface> = ({ isAuth, userId }
 
 
 	return (
-		<Grid>
+		<Grid className={styles.root}>
 			{conversations.length !== 0 &&
 			<Grid>
               <ConversationList conversations={conversations}/>
-              <Conversation userId={userId} socket={socket} />
+              <Conversation userId={userId} socket={socket}/>
 			</Grid>}
-
 		</Grid>
 	);
 };

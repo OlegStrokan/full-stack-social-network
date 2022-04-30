@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { fetchedProfile } from "../../redux/ducks/profile/profile.slice";
 import {  useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { Grid } from "@mui/material";
+
 // @ts-ignore
 import styles from "./Profile.module.css";
 import { ProfileInfo } from "./ProfileInfo";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileEntities } from "./ProfileEntities";
 import { ProfileGallery } from "./ProfileGallery/ProfileGallery";
+import { Grid } from '@mui/material';
 
 interface ProfileInterface {
 	isAuth: boolean;

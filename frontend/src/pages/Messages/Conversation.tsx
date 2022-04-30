@@ -1,10 +1,12 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
 import { Messages } from "./Messages";
 import { AddMessageForm } from "./AddMessage";
-import { Socket } from "socket.io-client";
 import { useParams } from "react-router-dom";
 import { MessageDto } from "../../types/message/message.dto";
+import { Grid, Typography } from '@mui/material';
+import { Socket } from 'socket.io-client';
+// @ts-ignore
+import styles from './MessagePage.module.css';
 
 interface IConversation {
 	socket: Socket | null;
@@ -30,7 +32,7 @@ export const Conversation: React.FC<IConversation> = ({ socket, userId }) => {
 	},[params, socket, params.id])
 
 	return (
-		<Grid>
+		<Grid className={styles.conversation}>
 			{!params.id ? <Grid>
 				<Typography>Start chat!</Typography>
 			</Grid>

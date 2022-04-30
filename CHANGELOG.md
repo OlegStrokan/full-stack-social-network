@@ -1,3 +1,16 @@
+# v3.5.6 (30.04.2022)
+
+## Features:
+
+Frontend
+1. Updated message page
+2. Added new styles
+
+## Fixes:
+
+Backend:
+1. Fixed error in message gateway
+
 # v3.5.5 (27.04.2022)
 
 ## Fixes:
