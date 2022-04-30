@@ -1,3 +1,10 @@
+# v3.5.7 (30.04.2022)
+
+## Features:
+
+Backend:
+1. Deleted unnecessary files
+
 # v3.5.6 (30.04.2022)
 
 ## Features:
