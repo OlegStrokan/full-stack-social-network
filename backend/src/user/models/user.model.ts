@@ -7,7 +7,8 @@ import { PostModel } from "../../post/models/post.model";
 import { PhotoModel } from "./photo.model";
 import { ConversationModel } from "../../message/models/conversation.model";
 import { MessageModel } from "../../message/models/message.model";
-import { FollowModel } from './follow.model';
+import { FollowModel } from "./follow.model";
+import { UserConversationModel } from '../../message/models/users_conversation.model';
 
 interface UserCreationAttr {
   email: string;
@@ -95,20 +96,20 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
   @HasMany(() => BlockedUserModel)
   blockedUsers: BlockedUserModel[];
 
-  @ApiProperty({ example: [MessageModel], description: "User's roles" })
+  @ApiProperty({ example: [RoleModel], description: "User's roles" })
   @BelongsToMany(() => RoleModel, () => UserRolesModel)
   roles: RoleModel[];
 
-  @ApiProperty({ example: [MessageModel], description: "User's posts" })
+  @ApiProperty({ example: [PostModel], description: "User's posts" })
   @HasMany(() => PostModel)
   posts: PostModel[];
 
-  @ApiProperty({ example: [MessageModel], description: "User's photos" })
+  @ApiProperty({ example: [PhotoModel], description: "User's photos" })
   @HasMany(() => PhotoModel)
   photos: PhotoModel[];
 
-  @ApiProperty({ example: [MessageModel], description: "User's conversations" })
-  @HasMany(() => ConversationModel)
+  @ApiProperty({ example: [ConversationModel], description: "User's conversations" })
+  @BelongsToMany(() => ConversationModel, () => UserConversationModel)
   conversations: ConversationModel[];
 
   @ApiProperty({ example: [FollowModel], description: "User's follows" })

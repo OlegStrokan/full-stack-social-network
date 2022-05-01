@@ -4,12 +4,16 @@ import { ConversationModel } from "./models/conversation.model";
 import { ActiveConversationModel } from "./models/active_conversation.model";
 import { MessageModel } from "./models/message.model";
 import { Op } from "sequelize";
+import { UserModel } from "../user/models/user.model";
+import { UserConversationModel } from "./models/users_conversation.model";
 
 @Injectable()
 export class ConversationService {
   constructor(
     @InjectModel(ConversationModel)
     private conversationRepository: typeof ConversationModel,
+    @InjectModel(UserConversationModel)
+    private userConversationRepository: typeof UserConversationModel,
     @InjectModel(ActiveConversationModel)
     private activeConversationRepository: typeof ActiveConversationModel,
     @InjectModel(MessageModel)
@@ -17,10 +21,17 @@ export class ConversationService {
   ) {}
 
   async getConversations(userId: number) {
-    const conversations = await this.conversationRepository.findAll({
+    const conversations = await this.userConversationRepository.findAll({
       where: {
         [Op.or]: [{ firstUser: userId }, { secondUser: userId }],
       },
+      include: [
+        {
+          model: UserModel,
+          as: "users",
+          attributes: ["fullname"],
+        },
+      ],
     });
 
     if (!conversations) {
@@ -31,19 +42,20 @@ export class ConversationService {
   }
 
   async getConversationWithUsers(firstUser: number, secondUser: number) {
-    return await this.conversationRepository.findOne({
+    return await this.userConversationRepository.findOne({
       where: {
         [Op.and]: [
           { firstUser: firstUser || secondUser },
           { secondUser: firstUser || secondUser },
         ],
       },
+      nest: true,
     });
   }
 
   async joinConversation(socketId: string, conversationId: number) {
-    const conversation = this.conversationRepository.findOne({
-      where: { id: conversationId },
+    const conversation = this.userConversationRepository.findOne({
+      where: { conversationId },
     });
     if (!conversation) {
       throw new HttpException("No conversation For this user", HttpStatus.NOT_FOUND);
@@ -94,12 +106,16 @@ export class ConversationService {
       return conversation;
     }
 
-    const newConversation = await this.conversationRepository.create({
-      firstUser,
-      secondUser,
-    });
+    const newConversation = await this.conversationRepository.create();
 
     await newConversation.save();
+
+    const newUserConversation = await this.userConversationRepository.create({
+      firstUser,
+      secondUser,
+      conversationId: newConversation.id,
+    });
+    await newUserConversation.save();
   }
 
   async leaveConversation(socketId: string) {

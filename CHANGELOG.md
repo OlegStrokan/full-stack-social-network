@@ -1,3 +1,11 @@
+# v3.5.9 (1.05.2022)
+
+## Features:
+
+Backend:
+1. Added users_conversation model
+2. Updated message login in backend (test version)
+
 # v3.5.8 (1.05.2022)
 
 ## Features:
