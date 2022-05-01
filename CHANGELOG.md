@@ -1,3 +1,11 @@
+# v3.5.8 (1.05.2022)
+
+## Features:
+
+Frontend:
+1. Updated add message styles
+2. Updated grid in message page
+
 # v3.5.7 (30.04.2022)
 
 ## Features:

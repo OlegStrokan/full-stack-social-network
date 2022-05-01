@@ -1,0 +1,11 @@
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.addMessageButton {
+    padding: 15px 30px;
+    margin-left: 10px;
+}

@@ -1,17 +1,17 @@
 .root {
     display: grid;
-    grid-template-rows: 250px 1fr;
+    grid-template-columns: 300px 1fr;
     padding: 0;
+    grid-gap: 20px;
     grid-template-areas:
-    "list conv";
+    "list conv"
 }
 
 .conversationList {
     grid-area: list;
-    outline: 1px solid;
+    border-right: 1px solid #8c8c8c;
 }
 
 .conversation {
     grid-area: conv;
-    outline: 1px solid;
 }
