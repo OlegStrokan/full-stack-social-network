@@ -8,7 +8,6 @@ import { PhotoModel } from "./photo.model";
 import { ConversationModel } from "../../message/models/conversation.model";
 import { MessageModel } from "../../message/models/message.model";
 import { FollowModel } from "./follow.model";
-import { UserConversationModel } from '../../message/models/users_conversation.model';
 
 interface UserCreationAttr {
   email: string;
@@ -109,7 +108,7 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
   photos: PhotoModel[];
 
   @ApiProperty({ example: [ConversationModel], description: "User's conversations" })
-  @BelongsToMany(() => ConversationModel, () => UserConversationModel)
+  @HasMany(() => ConversationModel, "firstUser" && "secondUser")
   conversations: ConversationModel[];
 
   @ApiProperty({ example: [FollowModel], description: "User's follows" })

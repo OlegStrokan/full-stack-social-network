@@ -1,3 +1,11 @@
+# v3.6.0 (2.05.2022)
+
+## Features:
+
+Backend:
+1. Added users_conversation model
+2. Changed conversation functional
+
 # v3.5.9 (1.05.2022)
 
 ## Features:

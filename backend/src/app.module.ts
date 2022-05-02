@@ -25,7 +25,6 @@ import { MessageModule } from "./message/message.module";
 import { MessageModel } from "./message/models/message.model";
 import { ConversationModel } from "./message/models/conversation.model";
 import { ActiveConversationModel } from "./message/models/active_conversation.model";
-import { UserConversationModel } from "./message/models/users_conversation.model";
 
 @Module({
   providers: [
@@ -61,7 +60,6 @@ import { UserConversationModel } from "./message/models/users_conversation.model
         MessageModel,
         ConversationModel,
         ActiveConversationModel,
-        UserConversationModel,
       ],
       autoLoadModels: true,
       synchronize: true,
