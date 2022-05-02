@@ -113,17 +113,18 @@ export const ForgotPassword: React.FC<IForgotPassword> = ({ password, setForgotP
 							fullWidth
 							sx={{ mt: 1, mb: 2, p: 2 }}
 						>
-							{!loading && !forgotPassword.isSendedMail && !forgotPassword.isVerifiedCode && !forgotPassword.isSetPassword && 'Send Code'}
+							{!loading && !forgotPassword.isSendedMail && !forgotPassword.isVerifiedCode && !forgotPassword.isSetPassword && 'Send Email'}
 							{!loading && forgotPassword.isSendedMail && !forgotPassword.isVerifiedCode && !forgotPassword.isSetPassword && 'Set code'}
 							{!loading && forgotPassword.isSendedMail && forgotPassword.isVerifiedCode && !forgotPassword.isSetPassword && 'Set password'}
+							{forgotPassword.isSendedMail && forgotPassword.isVerifiedCode && !forgotPassword.isSetPassword && 'Log in'}
 							{loading && 'Loading...'}
 						</Button>
 					</Grid>
 					<Grid item xs={12} textAlign="center">
-						<Typography className={styles.link} variant="subtitle1"
-									onClick={() => setForgotPassword(!forgotPassword)}>
+						<Button className={styles.link}
+									onClick={() => setForgotPassword(!password)}>
 							Back
-						</Typography>
+						</Button>
 					</Grid>
 				</Grid>
 			</Box>

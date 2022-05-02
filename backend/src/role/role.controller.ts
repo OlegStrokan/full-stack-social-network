@@ -13,6 +13,8 @@ export class RoleController {
 
   @ApiOperation({ summary: "Create new role" })
   @ApiOkResponse({ status: 200, type: RoleModel })
+  @UseGuards(RolesGuard)
+  @Roles("admin")
   @Post()
   create(@Body() dto: CreateRoleDto) {
     return this.roleService.create(dto);
@@ -21,14 +23,14 @@ export class RoleController {
   @ApiOperation({ summary: "Get role" })
   @ApiOkResponse({ status: 200, type: RoleModel })
   @UseGuards(RolesGuard)
-  @Roles("ADMIN")
+  @Roles("admin")
   @Get("/:value")
   getByValue(@Param("value") value: string) {
     return this.roleService.getRoleByValue(value);
   }
   @ApiOperation({ summary: "Get roles" })
   @ApiOkResponse({ status: 200, type: [RoleModel] })
-  @Roles("ADMIN")
+  @Roles("admin")
   @UseGuards(RolesGuard)
   @Get()
   getRoles() {

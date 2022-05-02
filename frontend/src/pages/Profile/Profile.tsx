@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { fetchedProfile } from "../../redux/ducks/profile/profile.slice";
 import {  useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { Grid } from "@mui/material";
+
 // @ts-ignore
 import styles from "./Profile.module.css";
 import { ProfileInfo } from "./ProfileInfo";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileEntities } from "./ProfileEntities";
 import { ProfileGallery } from "./ProfileGallery/ProfileGallery";
+import { Grid } from '@mui/material';
 
 interface ProfileInterface {
 	isAuth: boolean;
@@ -46,10 +47,10 @@ export const Profile: React.FC<ProfileInterface> = ({ isAuth, userId }) => {
 		<Grid className={styles.root}>
 			{gallery && <ProfileGallery gallery={gallery} setGallery={setGallery} userId={profile.id} images={profile.photos}/>}
 			<Grid className={styles.profileHeader}>
-				<ProfileHeader isOwner={isOwner} profile={profile}/>
+				<ProfileHeader isOwner={isOwner} profile={profile} userId={userId!}/>
 			</Grid>
 			<Grid className={styles.profileInfo}>
-				<ProfileInfo profile={profile} error={error} />
+				<ProfileInfo isOwner={isOwner} profile={profile} error={error} />
 			</Grid>
 			<Grid className={styles.profilePosts}>
 				<ProfilePosts isOwner={isOwner} userId={userId} posts={profile?.posts} />

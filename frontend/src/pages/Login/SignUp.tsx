@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import {
   Accordion,
   AccordionDetails,
-  AccordionSummary,
+  AccordionSummary, Link,
 } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -19,8 +19,10 @@ import { useForm, Controller } from 'react-hook-form';
 import styles from './Login.module.css'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from '../../utils/validators/signUp';
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { fetchedRegistration } from "../../redux/ducks/auth/auth.slice";
+import { useAppSelector } from '../../hooks/redux';
+import { RegisterSuccess } from './RegisterSuccess';
 
 
 interface SignUpInterface {
@@ -30,7 +32,7 @@ interface SignUpInterface {
 export const SignUp:React.FC<SignUpInterface> = ({ onModelChange }) => {
 
   const dispatch = useDispatch();
-
+  const { isRegister, loading } = useAppSelector((state) => state.authReducer);
   const onSubmit = (event: any) => {
    dispatch(fetchedRegistration(event))
   };
@@ -42,6 +44,8 @@ export const SignUp:React.FC<SignUpInterface> = ({ onModelChange }) => {
   });
 
   return (
+    <Grid>
+      <RegisterSuccess isRegister={isRegister}/>
     <Box
       sx={{
         marginTop: 8,
@@ -49,8 +53,7 @@ export const SignUp:React.FC<SignUpInterface> = ({ onModelChange }) => {
         flexDirection: 'column',
         alignItems: 'center',
       }}
-    >
-      <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+    ><Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
@@ -184,19 +187,19 @@ export const SignUp:React.FC<SignUpInterface> = ({ onModelChange }) => {
         <Button
           type="submit"
           fullWidth
+          disabled={loading}
           variant="contained"
           sx={{ mt: 2, mb: 2, p: 2 }}
         >
           Sign Up
         </Button>
-        <Grid container justifyContent="flex-end">
-          <Grid item>
-            <Typography className={styles.link} variant="subtitle1" onClick={() => onModelChange()}>
+          <Grid item xs={12}>
+            <Button className={styles.link} onClick={() => onModelChange()}>
               Already have an account? Sign in
-            </Typography>
+            </Button>
           </Grid>
-        </Grid>
       </Box>
     </Box>
+    </Grid>
   );
 };

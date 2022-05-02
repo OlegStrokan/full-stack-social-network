@@ -1,0 +1,17 @@
+.root {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    padding: 0;
+    grid-gap: 20px;
+    grid-template-areas:
+    "list conv"
+}
+
+.conversationList {
+    grid-area: list;
+    border-right: 1px solid #8c8c8c;
+}
+
+.conversation {
+    grid-area: conv;
+}

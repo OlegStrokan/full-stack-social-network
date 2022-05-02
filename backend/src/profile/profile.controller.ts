@@ -4,7 +4,6 @@ import {
   Get,
   Param,
   Patch,
-  Post,
   UploadedFile,
   Body,
   UseInterceptors,
@@ -44,7 +43,7 @@ export class ProfileController {
   @ApiOkResponse({ status: 200 })
   @Roles("admin", "user")
   @UseGuards(RolesGuard)
-  @Post("/:user_id/follow/:followId")
+  @Patch("/:user_id/follow/:followId")
   async follow(@Param("user_id") user_id: string, @Param("followId") follow_id: string) {
     return this.profileService.follow(+user_id, +follow_id);
   }

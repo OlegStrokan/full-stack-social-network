@@ -4,6 +4,7 @@ import { ConversationModel } from "./models/conversation.model";
 import { ActiveConversationModel } from "./models/active_conversation.model";
 import { MessageModel } from "./models/message.model";
 import { Op } from "sequelize";
+import { UserModel } from "../user/models/user.model";
 
 @Injectable()
 export class ConversationService {
@@ -21,6 +22,13 @@ export class ConversationService {
       where: {
         [Op.or]: [{ firstUser: userId }, { secondUser: userId }],
       },
+      include: [
+        {
+          model: UserModel,
+          as: "users",
+          attributes: ["fullname"],
+        },
+      ],
     });
 
     if (!conversations) {
@@ -33,11 +41,12 @@ export class ConversationService {
   async getConversationWithUsers(firstUser: number, secondUser: number) {
     return await this.conversationRepository.findOne({
       where: {
-        [Op.or]: [
+        [Op.and]: [
           { firstUser: firstUser || secondUser },
           { secondUser: firstUser || secondUser },
         ],
       },
+      nest: true,
     });
   }
 
@@ -56,7 +65,6 @@ export class ConversationService {
     if (activeConversation) {
       await this.activeConversationRepository.destroy({ where: { conversationId } });
     }
-
     return await this.activeConversationRepository.create({ conversationId, socketId });
   }
 
@@ -81,7 +89,7 @@ export class ConversationService {
       throw new HttpException("No conversation For this user", HttpStatus.NOT_FOUND);
     }
 
-    await this.messageRepository.create({
+    return await this.messageRepository.create({
       text: message.text,
       conversationId: Number(message.conversationId),
       senderId: Number(socket.data.user.id),

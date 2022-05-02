@@ -10,10 +10,11 @@ import { fetchedUpdate } from '../../redux/ducks/profile/profile.slice';
 import styles from './Profile.module.css';
 interface ProfileInfoInterface {
 	profile: ProfileDto;
+	isOwner: boolean
 	error: any
 }
 
-export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile, error }) => {
+export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile, isOwner, error }) => {
 
 	const {
 		register, handleSubmit, formState: { errors },
@@ -50,7 +51,7 @@ export const ProfileInfo: React.FC<ProfileInfoInterface> = ({ profile, error }) 
 					<Typography variant="subtitle1"><b>Date of birth:</b> {profile.birth}</Typography>
 					<Typography variant="subtitle1"><b>Job:</b> {profile.job}</Typography>
 					<Typography variant="subtitle1"><b>Location:</b> {profile.location}</Typography>
-					<Button sx={{ mt: 2 }} variant="contained" color="primary" onClick={() => setEditMode(!editMode)}>Edit</Button>
+					{isOwner &&	<Button sx={{ mt: 2 }} variant="contained" color="primary" onClick={() => setEditMode(!editMode)}>Edit</Button>}
 				</Grid>
 				: <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
 					<Grid container spacing={0}>

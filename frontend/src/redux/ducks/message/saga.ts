@@ -84,7 +84,6 @@ function* flow(): Generator<any> {
 export function* initSockets({ payload }: IFetchedInit) {
 	try {
 		yield payload.on("conversation", (res) => {
-			console.log(res);
 		});
 	} catch (error) {
 		yield put(initializeFailed(error));

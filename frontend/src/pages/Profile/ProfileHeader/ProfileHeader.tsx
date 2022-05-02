@@ -5,15 +5,16 @@ import styles from './ProfileHeader.module.css';
 import { ProfileDto } from '../../../types/profile/profile.dto';
 import { ProfileStatus } from './ProfileStatus';
 import { useDispatch } from 'react-redux';
-import { fetchedAvatar } from '../../../redux/ducks/profile/profile.slice';
+import { fetchedAvatar, fetchedFollow, fetchedUnfollow } from '../../../redux/ducks/profile/profile.slice';
 import ClearIcon from '@mui/icons-material/Clear';
 
 interface ProfileInfo {
 	profile: ProfileDto;
 	isOwner: boolean;
+	userId: number;
 }
 
-export const ProfileHeader: React.FC<ProfileInfo> = ({ profile, isOwner }) => {
+export const ProfileHeader: React.FC<ProfileInfo> = ({ profile, isOwner, userId  }) => {
 
 		const dispatch = useDispatch();
 
@@ -24,6 +25,8 @@ export const ProfileHeader: React.FC<ProfileInfo> = ({ profile, isOwner }) => {
 		};
 
 		const [activateProfile, setActivateProfile] = React.useState<boolean>(false);
+
+		const isFollowed = profile.follows?.find((follow) => follow.followId === profile.id) ?? false;
 
 		return (
 			<Grid className={styles.root}>
@@ -46,9 +49,14 @@ export const ProfileHeader: React.FC<ProfileInfo> = ({ profile, isOwner }) => {
 					<Grid>
 						<Typography variant="h4">{profile.fullname}</Typography>
 						<ProfileStatus isOwner={isOwner} status={profile.status} id={profile.id}/>
+						{!isOwner && <Button variant="contained" color="primary" onClick={() => {
+							if(isFollowed) {
+								dispatch(fetchedUnfollow({ userId, followId: profile.id }));
+							} else {
+								dispatch(fetchedFollow({ userId, followId: profile.id }))
+							}}}>{isFollowed ? "Unfollow" : "Follow"}</Button>}
 					</Grid>
 				</Grid>
 			</Grid>
 		);
-	}
-;
+	};

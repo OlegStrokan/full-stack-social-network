@@ -1,10 +1,12 @@
-import { Socket } from "socket.io-client";
-import { MessageDto } from "./message.dto";
+import { Socket } from 'socket.io-client';
+import { MessageDto } from './message.dto';
 
 
 export interface ConversationDto {
   id: number;
-  messages?: MessageDto[]
+  firsUser: number;
+  secondUser: number;
+  messages?: MessageDto[];
 }
 
 export interface UserConversationDto {
@@ -16,7 +18,8 @@ export interface UserConversationDto {
 
 export interface CreateConversationDto {
   socket: Socket;
-  friendId: number;
+  secondUserId: number;
 }
 
-export interface JoinConversationDto extends CreateConversationDto {}
+export interface JoinConversationDto extends CreateConversationDto {
+}

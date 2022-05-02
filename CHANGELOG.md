@@ -1,3 +1,90 @@
+# v3.6.0 (2.05.2022)
+
+## Features:
+
+Backend:
+1. Added users_conversation model
+2. Changed conversation functional
+
+# v3.5.9 (1.05.2022)
+
+## Features:
+
+Backend:
+1. Added users_conversation model
+2. Updated message login in backend (test version)
+
+# v3.5.8 (1.05.2022)
+
+## Features:
+
+Frontend:
+1. Updated add message styles
+2. Updated grid in message page
+
+# v3.5.7 (30.04.2022)
+
+## Features:
+
+Backend:
+1. Deleted unnecessary files
+
+# v3.5.6 (30.04.2022)
+
+## Features:
+
+Frontend
+1. Updated message page
+2. Added new styles
+
+## Fixes:
+
+Backend:
+1. Fixed error in message gateway
+
+# v3.5.5 (27.04.2022)
+
+## Fixes:
+
+Backend:
+1. Updated auth/me method
+
+# v3.5.4 (27.04.2022)
+
+## Features:
+
+Frontend:
+1. Added register success modal window
+
+# v3.5.3 (27.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated user dto
+2. Updated profile info logic
+
+# v3.5.2 (25.04.2022)
+
+## Fixes:
+
+Frontend:
+1. Fixed error with socket initialization
+
+# v3.5.1 (25.04.2022)
+
+## Features:
+
+Frontend:
+1. Added correctly working conversation (just prototype)
+
+# v3.5.0 (25.04.2022)
+
+## Features:
+
+Frontend:
+1. Updated frontend message logic (conditions, dtos)
+
 # v3.4.0 (24.04.2022)
 
 ## Features:

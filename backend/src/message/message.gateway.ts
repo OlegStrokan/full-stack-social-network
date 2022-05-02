@@ -21,7 +21,7 @@ export class MessageGateway implements NestGateway {
     const user = await this.authService.me(jwt);
     if (user.statusCode === 200) {
       socket.data.user = user.data;
-      return this.getConversations(socket, socket.data.user.id);
+      return await this.getConversations(socket, socket.data.user.id);
     } else {
       return null;
     }
@@ -29,7 +29,7 @@ export class MessageGateway implements NestGateway {
   async getConversations(socket: Socket, userId: number) {
     return this.server
       .to(socket.id)
-      .emit("conversations", this.conversationService.getConversations(userId));
+      .emit("conversations", await this.conversationService.getConversations(userId));
   }
 
   @SubscribeMessage("sendMessage")
@@ -37,21 +37,20 @@ export class MessageGateway implements NestGateway {
     const newMessage = await this.conversationService.sendMessage(socket, message);
 
     const activeUsers = await this.conversationService.getActiveUsers(message.conversationId);
-
     activeUsers.map((user) => this.server.to(user.socketId).emit("newMessage", newMessage));
   }
 
   @SubscribeMessage("createConversation")
-  async createConversation(socket: Socket, secondUser: string) {
-    await this.conversationService.createConversation(socket.data.user.id, Number(secondUser));
+  async createConversation(socket: Socket, secondUser: number) {
+    await this.conversationService.createConversation(socket.data.user.id, secondUser);
     return this.getConversations(socket, socket.data.user.id);
   }
 
   @SubscribeMessage("joinConversation")
-  async joinConversation(socket: Socket, conversationId: number) {
+  async joinConversation(socket: Socket, dto: { conversationId: number }) {
     const activeConversation = await this.conversationService.joinConversation(
       socket.id,
-      conversationId
+      dto.conversationId
     );
     const messages = await this.conversationService.getMessages(
       activeConversation.conversationId

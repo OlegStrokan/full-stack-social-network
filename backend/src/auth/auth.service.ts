@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { CreateUserDto } from "../user/dto/create-user.dto";
 import * as bcrypt from "bcryptjs";
@@ -75,7 +75,7 @@ export class AuthService {
     try {
       const bearer = token.split(" ")[0];
       const tokenValue = token.split(" ")[1];
-      if (bearer === "Bearer" || tokenValue) {
+      if (bearer === "Bearer" || tokenValue !== "null") {
         const user = this.jwtService.verify(tokenValue);
         return {
           data: user,
@@ -83,7 +83,10 @@ export class AuthService {
         };
       }
     } catch {
-      throw new HttpException(`You are not authorized`, HttpStatus.UNAUTHORIZED);
+      throw new UnauthorizedException({
+        message: "User are not authorized",
+        statusCode: HttpStatus.UNAUTHORIZED,
+      });
     }
   }
 
@@ -94,9 +97,7 @@ export class AuthService {
       throw new HttpException(`User with this email not fount`, HttpStatus.NOT_FOUND);
     }
     const code = uuid.v4();
-    console.log(user.verificationCode);
     user.verificationCode = code;
-    console.log(user.verificationCode);
 
     await user.save();
     await this.mailService.sendCode(user.email, code, user.fullname);
@@ -104,7 +105,6 @@ export class AuthService {
 
   async verifyCode(email: string, code: string) {
     const user = await this.userService.getByEmail(email);
-    console.log(user.verificationCode);
     if (!user) {
       throw new HttpException(`User with this email not fount`, HttpStatus.NOT_FOUND);
     }
