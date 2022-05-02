@@ -1,3 +1,11 @@
+# v3.6.1 (3.05.2022)
+
+## Features:
+
+Frontend:
+1. Updated Readme
+2. Changed folder structures in message
+
 # v3.6.0 (2.05.2022)
 
 ## Features:

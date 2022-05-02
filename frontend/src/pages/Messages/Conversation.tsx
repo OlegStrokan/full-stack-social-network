@@ -1,6 +1,6 @@
 import React from "react";
-import { Messages } from "./Messages";
-import { AddMessageForm } from "./AddMessage";
+import { Messages } from "./Messages/Messages";
+import { AddMessageForm } from "./AddMessage/AddMessage";
 import { useParams } from "react-router-dom";
 import { MessageDto } from "../../types/message/message.dto";
 import { Grid, Typography } from '@mui/material';

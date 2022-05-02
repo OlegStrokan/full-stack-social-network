@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageDto } from "../../types/message/message.dto";
+import { MessageDto } from "../../../types/message/message.dto";
 import { Message } from "./Message";
 import { Socket } from "socket.io-client";
 import { Grid } from "@mui/material";
