@@ -29,7 +29,7 @@ export class UserController {
 
   @ApiOperation({ summary: "Add role to user" })
   @ApiOkResponse({ status: 200, type: AddRoleDto })
-  @Roles("ADMIN")
+  @Roles("admin")
   @UseGuards(RolesGuard)
   @Post("/:id/role")
   addRole(@Param("id") id: string, @Body() dto: AddRoleDto) {
@@ -38,7 +38,7 @@ export class UserController {
 
   @ApiOperation({ summary: "Ban a user" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Roles("ADMIN")
+  @Roles("admin")
   @UseGuards(RolesGuard)
   @Patch("/:id/ban")
   ban(@Param("id") id: string, @Body() dto: BanUserDto) {
@@ -47,7 +47,7 @@ export class UserController {
 
   @ApiOperation({ summary: "Unban a user" })
   @ApiOkResponse({ status: 200, type: UserModel })
-  @Roles("ADMIN")
+  @Roles("admin")
   @UseGuards(RolesGuard)
   @Delete("/:id/ban")
   unban(@Param("id") id: string) {

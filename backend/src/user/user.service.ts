@@ -82,7 +82,9 @@ export class UserService {
     const user = await this.userRepository.findByPk(id);
     if (user) {
       user.banned = true;
+      console.log(dto);
       user.banReason = dto.banReason;
+      await user.save();
       return await this.userRepository.findAll();
     }
     throw new HttpException("User not found", HttpStatus.NOT_FOUND);
@@ -93,6 +95,7 @@ export class UserService {
     if (user) {
       user.banned = false;
       user.banReason = null;
+      await user.save();
       return await this.userRepository.findAll();
     }
     throw new HttpException("User not found", HttpStatus.NOT_FOUND);

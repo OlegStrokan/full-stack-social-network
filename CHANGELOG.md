@@ -1,3 +1,10 @@
+# v3.6.2 (3.05.2022)
+
+## Fixes:
+
+Frontend:
+1. Fixed ban/unban user functional
+
 # v3.6.1 (3.05.2022)
 
 ## Features:

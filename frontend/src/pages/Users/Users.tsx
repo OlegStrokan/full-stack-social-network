@@ -42,7 +42,8 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 	if (loading) return <div>...loading</div>;
 
 	const onSubmitBan = (event: any) => {
-		dispatch(fetchedBanUser({ userId: userId as number, banReason: event.banReason }))
+		debugger;
+		dispatch(fetchedBanUser({ userId: event.banReason[0].userId, banReason: event.banReason[0].banReason }))
 	};
 
 	const onSubmitRole = (event: any) => {
@@ -75,7 +76,7 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 										required
 										fullWidth
 										id={String(i)}
-										value={userId}
+										value={user.id}
 										{...register(`banReason[${i}].userId`)}
 									/>
 								</Grid>
@@ -87,9 +88,9 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 							</Grid>
 						</Box>
 						:
-						<Button variant="contained" onClick={() => fetchedUnbanUser(user.id)}>Unban</Button>
+						<Button variant="contained" onClick={() => dispatch(fetchedUnbanUser(user.id))}>Unban</Button>
 					}
-					{roles?.map((role) => role.value === 'ADMIN' ) &&
+					{roles?.map((role) => role.value === 'admin' ) &&
 						 <AddRole onSubmitRole={onSubmitRole} userId={userId}/>
 
 					}

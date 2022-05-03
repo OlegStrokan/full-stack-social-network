@@ -19,12 +19,12 @@ export class ConversationModel extends Model<ConversationModel> {
 
   @ApiProperty({ example: "23", description: "First user's id" })
   @Column({ type: DataType.INTEGER, allowNull: false })
-  @BelongsTo(() => UserModel, "id")
+  @ForeignKey(() => UserModel)
   firstUser: number;
 
   @ApiProperty({ example: "93", description: "Second user's id" })
   @Column({ type: DataType.INTEGER, allowNull: false })
-  @BelongsTo(() => UserModel, "id")
+  @ForeignKey(() => UserModel)
   secondUser: number;
 
   @ApiProperty({ example: [MessageModel], description: "Messages for current conversation" })
