@@ -6,7 +6,6 @@ export class CreateRoleDto {
     example: "ADMIN",
     description: "Value of user's permission",
   })
-  @IsString({ message: "Must be a string" })
   readonly value: string;
 
   @ApiProperty({

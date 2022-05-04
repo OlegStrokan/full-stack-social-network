@@ -1,3 +1,11 @@
+# v3.6.3 (4.05.2022)
+
+## Fixes:
+
+Frontend:
+1. Updated add role functional
+2. Added ban description to users page
+
 # v3.6.2 (3.05.2022)
 
 ## Fixes:

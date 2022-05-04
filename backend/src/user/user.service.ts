@@ -47,11 +47,12 @@ export class UserService {
   }
 
   async addRole(id: number, dto: AddRoleDto): Promise<UserModel[]> {
+    console.log(id, dto);
     const user = await this.userRepository.findByPk(id);
     const role = await this.roleService.getRoleByValue(dto.value);
     if (role && user) {
       await user.$add("role", role.id);
-      return await this.userRepository.findAll();
+      return await this.userRepository.findAll({ include: { all: true } });
     }
     throw new HttpException("User or role not found", HttpStatus.NOT_FOUND);
   }
@@ -82,7 +83,6 @@ export class UserService {
     const user = await this.userRepository.findByPk(id);
     if (user) {
       user.banned = true;
-      console.log(dto);
       user.banReason = dto.banReason;
       await user.save();
       return await this.userRepository.findAll();

@@ -13,7 +13,7 @@ export const userAPI = {
         return instance.post<ProfileDto[]>('/users', dto).then((response) => response.data)
     },
     addRole(dto: AddRoleDto): Promise<ProfileDto[]> {
-        return instance.post<ProfileDto[]>(`/users/${dto.userId}/role`, dto.value).then((response) => response.data)
+        return instance.post<ProfileDto[]>(`/users/${dto.userId}/role`, dto).then((response) => response.data)
     },
     banUser(dto: BanUserDto): Promise<ProfileDto[]> {
         debugger;

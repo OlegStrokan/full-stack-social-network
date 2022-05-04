@@ -43,18 +43,18 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 
 	const onSubmitBan = (event: any) => {
 		debugger;
-		dispatch(fetchedBanUser({ userId: event.banReason[0].userId, banReason: event.banReason[0].banReason }))
+		dispatch(fetchedBanUser({ userId: event.banReason[1].userId, banReason: event.banReason[1].banReason }))
 	};
 
 	const onSubmitRole = (event: any) => {
-		dispatch(fetchedAddRole({ userId: userId as number, value: event.role }))
+		dispatch(fetchedAddRole({  userId: event.banReason[1].userId, value: event.banReason[1].value}))
 	};
 
 	return (
 		<Grid>
 			{users?.filter((user) => user.id !== userId).map((user, i) => {
 				return <Grid className={styles.user}>
-					<Typography variant="h6">{user.fullname}</Typography>
+					<Typography variant="h6">User: {user.fullname}</Typography>
 					{!user.banned ?
 						<Box key={user.id} component="form" onSubmit={handleSubmit(onSubmitBan)} noValidate sx={{ mt: 3 }}>
 							<Grid container spacing={2} width={400}>
@@ -88,10 +88,13 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 							</Grid>
 						</Box>
 						:
-						<Button variant="contained" onClick={() => dispatch(fetchedUnbanUser(user.id))}>Unban</Button>
+						<Grid>
+							<Typography variant="h6" sx={{ mt: 1, mb: 1 }}>Ban reason: {user.banReason}</Typography>
+							<Button variant="contained" onClick={() => dispatch(fetchedUnbanUser(user.id))}>Unban</Button>
+						</Grid>
 					}
 					{roles?.map((role) => role.value === 'admin' ) &&
-						 <AddRole onSubmitRole={onSubmitRole} userId={userId}/>
+						 <AddRole onSubmitRole={onSubmitRole} userId={user.id}/>
 
 					}
 				</Grid>;

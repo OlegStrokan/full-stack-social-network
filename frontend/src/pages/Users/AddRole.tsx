@@ -32,7 +32,7 @@ export const AddRole: React.FC<AddRoleInterface> = ({ onSubmitRole, userId }) =>
 							fullWidth
 							label="role"
 							autoComplete="Role"
-							{...register('role')}
+							{...register(`banReason[${userId}].value`)}
 							error={!!errors.role}
 							sx={{ mb: -5 }}
 						/>
@@ -43,7 +43,7 @@ export const AddRole: React.FC<AddRoleInterface> = ({ onSubmitRole, userId }) =>
 							required
 							fullWidth
 							value={userId}
-							{...register('userId')}
+							{...register(`banReason[${userId}].userId`)}
 						/>
 						<Typography variant="subtitle2" color="error">
 							{errors.role?.message}
