@@ -89,14 +89,15 @@ export const Users: React.FC<UsersInterface> = ({ isAuth, userId, roles }) => {
 						</Box>
 						:
 						<Grid>
-							<Typography variant="h6" sx={{ mt: 1, mb: 1 }}>Ban reason: {user.banReason}</Typography>
+						<Typography variant="h6" sx={{ mt: 1, mb: 1 }}>Ban reason: {user.banReason}</Typography>
 							<Button variant="contained" onClick={() => dispatch(fetchedUnbanUser(user.id))}>Unban</Button>
 						</Grid>
 					}
 					{roles?.map((role) => role.value === 'admin' ) &&
 						 <AddRole onSubmitRole={onSubmitRole} userId={user.id}/>
-
 					}
+					<Typography variant="h6">User's roles</Typography>
+					{user.roles?.map((role) => <Typography variant="subtitle1">- {role.value}</Typography>)}
 				</Grid>;
 			})}
 		</Grid>

@@ -1,6 +1,13 @@
+# v3.6.4 (4.05.2022)
+
+## Features:
+
+Frontend:
+1. Added role list for users
+
 # v3.6.3 (4.05.2022)
 
-## Fixes:
+## Features:
 
 Frontend:
 1. Updated add role functional

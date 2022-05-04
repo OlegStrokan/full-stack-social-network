@@ -47,7 +47,6 @@ export class UserService {
   }
 
   async addRole(id: number, dto: AddRoleDto): Promise<UserModel[]> {
-    console.log(id, dto);
     const user = await this.userRepository.findByPk(id);
     const role = await this.roleService.getRoleByValue(dto.value);
     if (role && user) {
