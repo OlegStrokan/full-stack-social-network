@@ -51,7 +51,7 @@ export class UserService {
     const role = await this.roleService.getRoleByValue(dto.value);
     if (role && user) {
       await user.$add("role", role.id);
-      return await this.userRepository.findAll();
+      return await this.userRepository.findAll({ include: { all: true } });
     }
     throw new HttpException("User or role not found", HttpStatus.NOT_FOUND);
   }
@@ -83,6 +83,7 @@ export class UserService {
     if (user) {
       user.banned = true;
       user.banReason = dto.banReason;
+      await user.save();
       return await this.userRepository.findAll();
     }
     throw new HttpException("User not found", HttpStatus.NOT_FOUND);
@@ -93,6 +94,7 @@ export class UserService {
     if (user) {
       user.banned = false;
       user.banReason = null;
+      await user.save();
       return await this.userRepository.findAll();
     }
     throw new HttpException("User not found", HttpStatus.NOT_FOUND);

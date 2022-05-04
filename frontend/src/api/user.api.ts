@@ -13,12 +13,13 @@ export const userAPI = {
         return instance.post<ProfileDto[]>('/users', dto).then((response) => response.data)
     },
     addRole(dto: AddRoleDto): Promise<ProfileDto[]> {
-        return instance.post<ProfileDto[]>(`/users/${dto.userId}/role`, dto.value).then((response) => response.data)
+        return instance.post<ProfileDto[]>(`/users/${dto.userId}/role`, dto).then((response) => response.data)
     },
     banUser(dto: BanUserDto): Promise<ProfileDto[]> {
-        return instance.patch<ProfileDto[]>(`/users/${dto.userId}/ban`, dto.banReason).then((response) => response.data)
+        debugger;
+        return instance.patch<ProfileDto[]>(`/users/${dto.userId}/ban`, dto).then((response) => response.data)
     },
     unbanUser(id: number): Promise<ProfileDto[]> {
-        return instance.delete<ProfileDto[]>(`/users${id}/ban`).then((response) => response.data)
+        return instance.delete<ProfileDto[]>(`/users/${id}/ban`).then((response) => response.data)
     }
 }
