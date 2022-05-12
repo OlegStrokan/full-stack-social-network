@@ -1,3 +1,10 @@
+# v3.6.5 (12.05.2022)
+
+## Features:
+
+Frontend:
+1. Added unit tests for registration reducer
+
 # v3.6.4 (4.05.2022)
 
 ## Features:
