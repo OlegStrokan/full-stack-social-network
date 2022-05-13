@@ -1,3 +1,10 @@
+# v3.6.7 (13.05.2022)
+
+## Features:
+
+Frontend:
+1. Added unit tests for logout and auth/me actions
+
 # v3.6.6 (13.05.2022)
 
 ## Features:

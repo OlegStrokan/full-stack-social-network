@@ -1,11 +1,12 @@
 import {
+  authFailed,
   authReducer,
   AuthState,
-  fetchedLogin,
-  fetchedRegistration, loginSuccess,
+  fetchedLogin, fetchedLogout, fetchedMe,
+  fetchedRegistration, loginSuccess, logoutSuccess, meSuccess,
   registrationSuccess
 } from '../../../redux/ducks/auth/auth.slice';
-import { IRoleDto } from '../../../types/role/role.dto';
+import { IMeResponse } from '../../../api/auth.api';
 
 const initialState: AuthState = {
   userId: null,
@@ -49,12 +50,12 @@ describe('Registration', () => {
     })
   });
   it('Registration should be failed',() => {
-    const action = registrationSuccess();
+    const action = authFailed({ response: { data: { message: 'error' } }});
     const state = authReducer(initialState, action);
     expect(state).toEqual({
       ...initialState,
       loading: false,
-      error: { response: { data: { message: 'error' } } }
+      error:  'error'
     })
   });
 })
@@ -109,3 +110,74 @@ describe('Login', () => {
     })
   });
 })
+
+describe('Logout', () => {
+  it('Request should be send', function () {
+    const action = fetchedLogout();
+    const state = authReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: true
+    })
+  });
+  it('Logout should be success',  () => {
+    const action = logoutSuccess();
+    const state = authReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      isAuth: false,
+      token: null,
+      userId: null
+    })
+  });
+})
+
+describe('Auth/me', () => {
+  it('Request should be send', function () {
+    const action = fetchedMe();
+    const state = authReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: true
+    })
+  });
+  it('Auth/me should be success',  () => {
+    const responseData: IMeResponse = {
+      data: {
+        id: 12,
+        username: 'stroka01',
+        iat: 209320392,
+        exp: 230392093,
+        roles: [{
+          id: 14,
+          value: 'admin',
+          description: 'permission for admin',
+          UserRolesModel: {
+            id: 13,
+            roleId: 2,
+            userId: 12
+          }}],
+      }
+    }
+    const action = meSuccess(responseData);
+    const state = authReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      isAuth: true,
+      userId: 12,
+      username: 'stroka01',
+      roles: [{
+        id: 14,
+        value: 'admin',
+        description: 'permission for admin',
+        UserRolesModel: {
+          id: 13,
+          roleId: 2,
+          userId: 12
+        }}],
+    })
+  });
+})
+

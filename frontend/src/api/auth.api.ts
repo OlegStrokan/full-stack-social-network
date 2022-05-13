@@ -20,8 +20,7 @@ export interface ILoginResponse {
 }
 
 export type IMeResponse = {
-	data: Omit<ILoginResponse, "token">,
-	statusCode: number;
+	data: Omit<ILoginResponse, "token">
 }
 
 export const authAPI = {
