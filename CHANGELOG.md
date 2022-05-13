@@ -1,3 +1,10 @@
+# v3.6.6 (13.05.2022)
+
+## Features:
+
+Frontend:
+1. Added unit tests for login reducer
+
 # v3.6.5 (12.05.2022)
 
 ## Features:
