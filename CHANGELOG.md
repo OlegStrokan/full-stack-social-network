@@ -1,3 +1,10 @@
+# v3.6.8 (14.05.2022)
+
+## Features:
+
+Frontend:
+1. Added all tests to auth reducer
+
 # v3.6.7 (13.05.2022)
 
 ## Features:

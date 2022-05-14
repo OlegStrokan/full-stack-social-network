@@ -3,8 +3,8 @@ import {
   authReducer,
   AuthState,
   fetchedLogin, fetchedLogout, fetchedMe,
-  fetchedRegistration, loginSuccess, logoutSuccess, meSuccess,
-  registrationSuccess
+  fetchedRegistration, fetchedSendEmail, fetchedSetPassword, fetchedVerifyCode, loginSuccess, logoutSuccess, meSuccess,
+  registrationSuccess, sendEmailSuccess, setPasswordSuccess, verifyCodeSuccess
 } from '../../../redux/ducks/auth/auth.slice';
 import { IMeResponse } from '../../../api/auth.api';
 
@@ -180,4 +180,76 @@ describe('Auth/me', () => {
     })
   });
 })
+
+describe('Send email', () => {
+  it('Request should be send', function () {
+    const action = fetchedSendEmail('oleg14ua71@gmail.com');
+    const state = authReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: true
+    })
+  });
+  it('Send email should be success', function () {
+    const action = sendEmailSuccess();
+    const state = authReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      forgotPassword: {
+        ...state.forgotPassword,
+        isSendedMail: true,
+      }
+    })
+  });
+})
+
+
+describe('`Verify code', () => {
+  it('Request should be send', function () {
+    const action = fetchedVerifyCode({ email: 'oleg14ua71@gmail.com', code: '192109'});
+    const state = authReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: true
+    })
+  });
+  it('Send email should be success', function () {
+    const action = verifyCodeSuccess();
+    const state = authReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      forgotPassword: {
+        ...state.forgotPassword,
+        isVerifiedCode: true,
+      }
+    })
+  });
+})
+
+describe('`Set password', () => {
+  it('Request should be send', function () {
+    const action = fetchedSetPassword({ email: 'oleg14ua71@gmail.com', code: '192109', password: '2392093'});
+    const state = authReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: true
+    })
+  });
+  it('Set password should be success', function () {
+    const action = setPasswordSuccess();
+    const state = authReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      forgotPassword: {
+        ...state.forgotPassword,
+        isSetPassword: true,
+      }
+    })
+  });
+})
+
+
 
