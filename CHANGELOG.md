@@ -1,3 +1,10 @@
+# v3.6.9 (15.05.2022)
+
+## Features:
+
+Frontend:
+1. Added registration saga test
+
 # v3.6.8 (14.05.2022)
 
 ## Features:

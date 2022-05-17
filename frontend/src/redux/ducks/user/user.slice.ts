@@ -4,7 +4,7 @@ import { BanUserDto } from "../../../types/user/banUser.dto";
 import { AddRoleDto } from "../../../types/user/addRole.dto";
 import { CreateUserDto } from "../../../types/user/createUser.dto";
 
-interface UserState {
+export interface UserState {
 	users: ProfileDto[] | null;
 	loading: boolean;
 	error: any;
@@ -29,7 +29,7 @@ export const userSlice = createSlice({
 		},
 		usersFailed(state, action: PayloadAction<any>) {
 			state.loading = false;
-			state.error = action.payload;
+			state.error = action.payload.response.data.message;
 		},
 		fetchedCreate(state, action: PayloadAction<CreateUserDto>) {
 			state.loading = true;
