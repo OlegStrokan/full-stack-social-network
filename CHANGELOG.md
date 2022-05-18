@@ -1,3 +1,45 @@
+# v3.7.0 (18.05.2022)
+
+## Features:
+
+Frontend:
+1. Added all auth sagas tests
+
+# v3.6.9 (15.05.2022)
+
+## Features:
+
+Frontend:
+1. Added registration saga test
+
+# v3.6.8 (14.05.2022)
+
+## Features:
+
+Frontend:
+1. Added all tests to auth reducer
+
+# v3.6.7 (13.05.2022)
+
+## Features:
+
+Frontend:
+1. Added unit tests for logout and auth/me actions
+
+# v3.6.6 (13.05.2022)
+
+## Features:
+
+Frontend:
+1. Added unit tests for login reducer
+
+# v3.6.5 (12.05.2022)
+
+## Features:
+
+Frontend:
+1. Added unit tests for registration reducer
+
 # v3.6.4 (4.05.2022)
 
 ## Features:

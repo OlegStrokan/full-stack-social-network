@@ -6,7 +6,7 @@ import { IRoleDto } from "../../../types/role/role.dto";
 import { SetPasswordDto } from '../../../types/auth/set-password.dto';
 import { VerifyCodeDto } from '../../../types/auth/verify-code.dto';
 
-interface AuthState {
+export interface AuthState {
 	userId: number | null;
 	roles: IRoleDto[] | null;
 	username: string | null;
