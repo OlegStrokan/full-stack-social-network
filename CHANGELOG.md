@@ -1,3 +1,10 @@
+# v3.7.0 (18.05.2022)
+
+## Features:
+
+Frontend:
+1. Added all auth sagas tests
+
 # v3.6.9 (15.05.2022)
 
 ## Features:
