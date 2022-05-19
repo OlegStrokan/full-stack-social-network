@@ -29,7 +29,7 @@ export const App = () => {
 	}
 
 	return (
-		<Grid className={navbar ? styles.rootOpen : styles.rootClose}>
+		<Grid className={navbar ? styles.rootOpen : styles.rootClose} data-testid="app-component">
 			<div className={styles.header}><Header isAuth={isAuth} username={username} navbar={navbar}
 												   setNavbar={setNavbar} /></div>
 			{navbar && <div className={styles.navbar}><Navbar roles={roles}  isAuth={isAuth} userId={userId} /></div>}

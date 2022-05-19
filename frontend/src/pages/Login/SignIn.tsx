@@ -50,6 +50,7 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
         <Grid container spacing={2} className={styles.inputs}>
           <Grid item xs={12}>
             <TextField
+              data-testid="email-input"
               required
               fullWidth
               id="email"
@@ -64,6 +65,7 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              data-testid="password-input"
               required
               fullWidth
               id="password"
@@ -79,6 +81,7 @@ export const SignIn: React.FC<SignInInterface> = ({ onModelChange }) => {
          {/* {auth.error && <Grid item xs={12}><Typography variant="h6" color="error">{auth.error}</Typography></Grid>}*/}
           <Grid item xs={12}>
             <Button
+              data-testid="login-button"
               type="submit"
               fullWidth
               disabled={loading}
