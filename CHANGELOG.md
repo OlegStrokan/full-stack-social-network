@@ -1,3 +1,11 @@
+# v3.7.1 (19.05.2022)
+
+## Features:
+
+Frontend:
+1. Added cypress.
+2. Added first e2e test for app component
+
 # v3.7.0 (18.05.2022)
 
 ## Features:
