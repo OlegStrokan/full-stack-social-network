@@ -1,3 +1,10 @@
+# v3.7.2 (19.05.2022)
+
+## Features:
+
+Frontend:
+1. Added login e2e test
+
 # v3.7.1 (19.05.2022)
 
 ## Features:

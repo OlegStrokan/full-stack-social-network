@@ -15,3 +15,5 @@
 * ### Redux-saga
 * ### Material UI
 * ### Socket.io
+* ### React testing library
+* ### Cypress

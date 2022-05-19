@@ -6,7 +6,8 @@ describe('App component', () => {
     cy.visit('/')
   })
   it('App component should be render without navbar',  () => {
-    getCyElementById('app-component').type("test")
+    getCyElementById('app-component').should('exist')
     getCyElementById('navbar').should('not.exist')
+
   });
 })
