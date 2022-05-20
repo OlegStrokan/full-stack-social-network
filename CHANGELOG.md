@@ -1,3 +1,11 @@
+# v3.8.0 (19.05.2022)
+
+## Features:
+
+Backend:
+1. Changed backend structure.
+2. Added chat-service
+
 # v3.7.2 (19.05.2022)
 
 ## Features:
