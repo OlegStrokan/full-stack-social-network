@@ -1,3 +1,10 @@
+# v3.9.2 (21.05.2022)
+
+## Features:
+
+Backend:
+1. Added message gateway with event patterns
+
 # v3.9.1 (21.05.2022)
 
 ## Features:
