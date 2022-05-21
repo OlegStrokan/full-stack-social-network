@@ -1,3 +1,11 @@
+# v3.9.1 (21.05.2022)
+
+## Features:
+
+Backend:
+1. Updated folder's structure
+2. Added message gateway (prototype)
+
 # v3.9.0 (21.05.2022)
 
 ## Features:
