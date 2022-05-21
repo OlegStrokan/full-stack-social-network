@@ -6,9 +6,7 @@ import { FileService } from "../file/file.service";
 import { UpdateStatusDto } from "../user/dto/update-status.dto";
 import { UpdateUserDto } from "../user/dto/update-user.dto";
 import { PhotoModel } from "../user/models/photo.model";
-import { PostService } from "../post/post.service";
 import { PostModel } from "../post/models/post.model";
-import { PostModule } from "../post/post.module";
 
 @Injectable()
 export class ProfileService {

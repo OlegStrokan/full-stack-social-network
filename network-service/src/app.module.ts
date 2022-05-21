@@ -21,6 +21,7 @@ import { APP_GUARD } from "@nestjs/core";
 import { RolesGuard } from "./auth/guards/roles.guard";
 import { LikeModel } from "./post/models/like.model";
 import { DislikeModel } from "./post/models/dislike.model";
+import { ClientsModule, Transport } from "@nestjs/microservices";
 
 @Module({
   providers: [
@@ -30,6 +31,21 @@ import { DislikeModel } from "./post/models/dislike.model";
     },
   ],
   imports: [
+    ClientsModule.register([
+      {
+        name: "chat-service",
+        transport: Transport.RMQ,
+        options: {
+          urls: [
+            "amqps://pzeydrqr:dqBqh8DgaglYzPhhgufBvVMsEQYcTWb0@rat.rmq2.cloudamqp.com/pzeydrqr",
+          ],
+          queue: "main_queue",
+          queueOptions: {
+            durable: false,
+          },
+        },
+      },
+    ]),
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
     }),
