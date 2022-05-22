@@ -1,3 +1,10 @@
+# v3.9.4 (22.05.2022)
+
+## Features:
+
+Backend:
+1. Updated main README
+
 # v3.9.3 (22.05.2022)
 
 ## Features:
