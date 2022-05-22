@@ -31,21 +31,6 @@ import { ClientsModule, Transport } from "@nestjs/microservices";
     },
   ],
   imports: [
-    ClientsModule.register([
-      {
-        name: "chat-service",
-        transport: Transport.RMQ,
-        options: {
-          urls: [
-            "amqps://pzeydrqr:dqBqh8DgaglYzPhhgufBvVMsEQYcTWb0@rat.rmq2.cloudamqp.com/pzeydrqr",
-          ],
-          queue: "main_queue",
-          queueOptions: {
-            durable: false,
-          },
-        },
-      },
-    ]),
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
     }),

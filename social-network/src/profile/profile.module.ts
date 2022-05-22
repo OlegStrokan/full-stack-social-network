@@ -10,6 +10,7 @@ import { RoleModule } from "../role/role.module";
 import { AuthModule } from "../auth/auth.module";
 import { PostModule } from "../post/post.module";
 import { PostModel } from "../post/models/post.model";
+import { ClientsModule, Transport } from "@nestjs/microservices";
 
 @Module({
   controllers: [ProfileController],
@@ -20,6 +21,21 @@ import { PostModel } from "../post/models/post.model";
     RoleModule,
     PostModule,
     AuthModule,
+    ClientsModule.register([
+      {
+        name: "chat-service",
+        transport: Transport.RMQ,
+        options: {
+          urls: [
+            "amqps://pzeydrqr:dqBqh8DgaglYzPhhgufBvVMsEQYcTWb0@rat.rmq2.cloudamqp.com/pzeydrqr",
+          ],
+          queue: "main_queue",
+          queueOptions: {
+            durable: false,
+          },
+        },
+      },
+    ]),
   ],
 })
 export class ProfileModule {}

@@ -1,3 +1,11 @@
+# v3.9.3 (22.05.2022)
+
+## Features:
+
+Backend:
+1. Injected chat to profile and tested it
+2. Updated global imports
+
 # v3.9.2 (21.05.2022)
 
 ## Features:
