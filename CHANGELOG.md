@@ -1,3 +1,11 @@
+# v4.0.0 (23.05.2022)
+
+## Features:
+
+Backend:
+1. Updated chat service
+2. Reformat folder's structure
+
 # v3.9.4 (22.05.2022)
 
 ## Features:

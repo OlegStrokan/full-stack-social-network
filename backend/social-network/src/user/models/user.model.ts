@@ -7,7 +7,7 @@ import { PostModel } from "../../post/models/post.model";
 import { PhotoModel } from "./photo.model";
 import { FollowModel } from "./follow.model";
 
-interface UserCreationAttr {
+export interface UserCreationAttr {
   email: string;
   username: string;
   fullname: string;

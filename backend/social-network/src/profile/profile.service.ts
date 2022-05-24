@@ -86,7 +86,6 @@ export class ProfileService {
   }
 
   async getProfile(id: number): Promise<any> {
-    this.client.emit("get-profile", id);
     const user = await this.userRepository.findByPk(id, {
       include: { nested: true, all: true },
     });
