@@ -4,6 +4,7 @@
 
 Backend:
 1. Added conversation, active-conversation, message models
+2. Added message model
 
 # v4.0.1 (25.05.2022)
 
