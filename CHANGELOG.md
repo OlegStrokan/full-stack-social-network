@@ -1,3 +1,18 @@
+# v4.0.2 (25.05.2022)
+
+## Features:
+
+Backend:
+1. Added conversation, active-conversation, message models
+
+# v4.0.1 (25.05.2022)
+
+## Features:
+
+Backend:
+1. Deleted unnecessary files
+2. Prepared to chat developments
+
 # v4.0.0 (23.05.2022)
 
 ## Features:

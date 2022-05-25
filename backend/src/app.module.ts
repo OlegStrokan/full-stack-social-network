@@ -21,7 +21,9 @@ import { APP_GUARD } from "@nestjs/core";
 import { RolesGuard } from "./auth/guards/roles.guard";
 import { LikeModel } from "./post/models/like.model";
 import { DislikeModel } from "./post/models/dislike.model";
-import { ClientsModule, Transport } from "@nestjs/microservices";
+import { MessageGateway } from "./message/message.gateway";
+import { ConversationService } from "./message/conversation.service";
+import { MessageModule } from "./message/message.module";
 
 @Module({
   providers: [
@@ -29,6 +31,8 @@ import { ClientsModule, Transport } from "@nestjs/microservices";
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
+    MessageGateway,
+    ConversationService,
   ],
   imports: [
     ConfigModule.forRoot({
@@ -65,6 +69,7 @@ import { ClientsModule, Transport } from "@nestjs/microservices";
     PostModule,
     ProfileModule,
     FileModule,
+    MessageModule,
   ],
 })
 export class AppModule {}
