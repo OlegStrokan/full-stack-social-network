@@ -1,3 +1,12 @@
+
+
+# v4.0.3 (27.05.2022)
+
+## Features:
+
+Backend:
+1. Added get conversation method
+
 # v4.0.2 (25.05.2022)
 
 ## Features:
