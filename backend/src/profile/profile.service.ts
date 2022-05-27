@@ -6,7 +6,6 @@ import { UpdateStatusDto } from "../user/dto/update-status.dto";
 import { UpdateUserDto } from "../user/dto/update-user.dto";
 import { PhotoModel } from "../user/models/photo.model";
 import { PostModel } from "../post/models/post.model";
-import { ClientProxy } from "@nestjs/microservices";
 import { FollowModel } from "../user/models/follow.model";
 
 @Injectable()
@@ -16,7 +15,6 @@ export class ProfileService {
     @InjectModel(FollowModel) private followRepository: typeof FollowModel,
     @InjectModel(PhotoModel) private photoRepository: typeof PhotoModel,
     @InjectModel(PostModel) private postModel: typeof PostModel,
-    @Inject("chat-service") private client: ClientProxy,
     private fileService: FileService
   ) {}
 

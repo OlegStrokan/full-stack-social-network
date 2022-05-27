@@ -1,5 +1,12 @@
 
 
+# v4.0.4 (27.05.2022)
+
+## Features:
+
+Backend:
+1. Added create/join conversation methods
+
 # v4.0.3 (27.05.2022)
 
 ## Features:

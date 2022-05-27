@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { Socket } from "socket.io";
 import { MessageModel } from "./models/message.model";
 import { InjectModel } from "@nestjs/sequelize";
@@ -36,9 +36,18 @@ export class ConversationService {
     const conversation = this.getConversation(firstUser, secondUser);
 
     if (!conversation) return await this.conversationModel.create({ firstUser, secondUser });
+
+    return conversation;
   }
 
-  async joinConversation(socket: Socket, dto: { conversationId: number }) {}
+  async joinConversation(socket: Socket, dto: { conversationId: number }) {
+    const conversation = this.conversationModel.findOne({ where: { id: dto.conversationId } });
+
+    if (!conversation) {
+      throw new HttpException("Conversation not found", HttpStatus.NOT_FOUND);
+    }
+    return conversation;
+  }
 
   async leaveConversation(socketId: string) {}
 }
