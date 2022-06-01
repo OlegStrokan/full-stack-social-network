@@ -1,41 +1,36 @@
 import { Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
-import { UserModel } from "../../user/models/user.model";
 import { ConversationModel } from "./conversation.model";
+import { UserModel } from "../../user/models/user.model";
 
-interface MessageCreationAttr {
+interface IMessageModel {
   text: string;
+  conversationId: number;
   senderId: number;
+  receiverId: number;
 }
 
-@Table({ tableName: "messages" })
-export class MessageModel extends Model<MessageModel, MessageCreationAttr> {
-  @ApiProperty({ example: "1", description: "Unique identifier" })
+@Table({ tableName: "messages", createdAt: false, updatedAt: false })
+export class MessageModel extends Model<MessageModel, IMessageModel> {
+  @ApiProperty({ example: "4", description: "Message's id" })
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;
 
-  @ApiProperty({ example: "1", description: "Message text" })
+  @ApiProperty({ example: "Hello!", description: "Message's text" })
   @Column({ type: DataType.STRING })
   text: string;
 
-  @ApiProperty({ example: "1", description: "Sender user's id" })
-  @ForeignKey(() => UserModel)
-  @Column({ type: DataType.INTEGER })
-  senderId: number;
-
-  @ApiProperty({ example: "false", description: "Message status" })
+  @ApiProperty({ example: "false", description: "Message's status" })
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
-  isRead: boolean;
+  isRead: number;
 
-  @ApiProperty({ example: "false", description: "Parent message id (for reply)" })
-  @ForeignKey(() => MessageModel)
-  @Column({ type: DataType.BOOLEAN, defaultValue: null })
-  parentId: number;
-
-  @ApiProperty({
-    example: [ConversationModel],
-    description: "Conversation id for message",
-  })
+  @ApiProperty({ example: "93", description: "Conversation id" })
+  @Column({ type: DataType.INTEGER })
   @ForeignKey(() => ConversationModel)
-  conversationsId: number;
+  conversationId: number;
+
+  @ApiProperty({ example: "93", description: "Sender id" })
+  @Column({ type: DataType.INTEGER })
+  @ForeignKey(() => UserModel)
+  senderId: number;
 }

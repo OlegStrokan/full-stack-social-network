@@ -1,27 +1,30 @@
-import { Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
+import {
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  Model,
+  Table,
+  BelongsTo,
+} from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
-import { UserModel } from "../../user/models/user.model";
 import { MessageModel } from "./message.model";
-
-interface ConversationCreationAttr {
-  firstUser: number;
-  secondUser: number;
-}
+import { UserModel } from "../../user/models/user.model";
 
 @Table({ tableName: "conversations", createdAt: false, updatedAt: false })
-export class ConversationModel extends Model<ConversationModel, ConversationCreationAttr> {
-  @ApiProperty({ example: "1", description: "Unique identifier" })
+export class ConversationModel extends Model<ConversationModel> {
+  @ApiProperty({ example: "4", description: "Conversation's id" })
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;
 
-  @ApiProperty({ example: "1", description: "First user's id" })
+  @ApiProperty({ example: "23", description: "First user's id" })
+  @Column({ type: DataType.INTEGER, allowNull: false })
   @ForeignKey(() => UserModel)
-  @Column({ type: DataType.INTEGER })
   firstUser: number;
 
-  @ApiProperty({ example: "1", description: "Second user's id" })
+  @ApiProperty({ example: "93", description: "Second user's id" })
+  @Column({ type: DataType.INTEGER, allowNull: false })
   @ForeignKey(() => UserModel)
-  @Column({ type: DataType.INTEGER })
   secondUser: number;
 
   @ApiProperty({ example: [MessageModel], description: "Messages for current conversation" })

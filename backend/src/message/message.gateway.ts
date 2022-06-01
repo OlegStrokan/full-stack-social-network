@@ -4,14 +4,12 @@ import { ConversationService } from "./conversation.service";
 import { Server, Socket } from "socket.io";
 import { MessageModel } from "./models/message.model";
 import { NestGateway } from "@nestjs/websockets/interfaces/nest-gateway.interface";
-import { UserService } from "../user/user.service";
 
 @WebSocketGateway(8001, { cors: { origin: "*" } })
 export class MessageGateway implements NestGateway {
   constructor(
     private authService: AuthService,
-    private conversationService: ConversationService,
-    private userService: UserService
+    private conversationService: ConversationService
   ) {}
 
   @WebSocketServer()
@@ -35,23 +33,38 @@ export class MessageGateway implements NestGateway {
   }
 
   @SubscribeMessage("sendMessage")
-  async sendMessage(socket: Socket, message: MessageModel) {}
+  async sendMessage(socket: Socket, message: MessageModel) {
+    const newMessage = await this.conversationService.sendMessage(socket, message);
+
+    const activeUsers = await this.conversationService.getActiveUsers(message.conversationId);
+    activeUsers.map((user) => this.server.to(user.socketId).emit("newMessage", newMessage));
+  }
 
   @SubscribeMessage("createConversation")
-  async createConversation(socket: Socket, dto: { secondUser: number }) {
-    return await this.conversationService.createConversation(
-      Number(socket.data.user.id),
-      dto.secondUser
-    );
+  async createConversation(socket: Socket, secondUser: number) {
+    await this.conversationService.createConversation(socket.data.user.id, secondUser);
+    return this.getConversations(socket, socket.data.user.id);
   }
 
   @SubscribeMessage("joinConversation")
-  async joinConversation(socket: Socket, dto: { conversationId: number }) {}
+  async joinConversation(socket: Socket, dto: { conversationId: number }) {
+    const activeConversation = await this.conversationService.joinConversation(
+      socket.id,
+      dto.conversationId
+    );
+    const messages = await this.conversationService.getMessages(
+      activeConversation.conversationId
+    );
+    return this.server.to(socket.id).emit("messages", messages);
+  }
 
   @SubscribeMessage("leaveConversation")
-  async leaveConversation(socketId: string) {}
+  async leaveConversation(socketId: string) {
+    return this.conversationService.leaveConversation(socketId);
+  }
 
   handleDisconnect(socket: Socket) {
     console.log("HANDLE_DISCONNECTION");
+    return this.leaveConversation(socket.id);
   }
 }
