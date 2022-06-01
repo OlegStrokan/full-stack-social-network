@@ -6,8 +6,10 @@ import { BlockedUserModel } from "./blocked-user.model";
 import { PostModel } from "../../post/models/post.model";
 import { PhotoModel } from "./photo.model";
 import { FollowModel } from "./follow.model";
+import { ConversationModel } from "../../message/models/conversation.model";
+import { MessageModel } from "../../message/models/message.model";
 
-interface UserCreationAttr {
+export interface UserCreationAttr {
   email: string;
   username: string;
   fullname: string;
@@ -108,6 +110,14 @@ export class UserModel extends Model<UserModel, UserCreationAttr> {
   @ApiProperty({ example: [FollowModel], description: "User's follows" })
   @HasMany(() => FollowModel)
   follows: FollowModel[];
+
+  @ApiProperty({ example: [ConversationModel], description: "User's conversations" })
+  @HasMany(() => ConversationModel)
+  conversations: ConversationModel[];
+
+  @ApiProperty({ example: [MessageModel], description: "User's messages" })
+  @HasMany(() => MessageModel)
+  messages: MessageModel[];
 
   /*@HasMany(() => CommentModel)
 	comments: CommentModel[]*/

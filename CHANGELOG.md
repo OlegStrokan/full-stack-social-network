@@ -1,3 +1,85 @@
+# v4.0.7 (01.06.2022)
+
+## Features:
+
+Backend:
+1. Added screens for showing application
+
+# v4.0.6 (01.06.2022)
+
+## Features:
+
+Backend:
+1. Returned old messages architecture
+
+
+# v4.0.5 (01.06.2022)
+
+## Features:
+
+Backend:
+1. Added get conversations method, updated some models
+
+# v4.0.4 (27.05.2022)
+
+## Features:
+
+Backend:
+1. Added create/join conversation methods
+
+# v4.0.3 (27.05.2022)
+
+## Features:
+
+Backend:
+1. Added get conversation method
+
+# v4.0.2 (25.05.2022)
+
+## Features:
+
+Backend:
+1. Added conversation, active-conversation, message models
+2. Added message model
+
+# v4.0.1 (25.05.2022)
+
+## Features:
+
+Backend:
+1. Deleted unnecessary files
+2. Prepared to chat developments
+
+# v4.0.0 (23.05.2022)
+
+## Features:
+
+Backend:
+1. Updated chat service
+2. Reformat folder's structure
+
+# v3.9.4 (22.05.2022)
+
+## Features:
+
+Backend:
+1. Updated main README
+
+# v3.9.3 (22.05.2022)
+
+## Features:
+
+Backend:
+1. Injected chat to profile and tested it
+2. Updated global imports
+
+# v3.9.2 (21.05.2022)
+
+## Features:
+
+Backend:
+1. Added message gateway with event patterns
+
 # v3.9.1 (21.05.2022)
 
 ## Features:

@@ -1,12 +1,12 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
-import { FollowModel } from "src/user/models/follow.model";
 import { UserModel } from "../user/models/user.model";
 import { FileService } from "../file/file.service";
 import { UpdateStatusDto } from "../user/dto/update-status.dto";
 import { UpdateUserDto } from "../user/dto/update-user.dto";
 import { PhotoModel } from "../user/models/photo.model";
 import { PostModel } from "../post/models/post.model";
+import { FollowModel } from "../user/models/follow.model";
 
 @Injectable()
 export class ProfileService {
