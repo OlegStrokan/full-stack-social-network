@@ -1,6 +1,7 @@
 import { Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { UserModel } from "../../user/models/user.model";
+import { ConversationModel } from "./conversation.model";
 
 interface MessageCreationAttr {
   text: string;
@@ -30,4 +31,11 @@ export class MessageModel extends Model<MessageModel, MessageCreationAttr> {
   @ForeignKey(() => MessageModel)
   @Column({ type: DataType.BOOLEAN, defaultValue: null })
   parentId: number;
+
+  @ApiProperty({
+    example: [ConversationModel],
+    description: "Conversation id for message",
+  })
+  @ForeignKey(() => ConversationModel)
+  conversationsId: number;
 }

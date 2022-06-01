@@ -28,7 +28,11 @@ export class MessageGateway implements NestGateway {
       return null;
     }
   }
-  async getConversations(socket: Socket, userId: number) {}
+  async getConversations(socket: Socket, userId: number) {
+    return this.server
+      .to(socket.id)
+      .emit("conversations", await this.conversationService.getConversations(userId));
+  }
 
   @SubscribeMessage("sendMessage")
   async sendMessage(socket: Socket, message: MessageModel) {}

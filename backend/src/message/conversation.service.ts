@@ -4,17 +4,31 @@ import { MessageModel } from "./models/message.model";
 import { InjectModel } from "@nestjs/sequelize";
 import { ConversationModel } from "./models/conversation.model";
 import { ActiveConversationModel } from "./models/active-conversation";
+import { Op } from "sequelize";
 
 @Injectable()
 export class ConversationService {
   constructor(
-    @InjectModel(ConversationModel) private conversationModel: typeof ConversationModel,
+    @InjectModel(ConversationModel)
+    private conversationModel: typeof ConversationModel,
     @InjectModel(ConversationModel)
     private activeConversationModel: typeof ActiveConversationModel,
-    @InjectModel(ConversationModel) private messageModel: typeof MessageModel
+    @InjectModel(ConversationModel)
+    private messageModel: typeof MessageModel
   ) {}
 
-  async getConversations(socket: Socket, userId: number) {}
+  async getConversations(userId: number) {
+    const conversations = await this.conversationModel.findAll({
+      where: {
+        [Op.or]: [{ firstUser: userId }, { secondUser: userId }],
+      },
+    });
+    if (!conversations) {
+      throw new HttpException("No conversation For this user", HttpStatus.NOT_FOUND);
+    }
+
+    return conversations;
+  }
 
   async getConversation(firstUser: number, secondUser: number) {
     const conversation = await this.conversationModel.findOne({

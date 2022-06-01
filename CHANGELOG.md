@@ -1,5 +1,12 @@
 
 
+# v4.0.5 (01.06.2022)
+
+## Features:
+
+Backend:
+1. Added get conversations method, updated some models
+
 # v4.0.4 (27.05.2022)
 
 ## Features:

@@ -22,8 +22,10 @@ import { RolesGuard } from "./auth/guards/roles.guard";
 import { LikeModel } from "./post/models/like.model";
 import { DislikeModel } from "./post/models/dislike.model";
 import { MessageGateway } from "./message/message.gateway";
-import { ConversationService } from "./message/conversation.service";
 import { MessageModule } from "./message/message.module";
+import { ConversationModel } from "./message/models/conversation.model";
+import { ActiveConversationModel } from "./message/models/active-conversation";
+import { MessageModel } from "./message/models/message.model";
 
 @Module({
   providers: [
@@ -32,7 +34,6 @@ import { MessageModule } from "./message/message.module";
       useClass: RolesGuard,
     },
     MessageGateway,
-    ConversationService,
   ],
   imports: [
     ConfigModule.forRoot({
@@ -58,6 +59,9 @@ import { MessageModule } from "./message/message.module";
         PhotoModel,
         LikeModel,
         DislikeModel,
+        ConversationModel,
+        ActiveConversationModel,
+        MessageModel,
       ],
       autoLoadModels: true,
       synchronize: true,

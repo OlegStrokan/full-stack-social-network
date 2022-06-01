@@ -1,6 +1,7 @@
-import { Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { UserModel } from "../../user/models/user.model";
+import { MessageModel } from "./message.model";
 
 interface ConversationCreationAttr {
   firstUser: number;
@@ -22,4 +23,8 @@ export class ConversationModel extends Model<ConversationModel, ConversationCrea
   @ForeignKey(() => UserModel)
   @Column({ type: DataType.INTEGER })
   secondUser: number;
+
+  @ApiProperty({ example: [MessageModel], description: "Messages for current conversation" })
+  @HasMany(() => MessageModel)
+  messages: MessageModel[];
 }
