@@ -1,3 +1,16 @@
+# v4.0.7 (01.06.2022)
+
+## Features:
+
+Backend:
+1. Added screens for showing application
+
+# v4.0.6 (01.06.2022)
+
+## Features:
+
+Backend:
+1. Returned old messages architecture
 
 
 # v4.0.5 (01.06.2022)
