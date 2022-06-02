@@ -4,7 +4,6 @@ import { ConversationModel } from "./models/conversation.model";
 import { ActiveConversationModel } from "./models/active_conversation.model";
 import { MessageModel } from "./models/message.model";
 import { Op } from "sequelize";
-import { UserModel } from "../user/models/user.model";
 
 @Injectable()
 export class ConversationService {
@@ -22,13 +21,6 @@ export class ConversationService {
       where: {
         [Op.or]: [{ firstUser: userId }, { secondUser: userId }],
       },
-      include: [
-        {
-          model: UserModel,
-          as: "users",
-          attributes: ["fullname"],
-        },
-      ],
     });
 
     if (!conversations) {

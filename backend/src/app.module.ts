@@ -22,8 +22,8 @@ import { RolesGuard } from "./auth/guards/roles.guard";
 import { LikeModel } from "./post/models/like.model";
 import { DislikeModel } from "./post/models/dislike.model";
 import { MessageModule } from "./message/message.module";
-import { MessageModel } from "./message/models/message.model";
 import { ConversationModel } from "./message/models/conversation.model";
+import { MessageModel } from "./message/models/message.model";
 import { ActiveConversationModel } from "./message/models/active_conversation.model";
 
 @Module({
@@ -57,9 +57,9 @@ import { ActiveConversationModel } from "./message/models/active_conversation.mo
         PhotoModel,
         LikeModel,
         DislikeModel,
-        MessageModel,
         ConversationModel,
         ActiveConversationModel,
+        MessageModel,
       ],
       autoLoadModels: true,
       synchronize: true,
