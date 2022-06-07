@@ -1,19 +1,19 @@
-### V_3.6.0
+### V_4.8.0
 
 ## Backend stack:
-* ### Nest.js
-* ### PostgreSQL
-* ### Sequelize
-* ### Swagger
-* ### Docker
-* ### Websockets/socket.io
+*  Nest.js - *MVC framework*
+*  PostgreSQL - *Database*
+*  Sequelize - *ORM for mapping entities*
+*  Swagger- *API documentation'*
+* Docker - *running app in container*
+* Websockets/socket.io - *library for websocket channel*
 
 
 ## Available endpoints:
 
-- *@admin* - just for admin
-- *@private* - for user and admin
-- *@public* - for all users (include unauthorized)
+- ```@admin``` - just for admin
+- ```@private``` - for user and admin
+- ```@public``` - for all users (include unauthorized)
 
 
 Auth functional:
@@ -78,14 +78,18 @@ Sending events:
 ## Running the app
 
 ```bash
-
 $ yarn
 # development
 $ yarn start:dev
+```
+
+```bash
 
 # watch mode
 $ yarn start
+```
 
+```bash
 # production mode
 $ yarn start:prod
 ```
@@ -93,15 +97,15 @@ $ yarn start:prod
 ## Run in docker container
 
 ```bash
-
 # build
 $ docker-compose build
-
-# start
-$ docker-compose up
-
 ```
 
-*Open http://localhost:5000 to view it in browser.*
+```bash
+# start
+$ docker-compose up
+```
 
-*Open *http://localhost:5000/api/docs* for view a swagger documentation.*
+*Open http://localhost:8000 (:dev mod) to view it in browser.*
+
+*Open *http://localhost:8000/api/docs* for view a swagger documentation.*

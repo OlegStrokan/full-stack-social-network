@@ -1,3 +1,9 @@
+# v4.0.8 (07.06.2022)
+
+## Features:
+
+1. Updated Readme
+
 # v4.0.7 (01.06.2022)
 
 ## Features:
