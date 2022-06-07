@@ -1,12 +1,12 @@
-### V_4.8.0
+### V_4.0.9
 
 ## Frontend stack:
-* React - *main library*
-* Redux-toolkit - *state manager*
-* Material UI - *UI library*
-* Socket.io - *websockets library*
-* React testing library - *unit testing*
-* Cypress - *e2e testing*
+* React - Main library
+* Redux-toolkit - State manager
+* Material UI - UI library
+* Socket.io - Websockets library
+* React testing library - Unit testing
+* Cypress - E2E testing
 
 
 ## Running the app

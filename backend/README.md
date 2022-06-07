@@ -1,12 +1,12 @@
-### V_4.8.0
+### V_4.0.9
 
 ## Backend stack:
-*  Nest.js - *MVC framework*
-*  PostgreSQL - *Database*
-*  Sequelize - *ORM for mapping entities*
-*  Swagger- *API documentation'*
-* Docker - *running app in container*
-* Websockets/socket.io - *library for websocket channel*
+*  Nest.js - *MVC framework
+*  PostgreSQL - Database
+*  Sequelize - ORM for mapping entities
+*  Swagger-*API documentation
+* Docker - Running app in container
+* Websockets/socket.io - Library for websocket channel
 
 
 ## Available endpoints:
